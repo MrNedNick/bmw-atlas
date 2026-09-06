@@ -4,9 +4,9 @@ export interface Volume {value:number; relation:'около'|'более'|'ме�
 export interface Powertrain {id:string; name:string; fuel:Fuel; power:number; powerUnit:'кВт'|'hp'; torque:number|null; gearbox:string|null; drive:string|null; market:string; asOf:string; source:string; note?:string}
 export interface Revision {year:number; kind:'Рестайлинг'|'Техническое обновление'; title:string; source:string}
 export interface Rating {agency:string; year:number; tested:string; components:{label:string; value:number}[]; source:string}
-export interface Generation {id:string; label:string; code:string; start:number; end:number|null; dateScope:string; description:string; source:string; revisions:Revision[]; revisionCoverage:'partial'; powertrains:Powertrain[]; volume:Volume|null; assembly:string[]; rating:Rating|null}
+export interface Generation {id:string; label:string; code:string; start:number; end:number|null; dateScope:string; description:string; source:string; revisions:Revision[]; revisionCoverage:'partial'; powertrains:Powertrain[]; volume:Volume|null; assembly:string[]; rating:Rating|null; photo?:Photo}
 export interface Photo {url:string; page:string; author:string; license:string; licenseUrl:string; subject:string}
-export interface ModelFamily {id:string; brand:string; name:string; aliases:string[]; tagline:string; summary:string; body:string[]; source:string; countries:string[]; countryScope:string; volume:Volume|null; generations:Generation[]; photo?:Photo}
+export interface ModelFamily {id:string; brand:string; name:string; aliases:string[]; tagline:string; summary:string; body:string[]; source:string; countries:string[]; countryScope:string; volume:Volume|null; generations:Generation[]}
 export interface IndexModel {id:string; make:string; name:string; source:string}
 export interface IndexSnapshot {version:number; retrievedAt:string; makeCount:number; modelCount:number; scope:string; source:string; models:IndexModel[]}
 export interface Filters {query:string; brand:string; year:string; fuel:string; body:string; country:string; savedOnly:boolean}
