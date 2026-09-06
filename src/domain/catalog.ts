@@ -15,7 +15,7 @@ export function normalize(value:string){return value.normalize('NFD').replace(/[
 export function matchesText(value:string,query:string){const haystack=normalize(value);return normalize(query).split(' ').filter(Boolean).every(word=>haystack.includes(word));}
 export function familyMatches(f:ModelFamily,filters:Filters,saved:string[]=[]){
  const searchable=[f.brand,f.name,...f.aliases,...f.generations.flatMap(g=>[g.label,g.code,...g.powertrains.map(p=>p.name)])].join(' ');
- if(!matchesText(searchable,filters.query)||filters.brand&&f.brand!==filters.brand||filters.body&&!f.body.includes(filters.body)||filters.country&&!f.countries.includes(filters.country)||filters.savedOnly&&!saved.includes(f.id))return false;
+ if(!matchesText(searchable,filters.query)||filters.brand&&normalize(f.brand)!==normalize(filters.brand)||filters.body&&!f.body.includes(filters.body)||filters.country&&!f.countries.includes(filters.country)||filters.savedOnly&&!saved.includes(f.id))return false;
  return f.generations.some(g=>(!filters.year||g.start<=Number(filters.year)&&(g.end===null||g.end>=Number(filters.year)))&&(!filters.fuel||g.powertrains.some(p=>p.fuel===filters.fuel)));
 }
 export function formatYears(g:Generation){return `${g.start}–${g.end??'н. в.'}`;}
