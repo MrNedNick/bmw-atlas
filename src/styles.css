@@ -1,0 +1,2 @@
+@import "tailwindcss";
+body { margin:0; font-family:system-ui,sans-serif; background:#102a22;color:#edf1db; } main { padding:3rem; }

@@ -1,0 +1,37 @@
+{
+  "name": "motor-atlas",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "check": "tsc -b",
+    "test": "vitest run",
+    "preview": "vite preview --host 127.0.0.1",
+    "data:import": "node scripts/import-catalog.mjs",
+    "data:validate": "tsx scripts/validate-data.ts"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.0",
+    "lucide-react": "^0.468.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/node": "^22.18.0",
+    "@vitejs/plugin-react": "^6.1.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vitest": "^5.0.0",
+    "tsx": "^4.20.0",
+    "tailwindcss": "^4.1.0",
+    "@tailwindcss/vite": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}
