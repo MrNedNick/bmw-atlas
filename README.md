@@ -1,11 +1,32 @@
-# Motor Atlas
+# BMW Atlas
 
-An automotive research atlas: model generations, documented updates, powertrains and production history with sources.
+Независимая энциклопедия BMW: поколения, рестайлинги, двигатели, производство и фотографии с проверяемыми источниками. Русский интерфейс, поиск по названиям и кодам кузовов, сравнение до четырёх поколений и локальный гараж.
 
-## Development
+## Покрытие
 
-Node.js 22.18 or newer. `npm ci`, then `npm run dev`. `npm run check`, `npm test`, and `npm run build` validate a change. `npm run preview` serves the production build.
+- 260 названий **только BMW** из NHTSA vPIC. Это регуляторный индекс, включающий названия мотоциклов, а не полная история всех автомобилей.
+- Истории 3 Series и 5 Series, общий обзор Isetta: 17 поколений и обзорных ветвей, 8 силовых записей.
+- Фотографии всех 17 внесённых поколений / обзорных ветвей, включая новый i3 NA0. Галерея «Фото» открывает нужное поколение. У каждого снимка есть точная подпись версии, источник и лицензия.
 
-The application distinguishes a broad model-name index from researched model histories. Missing specifications remain unknown. Brand origin, assembly location, market, production, sales and safety ratings are separate facts.
+Цель каталога — все исторические и современные BMW: серийные автомобили, M, i, X, Z, редкие версии, гоночные машины, концепты и отдельный раздел Motorrad. Наполнение продолжается; отсутствие данных не означает отсутствие модели, рестайлинга или двигателя. Подробности в [договоре каталога](docs/data-sources.md) и [плане покрытия](docs/coverage.md).
 
-Current distribution: local application. No public deployment is configured yet.
+## Запуск
+
+Node.js 22.18 или новее:
+
+```sh
+npm ci
+npm run dev
+```
+
+Проверки: `npm run check`, `npm test`, `npm run data:validate`, `npm run build`. `npm run preview` открывает собранную версию. `npm run data:import` обновляет только BMW в индексе; неудачный импорт сохраняет предыдущий снимок.
+
+Данные входят в приложение; внешние API при просмотре не нужны. Тема и гараж сохраняются в браузере. Старые ссылки на удалённые модели возвращают каталог, из сохранений отображаются только существующие BMW.
+
+Распространение пока локальное. Папка проекта сохраняет техническое имя `motor-atlas`, публичный путь — `/bmw-atlas/`. Энциклопедия не является официальным сайтом BMW.
+
+## GitHub Pages
+
+Workflow проверяет типы, тесты и данные перед публикацией ветки `main`. В Settings → Pages выбрать GitHub Actions. Сборка с `GITHUB_PAGES=true` использует `/bmw-atlas/`; ссылки на модели хранят состояние в query string и открываются без server rewrites. Инструкция: [deployment](docs/deployment.md).
+
+Точное покрытие по каждому поколению: [состояние каталога](docs/catalog-status.md). После изменения данных выполнить `npm run data:report`.
