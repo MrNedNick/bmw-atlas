@@ -1,22 +1,110 @@
-import type {Source} from '../domain/catalog';
-export const sources:Source[]=[
-{id:'vw-history',title:'50 лет Golf: восемь поколений',publisher:'Volkswagen Newsroom',date:'2024-03-29',scope:'История основной модельной линии; тиражи имеют разные границы и точность',url:'https://www.volkswagen-newsroom.com/en/press-releases/a-world-bestseller-celebrates-its-50th-birthday-volkswagen-started-production-of-the-first-golf-on-29-march-1974-18313'},
-{id:'vw-mk7',title:'Golf VII · история обновления',publisher:'Volkswagen Newsroom',date:'2016',scope:'Презентация обновления Golf VII, не дата начала продаж во всех странах',url:'https://www.volkswagen-newsroom.com/en/golf-7-20122019-20035'},
-{id:'vw-2024',title:'Новый Golf · модельная гамма',publisher:'Volkswagen Newsroom',date:'2024-01-24',scope:'Обновление VIII поколения, европейский старт',url:'https://www.volkswagen-newsroom.com/en/the-new-golf-world-premiere-18074/the-new-models-at-a-glance-18075'},
-{id:'vw-power',title:'Golf VIII · силовые установки на старте',publisher:'Volkswagen Newsroom',date:'2019',scope:'Стартовая линейка 2019; не исчерпывающий перечень всех годов и рынков',url:'https://www.volkswagen-newsroom.com/en/the-new-golf-international-vehicle-presentation-5609/new-golf-is-launched-with-high-tech-standard-equipment-5617'},
-{id:'bmw-production',title:'50 лет производства BMW 3 Series',publisher:'BMW Group PressClub',date:'2025-12-11',scope:'Производственная история, все перечисленные кузова и полные заводы; исторический срез',url:'https://www.press.bmwgroup.com/global/article/detail/T0454448EN/50-years-of-bmw-3-series-production-%E2%80%93-an-international-success-story'},
-{id:'bmw-history',title:'50 лет BMW 3 Series',publisher:'BMW Group',date:'2025',scope:'Поколения, кузовные коды и обновление 2022',url:'https://www.bmwgroup.com/en/news/general/2025/50-years-BMW-3-series.html'},
-{id:'bmw-2024',title:'BMW 3 Series · обновление 2024',publisher:'BMW Group UK',date:'2024-05-29',scope:'Рынок Великобритании, Sedan/Touring; мощность сохранена в единице hp исходного материала',url:'https://www.press.bmwgroup.com/united-kingdom/article/detail/T0442576EN_GB/the-new-bmw-3-series-saloon-and-the-new-bmw-3-series-touring'},
-{id:'bmw-i3',title:'Новый i3 · Neue Klasse',publisher:'BMW Group',date:'2026-03-19',scope:'Отдельная электрическая ветвь; дальность и зарядка в материале предварительные и сюда не импортированы',url:'https://www.bmwgroup.com/en/news/general/2026/bmwi3.html'},
-{id:'bmw-i3-production',title:'Старт серийного производства BMW i3',publisher:'BMW Group',date:'2026-08',scope:'Новый i3 на заводе в Мюнхене; не I01 и не китайский i3',url:'https://www.bmwgroup.com/en/news/general/2026/series-production-of-the-bmw-i3.html'},
-{id:'skoda-history',title:'Octavia: 30 лет современной линии',publisher:'Škoda Storyboard',date:'2026-08-27',scope:'Современные поколения с 1996; не включает оригинальную модель 1959–1971',url:'https://www.skoda-storyboard.com/en/press-releases/skoda-octavia-turns-30-three-decades-of-a-brand-icon/'},
-{id:'skoda-power',title:'Octavia 2024 · двигатели и трансмиссии',publisher:'Škoda Storyboard',date:'2024-05-14',scope:'Европейская линейка обновления; 2.0 TSI 150 кВт указан как будущий запуск, поэтому не включён как доступная версия',url:'https://www.skoda-storyboard.com/en/press-kits/skoda-octavia-media-launch-press-kit/powertrains-four-petrol-and-two-diesel-engines-as-well-as-two-mild-hybrid-options/'},
-{id:'skoda-ncap',title:'Octavia · протокол Euro NCAP 2022',publisher:'Euro NCAP',date:'2022-12',scope:'Octavia 1.5 TSI LHD, 5-door estate, standard safety equipment; компоненты оценки 2022',url:'https://cdn.euroncap.com/media/80164/euroncap-2022-%C5%A1koda-octavia-datasheet.pdf'},
-{id:'vpic',title:'NHTSA vPIC · реестр моделей',publisher:'NHTSA',date:'2026-09-06',scope:'Названия из регуляторного каталога vPIC; охват не равен всем автомобилям мира',url:'https://vpic.nhtsa.dot.gov/api/'},
-{id:'bmw-5-history',title:'История BMW 5 Series: первые пять поколений',publisher:'BMW Group PressClub',date:'2010-04-12',scope:'Ретроспектива E12–E60/E61: продажи и производственные вехи в Дингольфинге по состоянию на апрель 2010',url:'https://www.press.bmwgroup.com/usa/article/detail/T0079416EN_US/five-times-around-history-of-the-bmw-5-series'},
-{id:'bmw-5-f10-milestone',title:'BMW 5 Series (F10/F11/F07) · два миллиона продаж',publisher:'BMW Group PressClub',date:'2016-04-11',scope:'Шестое поколение, мировые продажи по состоянию на апрель 2016; сравнение с пятым поколением',url:'https://www.press.bmwgroup.com/global/article/detail/T0259054EN/two-million-vehicles-sold:-the-bmw-5-series-is-the-world%E2%80%99s-most-successful-business-car-bestseller-for-six-years-and-regular-winner-of-reader-and-expert-polls?language=en'},
-{id:'bmw-5-g30-launch',title:'Новый BMW 5 Series (G30) · старт седьмого поколения',publisher:'BMW Group PressClub',date:'2016-12-01',scope:'Технические данные 530i/540i и суммарные продажи первых шести поколений на декабрь 2016',url:'https://www.press.bmwgroup.com/global/article/detail/T0264349EN/the-new-bmw-5-series-sedan?language=en'},
-{id:'bmw-5-i5-premiere',title:'Новый BMW 5 Series и BMW i5 · премьера восьмого поколения',publisher:'BMW Group PressClub USA',date:'2023-05-24',scope:'Рынок США: 530i, 540i xDrive, i5 eDrive40, i5 M60 xDrive; мощность и момент в источнике указаны в hp/lb-ft',url:'https://www.press.bmwgroup.com/usa/article/detail/T0418778EN_US/the-all-new-2024-bmw-5-series?language=en_US'},
-{id:'bmw-5-dingolfing',title:'Старт производства BMW 5 Series (G60) в Дингольфинге',publisher:'BMW Group PressClub',date:'2023-07-21',scope:'50 лет производства в Дингольфинге; восемь из примерно двенадцати миллионов автомобилей завода — модели 5 Series',url:'https://www.press.bmwgroup.com/global/article/detail/T0424419EN/%E2%80%9Ceight-times-five-is-50%E2%80%9D:-plant-dingolfing-celebrates-start-of-bmw-i5-production-during-anniversary-year?language=en'},
+import type { Source } from "../domain/catalog";
+export const sources: Source[] = [
+  {
+    id: "bmw-isetta-history",
+    title: "BMW Isetta · архив семейства",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-07",
+    scope:
+      "Общий период март 1955 — май 1962 и выпуск семейства; не разбивка по версиям",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-1181-1.bmw-isetta-model-series.html",
+  },
+  {
+    id: "bmw-production",
+    title: "50 лет производства BMW 3 Series",
+    publisher: "BMW Group PressClub",
+    date: "2025-12-11",
+    scope:
+      "Производственная история, все перечисленные кузова и полные заводы; исторический срез",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0454448EN/50-years-of-bmw-3-series-production-%E2%80%93-an-international-success-story",
+  },
+  {
+    id: "bmw-history",
+    title: "50 лет BMW 3 Series",
+    publisher: "BMW Group",
+    date: "2025",
+    scope: "Поколения, кузовные коды и обновление 2022",
+    url: "https://www.bmwgroup.com/en/news/general/2025/50-years-BMW-3-series.html",
+  },
+  {
+    id: "bmw-2024",
+    title: "BMW 3 Series · обновление 2024",
+    publisher: "BMW Group UK",
+    date: "2024-05-29",
+    scope:
+      "Рынок Великобритании, Sedan/Touring; мощность сохранена в единице hp исходного материала",
+    url: "https://www.press.bmwgroup.com/united-kingdom/article/detail/T0442576EN_GB/the-new-bmw-3-series-saloon-and-the-new-bmw-3-series-touring",
+  },
+  {
+    id: "bmw-i3",
+    title: "Новый i3 · Neue Klasse",
+    publisher: "BMW Group",
+    date: "2026-03-19",
+    scope:
+      "Отдельная электрическая ветвь; дальность и зарядка в материале предварительные и сюда не импортированы",
+    url: "https://www.bmwgroup.com/en/news/general/2026/bmwi3.html",
+  },
+  {
+    id: "bmw-i3-production",
+    title: "Старт серийного производства BMW i3",
+    publisher: "BMW Group",
+    date: "2026-08",
+    scope: "Новый i3 на заводе в Мюнхене; не I01 и не китайский i3",
+    url: "https://www.bmwgroup.com/en/news/general/2026/series-production-of-the-bmw-i3.html",
+  },
+  {
+    id: "vpic",
+    title: "NHTSA vPIC · реестр моделей",
+    publisher: "NHTSA",
+    date: "2026-09-06",
+    scope:
+      "Названия из регуляторного каталога vPIC; только названия BMW; не полный исторический каталог марки",
+    url: "https://vpic.nhtsa.dot.gov/api/",
+  },
+  {
+    id: "bmw-5-history",
+    title: "История BMW 5 Series: первые пять поколений",
+    publisher: "BMW Group PressClub",
+    date: "2010-04-12",
+    scope:
+      "Ретроспектива E12–E60/E61: продажи и производственные вехи в Дингольфинге по состоянию на апрель 2010",
+    url: "https://www.press.bmwgroup.com/usa/article/detail/T0079416EN_US/five-times-around-history-of-the-bmw-5-series",
+  },
+  {
+    id: "bmw-5-f10-milestone",
+    title: "BMW 5 Series (F10/F11/F07) · два миллиона продаж",
+    publisher: "BMW Group PressClub",
+    date: "2016-04-11",
+    scope:
+      "Шестое поколение, мировые продажи по состоянию на апрель 2016; сравнение с пятым поколением",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0259054EN/two-million-vehicles-sold:-the-bmw-5-series-is-the-world%E2%80%99s-most-successful-business-car-bestseller-for-six-years-and-regular-winner-of-reader-and-expert-polls?language=en",
+  },
+  {
+    id: "bmw-5-g30-launch",
+    title: "Новый BMW 5 Series (G30) · старт седьмого поколения",
+    publisher: "BMW Group PressClub",
+    date: "2016-12-01",
+    scope:
+      "Технические данные 530i/540i и суммарные продажи первых шести поколений на декабрь 2016",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0264349EN/the-new-bmw-5-series-sedan?language=en",
+  },
+  {
+    id: "bmw-5-i5-premiere",
+    title: "Новый BMW 5 Series и BMW i5 · премьера восьмого поколения",
+    publisher: "BMW Group PressClub USA",
+    date: "2023-05-24",
+    scope:
+      "Рынок США: 530i, 540i xDrive, i5 eDrive40, i5 M60 xDrive; мощность и момент в источнике указаны в hp/lb-ft",
+    url: "https://www.press.bmwgroup.com/usa/article/detail/T0418778EN_US/the-all-new-2024-bmw-5-series?language=en_US",
+  },
+  {
+    id: "bmw-5-dingolfing",
+    title: "Старт производства BMW 5 Series (G60) в Дингольфинге",
+    publisher: "BMW Group PressClub",
+    date: "2023-07-21",
+    scope:
+      "50 лет производства в Дингольфинге; восемь из примерно двенадцати миллионов автомобилей завода — модели 5 Series",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0424419EN/%E2%80%9Ceight-times-five-is-50%E2%80%9D:-plant-dingolfing-celebrates-start-of-bmw-i5-production-during-anniversary-year?language=en",
+  },
 ];
-export const sourceById=Object.fromEntries(sources.map(s=>[s.id,s]));
+export const sourceById = Object.fromEntries(sources.map((s) => [s.id, s]));

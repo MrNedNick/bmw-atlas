@@ -1,40 +1,39 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import { cn } from '../../lib/cn'
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { cn } from "../../lib/cn";
 
-export type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'danger'
-export type ButtonSize = 'sm' | 'md' | 'lg'
+export type ButtonVariant = "primary" | "outline" | "ghost" | "danger";
+export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant
-  size?: ButtonSize
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   /** Shows a spinner and blocks interaction without changing the layout. */
-  loading?: boolean
-  startIcon?: ReactNode
+  loading?: boolean;
+  startIcon?: ReactNode;
 }
 
 const VARIANTS: Record<ButtonVariant, string> = {
-  primary: 'bg-accent text-white hover:bg-accent-hover shadow-sm',
-  outline:
-    'border border-border bg-surface text-text hover:bg-surface-raised',
-  ghost: 'text-text hover:bg-surface-raised',
-  danger: 'bg-danger text-white hover:brightness-110',
-}
+  primary: "bg-accent text-white hover:bg-accent-hover shadow-sm",
+  outline: "border border-border bg-surface text-text hover:bg-surface-raised",
+  ghost: "text-text hover:bg-surface-raised",
+  danger: "bg-danger text-white hover:brightness-110",
+};
 
 const SIZES: Record<ButtonSize, string> = {
-  sm: 'h-8 px-3 text-xs gap-1.5',
-  md: 'h-10 px-4 text-sm gap-2',
-  lg: 'h-12 px-6 text-base gap-2',
-}
+  sm: "h-8 px-3 text-xs gap-1.5",
+  md: "h-10 px-4 text-sm gap-2",
+  lg: "h-12 px-6 text-base gap-2",
+};
 
 export function Button({
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   loading = false,
   startIcon,
   disabled,
   className,
   children,
-  type = 'button',
+  type = "button",
   ...rest
 }: ButtonProps) {
   return (
@@ -43,9 +42,9 @@ export function Button({
       disabled={disabled || loading}
       aria-busy={loading || undefined}
       className={cn(
-        'inline-flex items-center justify-center rounded-md font-medium',
-        'transition-colors duration-150 whitespace-nowrap',
-        'disabled:opacity-45 disabled:cursor-not-allowed',
+        "inline-flex items-center justify-center rounded-md font-medium",
+        "transition-colors duration-150 whitespace-nowrap",
+        "disabled:opacity-45 disabled:cursor-not-allowed",
         VARIANTS[variant],
         SIZES[size],
         className,
@@ -62,5 +61,5 @@ export function Button({
       )}
       {children}
     </button>
-  )
+  );
 }

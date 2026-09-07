@@ -1,7 +1,7 @@
 {
-  "name": "motor-atlas",
+  "name": "bmw-atlas",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
@@ -10,26 +10,32 @@
     "test": "vitest run",
     "preview": "vite preview --host 127.0.0.1",
     "data:import": "node scripts/import-catalog.mjs",
-    "data:validate": "node --import tsx scripts/validate-data.ts"
+    "data:validate": "node --import tsx scripts/validate-data.ts && node --import tsx scripts/report-coverage.ts --check",
+    "format": "prettier --write src scripts docs README.md vite.config.ts index.html .github/workflows/pages.yml",
+    "format:check": "prettier --check src scripts docs README.md vite.config.ts index.html .github/workflows/pages.yml",
+    "data:report": "node --import tsx scripts/report-coverage.ts",
+    "build:pages": "tsc -b && vite build --base=/bmw-atlas/",
+    "preview:pages": "vite preview --host 127.0.0.1 --base=/bmw-atlas/"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.3.0",
-    "lucide-react": "^0.468.0"
+    "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/node": "^22.18.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
-    "@types/node": "^22.18.0",
     "@vitejs/plugin-react": "^6.1.0",
+    "prettier": "3.6.2",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.0",
     "typescript": "~6.0.2",
     "vite": "^8.2.2",
-    "vitest": "^5.0.0",
-    "tsx": "^4.20.0",
-    "tailwindcss": "^4.1.0",
-    "@tailwindcss/vite": "^4.1.0"
+    "vitest": "^5.0.0"
   },
   "engines": {
     "node": ">=22.18.0"
