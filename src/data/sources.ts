@@ -1,6 +1,131 @@
 import type { Source } from "../domain/catalog";
 export const sources: Source[] = [
   {
+    id: "bmw-1-production",
+    title: "BMW 1 Series в истории завода Регенсбург",
+    publisher: "BMW Group PressClub",
+    date: "2026-02-02",
+    scope:
+      "Периоды и объёмы E87, F20, F21 и F40 на заводе Регенсбург; не глобальный тираж",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0455203EN?language=en",
+  },
+  {
+    id: "bmw-1-leipzig-production",
+    title: "20 лет серийного производства на заводе BMW Group в Лейпциге",
+    publisher: "BMW Group PressClub Deutschland",
+    date: "2025-03-03",
+    scope:
+      "Периоды и объёмы E81, E82, E88, F20, F40 и F70 в Лейпциге по декабрь 2024 года",
+    url: "https://www.press.bmwgroup.com/deutschland/article/detail/T0448360DE/jubilaeum:-20-jahre-serienproduktion-im-bmw-group-werk-leipzig?showMedia=photo",
+  },
+  {
+    id: "bmw-1-f20-launch",
+    title: "Новый BMW 1 Series (F20)",
+    publisher: "BMW Group PressClub",
+    date: "2011-06-05",
+    scope:
+      "Второе поколение, задний привод, размеры, стартовая гамма и первый миллион предшественника",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0110674EN/the-new-bmw-1-series",
+  },
+  {
+    id: "bmw-1-f20-update",
+    title: "Обновлённая гамма BMW 1 Series",
+    publisher: "BMW Group PressClub",
+    date: "2015-01-16",
+    scope:
+      "Рестайлинг F20/F21: передняя и задняя части, новая гамма трёх- и четырёхцилиндровых двигателей",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0200199EN/the-new-bmw-1-series-model-range",
+  },
+  {
+    id: "bmw-1-f40-launch",
+    title: "BMW 1 Series (F40): сочетание динамики и пространства",
+    publisher: "BMW Group PressClub",
+    date: "2019-05-27",
+    scope:
+      "Третье поколение, переход на переднеприводную архитектуру, размеры, пространство и мировой запуск",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0296071EN/the-all-new-bmw-1-series-the-perfect-synthesis-of-agility-and-space/1000",
+  },
+  {
+    id: "bmw-1-f70-launch",
+    title: "Новый BMW 1 Series (F70)",
+    publisher: "BMW Group PressClub",
+    date: "2024-06-05",
+    scope:
+      "Четвёртое поколение, производство в Лейпциге, 48-вольтовые двигатели, Operating System 9 и запуск",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0442625EN/the-all-new-bmw-1-series?language=en",
+  },
+  {
+    id: "bmw-7-history",
+    title: "40 лет BMW 7 Series: традиция инноваций",
+    publisher: "BMW Group PressClub",
+    date: "2017-07-24",
+    scope:
+      "Технологические премьеры 1977–2015, производство в Дингольфинге и шесть исторических поколений",
+    url: "https://www.press.bmwgroup.com/global/article/attachment/T0272386EN/390001",
+  },
+  {
+    id: "bmw-7-generations",
+    title: "BMW 7 Series, 1977–2015",
+    publisher: "BMW Group PressClub",
+    date: "2015-06-10",
+    scope: "Официальные коды и производственные интервалы E23–F01",
+    url: "https://www.press.bmwgroup.com/global/tv-footage/detail/PF0004456/the-bmw-7-series-1977-2015/3",
+  },
+  {
+    id: "bmw-7-e65-update",
+    title: "BMW 7 Series с весны 2005 года",
+    publisher: "BMW Group PressClub Deutschland",
+    date: "2005-01-27",
+    scope:
+      "Обновление E65/E66: дизайн, пять переработанных силовых вариантов, шасси и iDrive",
+    url: "https://www.press.bmwgroup.com/deutschland/article/detail/T0001547DE/die-bmw-7er-reihe-ab-fruehjahr-2005?language=de",
+  },
+  {
+    id: "bmw-7-f01-update",
+    title: "Обновлённый BMW 7 Series",
+    publisher: "BMW Group PressClub",
+    date: "2012-07-22",
+    scope:
+      "Обновление F01/F02: светодиодная оптика, двигатели, восьмиступенчатая коробка и электроника",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0128226EN/the-new-bmw-7-series?language=en",
+  },
+  {
+    id: "bmw-7-g11-launch",
+    title: "Новый BMW 7 Series (G11/G12)",
+    publisher: "BMW Group PressClub",
+    date: "2015-06-10",
+    scope:
+      "Шестое поколение: Carbon Core, силовые агрегаты, системы управления и связи",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0221224EN/the-new-bmw-7-series",
+  },
+  {
+    id: "bmw-7-g11-update",
+    title: "Старт производства обновлённого BMW 7 Series",
+    publisher: "BMW Group PressClub",
+    date: "2019-03-11",
+    scope:
+      "Обновление G11/G12 и первый для BMW Group plug-in hybrid с шестицилиндровым двигателем",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0292943EN/start-of-production-for-new-bmw-7-series-sedan?language=en",
+  },
+  {
+    id: "bmw-7-g70-launch",
+    title: "Новый BMW 7 Series (G70)",
+    publisher: "BMW Group PressClub",
+    date: "2022-04-20",
+    scope:
+      "Седьмое поколение: i7, глобальная длинная база, варианты привода, оснащение и Дингольфинг",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0380173EN/the-new-bmw-7-series",
+  },
+  {
+    id: "bmw-7-g70-update",
+    title: "Обновлённый BMW 7 Series (G70)",
+    publisher: "BMW Group PressClub",
+    date: "2026-04-22",
+    scope:
+      "Глубокое обновление G70: технологии Neue Klasse, дизайн, батареи Gen6 и начало производства",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0457130EN/the-new-bmw-7-series?showMedia=photo",
+  },
+  {
     id: "bmw-m1-history",
     title: "BMW M1: от Procar до иконы",
     publisher: "BMW M",

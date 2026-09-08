@@ -6,9 +6,21 @@ const editorialPhoto = (url: string, page: string, subject: string): Photo => ({
   license: "Редакционная визуализация",
   licenseUrl: page,
   subject,
-  note: "Редакционная визуализация модели; форма сверена с официальной историей BMW M.",
+  note: "Редакционная визуализация модели; форма сверена с официальной историей BMW.",
 });
 export const photoByGeneration: Record<string, Photo> = {
+  ...Object.fromEntries(
+    ["e8x", "f20", "f40", "f70"].map((code) => [
+      `bmw-1-${code}`,
+      editorialPhoto(
+        `editorial-bmw-1-${code}.webp`,
+        code === "f70"
+          ? "https://www.press.bmwgroup.com/global/article/detail/T0442625EN/the-all-new-bmw-1-series?language=en"
+          : "https://www.press.bmwgroup.com/global/article/topic/4102/1-series",
+        `BMW 1 Series · ${code.toUpperCase()}`,
+      ),
+    ]),
+  ),
   "bmw-e21": {
     url: "images/bmw-e21.jpg",
     page: "https://commons.wikimedia.org/wiki/File:BMW_316-E21_Front-view.JPG",
@@ -168,6 +180,18 @@ export const photoByGeneration: Record<string, Photo> = {
     subject: "BMW X5 40 xDrive · G65, 2026",
     note: "Редакционная визуализация; исходный пресс-снимок сохранён в проекте.",
   },
+  ...Object.fromEntries(
+    ["e23", "e32", "e38", "e65", "f01", "g11", "g70"].map((code) => [
+      `bmw-7-${code}`,
+      editorialPhoto(
+        `editorial-bmw-7-${code}.webp`,
+        code === "g70"
+          ? "https://www.press.bmwgroup.com/global/article/detail/T0380173EN/the-new-bmw-7-series"
+          : "https://www.press.bmwgroup.com/global/tv-footage/detail/PF0004456/the-bmw-7-series-1977-2015/3",
+        `BMW 7 Series · ${code.toUpperCase()}`,
+      ),
+    ]),
+  ),
   "bmw-m1-e26": editorialPhoto(
     "editorial-bmw-m1.webp",
     "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
@@ -196,7 +220,12 @@ export const photoByGeneration: Record<string, Photo> = {
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {
-  if (generationId === "bmw-x5-g65" || generationId.startsWith("bmw-m"))
+  if (
+    generationId === "bmw-x5-g65" ||
+    generationId.startsWith("bmw-m") ||
+    generationId.startsWith("bmw-7-") ||
+    generationId.startsWith("bmw-1-")
+  )
     continue;
 
   photo.url = `images/editorial-${generationId}.webp`;

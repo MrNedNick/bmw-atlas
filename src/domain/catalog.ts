@@ -55,6 +55,7 @@ export interface Generation {
   end: number | null;
   dateScope: string;
   description: string;
+  highlights?: string[];
   source: string;
   revisions: Revision[];
   revisionCoverage: "partial";
@@ -146,6 +147,7 @@ export function familyMatches(
     ...f.generations.flatMap((g) => [
       g.label,
       g.code,
+      ...(g.highlights ?? []),
       ...g.powertrains.map((p) => p.name),
     ]),
   ].join(" ");
@@ -217,6 +219,8 @@ export function validateCatalog(
         !g.dateScope
       )
         errors.push(`invalid dates: ${g.id}`);
+      if (g.highlights?.some((item) => !item.trim()))
+        errors.push(`invalid highlight: ${g.id}`);
       for (const r of g.revisions) {
         source(r.source);
         if (r.year < g.start || (g.end !== null && r.year > g.end))

@@ -338,8 +338,9 @@ h4 {
 .hero-image > img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: 50% 50%;
+  background: var(--raised);
 }
 .hero-image-overlay {
   position: absolute;
@@ -1294,6 +1295,28 @@ select,
 .story-panel > p {
   margin-bottom: 10px;
 }
+.generation-highlights {
+  margin: 24px 0;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--raised) 82%, transparent);
+}
+.generation-highlights h4 {
+  margin-bottom: 11px;
+  font-size: 13px;
+}
+.generation-highlights ul {
+  display: grid;
+  gap: 9px;
+  padding-left: 17px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.generation-highlights li::marker {
+  color: var(--lime);
+}
 .revision-list {
   margin-top: 30px;
 }
@@ -2005,7 +2028,8 @@ td > span {
   width: 100%;
   min-height: 0;
   flex: 1;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--raised);
 }
 .vehicle-photo figcaption {
   padding: 12px 16px;

@@ -199,6 +199,16 @@ export function FamilyDetail({
             <span className="eyebrow">ЧТО ИЗМЕНИЛОСЬ</span>
             <h3>{generation.code}: характер поколения</h3>
             <p>{generation.description}</p>
+            {(generation.highlights?.length ?? 0) > 0 && (
+              <div className="generation-highlights">
+                <h4>Чем запомнилось поколение</h4>
+                <ul>
+                  {generation.highlights?.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <SourceLink id={generation.source} />
             <div className="revision-list">
               <h4>

@@ -48,7 +48,41 @@ it("advertises electric facts only where engine records exist", () => {
         familyMatches(f, { ...EMPTY_FILTERS, fuel: "Plug-in hybrid" }),
       )
       .map((f) => f.id),
-  ).toEqual(["bmw-x5", "bmw-m5"]);
+  ).toEqual(["bmw-x5", "bmw-7-series", "bmw-m5"]);
+});
+
+it("covers all seven BMW 7 Series generations with sourced images", () => {
+  const seven = families.find((f) => f.id === "bmw-7-series")!;
+  expect(seven.generations.map((g) => g.code)).toEqual([
+    "E23",
+    "E32",
+    "E38",
+    "E65 / E66",
+    "F01 / F02",
+    "G11 / G12",
+    "G70",
+  ]);
+  expect(seven.generations.every((g) => g.photo)).toBe(true);
+  expect(seven.generations.flatMap((g) => g.highlights ?? []).length).toBe(19);
+  expect(
+    seven.generations.flatMap((g) => g.revisions).map((r) => r.year),
+  ).toEqual([2005, 2012, 2019, 2026]);
+});
+
+it("covers all four BMW 1 Series generations and the drive-layout transition", () => {
+  const one = families.find((f) => f.id === "bmw-1-series")!;
+  expect(one.generations.map((g) => g.code)).toEqual([
+    "E81 / E82 / E87 / E88",
+    "F20 / F21",
+    "F40",
+    "F70",
+  ]);
+  expect(one.generations.every((g) => g.photo)).toBe(true);
+  expect(one.generations[1].revisions.map((r) => r.year)).toEqual([2015]);
+  expect(one.generations[1].highlights?.join(" ")).toContain("заднеприводный");
+  expect(one.generations[2].highlights?.join(" ")).toContain(
+    "переднеприводная",
+  );
 });
 
 it("covers five BMW X5 generations and their sourced facelifts", () => {

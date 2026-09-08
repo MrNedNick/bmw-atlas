@@ -36,7 +36,7 @@ describe("BMW distribution", () => {
   });
   it("uses the unified editorial image set for every detailed generation", () => {
     const photos = families.flatMap((f) => f.generations.map((g) => g.photo));
-    expect(photos).toHaveLength(36);
+    expect(photos).toHaveLength(47);
     expect(
       photos.every((p) => p?.url.startsWith("images/editorial-bmw-")),
     ).toBe(true);
@@ -46,7 +46,9 @@ describe("BMW distribution", () => {
   });
   it("rejects a photo without licence provenance", () => {
     const copy = structuredClone(families);
-    copy[0].generations.find((g) => g.id === "bmw-g20")!.photo!.licenseUrl = "";
+    copy
+      .find((f) => f.id === "bmw-3-series")!
+      .generations.find((g) => g.id === "bmw-g20")!.photo!.licenseUrl = "";
     expect(validateCatalog(copy, sources)).toContain("invalid photo: bmw-g20");
   });
 });
