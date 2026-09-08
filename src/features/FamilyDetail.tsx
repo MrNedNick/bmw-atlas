@@ -18,6 +18,7 @@ import { formatVolume, formatYears } from "../domain/catalog";
 import { sourceById } from "../data/sources";
 import { Button } from "../components/button/button";
 import { VehiclePhoto } from "./VehiclePhoto";
+import { RatingsPanel } from "./ratings/RatingsPanel";
 export function SourceLink({ id }: { id: string }) {
   const s = sourceById[id];
   return s ? (
@@ -62,7 +63,9 @@ export function FamilyDetail({
         generation.volume?.source,
         ...generation.revisions.map((r) => r.source),
         ...generation.powertrains.map((p) => p.source),
-        generation.rating?.source,
+        ...generation.ratings.flatMap((rating) =>
+          rating.status === "rated" ? [rating.source] : [],
+        ),
       ].filter((v): v is string => !!v),
     ),
   ];
@@ -410,46 +413,7 @@ export function FamilyDetail({
           </section>
         </div>
       )}
-      {tab === "Оценки" && (
-        <section className="panel">
-          <span className="eyebrow">БЕЗОПАСНОСТЬ</span>
-          <h3>Оценка с контекстом</h3>
-          {generation.rating ? (
-            <>
-              <p>
-                {generation.rating.agency} · {generation.rating.year}
-              </p>
-              <p className="muted">{generation.rating.tested}</p>
-              <div className="ratings-grid">
-                {generation.rating.components.map((c) => (
-                  <div key={c.label}>
-                    <strong>
-                      {c.value}
-                      <span>%</span>
-                    </strong>
-                    <div className="rating-bar">
-                      <i style={{ width: `${c.value}%` }} />
-                    </div>
-                    <small>{c.label}</small>
-                  </div>
-                ))}
-              </div>
-              <SourceLink id={generation.rating.source} />
-            </>
-          ) : (
-            <p className="empty-inline">
-              Проверенная оценка для этой версии ещё не добавлена. Мы не
-              переносим рейтинг с другого поколения и не придумываем общий балл.
-            </p>
-          )}
-          <p className="note">
-            <ShieldCheck size={17} />
-            Это безопасность по конкретному протоколу, не надёжность и не
-            «качество автомобиля». Оценки разных лет нельзя напрямую
-            ранжировать.
-          </p>
-        </section>
-      )}
+      {tab === "Оценки" && <RatingsPanel ratings={generation.ratings} />}
       {tab === "Источники" && (
         <section className="panel">
           <span className="eyebrow">ПРОВЕРИТЬ САМОМУ</span>

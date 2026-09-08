@@ -14,7 +14,7 @@ const lines = [
   "| --- | --- | --- | --- | --- | --- |",
   ...allGenerations.map(
     ({ family: f, generation: g }) =>
-      `| ${f.name} | ${g.code} | ${g.photo ? "Есть" : "Нет"} | ${g.powertrains.length || "Не добавлены"} | ${g.revisions.length || "Не добавлены"} | ${g.rating ? g.rating.agency + " " + g.rating.year : "Не добавлена"} |`,
+      `| ${f.name} | ${g.code} | ${g.photo ? "Есть" : "Нет"} | ${g.powertrains.length || "Не добавлены"} | ${g.revisions.length || "Не добавлены"} | ${g.ratings.length ? g.ratings.map((rating) => (rating.status === "rated" ? rating.scheme + " " + rating.protocolYear : rating.scheme + ": нет данных")).join("; ") : "Не добавлена"} |`,
   ),
   "",
   "Отсутствующие записи не означают отсутствие двигателя, обновления или оценки. Фото покрывает подписанную версию, не все кузова и комплектации поколения. Isetta пока общий обзор семейства.",

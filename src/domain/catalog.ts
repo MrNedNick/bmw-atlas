@@ -1,3 +1,5 @@
+import { validateSafetyRatings, type SafetyRating } from "./ratings";
+
 export type Fuel =
   | "Бензин"
   | "Дизель"
@@ -41,13 +43,6 @@ export interface Revision {
   title: string;
   source: string;
 }
-export interface Rating {
-  agency: string;
-  year: number;
-  tested: string;
-  components: { label: string; value: number }[];
-  source: string;
-}
 export interface Generation {
   id: string;
   label: string;
@@ -63,7 +58,7 @@ export interface Generation {
   powertrains: Powertrain[];
   volume: Volume | null;
   assembly: string[];
-  rating: Rating | null;
+  ratings: SafetyRating[];
   photo?: Photo;
 }
 export interface Photo {
@@ -251,12 +246,10 @@ export function validateCatalog(
           !g.photo.licenseUrl.startsWith("https://"))
       )
         errors.push(`invalid photo: ${g.id}`);
-      if (g.rating) {
-        source(g.rating.source);
-        for (const c of g.rating.components)
-          if (c.value < 0 || c.value > 100)
-            errors.push(`invalid rating: ${g.id}`);
-      }
+      for (const rating of g.ratings)
+        if (rating.status === "rated") source(rating.source);
+      for (const error of validateSafetyRatings(g.ratings))
+        errors.push(`${g.id}: ${error}`);
     }
   }
   return errors;

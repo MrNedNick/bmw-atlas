@@ -31,7 +31,7 @@ const g = (
   powertrains: [],
   volume: null,
   assembly: [],
-  rating: null,
+  ratings: [],
   photo: photoByGeneration[id],
   ...extra,
 });

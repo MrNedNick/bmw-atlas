@@ -455,8 +455,14 @@ export default function App() {
                         [
                           "Оценка безопасности",
                           ({ generation: g }: (typeof compared)[number]) =>
-                            g.rating
-                              ? `${g.rating.agency}, ${g.rating.year}`
+                            g.ratings.length
+                              ? g.ratings
+                                  .map((rating) =>
+                                    rating.status === "rated"
+                                      ? `${rating.scheme}, ${rating.protocolYear}`
+                                      : `${rating.scheme}: нет данных`,
+                                  )
+                                  .join("; ")
                               : "Не добавлена",
                         ],
                       ].map(([label, render]) => (

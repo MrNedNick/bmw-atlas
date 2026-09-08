@@ -1460,6 +1460,27 @@ td > span {
   gap: 25px;
   margin: 30px 0;
 }
+.rating-scenarios {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+.rating-scenario {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+}
+.rating-scenario > strong {
+  font-size: 18px;
+}
+.rating-overall {
+  margin-top: 18px;
+  font-size: 30px;
+}
+.rating-overall small {
+  color: var(--muted);
+  font-size: 12px;
+}
 .ratings-grid strong {
   font-size: 40px;
   font-weight: 500;

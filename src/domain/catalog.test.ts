@@ -45,7 +45,7 @@ const fixture = (): ModelFamily => ({
       powertrains: [],
       volume: null,
       assembly: [],
-      rating: null,
+      ratings: [],
     },
   ],
 });
