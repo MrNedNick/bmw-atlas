@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ImageOff } from "lucide-react";
-import type { Photo } from "../domain/catalog";
+import type { Photo } from "../../domain/catalog";
 
 export function VehiclePhoto({
   photo,

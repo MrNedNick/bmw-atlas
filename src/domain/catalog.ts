@@ -57,6 +57,7 @@ export interface Generation {
   photo?: Photo;
 }
 export interface Photo {
+  generationId: string;
   url: string;
   page: string;
   author: string;
@@ -233,6 +234,7 @@ export function validateCatalog(
       if (
         g.photo &&
         (!g.photo.url.startsWith("images/") ||
+          g.photo.generationId !== g.id ||
           !g.photo.author ||
           !g.photo.subject ||
           !g.photo.license ||

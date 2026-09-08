@@ -1,4 +1,4 @@
-import { photoByGeneration } from "./photos";
+import { assetByGeneration } from "./assets";
 import type {
   ModelFamily,
   Generation,
@@ -32,7 +32,7 @@ const g = (
   volume: null,
   assembly: [],
   ratings: [],
-  photo: photoByGeneration[id],
+  photo: assetByGeneration[id],
   ...extra,
 });
 const v = (
@@ -391,15 +391,6 @@ export const families: ModelFamily[] = [
               "hp",
             ),
           ],
-          photo: {
-            url: "images/editorial-bmw-g20.webp",
-            page: "https://commons.wikimedia.org/wiki/File:BMW_G20_330i_in_blue.jpg",
-            author: "Damian B Oh",
-            license: "CC BY-SA 4.0",
-            licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-            subject: "BMW G20 330i · 2020",
-            note: "Редакционная визуализация; исходный снимок сохранён в проекте.",
-          },
         },
       ),
       g(
@@ -673,15 +664,6 @@ export const families: ModelFamily[] = [
               "hp",
             ),
           ],
-          photo: {
-            url: "images/editorial-bmw-g60.webp",
-            page: "https://commons.wikimedia.org/wiki/File:BMW_520i_G60_Oxide_Grey_Metallic_01.jpg",
-            author: "Ethan Llamas",
-            license: "CC BY-SA 4.0",
-            licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-            subject: "BMW 520i G60 · 2025",
-            note: "Редакционная визуализация; исходный снимок сохранён в проекте.",
-          },
         },
       ),
     ],
@@ -2113,17 +2095,6 @@ export const families: ModelFamily[] = [
         {
           dateScope:
             "Общее семейство: март 1955 — май 1962; не отдельная версия",
-          photo: {
-            url: "images/editorial-bmw-isetta.webp",
-            page: "https://commons.wikimedia.org/wiki/File:BMW_250-Isetta.JPG",
-            author: "Luc106",
-            license: "Public domain",
-            licenseUrl:
-              "https://commons.wikimedia.org/wiki/File:BMW_250-Isetta.JPG#Licensing",
-            subject:
-              "BMW Isetta 250 · версия на фотографии; общий обзор семейства",
-            note: "Редакционная визуализация; исходная фотография сохранена в проекте.",
-          },
         },
       ),
     ],

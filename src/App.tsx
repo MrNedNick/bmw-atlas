@@ -33,7 +33,7 @@ import {
 } from "./domain/catalog";
 import { Button } from "./components/button/button";
 import { useSaved, useTheme } from "./lib/preferences";
-import { VehiclePhoto } from "./features/VehiclePhoto";
+import { VehiclePhoto } from "./features/media/VehiclePhoto";
 import { FamilyDetail, SourceLink } from "./features/FamilyDetail";
 const number = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
 const defaults = (f: ModelFamily) =>

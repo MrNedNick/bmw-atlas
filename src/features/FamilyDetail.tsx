@@ -16,7 +16,7 @@ import type { ModelFamily, Generation } from "../domain/catalog";
 import { formatVolume, formatYears } from "../domain/catalog";
 import { sourceById } from "../data/sources";
 import { Button } from "../components/button/button";
-import { VehiclePhoto } from "./VehiclePhoto";
+import { VehiclePhoto } from "./media/VehiclePhoto";
 import { RatingsPanel } from "./ratings/RatingsPanel";
 import { RevisionTimeline } from "./timeline/RevisionTimeline";
 import { faceliftCount } from "../domain/revisions";

@@ -1,5 +1,10 @@
-import type { Photo } from "../domain/catalog";
-const editorialPhoto = (url: string, page: string, subject: string): Photo => ({
+import type { Photo } from "../../domain/catalog";
+type PhotoMetadata = Omit<Photo, "generationId">;
+const editorialPhoto = (
+  url: string,
+  page: string,
+  subject: string,
+): PhotoMetadata => ({
   url: `images/${url}`,
   page,
   author: "Редакция BMW Atlas",
@@ -8,7 +13,7 @@ const editorialPhoto = (url: string, page: string, subject: string): Photo => ({
   subject,
   note: "Редакционная визуализация модели; форма сверена с официальной историей BMW.",
 });
-export const photoByGeneration: Record<string, Photo> = {
+const photoByGeneration: Record<string, PhotoMetadata> = {
   ...Object.fromEntries(
     ["e8x", "f20", "f40", "f70"].map((code) => [
       `bmw-1-${code}`,
@@ -250,6 +255,34 @@ export const photoByGeneration: Record<string, Photo> = {
       ),
     ]),
   ),
+  "bmw-g20": {
+    url: "images/editorial-bmw-g20.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_G20_330i_in_blue.jpg",
+    author: "Damian B Oh",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW G20 330i · 2020",
+    note: "Редакционная визуализация; исходный снимок сохранён в проекте.",
+  },
+  "bmw-g60": {
+    url: "images/editorial-bmw-g60.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_520i_G60_Oxide_Grey_Metallic_01.jpg",
+    author: "Ethan Llamas",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW 520i G60 · 2025",
+    note: "Редакционная визуализация; исходный снимок сохранён в проекте.",
+  },
+  "bmw-isetta-family": {
+    url: "images/editorial-bmw-isetta.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_250-Isetta.JPG",
+    author: "Luc106",
+    license: "Public domain",
+    licenseUrl:
+      "https://commons.wikimedia.org/wiki/File:BMW_250-Isetta.JPG#Licensing",
+    subject: "BMW Isetta 250 · версия на фотографии; общий обзор семейства",
+    note: "Редакционная визуализация; исходная фотография сохранена в проекте.",
+  },
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {
@@ -260,11 +293,47 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId.startsWith("bmw-1-") ||
     generationId.startsWith("bmw-x3-") ||
     generationId === "bmw-r32-1923" ||
-    generationId.startsWith("bmw-gs-")
+    generationId.startsWith("bmw-gs-") ||
+    generationId === "bmw-isetta-family"
   )
     continue;
 
   photo.url = `images/editorial-${generationId}.webp`;
   photo.note =
     "Редакционная визуализация; исходная фотография сохранена в проекте.";
+}
+
+export const assetByGeneration: Record<string, Photo> = Object.fromEntries(
+  Object.entries(photoByGeneration).map(([generationId, photo]) => [
+    generationId,
+    { generationId, ...photo },
+  ]),
+);
+
+export function validateAssetRegistry(
+  assets: Record<string, Photo>,
+  generationIds: readonly string[],
+) {
+  const errors: string[] = [];
+  const allowed = new Set(generationIds);
+  for (const [generationId, asset] of Object.entries(assets)) {
+    if (!allowed.has(generationId))
+      errors.push(`orphan asset: ${generationId}`);
+    if (asset.generationId !== generationId)
+      errors.push(`asset generation mismatch: ${generationId}`);
+    if (
+      !asset.url.startsWith("images/") ||
+      !/\.(webp|jpe?g|png)$/i.test(asset.url)
+    )
+      errors.push(`invalid local asset: ${generationId}`);
+    if (
+      !asset.author.trim() ||
+      !asset.license.trim() ||
+      !asset.subject.trim() ||
+      !asset.page.startsWith("https://") ||
+      !asset.licenseUrl.startsWith("https://")
+    )
+      errors.push(`incomplete attribution: ${generationId}`);
+  }
+  return errors;
 }
