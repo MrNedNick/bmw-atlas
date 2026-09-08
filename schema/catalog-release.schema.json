@@ -41,7 +41,7 @@
         "id": { "type": "string", "minLength": 1 },
         "name": { "type": "string", "minLength": 1 },
         "power": { "type": "number", "exclusiveMinimum": 0 },
-        "powerUnit": { "enum": ["кВт", "hp"] },
+        "powerUnit": { "enum": ["кВт", "hp", "PS"] },
         "torque": { "type": ["number", "null"], "minimum": 0 },
         "market": { "type": "string", "minLength": 1 },
         "asOf": { "type": "string", "minLength": 4 },
@@ -78,10 +78,11 @@
     },
     "family": {
       "type": "object",
-      "required": ["id", "brand", "name", "body", "source", "generations"],
+      "required": ["id", "brand", "vehicleKind", "name", "body", "source", "generations"],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
         "brand": { "const": "BMW" },
+        "vehicleKind": { "enum": ["Автомобиль", "Мотоцикл"] },
         "name": { "type": "string", "minLength": 1 },
         "body": {
           "type": "array",

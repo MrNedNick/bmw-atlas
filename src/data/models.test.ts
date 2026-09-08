@@ -119,6 +119,32 @@ it("covers five BMW X5 generations and their sourced facelifts", () => {
 it("contains only BMW histories", () =>
   expect(families.every((f) => f.brand === "BMW")).toBe(true));
 
+it("keeps cars and BMW Motorrad as explicit catalogue kinds", () => {
+  expect(
+    families.filter((f) => f.vehicleKind === "Мотоцикл").map((f) => f.id),
+  ).toEqual(["bmw-r32", "bmw-gs-boxer"]);
+  expect(
+    families
+      .filter((f) => f.vehicleKind === "Мотоцикл")
+      .every((f) => f.body.includes("Мотоцикл")),
+  ).toBe(true);
+});
+
+it("covers the first BMW motorcycle and five sourced boxer GS milestones", () => {
+  const r32 = families.find((f) => f.id === "bmw-r32")!;
+  const gs = families.find((f) => f.id === "bmw-gs-boxer")!;
+  expect(r32.generations[0].powertrains[0].powerUnit).toBe("PS");
+  expect(gs.generations.map((g) => g.code)).toEqual([
+    "R 80 G/S",
+    "R 1100 GS",
+    "R 1200 GS",
+    "R 1250 GS",
+    "R 1300 GS",
+  ]);
+  expect(gs.generations.every((g) => g.photo)).toBe(true);
+  expect(gs.generations.at(-1)?.powertrains[0].torque).toBe(149);
+});
+
 it("keeps BMW M as separate sourced histories with their own images", () => {
   expect(families.find((f) => f.id === "bmw-m3")?.generations).toHaveLength(6);
   expect(families.find((f) => f.id === "bmw-m5")?.generations).toHaveLength(7);

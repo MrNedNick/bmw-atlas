@@ -74,7 +74,10 @@ export function FamilyDetail({
       <section className="detail-hero">
         <div>
           <div className="eyebrow">
-            ИСТОРИЯ МОДЕЛИ <span className="dot" /> {family.brand.toUpperCase()}
+            ИСТОРИЯ МОДЕЛИ <span className="dot" />{" "}
+            {family.vehicleKind === "Мотоцикл"
+              ? "BMW MOTORRAD"
+              : family.brand.toUpperCase()}
           </div>
           <h1>
             {family.brand}

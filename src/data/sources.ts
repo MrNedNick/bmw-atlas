@@ -169,6 +169,42 @@ export const sources: Source[] = [
     url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-1181-1.bmw-isetta-model-series.html",
   },
   {
+    id: "bmw-r32-classic",
+    title: "BMW R 32",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-08",
+    scope:
+      "Первая серийная модель BMW Motorrad: период выпуска, двигатель, мощность, максимальная скорость и конструкция",
+    url: "https://www.bmwgroup-classic.com/de/modelle/bmw-motorrad-klassiker/product-description-page.md-569-1.bmw-r-32.html",
+  },
+  {
+    id: "bmw-gs-30-years",
+    title: "30 лет BMW GS",
+    publisher: "BMW Motorrad",
+    date: "2010",
+    scope:
+      "Техническая хронология R 80 G/S, R 1100 GS и R 1200 GS; данные ECE на момент рыночного запуска",
+    url: "https://www.bmw-motorrad.com/content/dam/bmwmotorradnsc/common/downloads/gs/BMW_30yearsGS_Magazin.pdf",
+  },
+  {
+    id: "bmw-gs-million",
+    title: "Миллионный BMW GS с оппозитным двигателем",
+    publisher: "BMW Group PressClub",
+    date: "2023-06-21",
+    scope:
+      "Миллионный boxer GS, завод Берлин-Шпандау и место R 1250 GS в линии перед запуском R 1300 GS",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0421767EN/bmw-motorrad-celebrates-one-millionth-gs-with-boxer-engine",
+  },
+  {
+    id: "bmw-r1300-gs-launch",
+    title: "Новый BMW R 1300 GS",
+    publisher: "BMW Group PressClub",
+    date: "2023-09-28",
+    scope:
+      "Двигатель 1300 см³, 107 кВт, 149 Н·м, масса, компоновка коробки и новое шасси",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0437059EN/the-new-bmw-r-1300-gs",
+  },
+  {
     id: "bmw-production",
     title: "50 лет производства BMW 3 Series",
     publisher: "BMW Group PressClub",

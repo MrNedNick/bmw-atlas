@@ -231,6 +231,25 @@ export const photoByGeneration: Record<string, Photo> = {
       ),
     ]),
   ),
+  "bmw-r32-1923": editorialPhoto(
+    "editorial-bmw-r32-1923.webp",
+    "https://www.bmwgroup-classic.com/de/modelle/bmw-motorrad-klassiker/product-description-page.md-569-1.bmw-r-32.html",
+    "BMW R 32 · 1923",
+  ),
+  ...Object.fromEntries(
+    ["r80", "r1100", "r1200", "r1250", "r1300"].map((code) => [
+      `bmw-gs-${code}`,
+      editorialPhoto(
+        `editorial-bmw-gs-${code}.webp`,
+        code === "r1300"
+          ? "https://www.press.bmwgroup.com/global/article/detail/T0437059EN/the-new-bmw-r-1300-gs"
+          : code === "r1250"
+            ? "https://www.press.bmwgroup.com/global/article/detail/T0421767EN/bmw-motorrad-celebrates-one-millionth-gs-with-boxer-engine"
+            : "https://www.bmw-motorrad.com/content/dam/bmwmotorradnsc/common/downloads/gs/BMW_30yearsGS_Magazin.pdf",
+        `BMW ${code.replace("r", "R ").toUpperCase()} GS`,
+      ),
+    ]),
+  ),
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {
@@ -239,7 +258,9 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId.startsWith("bmw-m") ||
     generationId.startsWith("bmw-7-") ||
     generationId.startsWith("bmw-1-") ||
-    generationId.startsWith("bmw-x3-")
+    generationId.startsWith("bmw-x3-") ||
+    generationId === "bmw-r32-1923" ||
+    generationId.startsWith("bmw-gs-")
   )
     continue;
 

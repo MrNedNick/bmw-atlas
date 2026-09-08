@@ -20,6 +20,7 @@ const sources: Source[] = [
 const fixture = (): ModelFamily => ({
   id: "family",
   brand: "BMW",
+  vehicleKind: "Автомобиль",
   name: "Model",
   aliases: [],
   tagline: "",

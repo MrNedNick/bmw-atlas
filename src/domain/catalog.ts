@@ -4,6 +4,7 @@ export type Fuel =
   | "Mild hybrid"
   | "Plug-in hybrid"
   | "Электро";
+export type VehicleKind = "Автомобиль" | "Мотоцикл";
 export interface Source {
   id: string;
   title: string;
@@ -25,7 +26,7 @@ export interface Powertrain {
   name: string;
   fuel: Fuel;
   power: number;
-  powerUnit: "кВт" | "hp";
+  powerUnit: "кВт" | "hp" | "PS";
   torque: number | null;
   gearbox: string | null;
   drive: string | null;
@@ -77,6 +78,7 @@ export interface Photo {
 export interface ModelFamily {
   id: string;
   brand: string;
+  vehicleKind: VehicleKind;
   name: string;
   aliases: string[];
   tagline: string;
@@ -206,6 +208,8 @@ export function validateCatalog(
   }
   for (const f of families) {
     if (f.brand !== "BMW") errors.push(`unsupported brand: ${f.id}`);
+    if (f.vehicleKind !== "Автомобиль" && f.vehicleKind !== "Мотоцикл")
+      errors.push(`unsupported vehicle kind: ${f.id}`);
     addId(f.id);
     source(f.source);
     volume(f.volume);

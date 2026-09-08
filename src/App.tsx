@@ -92,7 +92,9 @@ function FamilyCard({
   return (
     <article className="family-card blue-card">
       <div className="card-top">
-        <span>{family.brand}</span>
+        <span>
+          {family.vehicleKind === "Мотоцикл" ? "BMW MOTORRAD" : family.brand}
+        </span>
         <button
           className={"bookmark " + (saved ? "is-saved" : "")}
           aria-label={(saved ? "Убрать из гаража " : "В гараж ") + family.name}
@@ -746,19 +748,25 @@ export default function App() {
               </div>
               <div className="quick-filters">
                 <span>Начните с</span>
-                {["3 Series", "5 Series", "Isetta", "M3", "X5", "i3", "Z4"].map(
-                  (b) => (
-                    <button
-                      key={b}
-                      className={state.filters.query === b ? "active" : ""}
-                      onClick={() =>
-                        filters({ query: state.filters.query === b ? "" : b })
-                      }
-                    >
-                      {b}
-                    </button>
-                  ),
-                )}
+                {[
+                  "3 Series",
+                  "5 Series",
+                  "Isetta",
+                  "M3",
+                  "X5",
+                  "GS",
+                  "R 32",
+                ].map((b) => (
+                  <button
+                    key={b}
+                    className={state.filters.query === b ? "active" : ""}
+                    onClick={() =>
+                      filters({ query: state.filters.query === b ? "" : b })
+                    }
+                  >
+                    {b}
+                  </button>
+                ))}
                 {activeFilters > 0 && (
                   <button
                     className="reset-link"
