@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mrnednick.github.io/bmw-atlas/schema/catalog-release.schema.json",
+  "title": "BMW Atlas catalog release",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["releaseVersion", "sources", "families", "markets", "variants"],
+  "properties": {
+    "releaseVersion": { "type": "integer", "minimum": 1 },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+    "families": { "type": "array", "items": { "$ref": "#/$defs/family" } },
+    "markets": { "type": "array", "items": { "$ref": "#/$defs/market" } },
+    "variants": { "type": "array", "items": { "$ref": "#/$defs/variant" } }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["id", "title", "publisher", "url", "date", "scope"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "publisher": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "date": { "type": "string", "minLength": 4 },
+        "scope": { "type": "string", "minLength": 1 }
+      }
+    },
+    "powertrain": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "fuel",
+        "power",
+        "powerUnit",
+        "market",
+        "asOf",
+        "source"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "power": { "type": "number", "exclusiveMinimum": 0 },
+        "powerUnit": { "enum": ["кВт", "hp"] },
+        "torque": { "type": ["number", "null"], "minimum": 0 },
+        "market": { "type": "string", "minLength": 1 },
+        "asOf": { "type": "string", "minLength": 4 },
+        "source": { "type": "string", "minLength": 1 }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "required": [
+        "id",
+        "code",
+        "start",
+        "end",
+        "dateScope",
+        "source",
+        "powertrains"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "code": { "type": "string", "minLength": 1 },
+        "start": { "type": "integer", "minimum": 1886, "maximum": 2100 },
+        "end": {
+          "type": ["integer", "null"],
+          "minimum": 1886,
+          "maximum": 2100
+        },
+        "dateScope": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "minLength": 1 },
+        "powertrains": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/powertrain" }
+        }
+      }
+    },
+    "family": {
+      "type": "object",
+      "required": ["id", "brand", "name", "body", "source", "generations"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "brand": { "const": "BMW" },
+        "name": { "type": "string", "minLength": 1 },
+        "body": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "source": { "type": "string", "minLength": 1 },
+        "generations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/generation" }
+        }
+      }
+    },
+    "market": {
+      "type": "object",
+      "required": ["id", "countryCode", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "countryCode": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "label": { "type": "string", "minLength": 1 }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "required": [
+        "id",
+        "generationId",
+        "marketingName",
+        "body",
+        "marketId",
+        "observedAt",
+        "sourceIds"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "generationId": { "type": "string", "minLength": 1 },
+        "marketingName": { "type": "string", "minLength": 1 },
+        "body": { "type": "string", "minLength": 1 },
+        "marketId": { "type": "string", "minLength": 1 },
+        "observedAt": { "type": "string", "format": "date" },
+        "sourceIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
