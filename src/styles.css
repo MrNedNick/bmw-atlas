@@ -2066,13 +2066,21 @@ td > span {
   object-position: center;
 }
 .detail-visual {
+  height: auto;
   padding: 0 !important;
   min-height: 320px;
   background: var(--raised) !important;
   overflow: hidden;
 }
 .detail-visual .vehicle-photo {
-  height: 360px;
+  height: auto;
+}
+.detail-visual .vehicle-photo img {
+  box-sizing: border-box;
+  aspect-ratio: 16 / 10;
+  flex: none;
+  height: auto;
+  object-position: center;
 }
 .photo-missing {
   min-height: 220px;
@@ -2136,9 +2144,6 @@ td > span {
 @media (max-width: 760px) {
   .family-grid {
     grid-template-columns: 1fr;
-  }
-  .detail-visual .vehicle-photo {
-    height: 290px;
   }
   .coverage-paths ul {
     grid-template-columns: 1fr;
