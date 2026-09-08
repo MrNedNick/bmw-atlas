@@ -355,5 +355,77 @@ export const sources: Source[] = [
       "Предсерийные мощности X5 40 xDrive, X5 50e xDrive и iX5 60 xDrive; водородная версия заявлена на 2028 год",
     url: "https://www.press.bmwgroup.com/global/article/detail/T0458432EN/on-the-finishing-straight%3A-the-new-bmw-x5-enters-its-final-test-phase",
   },
+  {
+    id: "bmw-x3-history",
+    title: "15 лет моделям BMW X",
+    publisher: "BMW Group PressClub",
+    date: "2014-10-15",
+    scope:
+      "История X3, роль модели в создании среднего премиального SAV-сегмента и успех первого поколения",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0194923EN/15-years-of-bmw-x-models",
+  },
+  {
+    id: "bmw-x3-e83-update",
+    title: "Обновлённый BMW X3 (E83)",
+    publisher: "BMW Group PressClub",
+    date: "2006-06-14",
+    scope:
+      "Рестайлинг E83, изменения внешности и салона, гамма двигателей и характеристики X3 3.0sd",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0011981EN/the-new-bmw-x3?language=en",
+  },
+  {
+    id: "bmw-x3-f25-launch",
+    title: "Второе поколение BMW X3 (F25)",
+    publisher: "BMW Group PressClub",
+    date: "2010-10-15",
+    scope:
+      "Запуск F25, производство в Спартанберге, xDrive20d и xDrive35i, размеры салона и багажника",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0087046EN/the-new-bmw-x3?language=en",
+  },
+  {
+    id: "bmw-x3-f25-update",
+    title: "Обновлённый BMW X3 (F25)",
+    publisher: "BMW Group PressClub",
+    date: "2014-02-06",
+    scope:
+      "Рестайлинг F25, новая светотехника, оформление кузова и гамма из семи двигателей",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0165107EN/the-new-bmw-x3?language=en",
+  },
+  {
+    id: "bmw-x3-g01-launch",
+    title: "Третье поколение BMW X3 (G01)",
+    publisher: "BMW Group PressClub",
+    date: "2017-06-26",
+    scope:
+      "Запуск G01, силовая гамма, облегчение кузова, аэродинамика и первый X3 M40i",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0271778EN/the-new-bmw-x3",
+  },
+  {
+    id: "bmw-x3-g01-update",
+    title: "Обновлённые BMW X3 и X4",
+    publisher: "BMW Group PressClub",
+    date: "2021-06-09",
+    scope:
+      "Рестайлинг G01: передняя и задняя части, интерьер, информационная система и электрифицированная гамма",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0334392EN/the-new-bmw-x3-and-the-new-bmw-x4",
+  },
+  {
+    id: "bmw-x3-g45-launch",
+    title: "Четвёртое поколение BMW X3 (G45)",
+    publisher: "BMW Group PressClub",
+    date: "2024-06-19",
+    scope:
+      "Габариты, производство, силовая гамма G45, X3 30e, X3 M50 и рыночный запуск",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0442377EN/the-new-bmw-x3",
+  },
+  {
+    id: "bmw-x3-rosslyn-production",
+    title: "Производство BMW X3 в Росслине",
+    publisher: "BMW Group PressClub South Africa",
+    date: "2024-10-03",
+    scope:
+      "403 114 X3 G01, выпущенных в ЮАР; старт G45 PHEV и его эксклюзивное производство для мирового экспорта",
+    url: "https://www.press.bmwgroup.com/south-africa/article/detail/T0445392EN/bmw-group-south-africa%20s-electrifying-start-of-production-of-the-new-bmw-x3",
+  },
 ];
 export const sourceById = Object.fromEntries(sources.map((s) => [s.id, s]));

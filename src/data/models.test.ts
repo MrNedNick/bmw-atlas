@@ -48,7 +48,22 @@ it("advertises electric facts only where engine records exist", () => {
         familyMatches(f, { ...EMPTY_FILTERS, fuel: "Plug-in hybrid" }),
       )
       .map((f) => f.id),
-  ).toEqual(["bmw-x5", "bmw-7-series", "bmw-m5"]);
+  ).toEqual(["bmw-x5", "bmw-x3", "bmw-7-series", "bmw-m5"]);
+});
+
+it("covers all four BMW X3 generations with images and sourced facelifts", () => {
+  const x3 = families.find((f) => f.id === "bmw-x3")!;
+  expect(x3.generations.map((g) => g.code)).toEqual([
+    "E83",
+    "F25",
+    "G01",
+    "G45",
+  ]);
+  expect(x3.generations.every((g) => g.photo)).toBe(true);
+  expect(x3.generations.flatMap((g) => g.revisions).map((r) => r.year)).toEqual(
+    [2006, 2014, 2021],
+  );
+  expect(x3.generations[3].highlights?.join(" ")).toContain("81–90 км");
 });
 
 it("covers all seven BMW 7 Series generations with sourced images", () => {

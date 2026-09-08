@@ -181,6 +181,20 @@ export const photoByGeneration: Record<string, Photo> = {
     note: "Редакционная визуализация; исходный пресс-снимок сохранён в проекте.",
   },
   ...Object.fromEntries(
+    ["e83", "f25", "g01", "g45"].map((code) => [
+      `bmw-x3-${code}`,
+      editorialPhoto(
+        `editorial-bmw-x3-${code}.webp`,
+        code === "g45"
+          ? "https://www.press.bmwgroup.com/global/article/detail/T0442377EN/the-new-bmw-x3"
+          : code === "g01"
+            ? "https://www.press.bmwgroup.com/global/article/detail/T0271778EN/the-new-bmw-x3"
+            : "https://www.press.bmwgroup.com/global/article/detail/T0194923EN/15-years-of-bmw-x-models",
+        `BMW X3 · ${code.toUpperCase()}`,
+      ),
+    ]),
+  ),
+  ...Object.fromEntries(
     ["e23", "e32", "e38", "e65", "f01", "g11", "g70"].map((code) => [
       `bmw-7-${code}`,
       editorialPhoto(
@@ -224,7 +238,8 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId === "bmw-x5-g65" ||
     generationId.startsWith("bmw-m") ||
     generationId.startsWith("bmw-7-") ||
-    generationId.startsWith("bmw-1-")
+    generationId.startsWith("bmw-1-") ||
+    generationId.startsWith("bmw-x3-")
   )
     continue;
 
