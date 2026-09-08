@@ -111,7 +111,7 @@ it("covers five BMW X5 generations and their sourced facelifts", () => {
   ]);
   expect(
     x5.generations.flatMap((g) =>
-      g.revisions.filter((r) => r.kind === "Рестайлинг").map((r) => r.year),
+      g.revisions.filter((r) => r.kind === "facelift").map((r) => r.year),
     ),
   ).toEqual([2003, 2010, 2023]);
 });

@@ -146,10 +146,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2015,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Полностью переработаны передняя и задняя части, обновлены салон и гамма трёх- и четырёхцилиндровых двигателей.",
               source: "bmw-1-f20-update",
+              market: "Европа",
+              bodies: ["Хэтчбек"],
             },
           ],
           powertrains: [
@@ -345,16 +347,20 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2022,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title: "Изменения дизайна и цифрового интерфейса.",
               source: "bmw-history",
+              market: "Глобальный обзор BMW",
+              bodies: ["Седан", "Универсал"],
             },
             {
               year: 2024,
-              kind: "Техническое обновление",
+              kind: "technical",
               title:
                 "Новые батареи PHEV, настройки шасси и Operating System 8.5.",
               source: "bmw-2024",
+              market: "Великобритания",
+              bodies: ["Седан", "Универсал"],
             },
           ],
           powertrains: [
@@ -735,10 +741,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2003,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Новая передняя часть, интеллектуальный xDrive, обновлённый V8 и новые коробки; продажи версии 2004 модельного года начались осенью 2003.",
               source: "bmw-x5-e53-update",
+              market: "США",
+              bodies: ["SAV"],
             },
           ],
           powertrains: [
@@ -779,10 +787,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2010,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Переработаны передняя и задняя части, полностью обновлена гамма двигателей, стандартной стала 8-ступенчатая автоматическая коробка.",
               source: "bmw-x5-e70-update",
+              market: "Глобальная гамма",
+              bodies: ["SAV"],
             },
           ],
           powertrains: [
@@ -881,17 +891,21 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2022,
-              kind: "Техническое обновление",
+              kind: "technical",
               title:
                 "Для Китая выделена длиннобазная ветвь G18: база увеличена на 130 мм, локальное производство в Шэньяне началось в апреле 2022.",
               source: "bmw-x5-g18-china",
+              market: "Китай",
+              bodies: ["SAV · длинная база"],
             },
             {
               year: 2023,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Фары стали на 35 мм тоньше, появились новая световая графика, опциональная подсветка решётки, Curved Display и обновлённые электрифицированные двигатели.",
               source: "bmw-x5-g05-update",
+              market: "Глобальная гамма",
+              bodies: ["SAV"],
             },
           ],
         },
@@ -1012,10 +1026,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2006,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Новые фары и задние фонари, окрашенные в цвет кузова бамперы, переработанный салон и усиленная гамма двигателей.",
               source: "bmw-x3-e83-update",
+              market: "Глобальная гамма",
+              bodies: ["SAV"],
             },
           ],
           powertrains: [
@@ -1052,10 +1068,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2014,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Новые фары, более заметная решётка, изменённые бамперы и зеркала, обновлённый интерьер и семь двигателей.",
               source: "bmw-x3-f25-update",
+              market: "Глобальная гамма",
+              bodies: ["SAV"],
             },
           ],
           powertrains: [
@@ -1110,10 +1128,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2021,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Переработаны передняя и задняя части, салон и мультимедиа; гамма объединена с электрифицированными версиями.",
               source: "bmw-x3-g01-update",
+              market: "Глобальная гамма",
+              bodies: ["SAV"],
             },
           ],
           powertrains: [
@@ -1271,10 +1291,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2005,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Изменены решётка, оптика, бамперы и задняя часть; переработаны моторы, шасси и меню iDrive.",
               source: "bmw-7-e65-update",
+              market: "Германия / Европа",
+              bodies: ["Седан"],
             },
           ],
         },
@@ -1297,10 +1319,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2012,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Новые LED-фары, решётка и бамперы, обновлённые двигатели, приборы и мультимедиа.",
               source: "bmw-7-f01-update",
+              market: "Глобальная гамма",
+              bodies: ["Седан"],
             },
           ],
         },
@@ -1323,10 +1347,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2019,
-              kind: "Рестайлинг",
+              kind: "facelift",
               title:
                 "Глубоко переработаны передняя и задняя части, электроника и гибридная гамма; начат выпуск 745e/745Le.",
               source: "bmw-7-g11-update",
+              market: "Глобальная гамма",
+              bodies: ["Седан"],
             },
           ],
         },
@@ -1352,10 +1378,12 @@ export const families: ModelFamily[] = [
           revisions: [
             {
               year: 2026,
-              kind: "Техническое обновление",
+              kind: "technical",
               title:
                 "Самое масштабное обновление модели BMW: новый дизайн, Panoramic iDrive, технологии Neue Klasse и батареи Gen6 для i7.",
               source: "bmw-7-g70-update",
+              market: "Глобальная гамма",
+              bodies: ["Седан"],
             },
           ],
           powertrains: [

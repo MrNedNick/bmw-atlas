@@ -1,4 +1,5 @@
 import { validateSafetyRatings, type SafetyRating } from "./ratings";
+import { validateRevisions, type Revision } from "./revisions";
 
 export type Fuel =
   | "Бензин"
@@ -36,12 +37,6 @@ export interface Powertrain {
   asOf: string;
   source: string;
   note?: string;
-}
-export interface Revision {
-  year: number;
-  kind: "Рестайлинг" | "Техническое обновление";
-  title: string;
-  source: string;
 }
 export interface Generation {
   id: string;
@@ -222,9 +217,8 @@ export function validateCatalog(
         errors.push(`invalid highlight: ${g.id}`);
       for (const r of g.revisions) {
         source(r.source);
-        if (r.year < g.start || (g.end !== null && r.year > g.end))
-          errors.push(`revision outside generation: ${g.id}`);
       }
+      errors.push(...validateRevisions(g.revisions, g));
       for (const p of g.powertrains) {
         addId(p.id);
         source(p.source);

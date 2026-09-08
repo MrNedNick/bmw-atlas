@@ -11,7 +11,6 @@ import {
   ChevronRight,
   ShieldCheck,
   Factory,
-  Layers3,
 } from "lucide-react";
 import type { ModelFamily, Generation } from "../domain/catalog";
 import { formatVolume, formatYears } from "../domain/catalog";
@@ -19,6 +18,8 @@ import { sourceById } from "../data/sources";
 import { Button } from "../components/button/button";
 import { VehiclePhoto } from "./VehiclePhoto";
 import { RatingsPanel } from "./ratings/RatingsPanel";
+import { RevisionTimeline } from "./timeline/RevisionTimeline";
+import { faceliftCount } from "../domain/revisions";
 export function SourceLink({ id }: { id: string }) {
   const s = sourceById[id];
   return s ? (
@@ -145,9 +146,7 @@ export function FamilyDetail({
               <small>{g.label}</small>
               <strong>{g.code}</strong>
               <span>{formatYears(g)}</span>
-              {g.revisions.some((r) => r.kind === "Рестайлинг") && (
-                <i>есть обновление</i>
-              )}
+              {faceliftCount(g.revisions) > 0 && <i>есть обновление</i>}
             </button>
           ))}
         </div>
@@ -216,34 +215,7 @@ export function FamilyDetail({
               </div>
             )}
             <SourceLink id={generation.source} />
-            <div className="revision-list">
-              <h4>
-                <Layers3 size={17} /> Известные обновления
-              </h4>
-              {generation.revisions.length ? (
-                generation.revisions.map((r, i) => (
-                  <div className="revision" key={i}>
-                    <strong>{r.year}</strong>
-                    <div>
-                      <span
-                        className={
-                          "tag " + (r.kind === "Рестайлинг" ? "green" : "")
-                        }
-                      >
-                        {r.kind}
-                      </span>
-                      <p>{r.title}</p>
-                      <SourceLink id={r.source} />
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="empty-inline">
-                  Подтверждённые обновления пока не добавлены. Это не означает,
-                  что рестайлингов не было.
-                </p>
-              )}
-            </div>
+            <RevisionTimeline revisions={generation.revisions} />
           </article>
           <aside className="panel facts-panel">
             <span className="eyebrow">ДЕТАЛИ В БАЗЕ</span>
@@ -254,10 +226,7 @@ export function FamilyDetail({
               </div>
               <div>
                 <dt>Рестайлингов с источником</dt>
-                <dd>
-                  {generation.revisions.filter((r) => r.kind === "Рестайлинг")
-                    .length || "Нет данных"}
-                </dd>
+                <dd>{faceliftCount(generation.revisions) || "Нет данных"}</dd>
               </div>
               <div>
                 <dt>Производство поколения</dt>

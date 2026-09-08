@@ -2,6 +2,7 @@ import { format } from "prettier";
 import { readFileSync, writeFileSync } from "node:fs";
 import { families, allGenerations } from "../src/data/models";
 import { sources } from "../src/data/sources";
+import { faceliftCount } from "../src/domain/revisions";
 const snapshot = JSON.parse(readFileSync("public/data/catalog.json", "utf8"));
 const lines = [
   "# Состояние каталога BMW",
@@ -14,7 +15,7 @@ const lines = [
   "| --- | --- | --- | --- | --- | --- |",
   ...allGenerations.map(
     ({ family: f, generation: g }) =>
-      `| ${f.name} | ${g.code} | ${g.photo ? "Есть" : "Нет"} | ${g.powertrains.length || "Не добавлены"} | ${g.revisions.length || "Не добавлены"} | ${g.ratings.length ? g.ratings.map((rating) => (rating.status === "rated" ? rating.scheme + " " + rating.protocolYear : rating.scheme + ": нет данных")).join("; ") : "Не добавлена"} |`,
+      `| ${f.name} | ${g.code} | ${g.photo ? "Есть" : "Нет"} | ${g.powertrains.length || "Не добавлены"} | ${faceliftCount(g.revisions) || "Не добавлены"} | ${g.ratings.length ? g.ratings.map((rating) => (rating.status === "rated" ? rating.scheme + " " + rating.protocolYear : rating.scheme + ": нет данных")).join("; ") : "Не добавлена"} |`,
   ),
   "",
   "Отсутствующие записи не означают отсутствие двигателя, обновления или оценки. Фото покрывает подписанную версию, не все кузова и комплектации поколения. Isetta пока общий обзор семейства.",

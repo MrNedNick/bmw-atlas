@@ -422,8 +422,10 @@ export default function App() {
                           "Известные рестайлинги",
                           ({ generation: g }: (typeof compared)[number]) =>
                             g.revisions
-                              .filter((r) => r.kind === "Рестайлинг")
-                              .map((r) => r.year)
+                              .filter(
+                                (revision) => revision.kind === "facelift",
+                              )
+                              .map((revision) => revision.year)
                               .join(", ") || "Нет данных",
                         ],
                         [
