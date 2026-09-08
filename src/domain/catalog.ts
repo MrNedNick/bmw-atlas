@@ -71,6 +71,7 @@ export interface Photo {
   license: string;
   licenseUrl: string;
   subject: string;
+  note?: string;
 }
 export interface ModelFamily {
   id: string;

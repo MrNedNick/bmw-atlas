@@ -10,4 +10,4 @@ Euro NCAP component results are tied to the test year and tested specification; 
 
 Refreshes are explicit imports. Failed imports preserve the previous complete snapshot. No third-party API is required when a visitor opens the application.
 
-Photographs are displayed in the catalogue and selected-generation header, with exact subject labels. No photograph is reused as another generation. Compact cards credit the depicted model; the full caption with author and licence is on the opened page. Isetta is currently a family overview, not a complete Standard/Export chronology.
+Photographs are displayed in the catalogue and selected-generation header, with exact subject labels. No photograph is reused as another generation. Compact cards credit the depicted model; the full caption with author and licence is on the opened page. Editorial visualizations are stored separately from their source files, keep the source credit and are labelled in the full caption. Isetta is currently a family overview, not a complete Standard/Export chronology.

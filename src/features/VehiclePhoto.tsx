@@ -41,6 +41,7 @@ export function VehiclePhoto({
                 {photo.license}
               </a>
             </span>
+            {photo.note && <small className="photo-note">{photo.note}</small>}
           </>
         )}
       </figcaption>

@@ -1,4 +1,13 @@
 import type { Photo } from "../domain/catalog";
+const editorialPhoto = (url: string, page: string, subject: string): Photo => ({
+  url: `images/${url}`,
+  page,
+  author: "Редакция BMW Atlas",
+  license: "Редакционная визуализация",
+  licenseUrl: page,
+  subject,
+  note: "Редакционная визуализация модели; форма сверена с официальной историей BMW M.",
+});
 export const photoByGeneration: Record<string, Photo> = {
   "bmw-e21": {
     url: "images/bmw-e21.jpg",
@@ -115,4 +124,82 @@ export const photoByGeneration: Record<string, Photo> = {
     licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
     subject: "BMW i3 50 xDrive First Edition · NA0, 2026",
   },
+  "bmw-x5-e53": {
+    url: "images/bmw-x5-e53.jpg",
+    page: "https://commons.wikimedia.org/wiki/File:2002_BMW_X5_Sport_Automatic_4.4_Front.jpg",
+    author: "Vauxford",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW X5 4.4 · E53, 2002",
+  },
+  "bmw-x5-e70": {
+    url: "images/bmw-x5-e70.jpg",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_X5_E70_FRONT.jpg",
+    author: "Asmuelle",
+    license: "Public domain",
+    licenseUrl:
+      "https://commons.wikimedia.org/wiki/File:BMW_X5_E70_FRONT.jpg#Licensing",
+    subject: "BMW X5 · E70, 2008",
+  },
+  "bmw-x5-f15": {
+    url: "images/bmw-x5-f15.jpg",
+    page: "https://commons.wikimedia.org/wiki/File:BMW-X5-F15_Front.JPG",
+    author: "Luc106",
+    license: "Public domain",
+    licenseUrl:
+      "https://commons.wikimedia.org/wiki/File:BMW-X5-F15_Front.JPG#Licensing",
+    subject: "BMW X5 · F15, 2013",
+  },
+  "bmw-x5-g05": {
+    url: "images/bmw-x5-g05.jpg",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_X5_xDrive35d_(G05)_front.jpg",
+    author: "Tokumeigakarinoaoshima",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW X5 xDrive35d · G05, 2019",
+  },
+  "bmw-x5-g65": {
+    url: "images/editorial-bmw-x5-g65.webp",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90646134/BMW-X5-40-xDrive-06-2026",
+    author: "BMW Group PressClub",
+    license: "Media material",
+    licenseUrl:
+      "https://www.press.bmwgroup.com/global/photo/detail/P90646134/BMW-X5-40-xDrive-06-2026",
+    subject: "BMW X5 40 xDrive · G65, 2026",
+    note: "Редакционная визуализация; исходный пресс-снимок сохранён в проекте.",
+  },
+  "bmw-m1-e26": editorialPhoto(
+    "editorial-bmw-m1.webp",
+    "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
+    "BMW M1 · E26, 1978",
+  ),
+  ...Object.fromEntries(
+    ["e30", "e36", "e46", "e90", "f80", "g80"].map((code) => [
+      `bmw-m3-${code}`,
+      editorialPhoto(
+        `editorial-bmw-m3-${code}.webp`,
+        "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m3-generationen.html",
+        `BMW M3 · ${code.toUpperCase()}`,
+      ),
+    ]),
+  ),
+  ...Object.fromEntries(
+    ["e28", "e34", "e39", "e60", "f10", "f90", "g90"].map((code) => [
+      `bmw-m5-${code}`,
+      editorialPhoto(
+        `editorial-bmw-m5-${code}.webp`,
+        "https://www.bmw-m.com/en/topics/magazine-article-pool/the-generations-of-the-bmw-m5-an-overview.html",
+        `BMW M5 · ${code.toUpperCase()}`,
+      ),
+    ]),
+  ),
 };
+
+for (const [generationId, photo] of Object.entries(photoByGeneration)) {
+  if (generationId === "bmw-x5-g65" || generationId.startsWith("bmw-m"))
+    continue;
+
+  photo.url = `images/editorial-${generationId}.webp`;
+  photo.note =
+    "Редакционная визуализация; исходная фотография сохранена в проекте.";
+}

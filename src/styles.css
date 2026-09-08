@@ -2019,6 +2019,14 @@ td > span {
 .vehicle-photo figcaption a {
   text-decoration: underline;
 }
+.photo-note {
+  display: block;
+  margin-top: 4px;
+  color: var(--text);
+  font-size: 10px;
+  line-height: 1.45;
+  opacity: 0.72;
+}
 .vehicle-photo.compact figcaption {
   padding: 8px 0;
   background: transparent;

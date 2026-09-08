@@ -34,6 +34,16 @@ describe("BMW distribution", () => {
         existsSync(new URL("../../public/" + p.url, import.meta.url)),
       ).toBe(true);
   });
+  it("uses the unified editorial image set for every detailed generation", () => {
+    const photos = families.flatMap((f) => f.generations.map((g) => g.photo));
+    expect(photos).toHaveLength(36);
+    expect(
+      photos.every((p) => p?.url.startsWith("images/editorial-bmw-")),
+    ).toBe(true);
+    expect(
+      photos.every((p) => p?.note?.includes("Редакционная визуализация")),
+    ).toBe(true);
+  });
   it("rejects a photo without licence provenance", () => {
     const copy = structuredClone(families);
     copy[0].generations.find((g) => g.id === "bmw-g20")!.photo!.licenseUrl = "";

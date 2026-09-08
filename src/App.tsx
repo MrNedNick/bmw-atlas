@@ -505,11 +505,11 @@ export default function App() {
             <div className="page-heading">
               <span className="eyebrow">ФОРМЫ, КОТОРЫЕ ЗАПОМИНАЮТСЯ</span>
               <h1>
-                BMW в <em>фотографиях.</em>
+                BMW в <em>кадре.</em>
               </h1>
               <p>
-                Реальные автомобили. Точные подписи кузовов и открытые источники
-                каждого снимка.
+                Фотографии и редакционные визуализации. Точные подписи кузовов и
+                открытые источники каждого изображения.
               </p>
             </div>
             <div className="photo-gallery">
@@ -627,25 +627,28 @@ export default function App() {
                 </div>
                 <div className="hero-image">
                   <img
-                    src={import.meta.env.BASE_URL + "images/bmw-g20.jpg"}
-                    alt="BMW G20 330i · 2020"
+                    src={
+                      import.meta.env.BASE_URL +
+                      "images/editorial-bmw-x5-g65.webp"
+                    }
+                    alt="BMW X5 40 xDrive · G65, 2026"
                   />
                   <div className="hero-image-overlay" />
                   <span className="photo-label">В ФОКУСЕ / 01</span>
                   <div className="hero-photo-title">
-                    <span>BMW / 3 SERIES</span>
+                    <span>BMW / X5 · V ПОКОЛЕНИЕ</span>
                     <strong>
-                      G20 <em>330i</em>
+                      G65 <em>40 xDrive</em>
                     </strong>
                     <button
                       onClick={() => {
                         navigate({
-                          family: "bmw-3-series",
-                          generation: "bmw-g20",
+                          family: "bmw-x5",
+                          generation: "bmw-x5-g65",
                         });
                         window.scrollTo({ top: 0, behavior: "instant" });
                       }}
-                      aria-label="Изучить BMW G20"
+                      aria-label="Изучить BMW X5 G65"
                     >
                       <ArrowUpRight size={24} />
                     </button>
@@ -653,13 +656,15 @@ export default function App() {
                   <a
                     className="photo-credit"
                     href={
-                      families[0].generations.find((g) => g.id === "bmw-g20")!
-                        .photo!.page
+                      families
+                        .find((f) => f.id === "bmw-x5")!
+                        .generations.find((g) => g.id === "bmw-x5-g65")!.photo!
+                        .page
                     }
                     target="_blank"
                     rel="noreferrer"
                   >
-                    BMW G20 · Damian B Oh · CC BY-SA 4.0
+                    BMW X5 G65 · BMW Group PressClub · редакционная визуализация
                   </a>
                 </div>
               </section>
