@@ -9,7 +9,7 @@
     "check": "tsc -b",
     "test": "vitest run",
     "preview": "vite preview --host 127.0.0.1",
-    "data:import": "node scripts/import-catalog.mjs",
+    "data:import": "node --import tsx scripts/import-catalog.ts",
     "data:validate": "node --import tsx scripts/validate-data.ts && node --import tsx scripts/report-coverage.ts --check",
     "format": "prettier --write src scripts docs README.md vite.config.ts index.html .github/workflows/pages.yml",
     "format:check": "prettier --check src scripts docs README.md vite.config.ts index.html .github/workflows/pages.yml",
