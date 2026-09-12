@@ -15,6 +15,11 @@ import {
 } from "../src/domain/catalog";
 import { factories, productionRuns } from "../src/domain/production/catalog";
 import { validateProduction } from "../src/domain/production";
+import { assetByGeneration } from "../src/data/assets";
+import {
+  bmwSeriesInventory,
+  validateSeriesInventory,
+} from "../src/data/packs/bmw-series/manifest";
 
 export interface CatalogRelease {
   releaseVersion: number;
@@ -77,6 +82,12 @@ export function validateRelease(release: CatalogRelease): string[] {
     ...validateSchemaShape(release),
     ...validateCatalog(release.families, release.sources),
     ...validateProduction(factories, productionRuns, generationIds, sourceIds),
+    ...validateSeriesInventory(
+      bmwSeriesInventory,
+      release.sources,
+      release.families,
+      assetByGeneration,
+    ),
     ...validateVariants(
       release.variants,
       release.markets,

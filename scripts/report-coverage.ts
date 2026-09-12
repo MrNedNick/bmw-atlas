@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { families, allGenerations } from "../src/data/models";
 import { sources } from "../src/data/sources";
 import { faceliftCount } from "../src/domain/revisions";
+import { bmwSeriesInventory } from "../src/data/packs/bmw-series/manifest";
 const snapshot = JSON.parse(readFileSync("public/data/catalog.json", "utf8"));
 const lines = [
   "# Состояние каталога BMW",
@@ -19,6 +20,19 @@ const lines = [
   ),
   "",
   "Отсутствующие записи не означают отсутствие двигателя, обновления или оценки. Фото покрывает подписанную версию, не все кузова и комплектации поколения. Isetta пока общий обзор семейства.",
+  "",
+  "## Инвентаризация номерных серий",
+  "",
+  `Всего ветвей в пакете: ${bmwSeriesInventory.length}. Подробных: ${bmwSeriesInventory.filter((item) => item.status === "detailed").length}. Обзорных: ${bmwSeriesInventory.filter((item) => item.status === "overview").length}. Только в индексе: ${bmwSeriesInventory.filter((item) => item.status === "index").length}.`,
+  "",
+  "| Серия | Ветвь | Коды кузовов | Статус | Что ещё нужно |",
+  "| --- | --- | --- | --- | --- |",
+  ...bmwSeriesInventory.map(
+    (item) =>
+      `| ${item.series} Series | ${item.lineage} | ${item.chassisCodes.join(", ")} | ${item.status} | ${item.missingFields.join("; ")} |`,
+  ),
+  "",
+  "Кузовные варианты внутри одной ветви не считаются отдельными поколениями. Для 8 Series сохранён разрыв между E31 и современной линией G14/G15/G16.",
   "",
   "Обновление отчёта: `npm run data:report`. Проверка соответствия данным выполняется командой `npm run data:validate`.",
   "",
