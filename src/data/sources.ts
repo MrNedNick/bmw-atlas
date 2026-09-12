@@ -55,6 +55,15 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0442625EN/the-all-new-bmw-1-series?language=en",
   },
   {
+    id: "bmw-1-f70-production",
+    title: "Старт производства BMW 1 Series на заводе в Лейпциге",
+    publisher: "BMW Group PressClub",
+    date: "2024-07-01",
+    scope:
+      "Первый автомобиль четвёртого поколения, дата запуска производства, единственный завод и пятидверный кузов",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0443483EN/bmw-1-series-production-launch-at-bmw-group-plant-leipzig",
+  },
+  {
     id: "bmw-7-history",
     title: "40 лет BMW 7 Series: традиция инноваций",
     publisher: "BMW Group PressClub",

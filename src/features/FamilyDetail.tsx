@@ -5,12 +5,10 @@ import {
   Bookmark,
   Check,
   GitCompareArrows,
-  Globe2,
   Info,
   ExternalLink,
   ChevronRight,
   ShieldCheck,
-  Factory,
 } from "lucide-react";
 import type { ModelFamily, Generation } from "../domain/catalog";
 import { formatVolume, formatYears } from "../domain/catalog";
@@ -20,6 +18,9 @@ import { VehiclePhoto } from "./media/VehiclePhoto";
 import { RatingsPanel } from "./ratings/RatingsPanel";
 import { RevisionTimeline } from "./timeline/RevisionTimeline";
 import { faceliftCount } from "../domain/revisions";
+import { productionRuns } from "../domain/production/catalog";
+import { runsForGeneration } from "../domain/production";
+import { ProductionPanel } from "./production/ProductionPanel";
 export function SourceLink({ id }: { id: string }) {
   const s = sourceById[id];
   return s ? (
@@ -66,6 +67,9 @@ export function FamilyDetail({
         ...generation.powertrains.map((p) => p.source),
         ...generation.ratings.flatMap((rating) =>
           rating.status === "rated" ? [rating.source] : [],
+        ),
+        ...runsForGeneration(generation.id, productionRuns).map(
+          (run) => run.source,
         ),
       ].filter((v): v is string => !!v),
     ),
@@ -235,8 +239,8 @@ export function FamilyDetail({
               <div>
                 <dt>Сборка</dt>
                 <dd>
-                  {generation.assembly.length
-                    ? generation.assembly.join(", ")
+                  {runsForGeneration(generation.id, productionRuns).length
+                    ? `${runsForGeneration(generation.id, productionRuns).length} записей по заводам`
                     : "Пока не уточнена"}
                 </dd>
               </div>
@@ -331,56 +335,12 @@ export function FamilyDetail({
         </section>
       )}
       {tab === "Производство" && (
-        <div className="overview-grid">
-          <section className="panel">
-            <span className="eyebrow">ТИРАЖ</span>
-            <h3>Масштаб истории</h3>
-            {[
-              { label: "Семейство целиком", v: family.volume },
-              { label: "Выбранное поколение", v: generation.volume },
-            ].map(({ label, v }) => (
-              <div className="volume-card" key={label}>
-                <span>{label}</span>
-                <strong>{formatVolume(v)}</strong>
-                {v && (
-                  <>
-                    <p>
-                      {v.metric} · {v.scope}
-                    </p>
-                    <small>
-                      По состоянию на {v.asOf} · <SourceLink id={v.source} />
-                    </small>
-                  </>
-                )}
-              </div>
-            ))}
-            <p className="note">
-              <Info size={16} />
-              Продажи, производство и накопленный тираж — разные показатели. Мы
-              не складываем их.
-            </p>
-          </section>
-          <section className="panel">
-            <span className="eyebrow">ГЕОГРАФИЯ</span>
-            <h3>
-              <Globe2 size={22} /> Где собирали
-            </h3>
-            <p>{family.countryScope}</p>
-            <div className="country-grid">
-              {family.countries.map((c) => (
-                <span key={c}>
-                  <Factory size={15} />
-                  {c}
-                </span>
-              ))}
-            </div>
-            <SourceLink
-              id={
-                family.id === "bmw-3-series" ? "bmw-production" : family.source
-              }
-            />
-          </section>
-        </div>
+        <ProductionPanel
+          generationId={generation.id}
+          familyVolume={family.volume}
+          generationVolume={generation.volume}
+          sourceLink={(id) => <SourceLink id={id} />}
+        />
       )}
       {tab === "Оценки" && <RatingsPanel ratings={generation.ratings} />}
       {tab === "Источники" && (

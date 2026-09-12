@@ -13,6 +13,8 @@ import {
   type ModelFamily,
   type Source,
 } from "../src/domain/catalog";
+import { factories, productionRuns } from "../src/domain/production/catalog";
+import { validateProduction } from "../src/domain/production";
 
 export interface CatalogRelease {
   releaseVersion: number;
@@ -65,9 +67,16 @@ const validateSchemaShape = (release: CatalogRelease): string[] => {
 };
 
 export function validateRelease(release: CatalogRelease): string[] {
+  const generationIds = new Set(
+    release.families.flatMap((family) =>
+      family.generations.map((generation) => generation.id),
+    ),
+  );
+  const sourceIds = new Set(release.sources.map((source) => source.id));
   return [
     ...validateSchemaShape(release),
     ...validateCatalog(release.families, release.sources),
+    ...validateProduction(factories, productionRuns, generationIds, sourceIds),
     ...validateVariants(
       release.variants,
       release.markets,

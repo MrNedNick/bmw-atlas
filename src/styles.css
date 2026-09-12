@@ -1454,6 +1454,64 @@ td > span {
   border-radius: 4px;
   color: var(--muted);
 }
+.production-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+  gap: 20px;
+}
+.production-panel > p {
+  margin-bottom: 22px;
+}
+.production-runs {
+  display: grid;
+  gap: 12px;
+}
+.production-run {
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--raised) 82%, transparent);
+}
+.production-run-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 11px;
+}
+.production-run-heading > svg {
+  color: var(--lime);
+  margin-top: 2px;
+}
+.production-run-heading strong,
+.production-run-heading span {
+  display: block;
+}
+.production-run-heading strong {
+  font-size: 13px;
+}
+.production-run-heading span,
+.production-run-heading time,
+.production-run > p {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.production-run-heading time {
+  white-space: nowrap;
+  color: var(--lime);
+}
+.production-run dl {
+  margin: 13px 0;
+}
+.production-run dl > div {
+  padding: 9px 0;
+}
+.production-run dd {
+  max-width: 65%;
+}
+.production-run > p {
+  margin: 12px 0;
+}
 .ratings-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1970,6 +2028,16 @@ td > span {
   .overview-grid {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+  .production-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .production-run-heading {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .production-run-heading time {
+    grid-column: 2;
   }
   .panel {
     padding: 21px;
