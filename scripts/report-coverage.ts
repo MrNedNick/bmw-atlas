@@ -4,6 +4,10 @@ import { families, allGenerations } from "../src/data/models";
 import { sources } from "../src/data/sources";
 import { faceliftCount } from "../src/domain/revisions";
 import { bmwSeriesInventory } from "../src/data/packs/bmw-series/manifest";
+import {
+  bmwXZImageTasks,
+  bmwXZInventory,
+} from "../src/data/packs/bmw-x-z/manifest";
 const snapshot = JSON.parse(readFileSync("public/data/catalog.json", "utf8"));
 const lines = [
   "# Состояние каталога BMW",
@@ -33,6 +37,19 @@ const lines = [
   ),
   "",
   "Кузовные варианты внутри одной ветви не считаются отдельными поколениями. Для 8 Series сохранён разрыв между E31 и современной линией G14/G15/G16.",
+  "",
+  "## Инвентаризация BMW X и Z",
+  "",
+  `Всего поколений / ветвей: ${bmwXZInventory.length}. Подробных: ${bmwXZInventory.filter((item) => item.status === "detailed").length}. Обзорных: ${bmwXZInventory.filter((item) => item.status === "overview").length}. Только в индексе: ${bmwXZInventory.filter((item) => item.status === "index").length}. Изображений в очереди: ${bmwXZImageTasks.length}.`,
+  "",
+  "| Семейство | Поколение | Коды | Период | Визуальные фазы | Связанные M / i | Статус |",
+  "| --- | --- | --- | --- | --- | --- | --- |",
+  ...bmwXZInventory.map(
+    (item) =>
+      `| ${item.family} | ${item.generationKey.toUpperCase()} | ${item.chassisCodes.join(", ")} | ${item.production.from}–${item.production.to ?? "н. в."} | ${item.visualPhases.map((phase) => `${phase.label} (${phase.status})`).join("; ")} | ${[...item.mDerivativeIds, ...item.electricDerivativeIds].join("; ") || "—"} | ${item.status} |`,
+  ),
+  "",
+  "Каждый подтверждённый рестайлинг — самостоятельная визуальная фаза. M и электрические производные связаны с донорским кузовом, но не объединены с обычной моделью.",
   "",
   "Обновление отчёта: `npm run data:report`. Проверка соответствия данным выполняется командой `npm run data:validate`.",
   "",
