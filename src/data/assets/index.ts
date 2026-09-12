@@ -216,6 +216,21 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
     "BMW M1 · E26, 1978",
   ),
+  "bmw-m4-g82-lci": editorialPhoto(
+    "editorial-bmw-m4-g82-lci.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0439308EN/the-new-bmw-m4-coup%C3%A9-the-new-bmw-m4-convertible",
+    "BMW M4 Competition Coupé · G82 LCI, 2024",
+  ),
+  "bmw-xm-g09": editorialPhoto(
+    "editorial-bmw-xm-g09.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0403971EN/the-first-ever-bmw-xm",
+    "BMW XM · G09, 2023",
+  ),
+  "bmw-i8-i12-lci": editorialPhoto(
+    "editorial-bmw-i8-i12-lci.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0276225EN/the-new-bmw-i8-roadster-the-new-bmw-i8-coupe",
+    "BMW i8 Coupé · I12 LCI, 2018",
+  ),
   ...Object.fromEntries(
     ["e30", "e36", "e46", "e90", "f80", "g80"].map((code) => [
       `bmw-m3-${code}`,

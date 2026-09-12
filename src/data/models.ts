@@ -2065,6 +2065,178 @@ export const families: ModelFamily[] = [
     ],
   },
   {
+    id: "bmw-m4",
+    brand: "BMW",
+    vehicleKind: "Автомобиль",
+    name: "M4",
+    aliases: ["BMW M4", "БМВ М4", "G82", "M4 Competition", "M4 LCI"],
+    tagline: "Двухдверная высокопроизводительная ветвь 4 Series.",
+    summary:
+      "M4 продолжила линию купе M3 под отдельным именем. В каталоге подробно представлено обновление второго поколения G82 2024 года.",
+    body: ["Купе", "Кабриолет"],
+    source: "bmw-m4-g82-update",
+    countries: ["Германия"],
+    countryScope:
+      "Карточка описывает глобальную гамму обновлённого G82; производственные площадки уточняются отдельно.",
+    volume: null,
+    generations: [
+      g(
+        "bmw-m4-g82-lci",
+        "II · обновление",
+        "G82 LCI",
+        2024,
+        null,
+        "Обновление G82 усилило Competition Coupé с M xDrive, изменило световую графику и добавило лазерные задние фонари.",
+        "bmw-m4-g82-update",
+        {
+          dateScope: "Глобальная гамма с марта 2024 года",
+          highlights: [
+            "M4 сохранила отдельный двухдверный кузов G82 и не объединяется с седаном M3 G80.",
+            "Competition Coupé с M xDrive получил прибавку 15 кВт / 20 hp.",
+            "Новые фары и лазерные задние фонари визуально отделяют обновление 2024 года.",
+          ],
+          revisions: [
+            {
+              year: 2024,
+              kind: "facelift",
+              title:
+                "Новые фары, лазерные задние фонари, колёса и BMW Operating System 8.5.",
+              source: "bmw-m4-g82-update",
+              market: "Глобальная гамма",
+              bodies: ["Купе"],
+            },
+          ],
+          powertrains: [
+            p(
+              "bmw-m4-g82-lci-competition-xdrive",
+              "M4 Competition Coupé M xDrive",
+              "Бензин",
+              390,
+              null,
+              "8-ступенчатая M Steptronic",
+              "Полный · M xDrive",
+              "Глобальная гамма",
+              "2024-01-31",
+              "bmw-m4-g82-update",
+            ),
+          ],
+        },
+      ),
+    ],
+  },
+  {
+    id: "bmw-xm",
+    brand: "BMW",
+    vehicleKind: "Автомобиль",
+    name: "XM",
+    aliases: ["BMW XM", "БМВ ХМ", "G09", "XM Label"],
+    tagline: "Первый самостоятельный BMW M после M1.",
+    summary:
+      "XM G09 объединил отдельный кузов BMW M, plug-in hybrid с V8 и формат крупного SAV.",
+    body: ["SAV"],
+    source: "bmw-xm-g09-launch",
+    countries: ["США"],
+    countryScope:
+      "Серийное производство G09 началось в Спартанберге в декабре 2022 года.",
+    volume: null,
+    generations: [
+      g(
+        "bmw-xm-g09",
+        "I",
+        "G09",
+        2022,
+        null,
+        "Самостоятельный M-кроссовер с системой M HYBRID стал первым оригинальным BMW M после M1.",
+        "bmw-xm-g09-launch",
+        {
+          assembly: ["США · Спартанберг"],
+          dateScope:
+            "Производство с декабря 2022; мировой рыночный запуск весной 2023",
+          highlights: [
+            "Это отдельная модель BMW M, а не M-версия существующего X-семейства.",
+            "M HYBRID объединяет 4,4-литровый V8 и электромотор.",
+            "На старте система развивала 480 кВт / 653 hp.",
+          ],
+          powertrains: [
+            p(
+              "bmw-xm-g09-hybrid",
+              "XM",
+              "Plug-in hybrid",
+              480,
+              null,
+              "8-ступенчатая M Steptronic",
+              "Полный · M xDrive",
+              "Глобальная гамма",
+              "2022-09-28",
+              "bmw-xm-g09-launch",
+            ),
+          ],
+        },
+      ),
+    ],
+  },
+  {
+    id: "bmw-i8",
+    brand: "BMW",
+    vehicleKind: "Автомобиль",
+    name: "i8",
+    aliases: ["BMW i8", "БМВ i8", "I12", "I15", "i8 Roadster"],
+    tagline: "Гибридный спорткар, превративший концепт BMW i в серию.",
+    summary:
+      "i8 сочетал углепластиковую пассажирскую ячейку, plug-in hybrid и облик концепт-кара; обновление 2018 года добавило Roadster.",
+    body: ["Купе", "Родстер"],
+    source: "bmw-i8-history",
+    countries: ["Германия"],
+    countryScope: "BMW i8 Coupé и Roadster выпускались в Лейпциге.",
+    volume: null,
+    generations: [
+      g(
+        "bmw-i8-i12-lci",
+        "I · обновление",
+        "I12 LCI / I15",
+        2018,
+        2020,
+        "Обновлённый i8 Coupé получил более мощную электрическую часть, а параллельный Roadster открыл вторую кузовную ветвь.",
+        "bmw-i8-2018-update",
+        {
+          assembly: ["Германия · Лейпциг"],
+          dateScope:
+            "Обновлённые Coupé I12 LCI и Roadster I15: май 2018 — 2020",
+          highlights: [
+            "Купе и Roadster использовали дальнейшее развитие BMW eDrive.",
+            "Мощность электромотора выросла на 9 кВт до 105 кВт.",
+            "Модель завершила шестилетний производственный цикл в 2020 году.",
+          ],
+          revisions: [
+            {
+              year: 2018,
+              kind: "facelift",
+              title:
+                "Обновлённый i8 Coupé и запуск отдельного кузова i8 Roadster.",
+              source: "bmw-i8-2018-update",
+              market: "Глобальная гамма",
+              bodies: ["Купе", "Родстер"],
+            },
+          ],
+          powertrains: [
+            p(
+              "bmw-i8-i12-lci-hybrid",
+              "i8 Coupé",
+              "Plug-in hybrid",
+              275,
+              null,
+              "6-ступенчатая автоматическая + 2-ступенчатый электропривод",
+              "Полный",
+              "Глобальная гамма",
+              "2017-11-29",
+              "bmw-i8-2018-update",
+            ),
+          ],
+        },
+      ),
+    ],
+  },
+  {
     id: "bmw-isetta",
     brand: "BMW",
     vehicleKind: "Автомобиль",

@@ -283,6 +283,42 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0443252EN/the-all-new-bmw-m5",
   },
   {
+    id: "bmw-m4-g82-update",
+    title: "Обновлённый BMW M4 Coupé (G82)",
+    publisher: "BMW Group PressClub",
+    date: "2024-01-31",
+    scope:
+      "G82 LCI: новые фары и задние фонари, мощность Competition xDrive и оснащение модельного года 2024",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0439308EN/the-new-bmw-m4-coup%C3%A9-the-new-bmw-m4-convertible",
+  },
+  {
+    id: "bmw-xm-g09-launch",
+    title: "Первый BMW XM (G09)",
+    publisher: "BMW Group PressClub",
+    date: "2022-09-28",
+    scope:
+      "Код G09, M HYBRID, мощность, производство в Спартанберге и мировой запуск",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0403971EN/the-first-ever-bmw-xm",
+  },
+  {
+    id: "bmw-i8-history",
+    title: "BMW i8: от идеи до будущей классики",
+    publisher: "BMW Group PressClub",
+    date: "2020-03-11",
+    scope:
+      "Жизненный цикл I12/I15, шесть лет производства и роль первого plug-in hybrid BMW Group",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0306181EN/the-bmw-i8%3A-from-vision-to-icon-from-bestseller-to-classic-of-the-future",
+  },
+  {
+    id: "bmw-i8-2018-update",
+    title: "Обновлённый BMW i8 Coupé и новый i8 Roadster",
+    publisher: "BMW Group PressClub",
+    date: "2017-11-29",
+    scope:
+      "I12 LCI и I15: обновлённый eDrive, кузов Roadster и мировой запуск в мае 2018",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0276225EN/the-new-bmw-i8-roadster-the-new-bmw-i8-coupe",
+  },
+  {
     id: "bmw-isetta-history",
     title: "BMW Isetta · архив семейства",
     publisher: "BMW Group Classic",

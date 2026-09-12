@@ -48,7 +48,7 @@ it("advertises electric facts only where engine records exist", () => {
         familyMatches(f, { ...EMPTY_FILTERS, fuel: "Plug-in hybrid" }),
       )
       .map((f) => f.id),
-  ).toEqual(["bmw-x5", "bmw-x3", "bmw-7-series", "bmw-m5"]);
+  ).toEqual(["bmw-x5", "bmw-x3", "bmw-7-series", "bmw-m5", "bmw-xm", "bmw-i8"]);
 });
 
 it("covers all four BMW X3 generations with images and sourced facelifts", () => {
