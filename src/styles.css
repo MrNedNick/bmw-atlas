@@ -1105,6 +1105,48 @@ select,
   position: relative;
   margin-top: 32px;
 }
+.detail-media-column {
+  min-width: 0;
+}
+.detail-media-column .detail-visual,
+.detail-media-column .vehicle-photo {
+  min-width: 0;
+  max-width: 100%;
+}
+.generation-picker {
+  margin-top: 12px;
+  padding: 14px 14px 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+.generation-picker-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.generation-picker-heading .eyebrow {
+  margin: 0;
+  color: var(--soft);
+}
+.generation-picker-heading > span:last-child {
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.generation-picker .timeline {
+  margin-top: 7px;
+  padding-bottom: 9px;
+}
+.generation-picker .generation {
+  padding-top: 25px;
+}
+.generation-select-mobile {
+  display: none;
+}
 .visual-word {
   position: absolute;
   top: 12px;
@@ -1151,6 +1193,39 @@ select,
 .family-summary strong {
   font-size: 15px;
   font-weight: 500;
+}
+.family-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0;
+  margin: 8px 0 34px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.family-facts > div {
+  min-width: 0;
+  padding: 20px 24px;
+  border-right: 1px solid var(--line);
+}
+.family-facts > div:first-child {
+  padding-left: 0;
+}
+.family-facts > div:last-child {
+  border-right: 0;
+}
+.family-facts span,
+.family-facts small {
+  display: block;
+  color: var(--soft);
+  font-size: 9px;
+  line-height: 1.55;
+}
+.family-facts strong {
+  display: block;
+  margin: 7px 0 5px;
+  font-size: 15px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
 }
 .generation-section {
   padding: 40px 0 32px;
@@ -1985,6 +2060,21 @@ td > span {
   .detail-visual {
     height: 220px;
   }
+  .generation-picker {
+    margin-top: 10px;
+    padding: 12px;
+  }
+  .generation-picker-heading {
+    margin-bottom: 10px;
+  }
+  .generation-picker .timeline {
+    display: none;
+  }
+  .generation-select-mobile {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+  }
   .visual-word {
     font-size: 80px;
   }
@@ -2000,6 +2090,19 @@ td > span {
   }
   .family-summary strong {
     font-size: 13px;
+  }
+  .family-facts {
+    grid-template-columns: 1fr;
+    margin-bottom: 28px;
+  }
+  .family-facts > div,
+  .family-facts > div:first-child {
+    padding: 16px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .family-facts > div:last-child {
+    border-bottom: 0;
   }
   .generation-section {
     padding: 30px 0;
@@ -2112,9 +2215,12 @@ td > span {
   display: flex;
   flex-direction: column;
   background: var(--raised);
+  min-width: 0;
+  max-width: 100%;
 }
 .vehicle-photo img {
   width: 100%;
+  max-width: 100%;
   min-height: 0;
   flex: 1;
   object-fit: contain;
@@ -2128,6 +2234,8 @@ td > span {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .vehicle-photo figcaption a {
   text-decoration: underline;

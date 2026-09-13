@@ -56,6 +56,21 @@ export function FamilyDetail({
   const engines = generation.powertrains.filter(
     (p) => !fuel || p.fuel === fuel,
   );
+  const firstYear = Math.min(...family.generations.map((item) => item.start));
+  const hasCurrentGeneration = family.generations.some(
+    (item) => item.end === null,
+  );
+  const lastYear = Math.max(
+    ...family.generations.map((item) => item.end ?? item.start),
+  );
+  const selectedCoverage = [
+    generation.powertrains.length
+      ? `силовые варианты: ${generation.powertrains.length}`
+      : "силовые варианты уточняются",
+    faceliftCount(generation.revisions)
+      ? `рестайлинги с источником: ${faceliftCount(generation.revisions)}`
+      : "без подтверждённого рестайлинга",
+  ].join(" · ");
   const cited = [
     ...new Set(
       [
@@ -107,52 +122,52 @@ export function FamilyDetail({
             </span>
           </div>
         </div>
-        <div className="detail-visual blue">
-          <VehiclePhoto photo={generation.photo} />
-        </div>
-      </section>
-      <div className="family-summary">
-        <div>
-          <span>В истории каталога</span>
-          <strong>{family.generations.length} поколений / ветвей</strong>
-        </div>
-        <div>
-          <span>
-            {family.volume?.metric ?? "Тираж"} ·{" "}
-            {family.volume?.asOf ?? "нет данных"}
-          </span>
-          <strong>{formatVolume(family.volume)}</strong>
-        </div>
-        <div>
-          <span>Кузова семейства</span>
-          <strong>{family.body.join(" · ")}</strong>
-        </div>
-      </div>
-      <section className="generation-section">
-        <div className="section-heading">
-          <div>
-            <span className="eyebrow">ЭВОЛЮЦИЯ</span>
-            <h2>Каждое поколение — новая глава</h2>
+        <div className="detail-media-column">
+          <div className="detail-visual blue">
+            <VehiclePhoto photo={generation.photo} />
           </div>
-          <span className="muted">Выберите, что изучить</span>
-        </div>
-        <div className="timeline" aria-label="Поколения">
-          {family.generations.map((g) => (
-            <button
-              key={g.id}
-              onClick={() => onGeneration(g.id)}
-              aria-pressed={g.id === generation.id}
-              className={
-                "generation " + (g.id === generation.id ? "selected" : "")
-              }
+          <section className="generation-picker" aria-label="Выбор поколения">
+            <div className="generation-picker-heading">
+              <span className="eyebrow">ПОКОЛЕНИЯ</span>
+              <span>
+                {family.generations.findIndex(
+                  (item) => item.id === generation.id,
+                ) + 1}{" "}
+                из {family.generations.length} · {generation.code}
+              </span>
+            </div>
+            <select
+              className="generation-select-mobile"
+              aria-label="Выберите поколение"
+              value={generation.id}
+              onChange={(event) => onGeneration(event.target.value)}
             >
-              <span className="generation-node" />
-              <small>{g.label}</small>
-              <strong>{g.code}</strong>
-              <span>{formatYears(g)}</span>
-              {faceliftCount(g.revisions) > 0 && <i>есть обновление</i>}
-            </button>
-          ))}
+              {family.generations.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.code} · {formatYears(item)}
+                </option>
+              ))}
+            </select>
+            <div className="timeline" aria-label="Поколения">
+              {family.generations.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => onGeneration(item.id)}
+                  aria-pressed={item.id === generation.id}
+                  className={
+                    "generation " +
+                    (item.id === generation.id ? "selected" : "")
+                  }
+                >
+                  <span className="generation-node" />
+                  <small>{item.label}</small>
+                  <strong>{item.code}</strong>
+                  <span>{formatYears(item)}</span>
+                  {faceliftCount(item.revisions) > 0 && <i>есть обновление</i>}
+                </button>
+              ))}
+            </div>
+          </section>
         </div>
       </section>
       <div className="generation-title">
@@ -203,58 +218,93 @@ export function FamilyDetail({
         ))}
       </div>
       {tab === "Обзор" && (
-        <div className="overview-grid">
-          <article className="panel story-panel">
-            <span className="eyebrow">ЧТО ИЗМЕНИЛОСЬ</span>
-            <h3>{generation.code}: характер поколения</h3>
-            <p>{generation.description}</p>
-            {(generation.highlights?.length ?? 0) > 0 && (
-              <div className="generation-highlights">
-                <h4>Чем запомнилось поколение</h4>
-                <ul>
-                  {generation.highlights?.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
+        <>
+          <div className="overview-grid">
+            <article className="panel story-panel">
+              <span className="eyebrow">ЧТО ИЗМЕНИЛОСЬ</span>
+              <h3>{generation.code}: характер поколения</h3>
+              <p>{generation.description}</p>
+              {(generation.highlights?.length ?? 0) > 0 && (
+                <div className="generation-highlights">
+                  <h4>Чем запомнилось поколение</h4>
+                  <ul>
+                    {generation.highlights?.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <SourceLink id={generation.source} />
+              <RevisionTimeline revisions={generation.revisions} />
+            </article>
+            <aside className="panel facts-panel">
+              <span className="eyebrow">ДЕТАЛИ В БАЗЕ</span>
+              <dl>
+                <div>
+                  <dt>Силовых вариантов</dt>
+                  <dd>{generation.powertrains.length || "Не добавлены"}</dd>
+                </div>
+                <div>
+                  <dt>Рестайлингов с источником</dt>
+                  <dd>{faceliftCount(generation.revisions) || "Нет данных"}</dd>
+                </div>
+                <div>
+                  <dt>Производство поколения</dt>
+                  <dd>{formatVolume(generation.volume)}</dd>
+                </div>
+                <div>
+                  <dt>Сборка</dt>
+                  <dd>
+                    {runsForGeneration(generation.id, productionRuns).length
+                      ? `${runsForGeneration(generation.id, productionRuns).length} записей по заводам`
+                      : "Пока не уточнена"}
+                  </dd>
+                </div>
+              </dl>
+              <p className="note">
+                <Info size={16} />
+                Это подтверждённая часть истории, а не обещание полного покрытия
+                всех рынков.
+              </p>
+              <button
+                className="text-action"
+                onClick={() => setTab("Источники")}
+              >
+                Посмотреть источники <ArrowUpRight size={16} />
+              </button>
+            </aside>
+          </div>
+          <section className="family-facts" aria-label="Факты о семействе">
+            <div>
+              <span>Хронология семейства</span>
+              <strong>
+                {firstYear}–{hasCurrentGeneration ? "н. в." : lastYear}
+              </strong>
+              <small>{family.generations.length} поколений / ветвей</small>
+            </div>
+            <div>
+              <span>Кузова семейства</span>
+              <strong>{family.body.join(" · ")}</strong>
+              <small>{family.vehicleKind}</small>
+            </div>
+            <div>
+              <span>Выбранное поколение</span>
+              <strong>
+                {generation.code} · {formatYears(generation)}
+              </strong>
+              <small>{selectedCoverage}</small>
+            </div>
+            {family.volume && (
+              <div>
+                <span>
+                  {family.volume.metric} · {family.volume.asOf}
+                </span>
+                <strong>{formatVolume(family.volume)}</strong>
+                <small>{family.volume.scope}</small>
               </div>
             )}
-            <SourceLink id={generation.source} />
-            <RevisionTimeline revisions={generation.revisions} />
-          </article>
-          <aside className="panel facts-panel">
-            <span className="eyebrow">ДЕТАЛИ В БАЗЕ</span>
-            <dl>
-              <div>
-                <dt>Силовых вариантов</dt>
-                <dd>{generation.powertrains.length || "Не добавлены"}</dd>
-              </div>
-              <div>
-                <dt>Рестайлингов с источником</dt>
-                <dd>{faceliftCount(generation.revisions) || "Нет данных"}</dd>
-              </div>
-              <div>
-                <dt>Производство поколения</dt>
-                <dd>{formatVolume(generation.volume)}</dd>
-              </div>
-              <div>
-                <dt>Сборка</dt>
-                <dd>
-                  {runsForGeneration(generation.id, productionRuns).length
-                    ? `${runsForGeneration(generation.id, productionRuns).length} записей по заводам`
-                    : "Пока не уточнена"}
-                </dd>
-              </div>
-            </dl>
-            <p className="note">
-              <Info size={16} />
-              Это подтверждённая часть истории, а не обещание полного покрытия
-              всех рынков.
-            </p>
-            <button className="text-action" onClick={() => setTab("Источники")}>
-              Посмотреть источники <ArrowUpRight size={16} />
-            </button>
-          </aside>
-        </div>
+          </section>
+        </>
       )}
       {tab === "Двигатели" && (
         <section className="panel">
