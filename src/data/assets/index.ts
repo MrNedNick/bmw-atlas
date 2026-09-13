@@ -294,6 +294,25 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
         `editorial-bmw-m3-${code}.webp`,
         "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m3-generationen.html",
         `BMW M3 · ${code.toUpperCase()}`,
+        code === "g80"
+          ? {
+              publisher: "BMW Group PressClub",
+              page: "https://www.press.bmwgroup.com/global/photo/detail/P90551002/the-new-bmw-m3-sedan-05/2024",
+              imageUrl:
+                "https://mediapool.bmwgroup.com/cache/P9/202405/P90551002/P90551002-the-new-bmw-m3-sedan-05-2024-2250px.jpg",
+              localFile: "references/images/P90551002-bmw-m3-g80.jpg",
+              imageId: "P90551002",
+              phase: "facelift",
+              verifiedDetails: [
+                "четырёхдверный кузов M3 Sedan G80",
+                "задние фонари и крышка багажника",
+                "шильдик M3 на правой стороне крышки багажника",
+                "четыре круглых выпускных патрубка",
+                "задний M-диффузор",
+                "форма задних крыльев и колёсных арок",
+              ],
+            }
+          : undefined,
       ),
     ]),
   ),
@@ -304,6 +323,25 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
         `editorial-bmw-m5-${code}.webp`,
         "https://www.bmw-m.com/en/topics/magazine-article-pool/the-generations-of-the-bmw-m5-an-overview.html",
         `BMW M5 · ${code.toUpperCase()}`,
+        code === "g90"
+          ? {
+              publisher: "BMW Group PressClub",
+              page: "https://www.press.bmwgroup.com/global/photo/detail/P90557399/the-all-new-bmw-m5-06/2024",
+              imageUrl:
+                "https://mediapool.bmwgroup.com/cache/P9/202406/P90557399/P90557399-the-all-new-bmw-m5-06-2024-2250px.jpg",
+              localFile: "references/images/P90557399-bmw-m5-g90.jpg",
+              imageId: "P90557399",
+              phase: "launch",
+              verifiedDetails: [
+                "четырёхдверный кузов M5 Sedan G90",
+                "M-решётка с горизонтальными внутренними планками",
+                "форма фар и переднего бампера",
+                "широкие передние крылья",
+                "зарядный лючок на переднем левом крыле",
+                "передние M-колёса и пропорции седана",
+              ],
+            }
+          : undefined,
       ),
     ]),
   ),

@@ -1,6 +1,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { families } from "./models";
+import { assetByGeneration } from "./assets";
 import { validateCatalog } from "../domain/catalog";
 import { sources } from "./sources";
 
@@ -43,6 +44,18 @@ describe("BMW distribution", () => {
     expect(
       photos.every((p) => p?.note?.includes("Редакционная визуализация")),
     ).toBe(true);
+  });
+  it("keeps the current flagship M visuals tied to exact press photographs", () => {
+    for (const id of ["bmw-m3-g80", "bmw-m5-g90"]) {
+      const reference = assetByGeneration[id].reference;
+      expect(reference?.imageId).toMatch(/^P\d+$/);
+      expect(reference?.page).toContain(reference?.imageId);
+      expect(reference?.imageUrl).toContain(reference?.imageId);
+      expect(reference?.verifiedDetails.length).toBeGreaterThanOrEqual(5);
+      expect(
+        existsSync(new URL("../../" + reference?.localFile, import.meta.url)),
+      ).toBe(true);
+    }
   });
   it("rejects a photo without licence provenance", () => {
     const copy = structuredClone(families);

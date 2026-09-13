@@ -15,13 +15,13 @@
   font-synthesis: none;
 }
 :root[data-theme="light"] {
-  --bg: #f4f6fa;
-  --surface: #fff;
-  --raised: #e8eef7;
-  --line: #cbd6e4;
+  --bg: #e9eef5;
+  --surface: #f5f8fc;
+  --raised: #e1e8f1;
+  --line: #c2cedd;
   --ink: #13243b;
-  --muted: #465a73;
-  --soft: #546a85;
+  --muted: #405671;
+  --soft: #526984;
   --lime: #145da8;
   --green: #145da8;
   --shadow: 0 15px 45px #152b480a;
@@ -1712,10 +1712,12 @@ td > span {
   margin-bottom: 25px !important;
 }
 .index-dialog {
+  margin: auto;
   padding: 0;
   border: 0;
   border-radius: 8px;
   max-width: min(530px, calc(100vw - 32px));
+  width: calc(100vw - 32px);
   background: transparent;
   color: var(--ink);
 }

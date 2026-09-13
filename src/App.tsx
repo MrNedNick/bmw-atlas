@@ -258,6 +258,24 @@ export default function App() {
     });
     window.scrollTo({ top: 0, behavior: "instant" });
   }
+  function showDetailedStories() {
+    setIndexDetail(null);
+    setShowFilters(false);
+    navigate(
+      {
+        view: "catalog",
+        family: "",
+        generation: "",
+        filters: { ...EMPTY_FILTERS },
+      },
+      true,
+    );
+    requestAnimationFrame(() => {
+      document
+        .getElementById("catalog")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
   const filtered = useMemo(
     () => families.filter((f) => familyMatches(f, state.filters, saved)),
     [state.filters, saved],
@@ -285,6 +303,7 @@ export default function App() {
   const activeFilters = Object.entries(state.filters).filter(
     ([k, v]) => k !== "query" && !!v,
   ).length;
+  const hasCatalogFilters = Boolean(state.filters.query) || activeFilters > 0;
   const compared = allGenerations.filter((x) =>
     state.compare.includes(x.generation.id),
   );
@@ -775,7 +794,7 @@ export default function App() {
                     {b}
                   </button>
                 ))}
-                {activeFilters > 0 && (
+                {hasCatalogFilters && (
                   <button
                     className="reset-link"
                     onClick={() => navigate({ filters: EMPTY_FILTERS }, true)}
@@ -1052,21 +1071,7 @@ export default function App() {
               <Database size={18} />
               Мы не подставляем характеристики похожего автомобиля.
             </div>
-            <a
-              className="text-action"
-              href="https://vpic.nhtsa.dot.gov/api/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Источник: NHTSA vPIC <ArrowUpRight size={15} />
-            </a>
-            <Button
-              className="primary-action"
-              onClick={() => {
-                setIndexDetail(null);
-                filters({ query: "" });
-              }}
-            >
+            <Button className="primary-action" onClick={showDetailedStories}>
               Посмотреть подробные истории
             </Button>
           </section>
