@@ -65,6 +65,15 @@ export interface Photo {
   licenseUrl: string;
   subject: string;
   note?: string;
+  reference?: {
+    publisher: string;
+    page: string;
+    imageUrl: string;
+    localFile: string;
+    imageId: string;
+    phase: "launch" | "facelift" | "historical";
+    verifiedDetails: string[];
+  };
 }
 export interface ModelFamily {
   id: string;

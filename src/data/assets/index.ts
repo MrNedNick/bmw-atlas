@@ -1,9 +1,11 @@
 import type { Photo } from "../../domain/catalog";
 type PhotoMetadata = Omit<Photo, "generationId">;
+type PhotoReference = NonNullable<Photo["reference"]>;
 const editorialPhoto = (
   url: string,
   page: string,
   subject: string,
+  reference?: PhotoReference,
 ): PhotoMetadata => ({
   url: `images/${url}`,
   page,
@@ -11,7 +13,10 @@ const editorialPhoto = (
   license: "Редакционная визуализация",
   licenseUrl: page,
   subject,
-  note: "Редакционная визуализация модели; форма сверена с официальной историей BMW.",
+  note: reference
+    ? "Редакционная визуализация на основе точного официального пресс-снимка; конструктивные признаки проверены отдельно."
+    : "Редакционная визуализация; требуется повторная проверка по точному референсному снимку.",
+  reference,
 });
 const photoByGeneration: Record<string, PhotoMetadata> = {
   ...Object.fromEntries(
@@ -220,16 +225,67 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     "editorial-bmw-m4-g82-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0439308EN/the-new-bmw-m4-coup%C3%A9-the-new-bmw-m4-convertible",
     "BMW M4 Competition Coupé · G82 LCI, 2024",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90536834/The-new-BMW-M4-Coup%C3%A9-01-24",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/cache/P9/202401/P90536834/P90536834-the-new-bmw-m4-coup-2000px.jpg",
+      localFile: "references/images/P90536834-bmw-m4-g82-lci.jpg",
+      imageId: "P90536834",
+      phase: "facelift",
+      verifiedDetails: [
+        "фары LCI 2024 года",
+        "вертикальная решётка радиатора",
+        "передний бампер и воздухозаборники",
+        "боковой M-жабер",
+        "штатный рисунок колёс",
+        "двухдверный кузов G82",
+      ],
+    },
   ),
   "bmw-xm-g09": editorialPhoto(
     "editorial-bmw-xm-g09.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0403971EN/the-first-ever-bmw-xm",
     "BMW XM · G09, 2023",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90498033/the-first-ever-bmw-xm-marina-bay-blue-metallic-on-location-03-2023",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/cache/P9/202303/P90498033/P90498033-the-first-ever-bmw-xm-marina-bay-blue-metallic-on-location-03-2023-2250px.jpg",
+      localFile: "references/images/P90498033-bmw-xm-g09.jpg",
+      imageId: "P90498033",
+      phase: "launch",
+      verifiedDetails: [
+        "двухъярусная передняя оптика",
+        "контур и внутренние планки решётки",
+        "нижние воздухозаборники",
+        "золотая оконная и поясная отделка",
+        "форма колёсных арок",
+        "пропорции кузова G09",
+      ],
+    },
   ),
   "bmw-i8-i12-lci": editorialPhoto(
     "editorial-bmw-i8-i12-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0276225EN/the-new-bmw-i8-roadster-the-new-bmw-i8-coupe",
     "BMW i8 Coupé · I12 LCI, 2018",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90285391/the-new-bmw-i8-coupe-11/2017",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/cache/P9/201711/P90285391/P90285391-the-new-bmw-i8-coupe-11-2017-2250px.jpg",
+      localFile: "references/images/P90285391-bmw-i8-i12-lci.jpg",
+      imageId: "P90285391",
+      phase: "facelift",
+      verifiedDetails: [
+        "закрытый кузов Coupé I12",
+        "фары и передний бампер LCI",
+        "линия крыши и задняя стойка",
+        "чёрный боковой аэродинамический элемент",
+        "скульптура дверей и заднего крыла",
+        "штатный рисунок колёс",
+      ],
+    },
   ),
   ...Object.fromEntries(
     ["e30", "e36", "e46", "e90", "f80", "g80"].map((code) => [
@@ -349,6 +405,18 @@ export function validateAssetRegistry(
       !asset.licenseUrl.startsWith("https://")
     )
       errors.push(`incomplete attribution: ${generationId}`);
+    if (asset.reference) {
+      if (
+        !asset.reference.publisher.trim() ||
+        !asset.reference.page.startsWith("https://") ||
+        !asset.reference.imageUrl.startsWith("https://") ||
+        !asset.reference.localFile.startsWith("references/images/") ||
+        !asset.reference.imageId.trim() ||
+        asset.reference.verifiedDetails.length < 5 ||
+        asset.reference.verifiedDetails.some((detail) => !detail.trim())
+      )
+        errors.push(`incomplete visual reference: ${generationId}`);
+    }
   }
   return errors;
 }

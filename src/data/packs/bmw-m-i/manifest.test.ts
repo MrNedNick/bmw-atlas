@@ -17,6 +17,16 @@ describe("BMW M and i progress manifest", () => {
       expect(entry.sourceIds.every((id) => sourceById[id])).toBe(true);
       const asset = assetByGeneration[entry.generationId];
       expect(asset).toBeDefined();
+      expect(asset.reference?.imageId).toMatch(/^P\d+$/);
+      expect(asset.reference?.page).toContain(asset.reference?.imageId);
+      expect(asset.reference?.imageUrl).toContain(asset.reference?.imageId);
+      expect(
+        existsSync(
+          new URL(`../../../../${asset.reference?.localFile}`, import.meta.url),
+        ),
+      ).toBe(true);
+      expect(asset.reference?.phase).toBe(entry.imagePhase);
+      expect(asset.reference?.verifiedDetails.length).toBeGreaterThanOrEqual(5);
       expect(
         existsSync(new URL(`../../../../public/${asset.url}`, import.meta.url)),
       ).toBe(true);
