@@ -38,8 +38,32 @@ import { FamilyDetail, SourceLink } from "./features/FamilyDetail";
 const number = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
 const defaults = (f: ModelFamily) =>
   f.id === "bmw-3-series" ? "bmw-g20" : f.generations.at(-1)!.id;
+const catalogOrder = [
+  "bmw-1-series",
+  "bmw-3-series",
+  "bmw-5-series",
+  "bmw-7-series",
+  "bmw-x3",
+  "bmw-x5",
+  "bmw-m1",
+  "bmw-m3",
+  "bmw-m4",
+  "bmw-m5",
+  "bmw-xm",
+  "bmw-i8",
+  "bmw-isetta",
+  "bmw-r32",
+  "bmw-gs-boxer",
+];
+const catalogRank = (id: string) => {
+  const rank = catalogOrder.indexOf(id);
+  return rank === -1 ? Number.MAX_SAFE_INTEGER : rank;
+};
+const orderedFamilies = [...families].sort(
+  (a, b) => catalogRank(a.id) - catalogRank(b.id),
+);
 interface PageState {
-  view: "catalog" | "compare" | "sources" | "photos";
+  view: "catalog" | "models" | "compare" | "sources" | "photos";
   family: string;
   generation: string;
   filters: Filters;
@@ -55,7 +79,10 @@ function readUrl(): PageState {
   filter.savedOnly = q.get("saved") === "1";
   const v = q.get("view");
   return {
-    view: v === "compare" || v === "sources" || v === "photos" ? v : "catalog",
+    view:
+      v === "models" || v === "compare" || v === "sources" || v === "photos"
+        ? v
+        : "catalog",
     family: families.some((f) => f.id === family) ? family : "",
     generation: q.get("generation") ?? "",
     filters: filter,
@@ -139,6 +166,35 @@ function FamilyCard({
         </div>
       </button>
     </article>
+  );
+}
+function BMWMark() {
+  return (
+    <svg className="bmw-mark" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="23" fill="#111820" stroke="currentColor" />
+      <circle cx="24" cy="24" r="15" fill="#f4f7fb" />
+      <path d="M24 9a15 15 0 0 0-15 15h15Z" fill="#0c6fbb" />
+      <path d="M24 39a15 15 0 0 0 15-15H24Z" fill="#0c6fbb" />
+      <circle
+        cx="24"
+        cy="24"
+        r="15"
+        fill="none"
+        stroke="#111820"
+        strokeWidth="1.5"
+      />
+      <text
+        x="24"
+        y="7.7"
+        textAnchor="middle"
+        fill="#fff"
+        fontSize="7"
+        fontWeight="700"
+        letterSpacing="1"
+      >
+        BMW
+      </text>
+    </svg>
   );
 }
 export default function App() {
@@ -236,7 +292,7 @@ export default function App() {
     setIndexPage(1);
   }
   function openFamily(f: ModelFamily) {
-    navigate({ view: "catalog", family: f.id, generation: defaults(f) });
+    navigate({ family: f.id, generation: defaults(f) });
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function compare(id: string) {
@@ -294,6 +350,15 @@ export default function App() {
       matchesText(m.make + " " + m.name, state.filters.query),
     );
   }, [index, state.filters]);
+  const modelIndexRows = useMemo(
+    () =>
+      index
+        ? index.models.filter((m) =>
+            matchesText(m.make + " " + m.name, state.filters.query),
+          )
+        : [],
+    [index, state.filters.query],
+  );
   const family = families.find((f) => f.id === state.family);
   const generation =
     family?.generations.find((g) => g.id === state.generation) ??
@@ -320,7 +385,7 @@ export default function App() {
             aria-label="BMW Atlas — каталог"
           >
             <span className="brand-mark">
-              <Compass size={23} />
+              <BMWMark />
             </span>
             <span>
               BMW<span className="brand-light">atlas</span>
@@ -329,14 +394,10 @@ export default function App() {
           </button>
           <nav aria-label="Основная навигация">
             <button
-              className={
-                state.view === "catalog" && !state.filters.savedOnly
-                  ? "active"
-                  : ""
-              }
-              onClick={() => go("catalog")}
+              className={state.view === "models" ? "active" : ""}
+              onClick={() => go("models")}
             >
-              Каталог
+              Все модели
             </button>
             <button
               className={state.view === "compare" ? "active" : ""}
@@ -386,6 +447,139 @@ export default function App() {
             compare={state.compare}
             onCompare={compare}
           />
+        ) : state.view === "models" ? (
+          <section className="page-enter all-models-page">
+            <div className="page-heading">
+              <span className="eyebrow">КАТАЛОГ BMW</span>
+              <h1>
+                Все модели. <em>В одном месте.</em>
+              </h1>
+              <p>
+                Начните с подробных историй: здесь есть поколения, рестайлинги,
+                двигатели и производство. Ниже — полный индекс названий BMW,
+                чтобы ни одна интересная модель не терялась в поиске.
+              </p>
+            </div>
+            <div className="models-summary panel">
+              <div>
+                <strong>{families.length}</strong>
+                <span>подробных семейств</span>
+              </div>
+              <div>
+                <strong>{allGenerations.length}</strong>
+                <span>поколений и ветвей</span>
+              </div>
+              <div>
+                <strong>{index ? number(index.modelCount) : "…"}</strong>
+                <span>названий в полном индексе</span>
+              </div>
+              <Button
+                variant="outline"
+                className="outline-action"
+                onClick={() => go("catalog")}
+              >
+                На главную <ArrowRight size={16} />
+              </Button>
+            </div>
+            <section className="models-section" aria-labelledby="stories-title">
+              <div className="section-heading">
+                <div>
+                  <span className="eyebrow">МОЖНО ОТКРЫТЬ СРАЗУ</span>
+                  <h2 id="stories-title">Подробные истории</h2>
+                </div>
+                <span className="edition">
+                  СЕРИИ · X · M · i · CLASSIC · MOTORRAD
+                </span>
+              </div>
+              <div className="family-grid">
+                {orderedFamilies.map((f) => (
+                  <FamilyCard
+                    key={f.id}
+                    family={f}
+                    onOpen={() => openFamily(f)}
+                    saved={saved.includes(f.id)}
+                    onSave={() => toggle(f.id)}
+                  />
+                ))}
+              </div>
+            </section>
+            <section
+              className="index-section models-index"
+              aria-labelledby="index-title-all"
+            >
+              <div className="section-heading">
+                <div>
+                  <span className="eyebrow">ПОЛНЫЙ УКАЗАТЕЛЬ</span>
+                  <h2 id="index-title-all">Все названия BMW</h2>
+                </div>
+                <span className="edition">
+                  NHTSA vPIC · БЕЗ НЕПРОВЕРЕННЫХ ХАРАКТЕРИСТИК
+                </span>
+              </div>
+              <div className="search-box models-search">
+                <Search size={22} />
+                <input
+                  ref={searchRef}
+                  aria-label="Поиск во всех моделях"
+                  placeholder="Найдите модель: 325d, X7, iX3, Z8…"
+                  value={state.filters.query}
+                  onChange={(e) => filters({ query: e.target.value })}
+                />
+                {state.filters.query && (
+                  <button
+                    aria-label="Очистить поиск по всем моделям"
+                    onClick={() => filters({ query: "" })}
+                  >
+                    <X size={17} />
+                  </button>
+                )}
+              </div>
+              {indexError ? (
+                <div className="empty-block panel">
+                  <h3>Индекс не загрузился</h3>
+                  <Button
+                    variant="outline"
+                    className="outline-action"
+                    onClick={() => setIndexVersion((v) => v + 1)}
+                  >
+                    Повторить загрузку
+                  </Button>
+                </div>
+              ) : !index ? (
+                <p role="status">Загружаем полный индекс…</p>
+              ) : modelIndexRows.length ? (
+                <>
+                  <div className="index-grid all-model-index-grid">
+                    {modelIndexRows.slice(0, indexPage * 36).map((m) => (
+                      <button
+                        key={m.id}
+                        onClick={(event) => {
+                          indexOpener.current = event.currentTarget;
+                          setIndexDetail(m);
+                        }}
+                      >
+                        <span>{m.make}</span>
+                        <strong>{m.name}</strong>
+                        <ArrowUpRight size={16} />
+                      </button>
+                    ))}
+                  </div>
+                  {modelIndexRows.length > indexPage * 36 && (
+                    <button
+                      className="load-more"
+                      onClick={() => setIndexPage((n) => n + 1)}
+                    >
+                      Показать ещё 36 <ArrowRight size={16} />
+                    </button>
+                  )}
+                </>
+              ) : (
+                <p className="empty-inline">
+                  Такого названия пока нет в полном индексе BMW.
+                </p>
+              )}
+            </section>
+          </section>
         ) : state.view === "compare" ? (
           <section className="page-enter">
             <div className="page-heading">
@@ -646,9 +840,9 @@ export default function App() {
                     классики до современных BMW. Исследуйте подтверждённую часть
                     истории марки.
                   </p>
-                  <a className="hero-cta" href="#catalog">
-                    Найти свою модель <ArrowRight size={18} />
-                  </a>
+                  <button className="hero-cta" onClick={() => go("models")}>
+                    Открыть все модели <ArrowRight size={18} />
+                  </button>
                   <div className="hero-proof">
                     <ShieldCheck size={16} />
                     <span>Реальные источники. Честные пробелы.</span>
@@ -885,15 +1079,17 @@ export default function App() {
               </div>
               {filtered.length ? (
                 <div className="family-grid">
-                  {filtered.map((f) => (
-                    <FamilyCard
-                      key={f.id}
-                      family={f}
-                      onOpen={() => openFamily(f)}
-                      saved={saved.includes(f.id)}
-                      onSave={() => toggle(f.id)}
-                    />
-                  ))}
+                  {[...filtered]
+                    .sort((a, b) => catalogRank(a.id) - catalogRank(b.id))
+                    .map((f) => (
+                      <FamilyCard
+                        key={f.id}
+                        family={f}
+                        onOpen={() => openFamily(f)}
+                        saved={saved.includes(f.id)}
+                        onSave={() => toggle(f.id)}
+                      />
+                    ))}
                 </div>
               ) : (
                 <div className="empty-block panel">

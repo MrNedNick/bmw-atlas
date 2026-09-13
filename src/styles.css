@@ -15,16 +15,16 @@
   font-synthesis: none;
 }
 :root[data-theme="light"] {
-  --bg: #e9eef5;
-  --surface: #f5f8fc;
-  --raised: #e1e8f1;
-  --line: #c2cedd;
-  --ink: #13243b;
-  --muted: #405671;
-  --soft: #526984;
-  --lime: #145da8;
-  --green: #145da8;
-  --shadow: 0 15px 45px #152b480a;
+  --bg: #e6edf5;
+  --surface: #f8fbfe;
+  --raised: #dce6f1;
+  --line: #b9c8d8;
+  --ink: #102844;
+  --muted: #36536f;
+  --soft: #59718c;
+  --lime: #0869b8;
+  --green: #075da5;
+  --shadow: 0 15px 45px #17324b14;
   color-scheme: light;
 }
 @theme inline {
@@ -46,7 +46,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -199,13 +199,19 @@ h4 {
   white-space: nowrap;
 }
 .brand-mark {
-  width: 35px;
-  height: 35px;
-  border: 1px solid var(--lime);
+  width: 37px;
+  height: 37px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   color: var(--lime);
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.bmw-mark {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 .brand-light {
   font-weight: 400;
@@ -223,7 +229,7 @@ h4 {
   align-items: stretch;
 }
 .header-inner nav button {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   display: flex;
   gap: 7px;
@@ -461,7 +467,7 @@ h4 {
   margin-bottom: 10px;
 }
 .section-heading h2 {
-  font-size: 30px;
+  font-size: 34px;
 }
 .edition {
   font-size: 9px;
@@ -492,7 +498,7 @@ h4 {
   min-width: 0;
   flex: 1;
   color: var(--ink);
-  font-size: 12px;
+  font-size: 14px;
   height: 56px;
 }
 .search-box:focus-within {
@@ -548,7 +554,7 @@ h4 {
   margin-right: 5px;
 }
 .quick-filters button {
-  font-size: 10px;
+  font-size: 11px;
   border: 1px solid var(--line);
   border-radius: 3px;
   padding: 5px 11px;
@@ -718,7 +724,7 @@ select,
   color: var(--bg);
 }
 .card-open > p {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
   margin: 9px 0 19px;
 }
@@ -730,11 +736,11 @@ select,
   gap: 10px;
 }
 .card-metrics span {
-  font-size: 8px;
+  font-size: 10px;
   color: var(--soft);
 }
 .card-metrics strong {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--ink);
   font-weight: 500;
   margin-right: 3px;
@@ -765,13 +771,13 @@ select,
 }
 .index-grid span {
   grid-column: 1;
-  font-size: 8px;
+  font-size: 9px;
   color: var(--soft);
   letter-spacing: 0.04em;
 }
 .index-grid strong {
   grid-column: 1;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   overflow-wrap: anywhere;
 }
@@ -849,7 +855,42 @@ select,
   max-width: 660px;
   margin-top: 20px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
+}
+.models-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+}
+.models-summary > div {
+  display: grid;
+  gap: 3px;
+  padding-right: 24px;
+  border-right: 1px solid var(--line);
+}
+.models-summary strong {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+.models-summary span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.models-section {
+  margin-top: 48px;
+}
+.models-index {
+  margin-top: 54px;
+  padding-bottom: 48px;
+}
+.models-search {
+  margin-bottom: 20px;
+}
+.all-model-index-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .panel {
   background: var(--surface);
@@ -867,7 +908,7 @@ select,
 }
 .panel > p {
   line-height: 1.8;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
 }
 .panel > .eyebrow {
@@ -2169,6 +2210,10 @@ td > span {
   }
   .page-heading h1 {
     font-size: 40px;
+    overflow-wrap: anywhere;
+  }
+  .all-models-page .page-heading h1 em {
+    display: block;
   }
   .page-heading > p {
     font-size: 13px;
@@ -2341,6 +2386,26 @@ td > span {
   font-size: 12px;
 }
 @media (max-width: 760px) {
+  .models-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 20px;
+  }
+  .models-summary > div {
+    padding: 0;
+    border: 0;
+  }
+  .models-summary > div:last-of-type {
+    grid-column: 1 / -1;
+  }
+  .models-summary .outline-action {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: center;
+  }
+  .all-model-index-grid {
+    grid-template-columns: 1fr 1fr;
+  }
   .family-grid {
     grid-template-columns: 1fr;
   }
