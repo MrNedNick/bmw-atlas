@@ -257,6 +257,15 @@ export const sources: Source[] = [
     url: "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
   },
   {
+    id: "bmw-m2-g87-launch",
+    title: "Новый BMW M2 (G87)",
+    publisher: "BMW Group PressClub",
+    date: "2022-10-12",
+    scope:
+      "Второе поколение M2: код G87, двухдверный кузов, мировой запуск в апреле 2023 года, рядная шестёрка 460 л.с., задний привод и производство в Сан-Луис-Потоси",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0404444EN/the-all-new-bmw-m2",
+  },
+  {
     id: "bmw-m3-generations",
     title: "Шесть поколений BMW M3",
     publisher: "BMW M",

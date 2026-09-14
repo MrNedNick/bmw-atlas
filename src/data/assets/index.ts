@@ -221,6 +221,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
     "BMW M1 · E26, 1978",
   ),
+  "bmw-m2-g87": editorialPhoto(
+    "editorial-bmw-m2-g87.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0404444EN/the-all-new-bmw-m2",
+    "BMW M2 · G87, 2023",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90497773/the-all-new-bmw-m2-toronto-red-on-location-driving-04/2023",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90497773",
+      localFile: "references/images/P90497773-bmw-m2-g87.jpg",
+      imageId: "P90497773",
+      phase: "launch",
+      verifiedDetails: [
+        "двухдверный кузов Coupé G87",
+        "горизонтальная безрамочная M-решётка",
+        "трёхсекционный нижний воздухозаборник",
+        "фары с одиночными круглыми модулями",
+        "расширенные колёсные арки и боковые пороги",
+        "передние 19-дюймовые и задние 20-дюймовые M-колёса",
+      ],
+    },
+  ),
   "bmw-m4-g82-lci": editorialPhoto(
     "editorial-bmw-m4-g82-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0439308EN/the-new-bmw-m4-coup%C3%A9-the-new-bmw-m4-convertible",

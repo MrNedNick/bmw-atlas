@@ -37,7 +37,7 @@ describe("BMW distribution", () => {
   });
   it("uses the unified editorial image set for every detailed generation", () => {
     const photos = families.flatMap((f) => f.generations.map((g) => g.photo));
-    expect(photos).toHaveLength(60);
+    expect(photos).toHaveLength(61);
     expect(
       photos.every((p) => p?.url.startsWith("images/editorial-bmw-")),
     ).toBe(true);
@@ -46,7 +46,7 @@ describe("BMW distribution", () => {
     ).toBe(true);
   });
   it("keeps the current flagship M visuals tied to exact press photographs", () => {
-    for (const id of ["bmw-m3-g80", "bmw-m5-g90"]) {
+    for (const id of ["bmw-m2-g87", "bmw-m3-g80", "bmw-m5-g90"]) {
       const reference = assetByGeneration[id].reference;
       expect(reference?.imageId).toMatch(/^P\d+$/);
       expect(reference?.page).toContain(reference?.imageId);
