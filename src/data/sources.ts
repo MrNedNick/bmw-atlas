@@ -257,6 +257,33 @@ export const sources: Source[] = [
     url: "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
   },
   {
+    id: "bmw-z3-m-classic",
+    title: "BMW Z3 M Roadster (E36)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-14",
+    scope:
+      "Z3 M Roadster: выпуск, кузов, обновление апреля 1999 года и переход с S50 на S54 в 2001 году",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-2760-1.bmw-z3-m-roadster-e36.html",
+  },
+  {
+    id: "bmw-z4-m-roadster-launch",
+    title: "BMW Z4 M Roadster 2006",
+    publisher: "BMW Group PressClub USA",
+    date: "2006-04-19",
+    scope:
+      "Пресс-кит Z4 M Roadster: спецификации, оснащение, варианты и фотографии модели 2006 года",
+    url: "https://www.press.bmwgroup.com/usa/article/detail/T0019155EN_US?forceSitePreference=DESKTOP",
+  },
+  {
+    id: "bmw-z4-m-coupe-launch",
+    title: "BMW Z4 M Coupé",
+    publisher: "BMW Group PressClub",
+    date: "2006-03-04",
+    scope:
+      "Премьера Z4 M Coupé: кузов, рядный шестицилиндровый двигатель 3,2 л мощностью 343 hp и динамика",
+    url: "https://www.press.bmwgroup.com/usa/article/detail/T0017592EN_US/speech%3A-dr-burkhard-goschel-geneva-2006-press-conference",
+  },
+  {
     id: "bmw-m2-f87-launch",
     title: "Новый BMW M2 Coupé (F87)",
     publisher: "BMW Group PressClub",

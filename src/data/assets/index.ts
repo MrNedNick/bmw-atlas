@@ -336,6 +336,50 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
     "BMW M1 · E26, 1978",
   ),
+  "bmw-z3-m-e36": editorialPhoto(
+    "editorial-bmw-z3-m-e36.webp",
+    "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-2760-1.bmw-z3-m-roadster-e36.html",
+    "BMW Z3 M Roadster · E36/7, 1997",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90497129/BMW-Z3-M-Roadster-Imola-Red-03-2023",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90497129",
+      localFile: "references/images/P90497129-bmw-z3-m-e36-front.jpg",
+      imageId: "P90497129",
+      phase: "model-year",
+      verifiedDetails: [
+        "открытый кузов Z3 M Roadster E36/7",
+        "двойная решётка и овальные фары первого Z3",
+        "M-жабер на переднем крыле",
+        "низкий M-бампер с центральным воздухозаборником",
+        "дуги безопасности за сиденьями",
+        "расширенные арки и пятиспицевые колёса M",
+      ],
+    },
+  ),
+  "bmw-z4-m-e85": editorialPhoto(
+    "editorial-bmw-z4-m-e85.webp",
+    "https://www.press.bmwgroup.com/usa/article/detail/T0019155EN_US?forceSitePreference=DESKTOP",
+    "BMW Z4 M Roadster · E85, 2006",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P0026148/bmw-z4-m-roadster-02/2006?language=en",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/public?actEvent=zoomImage&dokNo=P0026148&filename=P0026148.JPG",
+      localFile: "references/images/P0026148-bmw-z4-m-e85.jpg",
+      imageId: "P0026148",
+      phase: "launch",
+      verifiedDetails: [
+        "открытый кузов Z4 M Roadster E85",
+        "длинный капот и короткая задняя часть первого Z4",
+        "дуги безопасности за сиденьями",
+        "M-жабер на переднем крыле",
+        "широкие арки и многоспицевые колёса M",
+        "четыре патрубка выпускной системы",
+      ],
+    },
+  ),
   "bmw-m2-f87": editorialPhoto(
     "editorial-bmw-m2-f87.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0238042EN/the-new-bmw-m2-coupe",

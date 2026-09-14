@@ -39,6 +39,6 @@ describe("BMW M and i progress manifest", () => {
       bmwMIInventory
         .filter((entry) => entry.lineage === "M")
         .map((entry) => entry.family),
-    ).toEqual(["M2", "M2", "M4", "M6", "M8", "XM"]);
+    ).toEqual(["M2", "M2", "M4", "Z3 M", "Z4 M", "M6", "M8", "XM"]);
   });
 });
