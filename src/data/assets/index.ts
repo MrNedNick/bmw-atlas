@@ -341,19 +341,19 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
         code === "g80"
           ? {
               publisher: "BMW Group PressClub",
-              page: "https://www.press.bmwgroup.com/global/photo/detail/P90551002/the-new-bmw-m3-sedan-05/2024",
+              page: "https://www.press.bmwgroup.com/global/photo/detail/P90551007/the-new-bmw-m3-sedan-05/2024",
               imageUrl:
-                "https://mediapool.bmwgroup.com/cache/P9/202405/P90551002/P90551002-the-new-bmw-m3-sedan-05-2024-2250px.jpg",
-              localFile: "references/images/P90551002-bmw-m3-g80.jpg",
-              imageId: "P90551002",
+                "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90551007",
+              localFile: "references/images/P90551007-bmw-m3-g80-front.jpg",
+              imageId: "P90551007",
               phase: "facelift",
               verifiedDetails: [
                 "четырёхдверный кузов M3 Sedan G80",
-                "задние фонари и крышка багажника",
-                "шильдик M3 на правой стороне крышки багажника",
-                "четыре круглых выпускных патрубка",
-                "задний M-диффузор",
-                "форма задних крыльев и колёсных арок",
+                "вертикальная M-решётка с горизонтальными двойными планками",
+                "фары с двойными световыми модулями",
+                "передний бампер с крупными боковыми воздухозаборниками",
+                "M-жабер на переднем крыле",
+                "расширенные арки и чёрные многоспицевые M-колёса",
               ],
             }
           : undefined,
