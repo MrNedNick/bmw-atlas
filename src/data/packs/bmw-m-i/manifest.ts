@@ -8,7 +8,7 @@ export interface MIInventoryItem {
   generationId: string;
   status: MICoverageStatus;
   sourceIds: string[];
-  imagePhase: "launch" | "facelift";
+  imagePhase: "launch" | "facelift" | "model-year";
   missingFields: string[];
 }
 
@@ -22,9 +22,20 @@ export const bmwMIInventory: MIInventoryItem[] = [
     generation: "G87",
     generationId: "bmw-m2-g87",
     status: "detailed",
-    sourceIds: ["bmw-m2-g87-launch"],
+    sourceIds: ["bmw-m2-g87-launch", "bmw-m2-g87-2024-update"],
+    imagePhase: "model-year",
+    missingFields: ["M2 xDrive 2026", "оценки безопасности"],
+  },
+  {
+    id: "bmw-m-i-m2-f87",
+    lineage: "M",
+    family: "M2",
+    generation: "F87",
+    generationId: "bmw-m2-f87",
+    status: "detailed",
+    sourceIds: ["bmw-m2-f87-launch"],
     imagePhase: "launch",
-    missingFields: ["M2 F87", "обновление G87 2024", "оценки безопасности"],
+    missingFields: ["M2 Competition", "M2 CS", "оценки безопасности"],
   },
   {
     id: "bmw-m-i-m4-g82-lci",

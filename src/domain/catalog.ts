@@ -71,7 +71,7 @@ export interface Photo {
     imageUrl: string;
     localFile: string;
     imageId: string;
-    phase: "launch" | "facelift" | "historical";
+    phase: "launch" | "facelift" | "model-year" | "historical";
     verifiedDetails: string[];
   };
 }

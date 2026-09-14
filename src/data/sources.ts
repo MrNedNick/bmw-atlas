@@ -257,6 +257,15 @@ export const sources: Source[] = [
     url: "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
   },
   {
+    id: "bmw-m2-f87-launch",
+    title: "Новый BMW M2 Coupé (F87)",
+    publisher: "BMW Group PressClub",
+    date: "2016-02-17",
+    scope:
+      "Первое поколение M2: код F87, двухдверный кузов Coupé, рядная шестёрка 370 л.с., задний привод и M DCT",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0238042EN/the-new-bmw-m2-coupe",
+  },
+  {
     id: "bmw-m2-g87-launch",
     title: "Новый BMW M2 (G87)",
     publisher: "BMW Group PressClub",
@@ -264,6 +273,15 @@ export const sources: Source[] = [
     scope:
       "Второе поколение M2: код G87, двухдверный кузов, мировой запуск в апреле 2023 года, рядная шестёрка 460 л.с., задний привод и производство в Сан-Луис-Потоси",
     url: "https://www.press.bmwgroup.com/global/article/detail/T0404444EN/the-all-new-bmw-m2",
+  },
+  {
+    id: "bmw-m2-g87-2024-update",
+    title: "Обновлённый BMW M2 (G87), 2024",
+    publisher: "BMW Group PressClub",
+    date: "2024-06-13",
+    scope:
+      "Model-year обновление G87: 480 л.с., 550 Н·м с механической и 600 Н·м с M Steptronic коробкой, новые наружные акценты и Operating System 8.5",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0442878EN/the-new-bmw-m2",
   },
   {
     id: "bmw-m3-generations",
