@@ -18,6 +18,121 @@ const editorialPhoto = (
     : "Редакционная визуализация; требуется повторная проверка по точному референсному снимку.",
   reference,
 });
+const m5References: Record<string, PhotoReference> = {
+  e28: {
+    publisher: "BMW Group PressClub",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90560208/",
+    imageUrl:
+      "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90560208",
+    localFile: "references/images/P90560208-bmw-m5-e28.jpg",
+    imageId: "P90560208",
+    phase: "launch",
+    verifiedDetails: [
+      "четырёхдверный кузов M5 E28",
+      "узкая двойная решётка и четыре круглые фары",
+      "тонкие бамперы и чёрные боковые молдинги",
+      "короткий передний свес и классическая линия крыши",
+      "расширенные арки и многоспицевые колёса",
+    ],
+  },
+  e34: {
+    publisher: "BMW Group PressClub",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90560209/",
+    imageUrl:
+      "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90560209",
+    localFile: "references/images/P90560209-bmw-m5-e34.jpg",
+    imageId: "P90560209",
+    phase: "launch",
+    verifiedDetails: [
+      "четырёхдверный кузов M5 E34",
+      "узкая двойная решётка и четыре круглые фары",
+      "прямоугольные внешние зеркала и чёрные молдинги",
+      "характерная линия багажника и тонкие бамперы",
+      "пятиспицевые M-колёса и пропорции седана",
+    ],
+  },
+  e39: {
+    publisher: "BMW Group PressClub",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90560210/",
+    imageUrl:
+      "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90560210",
+    localFile: "references/images/P90560210-bmw-m5-e39.jpg",
+    imageId: "P90560210",
+    phase: "launch",
+    verifiedDetails: [
+      "четырёхдверный кузов M5 E39",
+      "двойная решётка с хромированной окантовкой",
+      "четыре круглых модуля фар под прозрачными линзами",
+      "M-бамперы, боковые молдинги и расширенные арки",
+      "классические многоспицевые M-колёса",
+    ],
+  },
+  e60: {
+    publisher: "BMW Group PressClub",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90560211/",
+    imageUrl:
+      "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90560211",
+    localFile: "references/images/P90560211-bmw-m5-e60.jpg",
+    imageId: "P90560211",
+    phase: "launch",
+    verifiedDetails: [
+      "четырёхдверный кузов M5 E60",
+      "плавная линия капота и характерная передняя оптика",
+      "M-жабер на переднем крыле",
+      "широкие арки и боковые юбки",
+      "серебристые многоспицевые M-колёса",
+    ],
+  },
+  f10: {
+    publisher: "BMW Group PressClub",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90560212/",
+    imageUrl:
+      "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90560212",
+    localFile: "references/images/P90560212-bmw-m5-f10.jpg",
+    imageId: "P90560212",
+    phase: "launch",
+    verifiedDetails: [
+      "четырёхдверный кузов M5 F10",
+      "сдвоенная M-решётка и фары с двойными световыми модулями",
+      "широкий передний бампер с боковыми воздухозаборниками",
+      "M-жабер на переднем крыле",
+      "чёрные многоспицевые M-колёса и пропорции седана",
+    ],
+  },
+  f90: {
+    publisher: "BMW Group PressClub",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90560213/",
+    imageUrl:
+      "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90560213",
+    localFile: "references/images/P90560213-bmw-m5-f90.jpg",
+    imageId: "P90560213",
+    phase: "launch",
+    verifiedDetails: [
+      "четырёхдверный кузов M5 F90",
+      "M-решётка и узкие LED-фары",
+      "глубокие воздухозаборники переднего бампера",
+      "M-жабер на переднем крыле и широкие арки",
+      "чёрные многоспицевые M-колёса",
+    ],
+  },
+  g90: {
+    publisher: "BMW Group PressClub",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90557399/the-all-new-bmw-m5-06/2024",
+    imageUrl:
+      "https://mediapool.bmwgroup.com/cache/P9/202406/P90557399/P90557399-the-all-new-bmw-m5-06-2024-2250px.jpg",
+    localFile: "references/images/P90557399-bmw-m5-g90.jpg",
+    imageId: "P90557399",
+    phase: "launch",
+    verifiedDetails: [
+      "четырёхдверный кузов M5 Sedan G90",
+      "M-решётка с горизонтальными внутренними планками",
+      "форма фар и переднего бампера",
+      "широкие передние крылья",
+      "зарядный лючок на переднем левом крыле",
+      "передние M-колёса и пропорции седана",
+    ],
+  },
+};
 const photoByGeneration: Record<string, PhotoMetadata> = {
   ...Object.fromEntries(
     ["e8x", "f20", "f40", "f70"].map((code) => [
@@ -455,25 +570,7 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
         `editorial-bmw-m5-${code}.webp`,
         "https://www.bmw-m.com/en/topics/magazine-article-pool/the-generations-of-the-bmw-m5-an-overview.html",
         `BMW M5 · ${code.toUpperCase()}`,
-        code === "g90"
-          ? {
-              publisher: "BMW Group PressClub",
-              page: "https://www.press.bmwgroup.com/global/photo/detail/P90557399/the-all-new-bmw-m5-06/2024",
-              imageUrl:
-                "https://mediapool.bmwgroup.com/cache/P9/202406/P90557399/P90557399-the-all-new-bmw-m5-06-2024-2250px.jpg",
-              localFile: "references/images/P90557399-bmw-m5-g90.jpg",
-              imageId: "P90557399",
-              phase: "launch",
-              verifiedDetails: [
-                "четырёхдверный кузов M5 Sedan G90",
-                "M-решётка с горизонтальными внутренними планками",
-                "форма фар и переднего бампера",
-                "широкие передние крылья",
-                "зарядный лючок на переднем левом крыле",
-                "передние M-колёса и пропорции седана",
-              ],
-            }
-          : undefined,
+        m5References[code],
       ),
     ]),
   ),
