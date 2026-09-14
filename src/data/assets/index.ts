@@ -331,6 +331,94 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-m6-e24": editorialPhoto(
+    "editorial-bmw-m6-e24.webp",
+    "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m6-coupe-f13.html",
+    "BMW M635 CSi · E24",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90095008/bmw-m635csi-05/2012?language=en",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90095008",
+      localFile: "references/images/P90095008-bmw-m6-e24.jpg",
+      imageId: "P90095008",
+      phase: "launch",
+      verifiedDetails: [
+        "двухдверный кузов M635 CSi E24",
+        "узкая двойная решётка радиатора",
+        "четыре круглые фары в чёрной панели",
+        "тонкие хромированные бамперы и оконная окантовка",
+        "расширенные арки и классические многоспицевые колёса",
+        "длинный капот и короткий задний свес",
+      ],
+    },
+  ),
+  "bmw-m6-e63": editorialPhoto(
+    "editorial-bmw-m6-e63.webp",
+    "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m6-coupe-f13.html",
+    "BMW M6 Coupé · E63, 2005",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P0018078/bmw-m6-03/2005?language=en",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/public?actEvent=fourMB&dokNo=P0018078&filename=P0018078.zip",
+      localFile: "references/images/P0018078-bmw-m6-e63.jpg",
+      imageId: "P0018078",
+      phase: "launch",
+      verifiedDetails: [
+        "двухдверный кузов M6 Coupé E63",
+        "длинный капот и ниспадающая линия крыши",
+        "M-жабер на переднем крыле",
+        "контурная карбоновая крыша",
+        "широкие задние арки",
+        "четыре патрубка выпускной системы",
+      ],
+    },
+  ),
+  "bmw-m6-f13": editorialPhoto(
+    "editorial-bmw-m6-f13.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0124722EN/the-new-bmw-m6-coupe-and-convertible",
+    "BMW M6 Coupé · F13, 2012",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90097528/the-new-bmw-m6-coupe-06/2012",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90097528",
+      localFile: "references/images/P90097528-bmw-m6-f13.jpg",
+      imageId: "P90097528",
+      phase: "launch",
+      verifiedDetails: [
+        "двухдверный кузов M6 Coupé F13",
+        "двойная M-решётка с вертикальными планками",
+        "двойные круглые модули передней оптики",
+        "широкий передний бампер с центральной сеткой и боковыми воздухозаборниками",
+        "контурная карбоновая крыша",
+        "расширенные арки и пропорции купе",
+      ],
+    },
+  ),
+  "bmw-m8-f92": editorialPhoto(
+    "editorial-bmw-m8-f92.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0296150EN/the-new-bmw-m8-coupe-and-bmw-m8-competition-coupe-the-new-bmw-m8-convertible-and-bmw-m8-competition-convertible",
+    "BMW M8 Competition Coupé · F92, 2019",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90348773/the-all-new-bmw-m8-competition-coupe-06/2019",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90348773",
+      localFile: "references/images/P90348773-bmw-m8-f92.jpg",
+      imageId: "P90348773",
+      phase: "launch",
+      verifiedDetails: [
+        "двухдверный кузов M8 Competition Coupé F92",
+        "низкая широкая передняя часть с двойной M-решёткой",
+        "узкие угловатые LED-фары",
+        "глубокий центральный и боковые воздухозаборники переднего бампера",
+        "карбоновые корпуса зеркал",
+        "скульптура капота и пропорции купе",
+      ],
+    },
+  ),
   ...Object.fromEntries(
     ["e30", "e36", "e46", "e90", "f80", "g80"].map((code) => [
       `bmw-m3-${code}`,

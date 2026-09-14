@@ -45,6 +45,8 @@ const catalogOrder = [
   "bmw-m3",
   "bmw-m4",
   "bmw-m5",
+  "bmw-m6",
+  "bmw-m8",
   "bmw-xm",
   "bmw-i8",
   "bmw-isetta",

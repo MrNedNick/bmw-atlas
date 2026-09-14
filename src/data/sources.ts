@@ -310,6 +310,78 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0443252EN/the-all-new-bmw-m5",
   },
   {
+    id: "bmw-m6-history",
+    title: "История BMW M6",
+    publisher: "BMW M",
+    date: "проверено 2026-09-14",
+    scope:
+      "M635 CSi E24, M6 E63/E64 и M6 F06/F12/F13: хронология, двигатели и ключевые характеристики",
+    url: "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m6-coupe-f13.html",
+  },
+  {
+    id: "bmw-m6-f13-launch",
+    title: "Новые BMW M6 Coupé и M6 Convertible",
+    publisher: "BMW Group PressClub",
+    date: "2012-06-18",
+    scope:
+      "Запуск M6 F13/F12: V8 M TwinPower Turbo 560 л.с., 680 Н·м и кузова Coupé и Convertible",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0124722EN/the-new-bmw-m6-coupe-and-convertible",
+  },
+  {
+    id: "bmw-m6-f13-update",
+    title: "Обновлённые BMW M6 Coupé, Convertible и Gran Coupé",
+    publisher: "BMW Group PressClub",
+    date: "2014-12-11",
+    scope:
+      "LCI для F06M/F12M/F13M: LED-фары, обновлённое оснащение и кузовная гамма с Gran Coupé",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0197553EN/the-new-bmw-m6-coupe-new-bmw-m6-convertible-and-new-bmw-m6-gran-coupe?language=en",
+  },
+  {
+    id: "bmw-m6-f06-launch",
+    title: "BMW M6 Gran Coupé",
+    publisher: "BMW Group PressClub",
+    date: "2012-12-12",
+    scope:
+      "Третий кузов M6: F06 Gran Coupé, V8 560 л.с., 680 Н·м, семиступенчатая M DCT и старт рынка в 2013 году",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0134965EN/a-supreme-combination-of-high-performance-and-luxury%3A-the-bmw-m6-gran-coupe?language=en",
+  },
+  {
+    id: "bmw-m6-f13-competition",
+    title: "Competition Package для BMW M6",
+    publisher: "BMW Group PressClub",
+    date: "2015-05-15",
+    scope:
+      "Усиленный Competition Package для F06M/F12M/F13M: 600 л.с. и 700 Н·м",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0217204EN/more-potent-competition-package-for-bmw-m6-coupe-bmw-m6-gran-coupe-and-bmw-m6-convertible",
+  },
+  {
+    id: "bmw-m8-launch",
+    title: "Новые BMW M8 Coupé и M8 Competition Coupé",
+    publisher: "BMW Group PressClub",
+    date: "2019-06-05",
+    scope:
+      "Старт F91/F92: 600 или 625 л.с., 750 Н·м, восьмиступенчатая M Steptronic и M xDrive",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0296150EN/the-new-bmw-m8-coupe-and-bmw-m8-competition-coupe-the-new-bmw-m8-convertible-and-bmw-m8-competition-convertible",
+  },
+  {
+    id: "bmw-m8-f93-launch",
+    title: "Новые BMW M8 Gran Coupé и M8 Competition Gran Coupé",
+    publisher: "BMW Group PressClub",
+    date: "2019-10-09",
+    scope:
+      "Четырёхдверный F93, мировой дебют в Лос-Анджелесе и рыночный старт в январе 2020 года",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0301406EN/the-new-bmw-m8-gran-coupe-and-bmw-m8-competition-gran-coupe",
+  },
+  {
+    id: "bmw-m8-2022-update",
+    title: "Обновлённые BMW M8 Competition Coupé, Convertible и Gran Coupé",
+    publisher: "BMW Group PressClub",
+    date: "2022-01-26",
+    scope:
+      "Модельный год 2022: изменения дизайна, новые цвета и колёса, M Shadow Line lights и обновлённые функции управления",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0364657EN/the-new-bmw-m8-competition-coup%C3%A9-the-new-bmw-m8-competition-convertible-the-new-bmw-m8-competition-gran-coup%C3%A9",
+  },
+  {
     id: "bmw-m4-g82-update",
     title: "Обновлённый BMW M4 Coupé (G82)",
     publisher: "BMW Group PressClub",
