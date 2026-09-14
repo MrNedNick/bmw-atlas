@@ -5,13 +5,11 @@ import {
   Search,
   SlidersHorizontal,
   Bookmark,
-  GitCompareArrows,
   Compass,
   Sun,
   Moon,
   ChevronDown,
   X,
-  Check,
   ShieldCheck,
   Database,
   Globe2,
@@ -24,15 +22,13 @@ import {
   familyMatches,
   matchesText,
   formatYears,
-  formatVolume,
-  parseSelection,
   type Filters,
   type IndexSnapshot,
   type ModelFamily,
   type IndexModel,
 } from "./domain/catalog";
 import { Button } from "./components/button/button";
-import { useSaved, useTheme } from "./lib/preferences";
+import { useLanguage, useSaved, useTheme } from "./lib/preferences";
 import { VehiclePhoto } from "./features/media/VehiclePhoto";
 import { FamilyDetail, SourceLink } from "./features/FamilyDetail";
 const number = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
@@ -63,11 +59,10 @@ const orderedFamilies = [...families].sort(
   (a, b) => catalogRank(a.id) - catalogRank(b.id),
 );
 interface PageState {
-  view: "catalog" | "models" | "compare" | "sources" | "photos";
+  view: "catalog" | "models" | "sources" | "photos";
   family: string;
   generation: string;
   filters: Filters;
-  compare: string[];
 }
 function readUrl(): PageState {
   const q = new URLSearchParams(location.search),
@@ -79,17 +74,10 @@ function readUrl(): PageState {
   filter.savedOnly = q.get("saved") === "1";
   const v = q.get("view");
   return {
-    view:
-      v === "models" || v === "compare" || v === "sources" || v === "photos"
-        ? v
-        : "catalog",
+    view: v === "models" || v === "sources" || v === "photos" ? v : "catalog",
     family: families.some((f) => f.id === family) ? family : "",
     generation: q.get("generation") ?? "",
     filters: filter,
-    compare: parseSelection(
-      q.get("compare"),
-      allGenerations.map((x) => x.generation.id),
-    ),
   };
 }
 function urlFor(state: PageState) {
@@ -102,7 +90,6 @@ function urlFor(state: PageState) {
       if (value) q.set("saved", "1");
     } else if (value) q.set(key, String(value));
   }
-  if (state.compare.length) q.set("compare", state.compare.join(","));
   return location.pathname + (q.size ? "?" + q : "");
 }
 function FamilyCard({
@@ -235,7 +222,32 @@ export default function App() {
     return () => window.removeEventListener("keydown", key);
   }, [indexDetail]);
   const { saved, toggle } = useSaved(families.map((f) => f.id)),
-    { theme, toggleTheme } = useTheme();
+    { theme, toggleTheme } = useTheme(),
+    { language, toggleLanguage } = useLanguage();
+  const text =
+    language === "en"
+      ? {
+          skip: "Skip to content",
+          catalog: "BMW Atlas catalog",
+          models: "All models",
+          garage: "My garage",
+          photos: "Photos",
+          about: "About the data",
+          light: "Light theme",
+          dark: "Dark theme",
+          language: "Русский",
+        }
+      : {
+          skip: "Перейти к содержимому",
+          catalog: "BMW Atlas — каталог",
+          models: "Все модели",
+          garage: "Мой гараж",
+          photos: "Фото",
+          about: "О данных",
+          light: "Светлая тема",
+          dark: "Тёмная тема",
+          language: "English",
+        };
   useEffect(() => {
     const c = new AbortController();
     setIndexError(false);
@@ -294,16 +306,6 @@ export default function App() {
   function openFamily(f: ModelFamily) {
     navigate({ family: f.id, generation: defaults(f) });
     window.scrollTo({ top: 0, behavior: "instant" });
-  }
-  function compare(id: string) {
-    const next = state.compare.includes(id)
-      ? state.compare.filter((x) => x !== id)
-      : [...state.compare, id];
-    if (next.length > 4) {
-      setNotice("В сравнении можно оставить до четырёх поколений.");
-      return;
-    }
-    navigate({ compare: next });
   }
   function go(view: PageState["view"], garage = false) {
     navigate({
@@ -369,20 +371,17 @@ export default function App() {
     ([k, v]) => k !== "query" && !!v,
   ).length;
   const hasCatalogFilters = Boolean(state.filters.query) || activeFilters > 0;
-  const compared = allGenerations.filter((x) =>
-    state.compare.includes(x.generation.id),
-  );
   return (
     <>
       <a className="skip" href="#main">
-        Перейти к содержимому
+        {text.skip}
       </a>
       <header className="site-header">
         <div className="header-inner">
           <button
             className="brand"
             onClick={() => go("catalog")}
-            aria-label="BMW Atlas — каталог"
+            aria-label={text.catalog}
           >
             <span className="brand-mark">
               <BMWMark />
@@ -397,22 +396,13 @@ export default function App() {
               className={state.view === "models" ? "active" : ""}
               onClick={() => go("models")}
             >
-              Все модели
-            </button>
-            <button
-              className={state.view === "compare" ? "active" : ""}
-              onClick={() => go("compare")}
-            >
-              Сравнение
-              {state.compare.length > 0 && (
-                <span className="nav-count">{state.compare.length}</span>
-              )}
+              {text.models}
             </button>
             <button
               className={state.filters.savedOnly ? "active" : ""}
               onClick={() => go("catalog", true)}
             >
-              Мой гараж
+              {text.garage}
               {saved.length > 0 && (
                 <span className="nav-count">{saved.length}</span>
               )}
@@ -420,15 +410,22 @@ export default function App() {
           </nav>
           <div className="header-right">
             <button className="photo-nav" onClick={() => go("photos")}>
-              Фото
+              {text.photos}
             </button>
             <button className="about-link" onClick={() => go("sources")}>
-              О данных <ArrowUpRight size={14} />
+              {text.about} <ArrowUpRight size={14} />
+            </button>
+            <button
+              className="language-button"
+              onClick={toggleLanguage}
+              aria-label={text.language}
+            >
+              {text.language}
             </button>
             <button
               className="theme-button"
               onClick={toggleTheme}
-              aria-label={theme === "dark" ? "Светлая тема" : "Тёмная тема"}
+              aria-label={theme === "dark" ? text.light : text.dark}
             >
               {theme === "dark" ? <Sun size={19} /> : <Moon size={19} />}
             </button>
@@ -444,8 +441,6 @@ export default function App() {
             onBack={() => navigate({ family: "", generation: "" })}
             saved={saved.includes(family.id)}
             onSave={() => toggle(family.id)}
-            compare={state.compare}
-            onCompare={compare}
           />
         ) : state.view === "models" ? (
           <section className="page-enter all-models-page">
@@ -579,149 +574,6 @@ export default function App() {
                 </p>
               )}
             </section>
-          </section>
-        ) : state.view === "compare" ? (
-          <section className="page-enter">
-            <div className="page-heading">
-              <span className="eyebrow">РЯДОМ ВИДНО БОЛЬШЕ</span>
-              <h1>
-                Сравнение <em>поколений.</em>
-              </h1>
-              <p>До четырёх вариантов. Прочерк — неизвестное, а не ноль.</p>
-            </div>
-            {compared.length ? (
-              <>
-                <div className="compare-scroll">
-                  <table className="compare-table">
-                    <thead>
-                      <tr>
-                        <th>Характеристика</th>
-                        {compared.map(({ family: f, generation: g }) => (
-                          <th key={g.id}>
-                            <button
-                              className="remove-compare"
-                              aria-label={"Убрать " + f.name + " " + g.code}
-                              onClick={() => compare(g.id)}
-                            >
-                              <X size={16} />
-                            </button>
-                            <span className="eyebrow">{f.brand}</span>
-                            <h3>{f.name}</h3>
-                            <strong>{g.code}</strong>
-                            <button
-                              className="text-action"
-                              onClick={() =>
-                                navigate({
-                                  family: f.id,
-                                  generation: g.id,
-                                  view: "catalog",
-                                })
-                              }
-                            >
-                              Открыть <ArrowUpRight size={14} />
-                            </button>
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        [
-                          "Период производства",
-                          ({ generation: g }: (typeof compared)[number]) =>
-                            formatYears(g),
-                        ],
-                        [
-                          "Известные рестайлинги",
-                          ({ generation: g }: (typeof compared)[number]) =>
-                            g.revisions
-                              .filter(
-                                (revision) => revision.kind === "facelift",
-                              )
-                              .map((revision) => revision.year)
-                              .join(", ") || "Нет данных",
-                        ],
-                        [
-                          "Силовые варианты в базе",
-                          ({ generation: g }: (typeof compared)[number]) =>
-                            g.powertrains.length
-                              ? String(g.powertrains.length)
-                              : "Не добавлены",
-                        ],
-                        [
-                          "Топливо в источниках",
-                          ({ generation: g }: (typeof compared)[number]) =>
-                            [...new Set(g.powertrains.map((p) => p.fuel))].join(
-                              ", ",
-                            ) || "Нет данных",
-                        ],
-                        [
-                          "Тираж поколения",
-                          ({ generation: g }: (typeof compared)[number]) =>
-                            g.volume
-                              ? `${formatVolume(g.volume)} · ${g.volume.metric} · ${g.volume.asOf}`
-                              : "Нет данных",
-                        ],
-                        [
-                          "Подтверждённая сборка",
-                          ({ generation: g }: (typeof compared)[number]) =>
-                            g.assembly.join(", ") || "Не уточнена",
-                        ],
-                        [
-                          "Оценка безопасности",
-                          ({ generation: g }: (typeof compared)[number]) =>
-                            g.ratings.length
-                              ? g.ratings
-                                  .map((rating) =>
-                                    rating.status === "rated"
-                                      ? `${rating.scheme}, ${rating.protocolYear}`
-                                      : `${rating.scheme}: нет данных`,
-                                  )
-                                  .join("; ")
-                              : "Не добавлена",
-                        ],
-                      ].map(([label, render]) => (
-                        <tr key={label as string}>
-                          <th>{label as string}</th>
-                          {compared.map((item) => (
-                            <td key={item.generation.id}>
-                              {(render as (x: typeof item) => string)(item)}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <p className="note">
-                  <ShieldCheck size={16} />
-                  Сравниваются только сведения в базе. Полнота может
-                  различаться; производственные периоды имеют собственную
-                  область. Это не рейтинг надёжности.
-                </p>
-                <Button
-                  className="primary-action"
-                  onClick={() => go("catalog")}
-                >
-                  Добавить ещё поколение <ArrowRight size={16} />
-                </Button>
-              </>
-            ) : (
-              <div className="empty-block panel">
-                <GitCompareArrows size={32} />
-                <h2>Что будем сравнивать?</h2>
-                <p>
-                  Откройте историю модели, выберите поколение и нажмите
-                  «Сравнить поколение».
-                </p>
-                <Button
-                  className="primary-action"
-                  onClick={() => go("catalog")}
-                >
-                  Исследовать каталог <ArrowRight size={16} />
-                </Button>
-              </div>
-            )}
           </section>
         ) : state.view === "photos" ? (
           <section className="page-enter">
@@ -1216,7 +1068,7 @@ export default function App() {
                 <span className="eyebrow">ИНТЕРЕСНОЕ НАЧИНАЕТСЯ С ДЕТАЛЕЙ</span>
                 <h3>Одно название. Много разных автомобилей.</h3>
                 <p>
-                  Сравните поколения, загляните в источники и сохраните то, что
+                  Откройте поколения, загляните в источники и сохраните то, что
                   интересно именно вам.
                 </p>
               </div>
@@ -1272,24 +1124,6 @@ export default function App() {
             </Button>
           </section>
         </dialog>
-      )}
-      {state.compare.length > 0 && state.view !== "compare" && (
-        <div className="compare-dock">
-          <GitCompareArrows size={19} />
-          <span>
-            {state.compare.length} из 4 <small>в сравнении</small>
-          </span>
-          <button onClick={() => go("compare")}>
-            Сравнить <ArrowRight size={15} />
-          </button>
-          <button
-            className="dock-close"
-            aria-label="Очистить сравнение"
-            onClick={() => navigate({ compare: [] })}
-          >
-            <X size={16} />
-          </button>
-        </div>
       )}
       {notice && (
         <div className="toast" role="status">

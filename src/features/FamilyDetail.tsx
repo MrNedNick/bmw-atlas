@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Bookmark,
   Check,
-  GitCompareArrows,
   Info,
   ExternalLink,
   ChevronRight,
@@ -37,8 +36,6 @@ export function FamilyDetail({
   onBack,
   saved,
   onSave,
-  compare,
-  onCompare,
 }: {
   family: ModelFamily;
   generation: Generation;
@@ -46,8 +43,6 @@ export function FamilyDetail({
   onBack: () => void;
   saved: boolean;
   onSave: () => void;
-  compare: string[];
-  onCompare: (id: string) => void;
 }) {
   const [tab, setTab] = useState("Обзор");
   const [fuel, setFuel] = useState("");
@@ -181,22 +176,6 @@ export function FamilyDetail({
             {generation.dateScope}
           </p>
         </div>
-        <Button
-          variant="outline"
-          className="outline-action"
-          startIcon={
-            compare.includes(generation.id) ? (
-              <Check size={16} />
-            ) : (
-              <GitCompareArrows size={16} />
-            )
-          }
-          onClick={() => onCompare(generation.id)}
-        >
-          {compare.includes(generation.id)
-            ? "В сравнении"
-            : "Сравнить поколение"}
-        </Button>
       </div>
       <div
         className="detail-tabs"

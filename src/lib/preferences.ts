@@ -54,3 +54,30 @@ export function useTheme() {
     toggleTheme: () => setTheme((t) => (t === "dark" ? "light" : "dark")),
   };
 }
+
+export type Language = "en" | "ru";
+
+export function useLanguage() {
+  const [language, setLanguage] = useState<Language>(() => {
+    try {
+      return localStorage.getItem("motor-atlas.language") === "ru"
+        ? "ru"
+        : "en";
+    } catch {
+      return "en";
+    }
+  });
+  useEffect(() => {
+    document.documentElement.lang = language;
+    try {
+      localStorage.setItem("motor-atlas.language", language);
+    } catch {
+      /* Language remains usable without storage. */
+    }
+  }, [language]);
+  return {
+    language,
+    toggleLanguage: () =>
+      setLanguage((value) => (value === "en" ? "ru" : "en")),
+  };
+}

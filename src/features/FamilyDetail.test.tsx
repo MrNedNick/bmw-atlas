@@ -18,8 +18,6 @@ describe("FamilyDetail", () => {
         onBack={() => undefined}
         saved={false}
         onSave={() => undefined}
-        compare={[]}
-        onCompare={() => undefined}
       />,
     );
 
@@ -45,8 +43,6 @@ describe("FamilyDetail", () => {
         onBack={() => undefined}
         saved={false}
         onSave={() => undefined}
-        compare={[]}
-        onCompare={() => undefined}
       />,
     );
 

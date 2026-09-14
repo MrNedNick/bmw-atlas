@@ -279,6 +279,20 @@ h4 {
   border-radius: 50%;
   color: var(--muted);
 }
+.language-button {
+  min-width: 52px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+.language-button:hover {
+  color: var(--lime);
+  border-color: var(--lime);
+}
 .theme-button:hover {
   color: var(--lime);
   border-color: var(--lime);
@@ -1493,8 +1507,7 @@ dd {
 .facts-panel .text-action {
   margin-top: 20px;
 }
-.table-scroll,
-.compare-scroll {
+.table-scroll {
   overflow-x: auto;
   width: 100%;
 }
@@ -1702,55 +1715,6 @@ td > span {
 .photo-details p a {
   text-decoration: underline;
 }
-.compare-scroll {
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  background: var(--surface);
-}
-.compare-table thead th {
-  padding: 30px 25px;
-  min-width: 210px;
-  position: relative;
-  white-space: normal;
-}
-.compare-table thead th:first-child {
-  min-width: 170px;
-  vertical-align: bottom;
-}
-.compare-table thead .eyebrow {
-  margin-bottom: 8px;
-}
-.compare-table h3 {
-  font-size: 28px;
-  color: var(--ink);
-  margin-bottom: 7px;
-}
-.compare-table thead strong {
-  font-size: 13px;
-  color: var(--green);
-}
-.compare-table .text-action {
-  display: flex;
-  font-size: 10px;
-  margin-top: 15px;
-}
-.compare-table td,
-.compare-table tbody th {
-  padding: 19px 25px;
-  vertical-align: top;
-  font-size: 11px;
-  max-width: 240px;
-  min-width: 170px;
-}
-.remove-compare {
-  position: absolute;
-  top: 12px;
-  right: 10px;
-  color: var(--soft);
-}
-.compare-scroll + .note {
-  margin-bottom: 25px !important;
-}
 .index-dialog {
   margin: auto;
   padding: 0;
@@ -1794,43 +1758,6 @@ td > span {
   top: 14px;
   right: 14px;
   color: var(--muted);
-}
-.compare-dock {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 35;
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  background: var(--ink);
-  color: var(--bg);
-  padding: 11px 13px 11px 19px;
-  box-shadow: var(--shadow);
-  border-radius: 6px;
-  max-width: calc(100vw - 24px);
-}
-.compare-dock > span {
-  font-size: 12px;
-  white-space: nowrap;
-}
-.compare-dock small {
-  font-size: 10px;
-  opacity: 0.7;
-}
-.compare-dock > button:not(.dock-close) {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg);
-  color: var(--ink);
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 11px;
-}
-.dock-close {
-  display: flex;
 }
 .toast {
   position: fixed;
@@ -2227,14 +2154,6 @@ td > span {
   }
   .empty-block {
     padding: 30px 20px;
-  }
-  .compare-dock {
-    gap: 10px;
-    padding: 10px 12px;
-    bottom: 16px;
-  }
-  .compare-dock small {
-    display: none;
   }
   .index-modal {
     padding: 28px 22px;
