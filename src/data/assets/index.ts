@@ -14,7 +14,7 @@ const editorialPhoto = (
   licenseUrl: page,
   subject,
   note: reference
-    ? "Редакционная визуализация на основе точного официального пресс-снимка; конструктивные признаки проверены отдельно."
+    ? "Редакционная визуализация на основе точного официального исходного снимка; конструктивные признаки проверены отдельно."
     : "Редакционная визуализация; требуется повторная проверка по точному референсному снимку.",
   reference,
 });
@@ -332,9 +332,26 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     ]),
   ),
   "bmw-m1-e26": editorialPhoto(
-    "editorial-bmw-m1.webp",
+    "editorial-bmw-m1-e26-v2.webp",
     "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
     "BMW M1 · E26, 1978",
+    {
+      publisher: "BMW M",
+      page: "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
+      imageUrl:
+        "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/topics/magazine-article-pool/2018/bmw-m1-portraet/bmw-m1-stage.jpg?imwidth=1600",
+      localFile: "references/images/bmw-m1-e26-stage.jpg",
+      imageId: "bmw-m1-e26-stage",
+      phase: "historical",
+      verifiedDetails: [
+        "красный BMW M1 E26 в дорожной спецификации",
+        "низкий клиновидный кузов с закрытыми крышками подъёмных фар",
+        "узкая чёрная двойная решётка и прямоугольные фары",
+        "чёрная боковая защитная полоса и чёрные наружные зеркала",
+        "жалюзи в задней боковой стойке и характерное заднее стекло",
+        "дисковые легкосплавные колёса с турбинным рисунком",
+      ],
+    },
   ),
   "bmw-i3-i01": editorialPhoto(
     "editorial-bmw-i3-i01.webp",

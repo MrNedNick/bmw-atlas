@@ -8,13 +8,27 @@ export interface MIInventoryItem {
   generationId: string;
   status: MICoverageStatus;
   sourceIds: string[];
-  imagePhase: "launch" | "facelift" | "model-year";
+  imagePhase: "launch" | "facelift" | "model-year" | "historical";
   missingFields: string[];
 }
 
 // T27 grows one verified object at a time. This file is progress state, not a
 // claim that the whole M/i catalogue is complete.
 export const bmwMIInventory: MIInventoryItem[] = [
+  {
+    id: "bmw-m-i-m1-e26",
+    lineage: "M",
+    family: "M1",
+    generation: "E26",
+    generationId: "bmw-m1-e26",
+    status: "detailed",
+    sourceIds: ["bmw-m1-history"],
+    imagePhase: "historical",
+    missingFields: [
+      "производственные этапы по подрядчикам",
+      "оценки безопасности",
+    ],
+  },
   {
     id: "bmw-m-i-ix3-g08",
     lineage: "i",

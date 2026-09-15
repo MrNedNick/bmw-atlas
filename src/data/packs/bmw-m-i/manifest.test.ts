@@ -17,9 +17,9 @@ describe("BMW M and i progress manifest", () => {
       expect(entry.sourceIds.every((id) => sourceById[id])).toBe(true);
       const asset = assetByGeneration[entry.generationId];
       expect(asset).toBeDefined();
-      expect(asset.reference?.imageId).toMatch(/^P\d+$/);
-      expect(asset.reference?.page).toContain(asset.reference?.imageId);
-      expect(asset.reference?.imageUrl).toContain(asset.reference?.imageId);
+      expect(asset.reference?.imageId).not.toBe("");
+      expect(asset.reference?.page).toMatch(/^https:\/\//);
+      expect(asset.reference?.imageUrl).toMatch(/^https:\/\//);
       expect(
         existsSync(
           new URL(`../../../../${asset.reference?.localFile}`, import.meta.url),
@@ -39,6 +39,18 @@ describe("BMW M and i progress manifest", () => {
       bmwMIInventory
         .filter((entry) => entry.lineage === "M")
         .map((entry) => entry.family),
-    ).toEqual(["M2", "M2", "M4", "M4", "M4", "Z3 M", "Z4 M", "M6", "M8", "XM"]);
+    ).toEqual([
+      "M1",
+      "M2",
+      "M2",
+      "M4",
+      "M4",
+      "M4",
+      "Z3 M",
+      "Z4 M",
+      "M6",
+      "M8",
+      "XM",
+    ]);
   });
 });
