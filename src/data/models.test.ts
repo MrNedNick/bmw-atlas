@@ -18,7 +18,7 @@ it("finds Cyrillic and chassis-code aliases", () => {
     families
       .filter((f) => familyMatches(f, { ...EMPTY_FILTERS, query: "G60" }))
       .map((f) => f.id),
-  ).toEqual(["bmw-5-series"]);
+  ).toEqual(["bmw-5-series", "bmw-i5-g60-lineage"]);
 });
 it("combines fuel and year on the same generation", () => {
   expect(
@@ -46,6 +46,7 @@ it("advertises electric facts only where engine records exist", () => {
     "bmw-x5",
     "bmw-i3-i01-lineage",
     "bmw-i4-g26-lineage",
+    "bmw-i5-g60-lineage",
     "bmw-ix3-g08-lineage",
     "bmw-ix",
   ]);

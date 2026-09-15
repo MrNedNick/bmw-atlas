@@ -378,6 +378,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-i5-g60": editorialPhoto(
+    "editorial-bmw-i5-g60.webp",
+    "https://www.press.bmwgroup.com/canada/article/detail/T0437821EN/market-launch-of-the-new-bmw-5-series-sedan-and-the-first-bmw-i5?language=en&showMedia=photo",
+    "BMW i5 M60 xDrive · G60, 2023",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90523096/The-BMW-i5-M60-xDrive-10-2023",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90523096",
+      localFile: "references/images/P90523096-bmw-i5-m60-g60.jpg",
+      imageId: "P90523096",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный четырёхдверный BMW i5 M60 xDrive G60",
+        "высокая вертикальная двойная решётка с чёрной внутренней структурой",
+        "узкие передние фары и характерная световая графика G60",
+        "M-передний бампер с крупными боковыми воздухозаборниками",
+        "M-значок на переднем крыле и чёрные корпуса зеркал",
+        "многоспицевые M-колёса и короткий трёхобъёмный силуэт седана",
+      ],
+    },
+  ),
   "bmw-ix3-g08": editorialPhoto(
     "editorial-bmw-ix3-g08.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0310696EN/the-first-ever-bmw-ix3",

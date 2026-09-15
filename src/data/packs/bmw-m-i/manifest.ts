@@ -60,6 +60,21 @@ export const bmwMIInventory: MIInventoryItem[] = [
     missingFields: ["региональные батареи", "оценки безопасности"],
   },
   {
+    id: "bmw-m-i-i5-g60",
+    lineage: "i",
+    family: "i5",
+    generation: "G60",
+    generationId: "bmw-i5-g60",
+    status: "detailed",
+    sourceIds: ["bmw-i5-g60-launch"],
+    imagePhase: "launch",
+    missingFields: [
+      "i5 Touring G61",
+      "последующие модельные годы",
+      "оценки безопасности",
+    ],
+  },
+  {
     id: "bmw-m-i-ix-i20",
     lineage: "i",
     family: "iX",

@@ -293,6 +293,15 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0333329EN/the-first-ever-bmw-i4",
   },
   {
+    id: "bmw-i5-g60-launch",
+    title: "Рыночный запуск первого BMW i5 (G60)",
+    publisher: "BMW Group PressClub",
+    date: "2023-10-18",
+    scope:
+      "Первый BMW i5 Sedan G60: eDrive40 и i5 M60 xDrive, начало поставок в Германии и Европе с 21 октября 2023 года",
+    url: "https://www.press.bmwgroup.com/canada/article/detail/T0437821EN/market-launch-of-the-new-bmw-5-series-sedan-and-the-first-bmw-i5?language=en&showMedia=photo",
+  },
+  {
     id: "bmw-ix3-g08-launch",
     title: "Первый BMW iX3 (G08)",
     publisher: "BMW Group PressClub",
