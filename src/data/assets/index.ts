@@ -357,6 +357,48 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-ix-i20": editorialPhoto(
+    "editorial-bmw-ix-i20.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0333569EN/the-first-ever-bmw-ix",
+    "BMW iX · I20, 2021",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90443838/BMW-iX-11-2021",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90443838",
+      localFile: "references/images/P90443838-bmw-ix-i20.jpg",
+      imageId: "P90443838",
+      phase: "launch",
+      verifiedDetails: [
+        "электрический SAV BMW iX I20",
+        "высокая вертикальная закрытая решётка с ромбовидным рисунком",
+        "очень тонкие горизонтальные фары",
+        "гладкий длинный капот и короткий передний свес",
+        "утопленные ручки дверей и тёмный нижний обвес",
+      ],
+    },
+  ),
+  "bmw-ix-i20-lci": editorialPhoto(
+    "editorial-bmw-ix-i20-lci.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0447642EN/the-new-bmw-ix",
+    "BMW iX M70 · I20, 2025",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90594602/the-new-bmw-ix-01-2025",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90594602",
+      localFile: "references/images/P90594602-bmw-ix-i20-lci.jpg",
+      imageId: "P90594602",
+      phase: "facelift",
+      verifiedDetails: [
+        "обновлённый BMW iX M70 I20",
+        "закрытая вертикальная решётка с горизонтальными планками",
+        "малый M-значок на решётке",
+        "тонкие фары с вертикальными дневными элементами",
+        "M-колёса и чёрные корпуса зеркал",
+      ],
+    },
+  ),
   "bmw-z3-m-e36": editorialPhoto(
     "editorial-bmw-z3-m-e36.webp",
     "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-2760-1.bmw-z3-m-roadster-e36.html",
@@ -737,6 +779,7 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId === "bmw-x5-g65" ||
     generationId.startsWith("bmw-m") ||
     generationId.startsWith("bmw-i3-") ||
+    generationId.startsWith("bmw-ix-") ||
     generationId.startsWith("bmw-7-") ||
     generationId.startsWith("bmw-1-") ||
     generationId.startsWith("bmw-x3-") ||

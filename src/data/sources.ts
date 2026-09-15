@@ -266,6 +266,24 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0148284EN/the-bmw-i3",
   },
   {
+    id: "bmw-ix-i20-launch",
+    title: "Первый BMW iX (I20)",
+    publisher: "BMW Group PressClub",
+    date: "2021-06-02",
+    scope:
+      "Электрический SAV I20: xDrive40 и xDrive50, мировой запуск в ноябре 2021 года",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0333569EN/the-first-ever-bmw-ix",
+  },
+  {
+    id: "bmw-ix-i20-2025-update",
+    title: "Новый BMW iX (I20)",
+    publisher: "BMW Group PressClub",
+    date: "2025-01-29",
+    scope:
+      "Обновление I20: xDrive45, xDrive60 и M70 xDrive, мировой запуск весной 2025 года",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0447642EN/the-new-bmw-ix",
+  },
+  {
     id: "bmw-i3-i01-2017-update",
     title: "Технические данные обновлённых BMW i3 и i3s",
     publisher: "BMW Group PressClub",

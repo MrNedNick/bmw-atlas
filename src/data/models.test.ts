@@ -41,7 +41,7 @@ it("advertises electric facts only where engine records exist", () => {
     families
       .filter((f) => familyMatches(f, { ...EMPTY_FILTERS, fuel: "Электро" }))
       .map((f) => f.id),
-  ).toEqual(["bmw-5-series", "bmw-x5", "bmw-i3-i01-lineage"]);
+  ).toEqual(["bmw-5-series", "bmw-x5", "bmw-i3-i01-lineage", "bmw-ix"]);
   expect(
     families
       .filter((f) =>
