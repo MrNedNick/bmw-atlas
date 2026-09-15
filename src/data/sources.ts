@@ -409,6 +409,24 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0364657EN/the-new-bmw-m8-competition-coup%C3%A9-the-new-bmw-m8-competition-convertible-the-new-bmw-m8-competition-gran-coup%C3%A9",
   },
   {
+    id: "bmw-m4-f82-launch",
+    title: "Новые BMW M3 Sedan и BMW M4 Coupé (F82)",
+    publisher: "BMW Group PressClub",
+    date: "2014-05-09",
+    scope:
+      "Первый BMW M4: купе F82, рядная шестёрка M TwinPower Turbo, 431 hp, кузов и начало производства",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0179467EN/the-new-bmw-m3-sedan-and-new-bmw-m4-coupe",
+  },
+  {
+    id: "bmw-m4-g82-launch",
+    title: "Новые BMW M3 Sedan и BMW M4 Coupé (G82)",
+    publisher: "BMW Group PressClub",
+    date: "2020-09-23",
+    scope:
+      "Второе поколение M4: Coupé G82, базовая и Competition спецификации, механическая или M Steptronic коробка",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0316725EN/wide-range-of-m-performance-parts-already-available-at-market-launch-of-the-all-new-bmw-m3-sedan-and-bmw-m4-coup%C3%A9",
+  },
+  {
     id: "bmw-m4-g82-update",
     title: "Обновлённый BMW M4 Coupé (G82)",
     publisher: "BMW Group PressClub",

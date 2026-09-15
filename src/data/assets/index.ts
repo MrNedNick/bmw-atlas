@@ -446,6 +446,50 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-m4-f82": editorialPhoto(
+    "editorial-bmw-m4-f82.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0179467EN/the-new-bmw-m3-sedan-and-new-bmw-m4-coupe",
+    "BMW M4 Coupé · F82, 2014",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90149772/the-new-bmw-m4-coupe-05/2014",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90149772",
+      localFile: "references/images/P90149772-bmw-m4-f82.jpg",
+      imageId: "P90149772",
+      phase: "launch",
+      verifiedDetails: [
+        "двухдверный кузов M4 Coupé F82",
+        "двойная M-решётка с чёрными вертикальными планками",
+        "двойные круглые модули фар",
+        "трёхсекционный M-передний бампер",
+        "M-жабер на переднем крыле",
+        "карбоновая крыша и чёрные колёса M",
+      ],
+    },
+  ),
+  "bmw-m4-g82": editorialPhoto(
+    "editorial-bmw-m4-g82.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0316725EN/wide-range-of-m-performance-parts-already-available-at-market-launch-of-the-all-new-bmw-m3-sedan-and-bmw-m4-coup%C3%A9",
+    "BMW M4 Competition Coupé · G82, 2021",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90415077/The-new-BMW-M4-Competition-Coup%C3%A9-Portimao-Blue-03-2021",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90415077",
+      localFile: "references/images/P90415077-bmw-m4-g82.jpg",
+      imageId: "P90415077",
+      phase: "launch",
+      verifiedDetails: [
+        "двухдверный кузов M4 Competition Coupé G82",
+        "вертикальная безрамочная двойная M-решётка",
+        "узкие светодиодные фары",
+        "M-передний бампер с угловатыми воздухозаборниками",
+        "M-жабер на переднем крыле",
+        "карбоновая крыша и чёрные колёса M",
+      ],
+    },
+  ),
   "bmw-xm-g09": editorialPhoto(
     "editorial-bmw-xm-g09.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0403971EN/the-first-ever-bmw-xm",
