@@ -257,6 +257,24 @@ export const sources: Source[] = [
     url: "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
   },
   {
+    id: "bmw-i3-i01-launch",
+    title: "BMW i3 (I01): мировой дебют",
+    publisher: "BMW Group PressClub",
+    date: "2013-10-10",
+    scope:
+      "Первый серийный BMW i: I01, электрический задний привод, LifeDrive с CFRP-пассажирской капсулой и старт производства в Лейпциге",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0148284EN/the-bmw-i3",
+  },
+  {
+    id: "bmw-i3-i01-2017-update",
+    title: "Технические данные обновлённых BMW i3 и i3s",
+    publisher: "BMW Group PressClub",
+    date: "2017-08-30",
+    scope:
+      "Обновление I01 2017 года: BMW i3 и более мощный i3s, характеристики для рынка Германии с ноября 2017 года",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0280411EN/technical-specifications-of-the-new-bmw-i3-and-the-new-bmw-i3s-valid-from-11/2017",
+  },
+  {
     id: "bmw-z3-m-classic",
     title: "BMW Z3 M Roadster (E36)",
     publisher: "BMW Group Classic",

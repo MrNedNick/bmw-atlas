@@ -336,6 +336,27 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m1-from-procar-to-icon.html",
     "BMW M1 · E26, 1978",
   ),
+  "bmw-i3-i01": editorialPhoto(
+    "editorial-bmw-i3-i01.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0148284EN/the-bmw-i3",
+    "BMW i3 · I01, 2017",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90273583/the-new-bmw-i3-and-the-new-bmw-i3s-08/2017",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90273583",
+      localFile: "references/images/P90273583-bmw-i3-i01-lci.jpg",
+      imageId: "P90273583",
+      phase: "facelift",
+      verifiedDetails: [
+        "компактный пятидверный кузов BMW i3 I01",
+        "чёрный капот и чёрная линия остекления",
+        "закрытая небольшая решётка BMW с синей окантовкой",
+        "узкие светодиодные фары и короткий передний свес",
+        "высокая стеклянная кабина и чёрная нижняя часть кузова",
+      ],
+    },
+  ),
   "bmw-z3-m-e36": editorialPhoto(
     "editorial-bmw-z3-m-e36.webp",
     "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-2760-1.bmw-z3-m-roadster-e36.html",
@@ -715,6 +736,7 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
   if (
     generationId === "bmw-x5-g65" ||
     generationId.startsWith("bmw-m") ||
+    generationId.startsWith("bmw-i3-") ||
     generationId.startsWith("bmw-7-") ||
     generationId.startsWith("bmw-1-") ||
     generationId.startsWith("bmw-x3-") ||

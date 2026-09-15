@@ -37,7 +37,7 @@ describe("BMW distribution", () => {
   });
   it("uses the unified editorial image set for every detailed generation", () => {
     const photos = families.flatMap((f) => f.generations.map((g) => g.photo));
-    expect(photos).toHaveLength(70);
+    expect(photos).toHaveLength(71);
     expect(
       photos.every((p) => p?.url.startsWith("images/editorial-bmw-")),
     ).toBe(true);
@@ -49,6 +49,7 @@ describe("BMW distribution", () => {
     for (const id of [
       "bmw-m2-f87",
       "bmw-m2-g87",
+      "bmw-i3-i01",
       "bmw-m4-f82",
       "bmw-m4-g82",
       "bmw-z3-m-e36",
