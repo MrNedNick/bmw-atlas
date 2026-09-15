@@ -284,6 +284,24 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0447642EN/the-new-bmw-ix",
   },
   {
+    id: "bmw-i4-g26-launch",
+    title: "Первый BMW i4 (G26)",
+    publisher: "BMW Group PressClub",
+    date: "2021-06-02",
+    scope:
+      "Электрический четырёхдверный Gran Coupé G26: стартовые i4 eDrive40 и i4 M50, мировой запуск в ноябре 2021 года",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0333329EN/the-first-ever-bmw-i4",
+  },
+  {
+    id: "bmw-i4-g26-2024-update",
+    title: "Новый BMW i4 (G26)",
+    publisher: "BMW Group PressClub",
+    date: "2024-04-24",
+    scope:
+      "Обновление G26 с июля 2024 года: новая внешность, iDrive QuickSelect и первая i4 с электрическим полным приводом",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0441229EN/the-new-bmw-i4-and-the-new-bmw-4-series-gran-coup%C3%A9",
+  },
+  {
     id: "bmw-i3-i01-2017-update",
     title: "Технические данные обновлённых BMW i3 и i3s",
     publisher: "BMW Group PressClub",

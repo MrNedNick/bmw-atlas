@@ -357,6 +357,48 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-i4-g26": editorialPhoto(
+    "editorial-bmw-i4-g26.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0333329EN/the-first-ever-bmw-i4",
+    "BMW i4 M50 · G26, 2021",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90423619/the-bmw-i4m50-6/2021",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90423619",
+      localFile: "references/images/P90423619-bmw-i4-g26.jpg",
+      imageId: "P90423619",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный BMW i4 M50 G26 в кузове четырёхдверный Gran Coupé",
+        "высокая вертикальная закрытая решётка с точечным рисунком",
+        "тонкие передние фары с двойной световой графикой",
+        "синий кузов и чёрные нижние воздухозаборники",
+        "M-значок на правой части решётки и спортивный передний бампер",
+      ],
+    },
+  ),
+  "bmw-i4-g26-lci": editorialPhoto(
+    "editorial-bmw-i4-g26-lci.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0441229EN/the-new-bmw-i4-and-the-new-bmw-4-series-gran-coup%C3%A9",
+    "BMW i4 · G26, 2024",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90546603/the-new-bmw-i4-04/2024",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90546603",
+      localFile: "references/images/P90546603-bmw-i4-g26-lci.jpg",
+      imageId: "P90546603",
+      phase: "facelift",
+      verifiedDetails: [
+        "обновлённый BMW i4 G26 в кузове четырёхдверный Gran Coupé",
+        "компактная почти закрытая вертикальная решётка",
+        "новая графика фар с вертикальными дневными световыми элементами",
+        "серый кузов, чёрные нижние воздухозаборники и чёрные зеркала",
+        "низкий силуэт Gran Coupé и тёмные многоспицевые колёса",
+      ],
+    },
+  ),
   "bmw-ix-i20": editorialPhoto(
     "editorial-bmw-ix-i20.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0333569EN/the-first-ever-bmw-ix",
@@ -779,6 +821,7 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId === "bmw-x5-g65" ||
     generationId.startsWith("bmw-m") ||
     generationId.startsWith("bmw-i3-") ||
+    generationId.startsWith("bmw-i4-") ||
     generationId.startsWith("bmw-ix-") ||
     generationId.startsWith("bmw-7-") ||
     generationId.startsWith("bmw-1-") ||

@@ -16,6 +16,28 @@ export interface MIInventoryItem {
 // claim that the whole M/i catalogue is complete.
 export const bmwMIInventory: MIInventoryItem[] = [
   {
+    id: "bmw-m-i-i4-g26",
+    lineage: "i",
+    family: "i4",
+    generation: "G26",
+    generationId: "bmw-i4-g26",
+    status: "detailed",
+    sourceIds: ["bmw-i4-g26-launch"],
+    imagePhase: "launch",
+    missingFields: ["региональные батареи", "оценки безопасности"],
+  },
+  {
+    id: "bmw-m-i-i4-g26-lci",
+    lineage: "i",
+    family: "i4",
+    generation: "G26 LCI",
+    generationId: "bmw-i4-g26-lci",
+    status: "detailed",
+    sourceIds: ["bmw-i4-g26-2024-update"],
+    imagePhase: "facelift",
+    missingFields: ["региональные батареи", "оценки безопасности"],
+  },
+  {
     id: "bmw-m-i-ix-i20",
     lineage: "i",
     family: "iX",
