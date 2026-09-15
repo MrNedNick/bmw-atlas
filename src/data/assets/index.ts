@@ -133,6 +133,23 @@ const m5References: Record<string, PhotoReference> = {
     ],
   },
 };
+const m3E30Reference: PhotoReference = {
+  publisher: "BMW M",
+  page: "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m3-generationen.html",
+  imageUrl:
+    "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/topics/magazine-article-pool/2024/m3-generationen/bmw-m3-e30-sport-evolution-hd-04.jpg?imwidth=1600",
+  localFile: "references/images/bmw-m3-e30-sport-evolution-hd-04.jpg",
+  imageId: "bmw-m3-e30-sport-evolution-hd-04",
+  phase: "historical",
+  verifiedDetails: [
+    "двухдверный BMW M3 Sport Evolution E30",
+    "четыре круглые фары и узкая двойная решётка с эмблемой M3",
+    "угловатые расширенные колёсные арки и короткие свесы E30",
+    "чёрный передний спойлер и красная декоративная полоса бампера",
+    "двухдверный кузов с тонкими стойками и прямой линией крыши",
+    "периодные многоспицевые колёса и наружные зеркала E30",
+  ],
+};
 const photoByGeneration: Record<string, PhotoMetadata> = {
   ...Object.fromEntries(
     ["e8x", "f20", "f40", "f70"].map((code) => [
@@ -812,28 +829,32 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     ["e30", "e36", "e46", "e90", "f80", "g80"].map((code) => [
       `bmw-m3-${code}`,
       editorialPhoto(
-        `editorial-bmw-m3-${code}.webp`,
+        code === "e30"
+          ? "editorial-bmw-m3-e30-v2.webp"
+          : `editorial-bmw-m3-${code}.webp`,
         "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m3-generationen.html",
         `BMW M3 · ${code.toUpperCase()}`,
-        code === "g80"
-          ? {
-              publisher: "BMW Group PressClub",
-              page: "https://www.press.bmwgroup.com/global/photo/detail/P90551007/the-new-bmw-m3-sedan-05/2024",
-              imageUrl:
-                "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90551007",
-              localFile: "references/images/P90551007-bmw-m3-g80-front.jpg",
-              imageId: "P90551007",
-              phase: "facelift",
-              verifiedDetails: [
-                "четырёхдверный кузов M3 Sedan G80",
-                "вертикальная M-решётка с горизонтальными двойными планками",
-                "фары с двойными световыми модулями",
-                "передний бампер с крупными боковыми воздухозаборниками",
-                "M-жабер на переднем крыле",
-                "расширенные арки и чёрные многоспицевые M-колёса",
-              ],
-            }
-          : undefined,
+        code === "e30"
+          ? m3E30Reference
+          : code === "g80"
+            ? {
+                publisher: "BMW Group PressClub",
+                page: "https://www.press.bmwgroup.com/global/photo/detail/P90551007/the-new-bmw-m3-sedan-05/2024",
+                imageUrl:
+                  "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90551007",
+                localFile: "references/images/P90551007-bmw-m3-g80-front.jpg",
+                imageId: "P90551007",
+                phase: "facelift",
+                verifiedDetails: [
+                  "четырёхдверный кузов M3 Sedan G80",
+                  "вертикальная M-решётка с горизонтальными двойными планками",
+                  "фары с двойными световыми модулями",
+                  "передний бампер с крупными боковыми воздухозаборниками",
+                  "M-жабер на переднем крыле",
+                  "расширенные арки и чёрные многоспицевые M-колёса",
+                ],
+              }
+            : undefined,
       ),
     ]),
   ),
