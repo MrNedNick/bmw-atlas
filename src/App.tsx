@@ -16,6 +16,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { families, allGenerations } from "./data/models";
+import { catalogGroups } from "./data/catalog-groups";
 import { sources } from "./data/sources";
 import {
   EMPTY_FILTERS,
@@ -34,32 +35,7 @@ import { FamilyDetail, SourceLink } from "./features/FamilyDetail";
 const number = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
 const defaults = (f: ModelFamily) =>
   f.id === "bmw-3-series" ? "bmw-g20" : f.generations.at(-1)!.id;
-const catalogOrder = [
-  "bmw-1-series",
-  "bmw-3-series",
-  "bmw-5-series",
-  "bmw-7-series",
-  "bmw-x3",
-  "bmw-x5",
-  "bmw-m1",
-  "bmw-z3-m",
-  "bmw-z4-m",
-  "bmw-m3",
-  "bmw-m4",
-  "bmw-m5",
-  "bmw-m6",
-  "bmw-m8",
-  "bmw-xm",
-  "bmw-i3-i01-lineage",
-  "bmw-i4-g26-lineage",
-  "bmw-i5-g60-lineage",
-  "bmw-ix3-g08-lineage",
-  "bmw-ix",
-  "bmw-i8",
-  "bmw-isetta",
-  "bmw-r32",
-  "bmw-gs-boxer",
-];
+const catalogOrder = catalogGroups.flatMap((group) => group.familyIds);
 const catalogRank = (id: string) => {
   const rank = catalogOrder.indexOf(id);
   return rank === -1 ? Number.MAX_SAFE_INTEGER : rank;
@@ -67,6 +43,9 @@ const catalogRank = (id: string) => {
 const orderedFamilies = [...families].sort(
   (a, b) => catalogRank(a.id) - catalogRank(b.id),
 );
+const familyById = Object.fromEntries(
+  families.map((family) => [family.id, family]),
+) as Record<string, ModelFamily>;
 interface PageState {
   view: "catalog" | "models" | "sources" | "photos";
   family: string;
@@ -495,16 +474,41 @@ export default function App() {
                   СЕРИИ · X · M · i · CLASSIC · MOTORRAD
                 </span>
               </div>
-              <div className="family-grid">
-                {orderedFamilies.map((f) => (
-                  <FamilyCard
-                    key={f.id}
-                    family={f}
-                    onOpen={() => openFamily(f)}
-                    saved={saved.includes(f.id)}
-                    onSave={() => toggle(f.id)}
-                  />
-                ))}
+              <div className="catalog-groups">
+                {catalogGroups.map((group) => {
+                  const groupFamilies = group.familyIds.map(
+                    (familyId) => familyById[familyId],
+                  );
+
+                  return (
+                    <section
+                      key={group.id}
+                      className="catalog-group"
+                      aria-labelledby={`catalog-group-${group.id}`}
+                    >
+                      <div className="catalog-group-heading">
+                        <div>
+                          <span className="eyebrow">{group.eyebrow}</span>
+                          <h3 id={`catalog-group-${group.id}`}>
+                            {group.title}
+                          </h3>
+                        </div>
+                        <span>{groupFamilies.length} семейства</span>
+                      </div>
+                      <div className="family-grid">
+                        {groupFamilies.map((f) => (
+                          <FamilyCard
+                            key={f.id}
+                            family={f}
+                            onOpen={() => openFamily(f)}
+                            saved={saved.includes(f.id)}
+                            onSave={() => toggle(f.id)}
+                          />
+                        ))}
+                      </div>
+                    </section>
+                  );
+                })}
               </div>
             </section>
             <section
