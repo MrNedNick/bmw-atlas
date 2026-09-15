@@ -201,6 +201,23 @@ const m3E90Reference: PhotoReference = {
     "четыре двери, компактная линия крыши и серебристые многоспицевые M-колёса",
   ],
 };
+const m3F80Reference: PhotoReference = {
+  publisher: "BMW M",
+  page: "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m3-generationen.html",
+  imageUrl:
+    "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/topics/magazine-article-pool/2024/m3-generationen/bmw-m3-f80-limousine-hd-04.jpg?imwidth=1600",
+  localFile: "references/images/bmw-m3-f80-limousine-hd-04.jpg",
+  imageId: "bmw-m3-f80-limousine-hd-04",
+  phase: "historical",
+  verifiedDetails: [
+    "четырёхдверный BMW M3 Sedan F80",
+    "чёрная двойная решётка с вертикальными планками",
+    "фары с двумя угловатыми LED-контурами, соединёнными с решёткой",
+    "M-передний бампер с широким центральным сетчатым воздухозаборником",
+    "крупные трапециевидные боковые воздухозаборники и M-жабер на переднем крыле",
+    "тёмная карбоновая крыша и чёрные многоспицевые M-колёса",
+  ],
+};
 const photoByGeneration: Record<string, PhotoMetadata> = {
   ...Object.fromEntries(
     ["e8x", "f20", "f40", "f70"].map((code) => [
@@ -888,7 +905,9 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
               ? "editorial-bmw-m3-e46-v2.webp"
               : code === "e90"
                 ? "editorial-bmw-m3-e90-v2.webp"
-                : `editorial-bmw-m3-${code}.webp`,
+                : code === "f80"
+                  ? "editorial-bmw-m3-f80-v2.webp"
+                  : `editorial-bmw-m3-${code}.webp`,
         "https://www.bmw-m.com/en/topics/magazine-article-pool/bmw-m3-generationen.html",
         `BMW M3 · ${code.toUpperCase()}`,
         code === "e30"
@@ -899,26 +918,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
               ? m3E46Reference
               : code === "e90"
                 ? m3E90Reference
-                : code === "g80"
-                  ? {
-                      publisher: "BMW Group PressClub",
-                      page: "https://www.press.bmwgroup.com/global/photo/detail/P90551007/the-new-bmw-m3-sedan-05/2024",
-                      imageUrl:
-                        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90551007",
-                      localFile:
-                        "references/images/P90551007-bmw-m3-g80-front.jpg",
-                      imageId: "P90551007",
-                      phase: "facelift",
-                      verifiedDetails: [
-                        "четырёхдверный кузов M3 Sedan G80",
-                        "вертикальная M-решётка с горизонтальными двойными планками",
-                        "фары с двойными световыми модулями",
-                        "передний бампер с крупными боковыми воздухозаборниками",
-                        "M-жабер на переднем крыле",
-                        "расширенные арки и чёрные многоспицевые M-колёса",
-                      ],
-                    }
-                  : undefined,
+                : code === "f80"
+                  ? m3F80Reference
+                  : code === "g80"
+                    ? {
+                        publisher: "BMW Group PressClub",
+                        page: "https://www.press.bmwgroup.com/global/photo/detail/P90551007/the-new-bmw-m3-sedan-05/2024",
+                        imageUrl:
+                          "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90551007",
+                        localFile:
+                          "references/images/P90551007-bmw-m3-g80-front.jpg",
+                        imageId: "P90551007",
+                        phase: "facelift",
+                        verifiedDetails: [
+                          "четырёхдверный кузов M3 Sedan G80",
+                          "вертикальная M-решётка с горизонтальными двойными планками",
+                          "фары с двойными световыми модулями",
+                          "передний бампер с крупными боковыми воздухозаборниками",
+                          "M-жабер на переднем крыле",
+                          "расширенные арки и чёрные многоспицевые M-колёса",
+                        ],
+                      }
+                    : undefined,
       ),
     ]),
   ),

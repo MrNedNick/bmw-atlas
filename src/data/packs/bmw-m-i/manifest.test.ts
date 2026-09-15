@@ -45,6 +45,7 @@ describe("BMW M and i progress manifest", () => {
       "M3",
       "M3",
       "M3",
+      "M3",
       "M2",
       "M2",
       "M4",
