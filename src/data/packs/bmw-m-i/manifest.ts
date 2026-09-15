@@ -52,6 +52,17 @@ export const bmwMIInventory: MIInventoryItem[] = [
     missingFields: ["разделение Sedan/Coupé/Cabriolet", "оценки безопасности"],
   },
   {
+    id: "bmw-m-i-m3-e46",
+    lineage: "M",
+    family: "M3",
+    generation: "E46",
+    generationId: "bmw-m3-e46",
+    status: "detailed",
+    sourceIds: ["bmw-m3-generations"],
+    imagePhase: "historical",
+    missingFields: ["разделение Coupé/Cabriolet/CSL", "оценки безопасности"],
+  },
+  {
     id: "bmw-m-i-ix3-g08",
     lineage: "i",
     family: "iX3",
