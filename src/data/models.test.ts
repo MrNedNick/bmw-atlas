@@ -46,6 +46,7 @@ it("advertises electric facts only where engine records exist", () => {
     "bmw-x5",
     "bmw-i3-i01-lineage",
     "bmw-i4-g26-lineage",
+    "bmw-ix3-g08-lineage",
     "bmw-ix",
   ]);
   expect(

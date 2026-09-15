@@ -378,6 +378,48 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-ix3-g08": editorialPhoto(
+    "editorial-bmw-ix3-g08.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0310696EN/the-first-ever-bmw-ix3",
+    "BMW iX3 · G08, 2020",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90392964/the-first-ever-bmw-ix3-07/2020",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90392964",
+      localFile: "references/images/P90392964-bmw-ix3-g08.jpg",
+      imageId: "P90392964",
+      phase: "launch",
+      verifiedDetails: [
+        "BMW iX3 G08",
+        "закрытая решётка с синим контуром",
+        "двойные LED-фары",
+        "синий нижний декор",
+        "аэродинамические колёса",
+      ],
+    },
+  ),
+  "bmw-ix3-g08-lci": editorialPhoto(
+    "editorial-bmw-ix3-g08-lci.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",
+    "BMW iX3 · G08, 2021",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90432164/the-new-bmw-ix3-8/2021",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90432164",
+      localFile: "references/images/P90432164-bmw-ix3-g08-lci.jpg",
+      imageId: "P90432164",
+      phase: "facelift",
+      verifiedDetails: [
+        "обновлённый BMW iX3 G08",
+        "увеличенная решётка",
+        "более тонкие LED-фары",
+        "M Sport передний бампер",
+        "синие акценты BMW i",
+      ],
+    },
+  ),
   "bmw-i4-g26-lci": editorialPhoto(
     "editorial-bmw-i4-g26-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0441229EN/the-new-bmw-i4-and-the-new-bmw-4-series-gran-coup%C3%A9",
@@ -822,6 +864,7 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId.startsWith("bmw-m") ||
     generationId.startsWith("bmw-i3-") ||
     generationId.startsWith("bmw-i4-") ||
+    generationId.startsWith("bmw-ix3-") ||
     generationId.startsWith("bmw-ix-") ||
     generationId.startsWith("bmw-7-") ||
     generationId.startsWith("bmw-1-") ||

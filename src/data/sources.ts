@@ -293,6 +293,24 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0333329EN/the-first-ever-bmw-i4",
   },
   {
+    id: "bmw-ix3-g08-launch",
+    title: "Первый BMW iX3 (G08)",
+    publisher: "BMW Group PressClub",
+    date: "2020-07-14",
+    scope:
+      "Первый электрический BMW SAV: iX3 G08, задний привод, 210 кВт и запас хода до 460 км WLTP",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0310696EN/the-first-ever-bmw-ix3",
+  },
+  {
+    id: "bmw-ix3-g08-2021-update",
+    title: "Новый BMW iX3 (G08)",
+    publisher: "BMW Group PressClub",
+    date: "2021-08-11",
+    scope:
+      "Обновление iX3: новая передняя часть, стандартный M Sport и производство для мировых рынков в Шэньяне",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",
+  },
+  {
     id: "bmw-i4-g26-2024-update",
     title: "Новый BMW i4 (G26)",
     publisher: "BMW Group PressClub",
