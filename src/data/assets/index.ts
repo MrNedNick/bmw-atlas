@@ -523,6 +523,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-ix1-u11": editorialPhoto(
+    "editorial-bmw-ix1-u11.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0393974EN/the-all-new-bmw-x1-and-the-first-ever-bmw-ix1",
+    "BMW iX1 xDrive30 · U11, 2022",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90479764/bmw-ix1-and-bmw-x1-09/2022",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90479764",
+      localFile: "references/images/P90479764-bmw-ix1-u11.jpg",
+      imageId: "P90479764",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный BMW iX1 U11 в пятидверном кузове SAV",
+        "высокая вертикальная двойная решётка с хромированной окантовкой",
+        "тонкие передние LED-фары с угловатой световой графикой",
+        "передний бампер с чёрным нижним воздухозаборником",
+        "короткий передний свес, высокая линия крыши и рейлинги",
+        "аэродинамические колёса и синий номерной знак iX1 xDrive30 на исходном кадре",
+      ],
+    },
+  ),
   "bmw-ix3-g08-lci": editorialPhoto(
     "editorial-bmw-ix3-g08-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",

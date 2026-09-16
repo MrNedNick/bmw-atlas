@@ -16,6 +16,17 @@ export interface MIInventoryItem {
 // claim that the whole M/i catalogue is complete.
 export const bmwMIInventory: MIInventoryItem[] = [
   {
+    id: "bmw-m-i-ix1-u11",
+    lineage: "i",
+    family: "iX1",
+    generation: "U11",
+    generationId: "bmw-ix1-u11",
+    status: "detailed",
+    sourceIds: ["bmw-x1-u11-launch"],
+    imagePhase: "launch",
+    missingFields: ["eDrive20/eDrive25 по рынкам", "оценки безопасности"],
+  },
+  {
     id: "bmw-m-i-m1-e26",
     lineage: "M",
     family: "M1",
