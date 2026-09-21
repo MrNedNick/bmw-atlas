@@ -1775,6 +1775,59 @@ export const families: ModelFamily[] = [
     ],
   },
   {
+    id: "bmw-ix2-u10-lineage",
+    brand: "BMW",
+    vehicleKind: "Автомобиль",
+    name: "iX2",
+    aliases: ["BMW iX2", "БМВ iX2", "U10", "iX2 U10", "iX2 xDrive30"],
+    tagline: "Первый электрический Sports Activity Coupé в линейке BMW.",
+    summary:
+      "BMW iX2 U10 — электрическая ветвь второго поколения X2. Карточка фиксирует стартовую глобальную версию xDrive30 с двумя электромоторами и кузовом Sports Activity Coupé.",
+    body: ["SAC"],
+    source: "bmw-x2-u10-launch",
+    countries: ["Германия"],
+    countryScope:
+      "BMW iX2 U10 производится на одной гибкой линии с X2 на заводе BMW Group в Регенсбурге; карточка описывает стартовую глобальную спецификацию.",
+    volume: null,
+    generations: [
+      g(
+        "bmw-ix2-u10",
+        "I",
+        "U10",
+        2023,
+        null,
+        "Первый BMW iX2 объединил электрический привод с силуэтом компактного Sports Activity Coupé и получил по одному электромотору на каждой оси.",
+        "bmw-x2-u10-launch",
+        {
+          assembly: ["Германия · Регенсбург"],
+          dateScope:
+            "Мировая премьера: октябрь 2023 года; мировой рыночный запуск xDrive30 начался в марте 2024 года.",
+          highlights: [
+            "iX2 стал первым полностью электрическим Sports Activity Coupé BMW.",
+            "xDrive30 использует высокоинтегрированные электроприводы на передней и задней осях.",
+            "U10 собирается с X2 на одной гибкой линии BMW Group Plant Regensburg.",
+            "Покатая линия крыши и отдельная задняя часть отличают iX2 от более вертикального iX1 U11.",
+          ],
+          powertrains: [
+            p(
+              "bmw-ix2-u10-xdrive30",
+              "xDrive30",
+              "Электро",
+              313,
+              494,
+              "Одноступенчатый редуктор",
+              "Полный · xDrive",
+              "Глобальная стартовая спецификация",
+              "2023-10-11",
+              "bmw-x2-u10-launch",
+              "hp",
+            ),
+          ],
+        },
+      ),
+    ],
+  },
+  {
     id: "bmw-ix3-g08-lineage",
     brand: "BMW",
     vehicleKind: "Автомобиль",

@@ -45,6 +45,7 @@ export const catalogGroups: readonly CatalogGroup[] = [
       "bmw-i5-g60-lineage",
       "bmw-i8",
       "bmw-ix1-u11-lineage",
+      "bmw-ix2-u10-lineage",
       "bmw-ix3-g08-lineage",
       "bmw-ix",
     ],

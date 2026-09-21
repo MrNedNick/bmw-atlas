@@ -545,6 +545,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-ix2-u10": editorialPhoto(
+    "editorial-bmw-ix2-u10.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0437451EN/the-all-new-bmw-x2-and-the-first-ever-bmw-ix2?language=en",
+    "BMW iX2 xDrive30 · U10, 2023",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90525154/the-first-ever-bmw-ix2-xdrive30-exterior-10/2023",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90525154",
+      localFile: "references/images/P90525154-bmw-ix2-u10.jpg",
+      imageId: "P90525154",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный BMW iX2 xDrive30 U10 в пятидверном кузове Sports Activity Coupé",
+        "покатая линия крыши и короткая задняя часть кузова U10",
+        "крупная закрытая двойная решётка с геометрическим рисунком и светлой окантовкой",
+        "тонкие фары со стрелочной световой графикой и синими внутренними акцентами",
+        "чёрные боковые воздухозаборники переднего бампера и тёмная нижняя решётка",
+        "чёрные накладки колёсных арок и многоспицевые аэродинамические колёса",
+      ],
+    },
+  ),
   "bmw-ix3-g08-lci": editorialPhoto(
     "editorial-bmw-ix3-g08-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",
