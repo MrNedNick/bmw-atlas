@@ -132,7 +132,7 @@ it("contains only BMW histories", () =>
 it("keeps cars and BMW Motorrad as explicit catalogue kinds", () => {
   expect(
     families.filter((f) => f.vehicleKind === "Мотоцикл").map((f) => f.id),
-  ).toEqual(["bmw-r32", "bmw-gs-boxer"]);
+  ).toEqual(["bmw-r32", "bmw-gs-boxer", "bmw-s1000rr", "bmw-r18-lineage"]);
   expect(
     families
       .filter((f) => f.vehicleKind === "Мотоцикл")

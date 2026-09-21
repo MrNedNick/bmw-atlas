@@ -1061,6 +1061,50 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ),
     ]),
   ),
+  "bmw-s1000rr-k67": editorialPhoto(
+    "editorial-bmw-s1000rr-k67.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0286297EN/the-new-bmw-s-1000-rr",
+    "BMW S 1000 RR · K67, 2019",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90327353/bmw-s-1000-rr-racing-red-11/2018",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90327353",
+      localFile: "references/images/P90327353-bmw-s1000rr-k67.jpg",
+      imageId: "P90327353",
+      phase: "launch",
+      verifiedDetails: [
+        "серийная BMW S 1000 RR K67 в Racing Red",
+        "красно-чёрный полный обтекатель с характерными угловатыми панелями",
+        "два асимметричных модуля передней оптики и прозрачное ветровое стекло",
+        "рядный четырёхцилиндровый двигатель и алюминиевый задний подрамник",
+        "цепной привод справа, односторонний маятник и чёрные многоспицевые колёса",
+        "чистый левый профиль без гоночного обвеса или добавленных аэродинамических крыльев",
+      ],
+    },
+  ),
+  "bmw-r18": editorialPhoto(
+    "editorial-bmw-r18.webp",
+    "https://www.press.bmwgroup.com/global/article/detail/T0307047EN/the-new-bmw-r-18",
+    "BMW R 18 First Edition · 2020",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90386387/the-bmw-r-18-first-edition-04/2020",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90386387",
+      localFile: "references/images/P90386387-bmw-r18.jpg",
+      imageId: "P90386387",
+      phase: "launch",
+      verifiedDetails: [
+        "серийная BMW R 18 First Edition в чёрном цвете",
+        "крупный оппозитный двигатель Big Boxer с маркировкой 1800 cc",
+        "круглая LED-фара, телескопическая вилка и низкий круизерный силуэт",
+        "бак Black Storm с двойной белой линией и хромированными элементами",
+        "спицованные колёса и открытая карданная передача",
+        "двойная трубчатая стальная рама и отдельно видимые цилиндры boxer",
+      ],
+    },
+  ),
   "bmw-g20": {
     url: "images/editorial-bmw-g20.webp",
     page: "https://commons.wikimedia.org/wiki/File:BMW_G20_330i_in_blue.jpg",
@@ -1104,6 +1148,8 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId.startsWith("bmw-x3-") ||
     generationId === "bmw-r32-1923" ||
     generationId.startsWith("bmw-gs-") ||
+    generationId.startsWith("bmw-s1000rr-") ||
+    generationId === "bmw-r18" ||
     generationId === "bmw-isetta-family"
   )
     continue;

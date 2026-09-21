@@ -62,6 +62,6 @@ export const catalogGroups: readonly CatalogGroup[] = [
     id: "motorrad",
     eyebrow: "BMW MOTORRAD",
     title: "Мотоциклы BMW",
-    familyIds: ["bmw-r32", "bmw-gs-boxer"],
+    familyIds: ["bmw-r32", "bmw-gs-boxer", "bmw-s1000rr", "bmw-r18-lineage"],
   },
 ];

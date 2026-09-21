@@ -589,6 +589,24 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0437059EN/the-new-bmw-r-1300-gs",
   },
   {
+    id: "bmw-s1000rr-k67-launch",
+    title: "Новый BMW S 1000 RR (K67)",
+    publisher: "BMW Group PressClub",
+    date: "2018-11-06",
+    scope:
+      "Третье полностью новое поколение суперспорта: 999 см³, ShiftCam, 152 кВт / 207 hp, 113 Н·м, Flex Frame и масса",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0286297EN/the-new-bmw-s-1000-rr",
+  },
+  {
+    id: "bmw-r18-launch",
+    title: "Новый BMW R 18",
+    publisher: "BMW Group PressClub",
+    date: "2020-04-03",
+    scope:
+      "Круизер R 18: Big Boxer 1802 см³, 67 кВт / 91 hp, 158 Н·м, открытый кардан и историческая конструкция",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0307047EN/the-new-bmw-r-18",
+  },
+  {
     id: "bmw-production",
     title: "50 лет производства BMW 3 Series",
     publisher: "BMW Group PressClub",

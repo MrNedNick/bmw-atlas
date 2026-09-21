@@ -17,5 +17,10 @@ it("keeps the BMW i, BMW M and Motorrad lineages separate", () => {
 
   expect(idsFor("i")).toContain("bmw-i5-g60-lineage");
   expect(idsFor("m")).toContain("bmw-z3-m");
-  expect(idsFor("motorrad")).toEqual(["bmw-r32", "bmw-gs-boxer"]);
+  expect(idsFor("motorrad")).toEqual([
+    "bmw-r32",
+    "bmw-gs-boxer",
+    "bmw-s1000rr",
+    "bmw-r18-lineage",
+  ]);
 });
