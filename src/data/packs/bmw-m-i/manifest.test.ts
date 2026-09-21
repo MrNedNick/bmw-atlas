@@ -40,6 +40,7 @@ describe("BMW M and i progress manifest", () => {
         .filter((entry) => entry.lineage === "M")
         .map((entry) => entry.family),
     ).toEqual([
+      "X3 M",
       "M1",
       "M3",
       "M3",

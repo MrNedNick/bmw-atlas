@@ -896,6 +896,15 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0437451EN/the-all-new-bmw-x2-and-the-first-ever-bmw-ix2?language=en",
   },
   {
+    id: "bmw-x3-m-f97-launch",
+    title: "Первые BMW X3 M и X3 M Competition (F97)",
+    publisher: "BMW Group PressClub",
+    date: "2019-02-06",
+    scope:
+      "Первое самостоятельное высокопроизводительное SAV BMW M: F97, рядная шестёрка S58, M xDrive, Active M Differential и версии 480/510 hp",
+    url: "https://www.press.bmwgroup.com/global/article/attachment/T0291918EN/424667",
+  },
+  {
     id: "bmw-x4-f26-launch",
     title: "Первый BMW X4 (F26)",
     publisher: "BMW Group PressClub UK",

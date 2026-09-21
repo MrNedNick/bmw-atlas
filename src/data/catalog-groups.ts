@@ -30,6 +30,7 @@ export const catalogGroups: readonly CatalogGroup[] = [
       "bmw-m5",
       "bmw-m6",
       "bmw-m8",
+      "bmw-x3-m-f97-lineage",
       "bmw-z3-m",
       "bmw-z4-m",
       "bmw-xm",

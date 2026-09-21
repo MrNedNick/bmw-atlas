@@ -567,6 +567,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-x3-m-f97": editorialPhoto(
+    "editorial-bmw-x3-m-f97.webp",
+    "https://www.press.bmwgroup.com/global/article/attachment/T0291918EN/424667",
+    "BMW X3 M Competition · F97, 2019",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90334486/the-all-new-bmw-x3-m-competition-02/2019",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90334486",
+      localFile: "references/images/P90334486-bmw-x3-m-f97.jpg",
+      imageId: "P90334486",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный BMW X3 M Competition F97 в пятидверном кузове SAV",
+        "двойная решётка G01 с чёрными вертикальными планками",
+        "двухмодульные LED-фары и глубокие чёрные воздухозаборники M-бампера",
+        "M-жабра за передним колесом, окрашенные колёсные арки и боковые юбки",
+        "чёрные рейлинги, корпуса зеркал и многоспицевые M-колёса",
+        "высокий двухобъёмный силуэт SAV, отличный от купеобразного X4 M F98",
+      ],
+    },
+  ),
   "bmw-ix3-g08-lci": editorialPhoto(
     "editorial-bmw-ix3-g08-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",
