@@ -589,6 +589,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-x4-m-f98": editorialPhoto(
+    "editorial-bmw-x4-m-f98.webp",
+    "https://www.press.bmwgroup.com/global/article/attachment/T0291184EN/429530",
+    "BMW X4 M Competition · F98, 2019",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90353505/the-all-new-bmw-x4-m-competition-06/2019",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90353505",
+      localFile: "references/images/P90353505-bmw-x4-m-f98.jpg",
+      imageId: "P90353505",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный BMW X4 M Competition F98 в пятидверном кузове Sports Activity Coupé",
+        "выраженная покатая крыша и короткая купеобразная задняя часть F98",
+        "чёрная двойная решётка с вертикальными планками и двухмодульные LED-фары",
+        "M-бампер с глубокой чёрной центральной решёткой и боковыми воздухозаборниками",
+        "чёрные корпуса зеркал, M-жабра за передним колесом и многоспицевые M-колёса",
+        "передний трёхчетвертной ракурс на исходном официальном фото, не смешанный с SAV X3 M",
+      ],
+    },
+  ),
   "bmw-ix3-g08-lci": editorialPhoto(
     "editorial-bmw-ix3-g08-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",

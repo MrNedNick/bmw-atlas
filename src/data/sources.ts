@@ -905,6 +905,24 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/attachment/T0291918EN/424667",
   },
   {
+    id: "bmw-x4-m-f98-launch",
+    title: "Первые BMW X4 M и X4 M Competition (F98)",
+    publisher: "BMW Group PressClub",
+    date: "2019-02-06",
+    scope:
+      "Первое высокопроизводительное среднеразмерное Sports Activity Coupé BMW M: F98, S58, M xDrive, Active M Differential и версии 480/510 hp",
+    url: "https://www.press.bmwgroup.com/global/article/attachment/T0291184EN/429530",
+  },
+  {
+    id: "bmw-x4-m-f98-2021-update",
+    title: "Обновлённые BMW X3 M Competition и BMW X4 M Competition",
+    publisher: "BMW Group PressClub",
+    date: "2021-06-09",
+    scope:
+      "Обновление Competition: 510 hp, 650 Н·м, изменённые решётка, передний бампер, фары и задние фонари",
+    url: "https://www.press.bmwgroup.com/global/article/attachment/T0334352EN/482820",
+  },
+  {
     id: "bmw-x4-f26-launch",
     title: "Первый BMW X4 (F26)",
     publisher: "BMW Group PressClub UK",
