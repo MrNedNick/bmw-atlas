@@ -29,7 +29,12 @@ import {
   type IndexModel,
 } from "./domain/catalog";
 import { Button } from "./components/button/button";
-import { useLanguage, useSaved, useTheme } from "./lib/preferences";
+import {
+  type Language,
+  useLanguage,
+  useSaved,
+  useTheme,
+} from "./lib/preferences";
 import { VehiclePhoto } from "./features/media/VehiclePhoto";
 import { FamilyDetail, SourceLink } from "./features/FamilyDetail";
 const number = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
@@ -85,12 +90,15 @@ function FamilyCard({
   onOpen,
   saved,
   onSave,
+  language,
 }: {
   family: ModelFamily;
   onOpen: () => void;
   saved: boolean;
   onSave: () => void;
+  language: Language;
 }) {
+  const isEnglish = language === "en";
   return (
     <article className="family-card blue-card">
       <div className="card-top">
@@ -99,7 +107,15 @@ function FamilyCard({
         </span>
         <button
           className={"bookmark " + (saved ? "is-saved" : "")}
-          aria-label={(saved ? "Убрать из гаража " : "В гараж ") + family.name}
+          aria-label={
+            (saved
+              ? isEnglish
+                ? "Remove from garage "
+                : "Убрать из гаража "
+              : isEnglish
+                ? "Add to garage "
+                : "В гараж ") + family.name
+          }
           aria-pressed={saved}
           onClick={onSave}
         >
@@ -119,7 +135,8 @@ function FamilyCard({
           <div>
             <span className="eyebrow">
               {family.generations[0].start} —{" "}
-              {family.generations.at(-1)!.end ?? "СЕГОДНЯ"}
+              {family.generations.at(-1)!.end ??
+                (isEnglish ? "TODAY" : "СЕГОДНЯ")}
             </span>
             <h3>{family.name}</h3>
           </div>
@@ -130,13 +147,16 @@ function FamilyCard({
         <p>{family.tagline}</p>
         <div className="card-metrics">
           <span>
-            <strong>{family.generations.length}</strong> поколений / ветвей
+            <strong>{family.generations.length}</strong>{" "}
+            {isEnglish ? "generations / branches" : "поколений / ветвей"}
           </span>
           <span>
             <strong>
               {family.generations.reduce((n, g) => n + g.powertrains.length, 0)}
             </strong>{" "}
-            силовых вариантов в базе
+            {isEnglish
+              ? "powertrain variants in the database"
+              : "силовых вариантов в базе"}
           </span>
         </div>
       </button>
@@ -212,6 +232,7 @@ export default function App() {
   const { saved, toggle } = useSaved(families.map((f) => f.id)),
     { theme, toggleTheme } = useTheme(),
     { language, toggleLanguage } = useLanguage();
+  const l = (ru: string, en: string) => (language === "en" ? en : ru);
   const text =
     language === "en"
       ? {
@@ -434,42 +455,52 @@ export default function App() {
         ) : state.view === "models" ? (
           <section className="page-enter all-models-page">
             <div className="page-heading">
-              <span className="eyebrow">КАТАЛОГ BMW</span>
+              <span className="eyebrow">BMW CATALOGUE</span>
               <h1>
-                Все модели. <em>В одном месте.</em>
+                {l("Все модели.", "Every model.")}{" "}
+                <em>{l("В одном месте.", "In one place.")}</em>
               </h1>
               <p>
-                Начните с подробных историй: здесь есть поколения, рестайлинги,
-                двигатели и производство. Ниже — полный индекс названий BMW,
-                чтобы ни одна интересная модель не терялась в поиске.
+                {l(
+                  "Начните с подробных историй: здесь есть поколения, рестайлинги, двигатели и производство. Ниже — полный индекс названий BMW, чтобы ни одна интересная модель не терялась в поиске.",
+                  "Start with detailed histories: generations, facelifts, powertrains and production. The complete BMW name index below keeps every interesting model discoverable.",
+                )}
               </p>
             </div>
             <div className="models-summary panel">
               <div>
                 <strong>{families.length}</strong>
-                <span>подробных семейств</span>
+                <span>{l("подробных семейств", "detailed families")}</span>
               </div>
               <div>
                 <strong>{allGenerations.length}</strong>
-                <span>поколений и ветвей</span>
+                <span>
+                  {l("поколений и ветвей", "generations and branches")}
+                </span>
               </div>
               <div>
                 <strong>{index ? number(index.modelCount) : "…"}</strong>
-                <span>названий в полном индексе</span>
+                <span>
+                  {l("названий в полном индексе", "names in the full index")}
+                </span>
               </div>
               <Button
                 variant="outline"
                 className="outline-action"
                 onClick={() => go("catalog")}
               >
-                На главную <ArrowRight size={16} />
+                {l("На главную", "Home")} <ArrowRight size={16} />
               </Button>
             </div>
             <section className="models-section" aria-labelledby="stories-title">
               <div className="section-heading">
                 <div>
-                  <span className="eyebrow">МОЖНО ОТКРЫТЬ СРАЗУ</span>
-                  <h2 id="stories-title">Подробные истории</h2>
+                  <span className="eyebrow">
+                    {l("МОЖНО ОТКРЫТЬ СРАЗУ", "READY TO EXPLORE")}
+                  </span>
+                  <h2 id="stories-title">
+                    {l("Подробные истории", "Detailed histories")}
+                  </h2>
                 </div>
                 <span className="edition">
                   СЕРИИ · X · M · i · CLASSIC · MOTORRAD
@@ -494,7 +525,9 @@ export default function App() {
                             {group.title}
                           </h3>
                         </div>
-                        <span>{groupFamilies.length} семейства</span>
+                        <span>
+                          {groupFamilies.length} {l("семейства", "families")}
+                        </span>
                       </div>
                       <div className="family-grid">
                         {groupFamilies.map((f) => (
@@ -504,6 +537,7 @@ export default function App() {
                             onOpen={() => openFamily(f)}
                             saved={saved.includes(f.id)}
                             onSave={() => toggle(f.id)}
+                            language={language}
                           />
                         ))}
                       </div>
@@ -518,8 +552,12 @@ export default function App() {
             >
               <div className="section-heading">
                 <div>
-                  <span className="eyebrow">ПОЛНЫЙ УКАЗАТЕЛЬ</span>
-                  <h2 id="index-title-all">Все названия BMW</h2>
+                  <span className="eyebrow">
+                    {l("ПОЛНЫЙ УКАЗАТЕЛЬ", "FULL INDEX")}
+                  </span>
+                  <h2 id="index-title-all">
+                    {l("Все названия BMW", "All BMW names")}
+                  </h2>
                 </div>
                 <span className="edition">
                   NHTSA vPIC · БЕЗ НЕПРОВЕРЕННЫХ ХАРАКТЕРИСТИК
@@ -529,14 +567,20 @@ export default function App() {
                 <Search size={22} />
                 <input
                   ref={searchRef}
-                  aria-label="Поиск во всех моделях"
-                  placeholder="Найдите модель: 325d, X7, iX3, Z8…"
+                  aria-label={l("Поиск во всех моделях", "Search all models")}
+                  placeholder={l(
+                    "Найдите модель: 325d, X7, iX3, Z8…",
+                    "Find a model: 325d, X7, iX3, Z8…",
+                  )}
                   value={state.filters.query}
                   onChange={(e) => filters({ query: e.target.value })}
                 />
                 {state.filters.query && (
                   <button
-                    aria-label="Очистить поиск по всем моделям"
+                    aria-label={l(
+                      "Очистить поиск по всем моделям",
+                      "Clear all-model search",
+                    )}
                     onClick={() => filters({ query: "" })}
                   >
                     <X size={17} />
@@ -545,17 +589,19 @@ export default function App() {
               </div>
               {indexError ? (
                 <div className="empty-block panel">
-                  <h3>Индекс не загрузился</h3>
+                  <h3>{l("Индекс не загрузился", "The index did not load")}</h3>
                   <Button
                     variant="outline"
                     className="outline-action"
                     onClick={() => setIndexVersion((v) => v + 1)}
                   >
-                    Повторить загрузку
+                    {l("Повторить загрузку", "Retry loading")}
                   </Button>
                 </div>
               ) : !index ? (
-                <p role="status">Загружаем полный индекс…</p>
+                <p role="status">
+                  {l("Загружаем полный индекс…", "Loading the full index…")}
+                </p>
               ) : modelIndexRows.length ? (
                 <>
                   <div className="index-grid all-model-index-grid">
@@ -578,13 +624,17 @@ export default function App() {
                       className="load-more"
                       onClick={() => setIndexPage((n) => n + 1)}
                     >
-                      Показать ещё 36 <ArrowRight size={16} />
+                      {l("Показать ещё 36", "Show 36 more")}{" "}
+                      <ArrowRight size={16} />
                     </button>
                   )}
                 </>
               ) : (
                 <p className="empty-inline">
-                  Такого названия пока нет в полном индексе BMW.
+                  {l(
+                    "Такого названия пока нет в полном индексе BMW.",
+                    "This name is not in the full BMW index yet.",
+                  )}
                 </p>
               )}
             </section>
@@ -954,6 +1004,7 @@ export default function App() {
                         onOpen={() => openFamily(f)}
                         saved={saved.includes(f.id)}
                         onSave={() => toggle(f.id)}
+                        language={language}
                       />
                     ))}
                 </div>
