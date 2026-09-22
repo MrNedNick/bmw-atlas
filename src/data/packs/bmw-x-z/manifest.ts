@@ -12,6 +12,7 @@ export interface VisualPhase {
   to: number | null;
   status: VisualStatus;
   sourceIds: string[];
+  generationId?: string;
 }
 
 export interface BMWXZInventoryItem {
@@ -76,6 +77,7 @@ const item = (seed: Seed): BMWXZInventoryItem => {
       ? ("available" as const)
       : ("needed" as const),
     sourceIds: facelift.sourceIds ?? seed.sourceIds,
+    generationId: facelift.generationId,
   }));
   return {
     id: `bmw-x-z-${seed.family.toLowerCase()}-${seed.generationKey}`,
@@ -279,7 +281,15 @@ export const bmwXZInventory: BMWXZInventoryItem[] = [
     null,
     ["bmw-x6-g06-launch", "bmw-x5-g05-update"],
     {
-      facelifts: [{ year: 2023, sourceIds: ["bmw-x5-g05-update"] }],
+      status: "detailed",
+      generationId: "bmw-x6-g06",
+      facelifts: [
+        {
+          year: 2023,
+          sourceIds: ["bmw-x5-g05-update"],
+          generationId: "bmw-x6-g06-lci",
+        },
+      ],
       mDerivativeIds: ["X6 M F96"],
     },
   ),
@@ -422,6 +432,12 @@ export function validateBMWXZInventory(
       (!entry.generationId || !assets[entry.generationId])
     )
       errors.push(`missing detailed X/Z photo: ${entry.id}`);
+    for (const phase of entry.visualPhases) {
+      if (phase.generationId && !generationIds.has(phase.generationId))
+        errors.push(`missing visual phase generation: ${phase.id}`);
+      if (phase.generationId && !assets[phase.generationId])
+        errors.push(`missing visual phase photo: ${phase.id}`);
+    }
     if (!entry.missingFields.length)
       errors.push(`missing X/Z coverage report: ${entry.id}`);
   }

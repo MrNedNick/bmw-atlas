@@ -412,6 +412,50 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     subject: "BMW X5 40 xDrive · G65, 2026",
     note: "Редакционная визуализация; исходный пресс-снимок сохранён в проекте.",
   },
+  "bmw-x6-g06": editorialPhoto(
+    "editorial-bmw-x6-g06.webp",
+    "https://www.press.bmwgroup.com/global/photo/detail/P90356685/The-new-BMW-X6-%E2%80%93-Driving-Scenes-07-2019",
+    "BMW X6 · G06, 2019",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90356685/The-new-BMW-X6-%E2%80%93-Driving-Scenes-07-2019",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90356685",
+      localFile: "references/images/P90356685-bmw-x6-g06.jpg",
+      imageId: "P90356685",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный BMW X6 G06 в тёмном цвете и дорестайлинговом исполнении",
+        "покатая купеобразная крыша Sports Activity Coupé, короткая задняя часть и интегрированный спойлер",
+        "задние фонари раннего G06 с тонкими красными горизонтальными секциями",
+        "широкий задний бампер, тёмный диффузор и трапециевидные выпускные патрубки",
+        "пятидверный кузов с выраженными арками и задним трёхчетвертным ракурсом",
+        "динамический ночной кадр в городской среде из официальной серии BMW",
+      ],
+    },
+  ),
+  "bmw-x6-g06-lci": editorialPhoto(
+    "editorial-bmw-x6-g06-lci.webp",
+    "https://www.press.bmwgroup.com/global/photo/detail/P90518186/The-new-BMW-X6-08-23",
+    "BMW X6 M60i xDrive · G06 LCI, 2023",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90518186/The-new-BMW-X6-08-23",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90518186",
+      localFile: "references/images/P90518186-bmw-x6-g06-lci.jpg",
+      imageId: "P90518186",
+      phase: "facelift",
+      verifiedDetails: [
+        "серийный BMW X6 M60i xDrive G06 LCI 2023 года в зелёном цвете",
+        "купеобразная линия крыши Sports Activity Coupé и короткая задняя часть G06",
+        "узкие двухмодульные LED-фары рестайлинга с новой световой графикой",
+        "крупная чёрная двойная решётка M60i с горизонтальными планками и эмблемой M",
+        "переработанный передний бампер с чёрной центральной решёткой и вертикальными боковыми воздухозаборниками",
+        "передний трёхчетвертной динамический ракурс официального пресс-снимка",
+      ],
+    },
+  ),
   ...Object.fromEntries(
     ["e83", "f25", "g01", "g45"].map((code) => [
       `bmw-x3-${code}`,

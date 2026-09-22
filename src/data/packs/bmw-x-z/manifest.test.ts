@@ -53,6 +53,19 @@ describe("BMW X and Z master inventory", () => {
     expect(phase("Z4", "e89", 2013)).toBe(true);
   });
 
+  it("links the completed X6 G06 facelift phase to its own catalogue card", () => {
+    const x6 = bmwXZInventory.find(
+      (entry) => entry.family === "X6" && entry.generationKey === "g06",
+    );
+    const lci = x6?.visualPhases.find(
+      (phase) => phase.kind === "facelift" && phase.from === 2023,
+    );
+    expect(lci).toMatchObject({
+      status: "available",
+      generationId: "bmw-x6-g06-lci",
+    });
+  });
+
   it("links M and electric derivatives without merging them into regular X generations", () => {
     const g01 = bmwXZInventory.find((entry) => entry.generationKey === "g01");
     expect(g01?.mDerivativeIds).toContain("X3 M F97");

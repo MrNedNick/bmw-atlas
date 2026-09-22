@@ -16,7 +16,7 @@ export const catalogGroups: readonly CatalogGroup[] = [
     id: "x",
     eyebrow: "BMW X",
     title: "SAV и Sports Activity Coupé",
-    familyIds: ["bmw-x3", "bmw-x5"],
+    familyIds: ["bmw-x3", "bmw-x5", "bmw-x6"],
   },
   {
     id: "m",
