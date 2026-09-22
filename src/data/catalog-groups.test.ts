@@ -22,5 +22,6 @@ it("keeps the BMW i, BMW M and Motorrad lineages separate", () => {
     "bmw-gs-boxer",
     "bmw-s1000rr",
     "bmw-r18-lineage",
+    "bmw-ce04-lineage",
   ]);
 });

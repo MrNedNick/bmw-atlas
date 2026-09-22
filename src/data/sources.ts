@@ -607,6 +607,24 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0307047EN/the-new-bmw-r-18",
   },
   {
+    id: "bmw-ce04-launch",
+    title: "Новый BMW CE 04",
+    publisher: "BMW Group PressClub",
+    date: "2021-07-07",
+    scope:
+      "Электрический скутер: 31/23 кВт, батарея 8,9 кВт⋅ч, запас хода, мотор и городская архитектура",
+    url: "https://www.press.bmwgroup.com/middle-east/article/detail/T0338006EN/the-new-bmw-ce-04",
+  },
+  {
+    id: "bmw-ce04-2025-update",
+    title: "Обновлённый BMW CE 04",
+    publisher: "BMW Group PressClub",
+    date: "2025-07-03",
+    scope:
+      "Модельный год 2025: новые цвета и опции; подтверждение производства CE 04 на заводе BMW Group в Берлине",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0450997EN/bmw-motorrad-presents-the-new-bmw-ce-04",
+  },
+  {
     id: "bmw-production",
     title: "50 лет производства BMW 3 Series",
     publisher: "BMW Group PressClub",

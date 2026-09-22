@@ -1105,6 +1105,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-ce04": editorialPhoto(
+    "editorial-bmw-ce04.webp",
+    "https://www.press.bmwgroup.com/middle-east/article/detail/T0338006EN/the-new-bmw-ce-04",
+    "BMW CE 04 · 2021",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90429096/",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90429096",
+      localFile: "references/images/P90429096-bmw-ce04.jpg",
+      imageId: "P90429096",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный BMW CE 04 в бело-оранжевом исполнении",
+        "длинная плоская чёрная скамья и оранжевое сиденье",
+        "угловатые белые панели, открытая нижняя батарейная архитектура",
+        "высокий узкий передний обтекатель и маленький оранжевый дефлектор",
+        "крупные чёрные колёса и интегрированный задний привод",
+        "чистый левый профиль оригинального скутера",
+      ],
+    },
+  ),
   "bmw-g20": {
     url: "images/editorial-bmw-g20.webp",
     page: "https://commons.wikimedia.org/wiki/File:BMW_G20_330i_in_blue.jpg",

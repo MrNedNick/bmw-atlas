@@ -51,6 +51,7 @@ it("advertises electric facts only where engine records exist", () => {
     "bmw-ix2-u10-lineage",
     "bmw-ix3-g08-lineage",
     "bmw-ix",
+    "bmw-ce04-lineage",
   ]);
   expect(
     families
@@ -132,7 +133,13 @@ it("contains only BMW histories", () =>
 it("keeps cars and BMW Motorrad as explicit catalogue kinds", () => {
   expect(
     families.filter((f) => f.vehicleKind === "Мотоцикл").map((f) => f.id),
-  ).toEqual(["bmw-r32", "bmw-gs-boxer", "bmw-s1000rr", "bmw-r18-lineage"]);
+  ).toEqual([
+    "bmw-r32",
+    "bmw-gs-boxer",
+    "bmw-s1000rr",
+    "bmw-r18-lineage",
+    "bmw-ce04-lineage",
+  ]);
   expect(
     families
       .filter((f) => f.vehicleKind === "Мотоцикл")
