@@ -24,10 +24,18 @@ export const bmwMIInventory: MIInventoryItem[] = [
     status: "detailed",
     sourceIds: ["bmw-x4-m-f98-launch", "bmw-x4-m-f98-2021-update"],
     imagePhase: "launch",
-    missingFields: [
-      "изображение рестайлинга 2021",
-      "производство и оценки безопасности",
-    ],
+    missingFields: ["производство и оценки безопасности"],
+  },
+  {
+    id: "bmw-m-i-x4-m-f98-lci",
+    lineage: "M",
+    family: "X4 M",
+    generation: "F98 LCI",
+    generationId: "bmw-x4-m-f98-lci",
+    status: "detailed",
+    sourceIds: ["bmw-x4-m-f98-2021-update"],
+    imagePhase: "facelift",
+    missingFields: ["производство и оценки безопасности"],
   },
   {
     id: "bmw-m-i-x3-m-f97",

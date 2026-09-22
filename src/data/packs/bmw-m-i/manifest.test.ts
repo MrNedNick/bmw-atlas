@@ -41,6 +41,7 @@ describe("BMW M and i progress manifest", () => {
         .map((entry) => entry.family),
     ).toEqual([
       "X4 M",
+      "X4 M",
       "X3 M",
       "X3 M",
       "M1",

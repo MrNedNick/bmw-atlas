@@ -633,6 +633,33 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-x4-m-f98-lci": {
+    url: "images/editorial-bmw-x4-m-f98-lci.webp",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90423940/The-new-BMW-X4-M-Competition-06-2021",
+    author: "BMW Group PressClub",
+    license: "Media material",
+    licenseUrl:
+      "https://www.press.bmwgroup.com/global/photo/detail/P90423940/The-new-BMW-X4-M-Competition-06-2021",
+    subject: "BMW X4 M Competition · F98 LCI, 2021",
+    note: "Редакционная визуализация на основе точного официального исходного снимка; конструктивные признаки проверены отдельно.",
+    reference: {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90423940/The-new-BMW-X4-M-Competition-06-2021",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90423940",
+      localFile: "references/images/P90423940-bmw-x4-m-f98-lci.jpg",
+      imageId: "P90423940",
+      phase: "facelift",
+      verifiedDetails: [
+        "серийный BMW X4 M Competition F98 LCI 2021 года в цвете Sao Paulo Yellow",
+        "покатая купеобразная крыша Sports Activity Coupé и короткая задняя часть кузова F98",
+        "узкие задние фонари рестайлинга с тёмными горизонтальными элементами",
+        "эмблемы BMW и X4 M Competition на крышке багажника",
+        "чёрный M-диффузор и четыре круглых выпускных патрубка",
+        "строго задний ракурс и архитектурный фон исходного официального снимка",
+      ],
+    },
+  },
   "bmw-ix3-g08-lci": editorialPhoto(
     "editorial-bmw-ix3-g08-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",
