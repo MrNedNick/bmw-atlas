@@ -589,6 +589,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-x3-m-f97-lci": editorialPhoto(
+    "editorial-bmw-x3-m-f97-lci.webp",
+    "https://www.press.bmwgroup.com/global/article/attachment/T0334352EN/482820",
+    "BMW X3 M Competition · F97 LCI, 2021",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90423900/the-new-bmw-x3-m-competition-06/2021",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90423900",
+      localFile: "references/images/P90423900-bmw-x3-m-f97-lci.jpg",
+      imageId: "P90423900",
+      phase: "facelift",
+      verifiedDetails: [
+        "серийный BMW X3 M Competition F97 LCI в синем цвете",
+        "узкие двухмодульные LED-фары обновлённого F97",
+        "чёрная двойная решётка с вертикальными планками и эмблемой X3 M",
+        "переработанный M-бампер с тремя крупными нижними воздухозаборниками",
+        "высокий двухобъёмный кузов SAV, рейлинги и чёрные M-зеркала",
+        "строго фронтальный ракурс исходного официального снимка",
+      ],
+    },
+  ),
   "bmw-x4-m-f98": editorialPhoto(
     "editorial-bmw-x4-m-f98.webp",
     "https://www.press.bmwgroup.com/global/article/attachment/T0291184EN/429530",

@@ -42,6 +42,7 @@ describe("BMW M and i progress manifest", () => {
     ).toEqual([
       "X4 M",
       "X3 M",
+      "X3 M",
       "M1",
       "M3",
       "M3",
