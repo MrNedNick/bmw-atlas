@@ -456,6 +456,50 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   ),
+  "bmw-x7-g07": editorialPhoto(
+    "editorial-bmw-x7-g07.webp",
+    "https://www.press.bmwgroup.com/global/photo/detail/P90326025/the-first-ever-bmw-x7-10/2018?language=en",
+    "BMW X7 · G07, 2018",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90326025/the-first-ever-bmw-x7-10/2018?language=en",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90326025",
+      localFile: "references/images/P90326025-bmw-x7-g07.jpg",
+      imageId: "P90326025",
+      phase: "launch",
+      verifiedDetails: [
+        "серийный BMW X7 G07 дорестайлингового периода в Arctic Grey",
+        "высокий трёхрядный SAV-кузов с длинной крышей, рейлингами и крупной площадью остекления",
+        "ранняя передняя оптика с двумя соединёнными световыми модулями по бокам решётки",
+        "крупная двойная решётка с хромированной окантовкой и вертикальными планками",
+        "передний бампер с горизонтальными воздухозаборниками и серебристыми нижними вставками",
+        "фронтальный динамический ракурс на гравийной дороге из официальной серии BMW",
+      ],
+    },
+  ),
+  "bmw-x7-g07-lci": editorialPhoto(
+    "editorial-bmw-x7-g07-lci.webp",
+    "https://www.press.bmwgroup.com/global/photo/detail/P90457500/the-new-bmw-x7-04/2022?language=en",
+    "BMW X7 xDrive40i · G07 LCI, 2022",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90457500/the-new-bmw-x7-04/2022?language=en",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90457500",
+      localFile: "references/images/P90457500-bmw-x7-g07-lci.jpg",
+      imageId: "P90457500",
+      phase: "facelift",
+      verifiedDetails: [
+        "серийный BMW X7 xDrive40i G07 LCI 2022 года в сером цвете",
+        "высокий SAV-кузов с длинной крышей, рейлингами и тремя боковыми окнами",
+        "раздельная передняя оптика: тонкие верхние дневные ходовые огни и нижние затемнённые блоки фар",
+        "крупная двойная решётка с хромированной окантовкой и вертикальными планками",
+        "переработанный передний бампер LCI с широкой центральной решёткой и вертикальными серебристыми вставками",
+        "передний трёхчетвертной динамический ракурс на дороге из официальной серии BMW",
+      ],
+    },
+  ),
   ...Object.fromEntries(
     ["e83", "f25", "g01", "g45"].map((code) => [
       `bmw-x3-${code}`,

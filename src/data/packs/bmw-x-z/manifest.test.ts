@@ -66,6 +66,19 @@ describe("BMW X and Z master inventory", () => {
     });
   });
 
+  it("links the completed X7 G07 facelift phase to its own catalogue card", () => {
+    const x7 = bmwXZInventory.find(
+      (entry) => entry.family === "X7" && entry.generationKey === "g07",
+    );
+    const lci = x7?.visualPhases.find(
+      (phase) => phase.kind === "facelift" && phase.from === 2022,
+    );
+    expect(lci).toMatchObject({
+      status: "available",
+      generationId: "bmw-x7-g07-lci",
+    });
+  });
+
   it("links M and electric derivatives without merging them into regular X generations", () => {
     const g01 = bmwXZInventory.find((entry) => entry.generationKey === "g01");
     expect(g01?.mDerivativeIds).toContain("X3 M F97");

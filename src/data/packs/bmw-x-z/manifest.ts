@@ -301,7 +301,15 @@ export const bmwXZInventory: BMWXZInventoryItem[] = [
     null,
     ["bmw-x7-g07-launch", "bmw-x7-g07-update"],
     {
-      facelifts: [{ year: 2022, sourceIds: ["bmw-x7-g07-update"] }],
+      status: "detailed",
+      generationId: "bmw-x7-g07",
+      facelifts: [
+        {
+          year: 2022,
+          sourceIds: ["bmw-x7-g07-update"],
+          generationId: "bmw-x7-g07-lci",
+        },
+      ],
       mDerivativeIds: ["X7 M60i · M Performance"],
     },
   ),
