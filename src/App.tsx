@@ -693,8 +693,8 @@ export default function App() {
             </div>
             <p className="note">
               {l("С фотографией:", "With a photograph:")}{" "}
-              {allGenerations.filter((x) => x.generation.photo).length} из{" "}
-              {allGenerations.length}{" "}
+              {allGenerations.filter((x) => x.generation.photo).length}{" "}
+              {l("из", "of")} {allGenerations.length}{" "}
               {l(
                 "поколений / обзорных ветвей. Отсутствующие снимки добавляются после проверки версии и лицензии.",
                 "generations / overview branches. Missing images are added only after the version and licence have been checked.",
