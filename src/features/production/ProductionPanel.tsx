@@ -8,12 +8,21 @@ import {
   runsForGeneration,
   type AssemblyType,
 } from "../../domain/production";
+import type { Language } from "../../lib/preferences";
 
-const assemblyLabels: Record<AssemblyType, string> = {
-  full: "Полное производство",
-  CKD: "CKD · сборка из комплектов",
-  SKD: "SKD · крупноузловая сборка",
-  unknown: "Тип сборки не уточнён",
+const assemblyLabels: Record<Language, Record<AssemblyType, string>> = {
+  ru: {
+    full: "Полное производство",
+    CKD: "CKD · сборка из комплектов",
+    SKD: "SKD · крупноузловая сборка",
+    unknown: "Тип сборки не уточнён",
+  },
+  en: {
+    full: "Full production",
+    CKD: "CKD · kit assembly",
+    SKD: "SKD · semi-knockdown assembly",
+    unknown: "Assembly type not specified",
+  },
 };
 
 export function ProductionPanel({
@@ -21,12 +30,15 @@ export function ProductionPanel({
   familyVolume,
   generationVolume,
   sourceLink,
+  language = "ru",
 }: {
   generationId: string;
   familyVolume: Volume | null;
   generationVolume: Volume | null;
   sourceLink: (id: string) => ReactNode;
+  language?: Language;
 }) {
+  const isEnglish = language === "en";
   const runs = runsForGeneration(generationId, productionRuns);
   const factoryById = Object.fromEntries(
     factories.map((item) => [item.id, item]),
@@ -35,11 +47,17 @@ export function ProductionPanel({
   return (
     <div className="production-layout">
       <section className="panel">
-        <span className="eyebrow">ТИРАЖ</span>
-        <h3>Масштаб истории</h3>
+        <span className="eyebrow">{isEnglish ? "VOLUME" : "ТИРАЖ"}</span>
+        <h3>{isEnglish ? "Scale of the story" : "Масштаб истории"}</h3>
         {[
-          { label: "Семейство целиком", value: familyVolume },
-          { label: "Выбранное поколение", value: generationVolume },
+          {
+            label: isEnglish ? "Entire family" : "Семейство целиком",
+            value: familyVolume,
+          },
+          {
+            label: isEnglish ? "Selected generation" : "Выбранное поколение",
+            value: generationVolume,
+          },
         ].map(({ label, value }) => (
           <div className="volume-card" key={label}>
             <span>{label}</span>
@@ -50,28 +68,36 @@ export function ProductionPanel({
                   {value.metric} · {value.scope}
                 </p>
                 <small>
-                  По состоянию на {value.asOf} · {sourceLink(value.source)}
+                  {isEnglish ? "As of" : "По состоянию на"} {value.asOf} ·{" "}
+                  {sourceLink(value.source)}
                 </small>
               </>
             )}
           </div>
         ))}
         <p className="note">
-          <Info size={16} /> Продажи, производство и накопленный тираж — разные
-          показатели. Мы их не складываем.
+          <Info size={16} />{" "}
+          {isEnglish
+            ? "Sales, production and cumulative volume are different metrics. They are not combined."
+            : "Продажи, производство и накопленный тираж — разные показатели. Мы их не складываем."}
         </p>
       </section>
 
       <section className="panel production-panel">
-        <span className="eyebrow">ГЕОГРАФИЯ ПОКОЛЕНИЯ</span>
+        <span className="eyebrow">
+          {isEnglish ? "GENERATION GEOGRAPHY" : "ГЕОГРАФИЯ ПОКОЛЕНИЯ"}
+        </span>
         <h3>
-          <Globe2 size={22} /> Заводы и периоды
+          <Globe2 size={22} />{" "}
+          {isEnglish ? "Plants and periods" : "Заводы и периоды"}
         </h3>
         {runs.length ? (
           <>
             <p>
-              {runs.length} подтверждённых производственных записей. Период и
-              область указаны отдельно для каждой.
+              {runs.length}{" "}
+              {isEnglish
+                ? "confirmed production records. Period and scope are stated for each one."
+                : "подтверждённых производственных записей. Период и область указаны отдельно для каждой."}
             </p>
             <div className="production-runs">
               {runs.map((run) => {
@@ -90,25 +116,29 @@ export function ProductionPanel({
                     </div>
                     <dl>
                       <div>
-                        <dt>Регион</dt>
+                        <dt>{isEnglish ? "Region" : "Регион"}</dt>
                         <dd>{run.region}</dd>
                       </div>
                       <div>
                         <dt>
                           {run.bodies.status === "known" &&
                           run.bodies.appliesTo === "generation"
-                            ? "Кузова поколения"
-                            : "Кузова завода"}
+                            ? isEnglish
+                              ? "Generation body styles"
+                              : "Кузова поколения"
+                            : isEnglish
+                              ? "Plant body styles"
+                              : "Кузова завода"}
                         </dt>
                         <dd>
                           {run.bodies.status === "known"
                             ? run.bodies.values.join(" · ")
-                            : `Не уточнены: ${run.bodies.reason}`}
+                            : `${isEnglish ? "Not specified" : "Не уточнены"}: ${run.bodies.reason}`}
                         </dd>
                       </div>
                       <div>
-                        <dt>Сборка</dt>
-                        <dd>{assemblyLabels[run.assemblyType]}</dd>
+                        <dt>{isEnglish ? "Assembly" : "Сборка"}</dt>
+                        <dd>{assemblyLabels[language][run.assemblyType]}</dd>
                       </div>
                     </dl>
                     {run.note && <p>{run.note}</p>}
@@ -120,11 +150,15 @@ export function ProductionPanel({
           </>
         ) : (
           <div className="empty-block">
-            <h3>География ещё исследуется</h3>
+            <h3>
+              {isEnglish
+                ? "Production geography is still under research"
+                : "География ещё исследуется"}
+            </h3>
             <p>
-              Для этого поколения пока нет записи, где одновременно подтверждены
-              завод, период и область выпуска. Страна происхождения BMW сюда не
-              подставляется.
+              {isEnglish
+                ? "There is no record yet that confirms plant, period and production scope together for this generation. BMW's country of origin is not substituted here."
+                : "Для этого поколения пока нет записи, где одновременно подтверждены завод, период и область выпуска. Страна происхождения BMW сюда не подставляется."}
             </p>
           </div>
         )}

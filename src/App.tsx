@@ -429,6 +429,7 @@ export default function App() {
             onBack={() => navigate({ family: "", generation: "" })}
             saved={saved.includes(family.id)}
             onSave={() => toggle(family.id)}
+            language={language}
           />
         ) : state.view === "models" ? (
           <section className="page-enter all-models-page">

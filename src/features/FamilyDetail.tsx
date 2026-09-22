@@ -20,6 +20,7 @@ import { faceliftCount } from "../domain/revisions";
 import { productionRuns } from "../domain/production/catalog";
 import { runsForGeneration } from "../domain/production";
 import { ProductionPanel } from "./production/ProductionPanel";
+import type { Language } from "../lib/preferences";
 export function SourceLink({ id }: { id: string }) {
   const s = sourceById[id];
   return s ? (
@@ -36,6 +37,7 @@ export function FamilyDetail({
   onBack,
   saved,
   onSave,
+  language = "ru",
 }: {
   family: ModelFamily;
   generation: Generation;
@@ -43,11 +45,146 @@ export function FamilyDetail({
   onBack: () => void;
   saved: boolean;
   onSave: () => void;
+  language?: Language;
 }) {
-  const [tab, setTab] = useState("Обзор");
+  const isEnglish = language === "en";
+  const copy = isEnglish
+    ? {
+        back: "All models",
+        history: "MODEL HISTORY",
+        inGarage: "In my garage",
+        addGarage: "Add to garage",
+        sourcesOnScreen: "sources on this screen",
+        generations: "GENERATIONS",
+        generationSelection: "Generation selection",
+        selectGeneration: "Choose generation",
+        selectedGeneration: "SELECTED GENERATION",
+        modelSections: "Model sections",
+        overview: "Overview",
+        engines: "Engines",
+        production: "Production",
+        ratings: "Ratings",
+        sources: "Sources",
+        knownUpdate: "updated",
+        changed: "WHAT CHANGED",
+        generationCharacter: "generation character",
+        rememberedFor: "Why this generation matters",
+        facts: "DATABASE DETAILS",
+        powertrains: "Powertrain variants",
+        notAdded: "Not added yet",
+        knownUpdates: "Sourced updates",
+        noData: "No data",
+        generationProduction: "Generation production",
+        assembly: "Assembly",
+        factoryRecords: "factory records",
+        notClarified: "Not yet clarified",
+        coverageNote:
+          "This is the verified part of the story, not a promise of complete coverage for every market.",
+        viewSources: "View sources",
+        familyFacts: "Family facts",
+        timeline: "Family timeline",
+        present: "present",
+        branches: "generations / branches",
+        bodyStyles: "Family body styles",
+        selected: "Selected generation",
+        powertrainVariants: "powertrain variants",
+        powertrainsInProgress: "powertrain coverage in progress",
+        sourcedUpdates: "sourced updates",
+        noSourcedUpdate: "no sourced update",
+        underHood: "What powered it",
+        engineIntro:
+          "variants in the database. Year and market are stated for each entry.",
+        engineFuel: "Engine fuel",
+        allFuel: "All fuel types",
+        version: "Version",
+        power: "Power",
+        torque: "Torque",
+        transmissionDrive: "Transmission / drive",
+        marketSnapshot: "Market and snapshot",
+        driveNotSpecified: "Drive not specified",
+        researchMore: "There is more to research here",
+        enginesMissing:
+          "Confirmed powertrain variants have not been added for this generation yet.",
+        engineNote:
+          "A marketing name is not an engine code. A dash means there is no confirmation. Records do not automatically apply to other years or markets.",
+        verify: "VERIFY IT YOURSELF",
+        sourceLead: "Every fact has a starting point",
+        photo: "Photo",
+        photoNote:
+          "This photo shows this exact generation; it does not illustrate the others.",
+      }
+    : {
+        back: "Все модели",
+        history: "ИСТОРИЯ МОДЕЛИ",
+        inGarage: "В моём гараже",
+        addGarage: "В мой гараж",
+        sourcesOnScreen: "источников на этом экране",
+        generations: "ПОКОЛЕНИЯ",
+        generationSelection: "Выбор поколения",
+        selectGeneration: "Выберите поколение",
+        selectedGeneration: "ВЫБРАННОЕ ПОКОЛЕНИЕ",
+        modelSections: "Разделы модели",
+        overview: "Обзор",
+        engines: "Двигатели",
+        production: "Производство",
+        ratings: "Оценки",
+        sources: "Источники",
+        knownUpdate: "есть обновление",
+        changed: "ЧТО ИЗМЕНИЛОСЬ",
+        generationCharacter: "характер поколения",
+        rememberedFor: "Чем запомнилось поколение",
+        facts: "ДЕТАЛИ В БАЗЕ",
+        powertrains: "Силовых вариантов",
+        notAdded: "Не добавлены",
+        knownUpdates: "Обновлений с источником",
+        noData: "Нет данных",
+        generationProduction: "Производство поколения",
+        assembly: "Сборка",
+        factoryRecords: "записей по заводам",
+        notClarified: "Пока не уточнена",
+        coverageNote:
+          "Это подтверждённая часть истории, а не обещание полного покрытия всех рынков.",
+        viewSources: "Посмотреть источники",
+        familyFacts: "Факты о семействе",
+        timeline: "Хронология семейства",
+        present: "н. в.",
+        branches: "поколений / ветвей",
+        bodyStyles: "Кузова семейства",
+        selected: "Выбранное поколение",
+        powertrainVariants: "силовые варианты",
+        powertrainsInProgress: "силовые варианты уточняются",
+        sourcedUpdates: "обновления с источником",
+        noSourcedUpdate: "без подтверждённого обновления",
+        underHood: "Что было под капотом",
+        engineIntro: "вариантов в базе. Год и рынок указаны в каждой записи.",
+        engineFuel: "Топливо двигателя",
+        allFuel: "Все типы топлива",
+        version: "Версия",
+        power: "Мощность",
+        torque: "Момент",
+        transmissionDrive: "Коробка / привод",
+        marketSnapshot: "Рынок и срез",
+        driveNotSpecified: "Привод не уточнён",
+        researchMore: "Здесь ещё есть что исследовать",
+        enginesMissing:
+          "Подтверждённые силовые варианты для этого поколения пока не добавлены.",
+        engineNote:
+          "Маркетинговое имя не равно коду двигателя. Прочерк означает отсутствие подтверждения. Записи не распространяются автоматически на другие годы и рынки.",
+        verify: "ПРОВЕРИТЬ САМОМУ",
+        sourceLead: "У каждого факта есть начало",
+        photo: "Фото",
+        photoNote: "Фото именно этого поколения; не иллюстрирует остальные.",
+      };
+  const [tab, setTab] = useState("overview");
   const [fuel, setFuel] = useState("");
   useEffect(() => setFuel(""), [generation.id]);
-  const tabs = ["Обзор", "Двигатели", "Производство", "Оценки", "Источники"];
+  const tabs = [
+    ["overview", copy.overview],
+    ["engines", copy.engines],
+    ["production", copy.production],
+    ["ratings", copy.ratings],
+    ["sources", copy.sources],
+  ] as const;
   const engines = generation.powertrains.filter(
     (p) => !fuel || p.fuel === fuel,
   );
@@ -60,11 +197,11 @@ export function FamilyDetail({
   );
   const selectedCoverage = [
     generation.powertrains.length
-      ? `силовые варианты: ${generation.powertrains.length}`
-      : "силовые варианты уточняются",
-    faceliftCount(generation.revisions)
-      ? `рестайлинги с источником: ${faceliftCount(generation.revisions)}`
-      : "без подтверждённого рестайлинга",
+      ? `${copy.powertrainVariants}: ${generation.powertrains.length}`
+      : copy.powertrainsInProgress,
+    generation.revisions.length
+      ? `${copy.sourcedUpdates}: ${generation.revisions.length}`
+      : copy.noSourcedUpdate,
   ].join(" · ");
   const cited = [
     ...new Set(
@@ -87,12 +224,12 @@ export function FamilyDetail({
   return (
     <div className="detail page-enter">
       <button className="back-link" onClick={onBack}>
-        <ArrowLeft size={16} /> Все модели
+        <ArrowLeft size={16} /> {copy.back}
       </button>
       <section className="detail-hero">
         <div>
           <div className="eyebrow">
-            ИСТОРИЯ МОДЕЛИ <span className="dot" />{" "}
+            {copy.history} <span className="dot" />{" "}
             {family.vehicleKind === "Мотоцикл"
               ? "BMW MOTORRAD"
               : family.brand.toUpperCase()}
@@ -109,11 +246,11 @@ export function FamilyDetail({
               startIcon={saved ? <Check size={16} /> : <Bookmark size={16} />}
               onClick={onSave}
             >
-              {saved ? "В моём гараже" : "В мой гараж"}
+              {saved ? copy.inGarage : copy.addGarage}
             </Button>
             <span className="verified">
               <ShieldCheck size={15} />
-              {cited.length} источников на этом экране
+              {cited.length} {copy.sourcesOnScreen}
             </span>
           </div>
         </div>
@@ -121,19 +258,23 @@ export function FamilyDetail({
           <div className="detail-visual blue">
             <VehiclePhoto photo={generation.photo} />
           </div>
-          <section className="generation-picker" aria-label="Выбор поколения">
+          <section
+            className="generation-picker"
+            aria-label={copy.generationSelection}
+          >
             <div className="generation-picker-heading">
-              <span className="eyebrow">ПОКОЛЕНИЯ</span>
+              <span className="eyebrow">{copy.generations}</span>
               <span>
                 {family.generations.findIndex(
                   (item) => item.id === generation.id,
                 ) + 1}{" "}
-                из {family.generations.length} · {generation.code}
+                {isEnglish ? "of" : "из"} {family.generations.length} ·{" "}
+                {generation.code}
               </span>
             </div>
             <select
               className="generation-select-mobile"
-              aria-label="Выберите поколение"
+              aria-label={copy.selectGeneration}
               value={generation.id}
               onChange={(event) => onGeneration(event.target.value)}
             >
@@ -143,7 +284,7 @@ export function FamilyDetail({
                 </option>
               ))}
             </select>
-            <div className="timeline" aria-label="Поколения">
+            <div className="timeline" aria-label={copy.generations}>
               {family.generations.map((item) => (
                 <button
                   key={item.id}
@@ -158,7 +299,9 @@ export function FamilyDetail({
                   <small>{item.label}</small>
                   <strong>{item.code}</strong>
                   <span>{formatYears(item)}</span>
-                  {faceliftCount(item.revisions) > 0 && <i>есть обновление</i>}
+                  {faceliftCount(item.revisions) > 0 && (
+                    <i>{copy.knownUpdate}</i>
+                  )}
                 </button>
               ))}
             </div>
@@ -167,7 +310,7 @@ export function FamilyDetail({
       </section>
       <div className="generation-title">
         <div>
-          <span className="eyebrow">ВЫБРАННОЕ ПОКОЛЕНИЕ</span>
+          <span className="eyebrow">{copy.selectedGeneration}</span>
           <h2>
             {family.name} <span>{generation.code}</span>
           </h2>
@@ -180,32 +323,34 @@ export function FamilyDetail({
       <div
         className="detail-tabs"
         role="navigation"
-        aria-label="Разделы модели"
+        aria-label={copy.modelSections}
       >
-        {tabs.map((t) => (
+        {tabs.map(([id, label]) => (
           <button
-            key={t}
-            aria-current={tab === t ? "page" : undefined}
-            onClick={() => setTab(t)}
-            className={tab === t ? "active" : ""}
+            key={id}
+            aria-current={tab === id ? "page" : undefined}
+            onClick={() => setTab(id)}
+            className={tab === id ? "active" : ""}
           >
-            {t}
-            {t === "Двигатели" && (
+            {label}
+            {id === "engines" && (
               <span>{generation.powertrains.length || "—"}</span>
             )}
           </button>
         ))}
       </div>
-      {tab === "Обзор" && (
+      {tab === "overview" && (
         <>
           <div className="overview-grid">
             <article className="panel story-panel">
-              <span className="eyebrow">ЧТО ИЗМЕНИЛОСЬ</span>
-              <h3>{generation.code}: характер поколения</h3>
+              <span className="eyebrow">{copy.changed}</span>
+              <h3>
+                {generation.code}: {copy.generationCharacter}
+              </h3>
               <p>{generation.description}</p>
               {(generation.highlights?.length ?? 0) > 0 && (
                 <div className="generation-highlights">
-                  <h4>Чем запомнилось поколение</h4>
+                  <h4>{copy.rememberedFor}</h4>
                   <ul>
                     {generation.highlights?.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
@@ -214,60 +359,61 @@ export function FamilyDetail({
                 </div>
               )}
               <SourceLink id={generation.source} />
-              <RevisionTimeline revisions={generation.revisions} />
+              <RevisionTimeline
+                revisions={generation.revisions}
+                language={language}
+              />
             </article>
             <aside className="panel facts-panel">
-              <span className="eyebrow">ДЕТАЛИ В БАЗЕ</span>
+              <span className="eyebrow">{copy.facts}</span>
               <dl>
                 <div>
-                  <dt>Силовых вариантов</dt>
-                  <dd>{generation.powertrains.length || "Не добавлены"}</dd>
+                  <dt>{copy.powertrains}</dt>
+                  <dd>{generation.powertrains.length || copy.notAdded}</dd>
                 </div>
                 <div>
-                  <dt>Рестайлингов с источником</dt>
-                  <dd>{faceliftCount(generation.revisions) || "Нет данных"}</dd>
+                  <dt>{copy.knownUpdates}</dt>
+                  <dd>{generation.revisions.length || copy.noData}</dd>
                 </div>
                 <div>
-                  <dt>Производство поколения</dt>
+                  <dt>{copy.generationProduction}</dt>
                   <dd>{formatVolume(generation.volume)}</dd>
                 </div>
                 <div>
-                  <dt>Сборка</dt>
+                  <dt>{copy.assembly}</dt>
                   <dd>
                     {runsForGeneration(generation.id, productionRuns).length
-                      ? `${runsForGeneration(generation.id, productionRuns).length} записей по заводам`
-                      : "Пока не уточнена"}
+                      ? `${runsForGeneration(generation.id, productionRuns).length} ${copy.factoryRecords}`
+                      : copy.notClarified}
                   </dd>
                 </div>
               </dl>
               <p className="note">
                 <Info size={16} />
-                Это подтверждённая часть истории, а не обещание полного покрытия
-                всех рынков.
+                {copy.coverageNote}
               </p>
-              <button
-                className="text-action"
-                onClick={() => setTab("Источники")}
-              >
-                Посмотреть источники <ArrowUpRight size={16} />
+              <button className="text-action" onClick={() => setTab("sources")}>
+                {copy.viewSources} <ArrowUpRight size={16} />
               </button>
             </aside>
           </div>
-          <section className="family-facts" aria-label="Факты о семействе">
+          <section className="family-facts" aria-label={copy.familyFacts}>
             <div>
-              <span>Хронология семейства</span>
+              <span>{copy.timeline}</span>
               <strong>
-                {firstYear}–{hasCurrentGeneration ? "н. в." : lastYear}
+                {firstYear}–{hasCurrentGeneration ? copy.present : lastYear}
               </strong>
-              <small>{family.generations.length} поколений / ветвей</small>
+              <small>
+                {family.generations.length} {copy.branches}
+              </small>
             </div>
             <div>
-              <span>Кузова семейства</span>
+              <span>{copy.bodyStyles}</span>
               <strong>{family.body.join(" · ")}</strong>
               <small>{family.vehicleKind}</small>
             </div>
             <div>
-              <span>Выбранное поколение</span>
+              <span>{copy.selected}</span>
               <strong>
                 {generation.code} · {formatYears(generation)}
               </strong>
@@ -285,22 +431,21 @@ export function FamilyDetail({
           </section>
         </>
       )}
-      {tab === "Двигатели" && (
+      {tab === "engines" && (
         <section className="panel">
           <div className="section-heading">
             <div>
-              <h3>Что было под капотом</h3>
+              <h3>{copy.underHood}</h3>
               <p className="muted">
-                {generation.powertrains.length} вариантов в базе. Год и рынок
-                указаны в каждой записи.
+                {generation.powertrains.length} {copy.engineIntro}
               </p>
             </div>
             <select
-              aria-label="Топливо двигателя"
+              aria-label={copy.engineFuel}
               value={fuel}
               onChange={(e) => setFuel(e.target.value)}
             >
-              <option value="">Все типы топлива</option>
+              <option value="">{copy.allFuel}</option>
               {[...new Set(generation.powertrains.map((p) => p.fuel))].map(
                 (f) => (
                   <option key={f}>{f}</option>
@@ -313,11 +458,11 @@ export function FamilyDetail({
               <table>
                 <thead>
                   <tr>
-                    <th>Версия</th>
-                    <th>Мощность</th>
-                    <th>Момент</th>
-                    <th>Коробка / привод</th>
-                    <th>Рынок и срез</th>
+                    <th>{copy.version}</th>
+                    <th>{copy.power}</th>
+                    <th>{copy.torque}</th>
+                    <th>{copy.transmissionDrive}</th>
+                    <th>{copy.marketSnapshot}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -333,7 +478,7 @@ export function FamilyDetail({
                       <td>{p.torque === null ? "—" : `${p.torque} Н·м`}</td>
                       <td>
                         {p.gearbox ?? "—"}
-                        <small>{p.drive ?? "Привод не уточнён"}</small>
+                        <small>{p.drive ?? copy.driveNotSpecified}</small>
                       </td>
                       <td>
                         {p.market}
@@ -348,34 +493,32 @@ export function FamilyDetail({
             </div>
           ) : (
             <div className="empty-block">
-              <h3>Здесь ещё есть что исследовать</h3>
-              <p>
-                Подтверждённые силовые варианты для этого поколения пока не
-                добавлены. Попробуйте BMW G20, G30 или G60.
-              </p>
+              <h3>{copy.researchMore}</h3>
+              <p>{copy.enginesMissing}</p>
             </div>
           )}
           <p className="note">
             <Info size={15} />
-            Маркетинговое имя не равно коду двигателя. Прочерк означает
-            отсутствие подтверждения. Записи не распространяются автоматически
-            на другие годы и рынки.
+            {copy.engineNote}
           </p>
         </section>
       )}
-      {tab === "Производство" && (
+      {tab === "production" && (
         <ProductionPanel
           generationId={generation.id}
           familyVolume={family.volume}
           generationVolume={generation.volume}
           sourceLink={(id) => <SourceLink id={id} />}
+          language={language}
         />
       )}
-      {tab === "Оценки" && <RatingsPanel ratings={generation.ratings} />}
-      {tab === "Источники" && (
+      {tab === "ratings" && (
+        <RatingsPanel ratings={generation.ratings} language={language} />
+      )}
+      {tab === "sources" && (
         <section className="panel">
-          <span className="eyebrow">ПРОВЕРИТЬ САМОМУ</span>
-          <h3>У каждого факта есть начало</h3>
+          <span className="eyebrow">{copy.verify}</span>
+          <h3>{copy.sourceLead}</h3>
           <div className="source-list">
             {cited.map((id) => {
               const s = sourceById[id];
@@ -396,7 +539,7 @@ export function FamilyDetail({
           {generation.photo && (
             <details className="photo-details">
               <summary>
-                Фото: {generation.photo.subject}
+                {copy.photo}: {generation.photo.subject}
                 <ChevronRight size={16} />
               </summary>
               <img
@@ -420,7 +563,7 @@ export function FamilyDetail({
                 >
                   {generation.photo.license}
                 </a>
-                . Фото именно этого поколения; не иллюстрирует остальные.
+                . {copy.photoNote}
               </p>
             </details>
           )}
