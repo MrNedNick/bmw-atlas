@@ -233,6 +233,18 @@ export default function App() {
     { theme, toggleTheme } = useTheme(),
     { language, toggleLanguage } = useLanguage();
   const l = (ru: string, en: string) => (language === "en" ? en : ru);
+  const groupText = (group: (typeof catalogGroups)[number]) => {
+    if (language !== "en") return group;
+    const translated: Record<string, { eyebrow: string; title: string }> = {
+      series: { eyebrow: "CORE SERIES", title: "BMW series" },
+      x: { eyebrow: "BMW X", title: "SAV and Sports Activity Coupé" },
+      m: { eyebrow: "BMW M", title: "High-performance models" },
+      i: { eyebrow: "BMW i", title: "Electric and hybrid BMW i" },
+      classic: { eyebrow: "BMW CLASSIC", title: "Historic models" },
+      motorrad: { eyebrow: "BMW MOTORRAD", title: "BMW motorcycles" },
+    };
+    return { ...group, ...translated[group.id] };
+  };
   const text =
     language === "en"
       ? {
@@ -508,6 +520,7 @@ export default function App() {
               </div>
               <div className="catalog-groups">
                 {catalogGroups.map((group) => {
+                  const translatedGroup = groupText(group);
                   const groupFamilies = group.familyIds.map(
                     (familyId) => familyById[familyId],
                   );
@@ -520,9 +533,11 @@ export default function App() {
                     >
                       <div className="catalog-group-heading">
                         <div>
-                          <span className="eyebrow">{group.eyebrow}</span>
+                          <span className="eyebrow">
+                            {translatedGroup.eyebrow}
+                          </span>
                           <h3 id={`catalog-group-${group.id}`}>
-                            {group.title}
+                            {translatedGroup.title}
                           </h3>
                         </div>
                         <span>
@@ -642,13 +657,17 @@ export default function App() {
         ) : state.view === "photos" ? (
           <section className="page-enter">
             <div className="page-heading">
-              <span className="eyebrow">ФОРМЫ, КОТОРЫЕ ЗАПОМИНАЮТСЯ</span>
+              <span className="eyebrow">
+                {l("ФОРМЫ, КОТОРЫЕ ЗАПОМИНАЮТСЯ", "MEMORABLE FORMS")}
+              </span>
               <h1>
-                BMW в <em>кадре.</em>
+                BMW {l("в", "in")} <em>{l("кадре.", "focus.")}</em>
               </h1>
               <p>
-                Фотографии и редакционные визуализации. Точные подписи кузовов и
-                открытые источники каждого изображения.
+                {l(
+                  "Фотографии и редакционные визуализации. Точные подписи кузовов и открытые источники каждого изображения.",
+                  "Photographs and editorial visualisations, with precise body-style labels and open sources for every image.",
+                )}
               </p>
             </div>
             <div className="photo-gallery">
@@ -673,55 +692,77 @@ export default function App() {
                 ))}
             </div>
             <p className="note">
-              С фотографией:{" "}
+              {l("С фотографией:", "With a photograph:")}{" "}
               {allGenerations.filter((x) => x.generation.photo).length} из{" "}
-              {allGenerations.length} поколений / обзорных ветвей. Отсутствующие
-              снимки добавляются после проверки версии и лицензии.
+              {allGenerations.length}{" "}
+              {l(
+                "поколений / обзорных ветвей. Отсутствующие снимки добавляются после проверки версии и лицензии.",
+                "generations / overview branches. Missing images are added only after the version and licence have been checked.",
+              )}
             </p>
           </section>
         ) : state.view === "sources" ? (
           <section className="page-enter">
             <div className="page-heading">
-              <span className="eyebrow">ПРОЗРАЧНОСТЬ ПО УМОЛЧАНИЮ</span>
+              <span className="eyebrow">
+                {l("ПРОЗРАЧНОСТЬ ПО УМОЛЧАНИЮ", "TRANSPARENCY BY DEFAULT")}
+              </span>
               <h1>
-                Факты, которым
+                {l("Факты, которым", "Facts with")}
                 <br />
-                можно <em>найти начало.</em>
+                {l("можно", "a traceable")}{" "}
+                <em>{l("найти начало.", "starting point.")}</em>
               </h1>
               <p>
-                Большой индекс помогает найти название. Подробная история
-                появляется только вместе с источниками.
+                {l(
+                  "Большой индекс помогает найти название. Подробная история появляется только вместе с источниками.",
+                  "The broad index helps find a name. A detailed history appears only with sources.",
+                )}
               </p>
             </div>
             <div className="coverage-grid">
               <article className="panel">
                 <Database />
-                <h3>{index ? number(index.modelCount) : "…"} названия</h3>
+                <h3>
+                  {index ? number(index.modelCount) : "…"}{" "}
+                  {l("названия", "names")}
+                </h3>
                 <p>
-                  NHTSA vPIC · только BMW. Регуляторный каталог, прежде всего
-                  рынок США. В перечнях встречаются производные разных классов
-                  транспорта.
+                  {l(
+                    "NHTSA vPIC · только BMW. Регуляторный каталог, прежде всего рынок США. В перечнях встречаются производные разных классов транспорта.",
+                    "NHTSA vPIC · BMW only. A regulatory catalogue focused on the US market; entries can include derivatives from several vehicle classes.",
+                  )}
                 </p>
               </article>
               <article className="panel">
                 <LayersIcon />
-                <h3>{families.length} подробные истории</h3>
+                <h3>
+                  {families.length}{" "}
+                  {l("подробные истории", "detailed histories")}
+                </h3>
                 <p>
-                  {allGenerations.length} поколений / обзорных ветвей.
-                  Документированные данные из официальных материалов BMW.
+                  {allGenerations.length}{" "}
+                  {l(
+                    "поколений / обзорных ветвей. Документированные данные из официальных материалов BMW.",
+                    "generations / overview branches. Documented details from official BMW material.",
+                  )}
                 </p>
               </article>
               <article className="panel">
                 <ShieldCheck />
-                <h3>Без придуманной полноты</h3>
+                <h3>
+                  {l("Без придуманной полноты", "No invented completeness")}
+                </h3>
                 <p>
-                  Нет факта — нет числа. Рестайлинг не смешивается с ежегодным
-                  обновлением, а производство — с продажами.
+                  {l(
+                    "Нет факта — нет числа. Рестайлинг не смешивается с ежегодным обновлением, а производство — с продажами.",
+                    "No fact means no number. A facelift is not mixed with a model-year update, and production is not mixed with sales.",
+                  )}
                 </p>
               </article>
             </div>
             <section className="panel">
-              <h2>Источники каталога</h2>
+              <h2>{l("Источники каталога", "Catalogue sources")}</h2>
               <div className="source-list">
                 {sources.map((s) => (
                   <a href={s.url} key={s.id} target="_blank" rel="noreferrer">
@@ -744,24 +785,36 @@ export default function App() {
               <section className="home-hero">
                 <div className="hero-copy">
                   <div className="eyebrow">
-                    <span className="live-dot" /> НЕЗАВИСИМАЯ ЭНЦИКЛОПЕДИЯ BMW
+                    <span className="live-dot" />{" "}
+                    {l(
+                      "НЕЗАВИСИМАЯ ЭНЦИКЛОПЕДИЯ BMW",
+                      "INDEPENDENT BMW ENCYCLOPEDIA",
+                    )}
                   </div>
                   <h1>
                     BMW.
                     <br />
-                    История в <em>деталях.</em>
+                    {l("История в", "History in")}{" "}
+                    <em>{l("деталях.", "detail.")}</em>
                   </h1>
                   <p>
-                    Поколения, рестайлинги, двигатели и страны производства. От
-                    классики до современных BMW. Исследуйте подтверждённую часть
-                    истории марки.
+                    {l(
+                      "Поколения, рестайлинги, двигатели и страны производства. От классики до современных BMW. Исследуйте подтверждённую часть истории марки.",
+                      "Generations, facelifts, powertrains and production countries. From classics to modern BMW. Explore the verified part of the marque's history.",
+                    )}
                   </p>
                   <button className="hero-cta" onClick={() => go("models")}>
-                    Открыть все модели <ArrowRight size={18} />
+                    {l("Открыть все модели", "Open all models")}{" "}
+                    <ArrowRight size={18} />
                   </button>
                   <div className="hero-proof">
                     <ShieldCheck size={16} />
-                    <span>Реальные источники. Честные пробелы.</span>
+                    <span>
+                      {l(
+                        "Реальные источники. Честные пробелы.",
+                        "Real sources. Honest gaps.",
+                      )}
+                    </span>
                   </div>
                 </div>
                 <div className="hero-image">
@@ -773,9 +826,11 @@ export default function App() {
                     alt="BMW X5 40 xDrive · G65, 2026"
                   />
                   <div className="hero-image-overlay" />
-                  <span className="photo-label">В ФОКУСЕ / 01</span>
+                  <span className="photo-label">
+                    {l("В ФОКУСЕ", "IN FOCUS")} / 01
+                  </span>
                   <div className="hero-photo-title">
-                    <span>BMW / X5 · V ПОКОЛЕНИЕ</span>
+                    <span>BMW / X5 · {l("V ПОКОЛЕНИЕ", "GENERATION V")}</span>
                     <strong>
                       G65 <em>40 xDrive</em>
                     </strong>
@@ -787,7 +842,7 @@ export default function App() {
                         });
                         window.scrollTo({ top: 0, behavior: "instant" });
                       }}
-                      aria-label="Изучить BMW X5 G65"
+                      aria-label={l("Изучить BMW X5 G65", "Explore BMW X5 G65")}
                     >
                       <ArrowUpRight size={24} />
                     </button>
@@ -803,19 +858,24 @@ export default function App() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    BMW X5 G65 · BMW Group PressClub · редакционная визуализация
+                    BMW X5 G65 · BMW Group PressClub ·{" "}
+                    {l("редакционная визуализация", "editorial visualisation")}
                   </a>
                 </div>
               </section>
             ) : (
               <div className="page-heading">
-                <span className="eyebrow">ВАШИ НАХОДКИ</span>
+                <span className="eyebrow">
+                  {l("ВАШИ НАХОДКИ", "YOUR FINDS")}
+                </span>
                 <h1>
-                  Мой <em>гараж.</em>
+                  {l("Мой", "My")} <em>{l("гараж.", "garage.")}</em>
                 </h1>
                 <p>
-                  Истории, к которым хочется вернуться. Сохраняются в этом
-                  браузере.
+                  {l(
+                    "Истории, к которым хочется вернуться. Сохраняются в этом браузере.",
+                    "Stories worth returning to. Saved in this browser.",
+                  )}
                 </p>
               </div>
             )}
