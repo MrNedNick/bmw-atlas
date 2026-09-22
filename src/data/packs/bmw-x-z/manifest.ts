@@ -48,7 +48,12 @@ type Seed = Omit<
   BMWXZInventoryItem,
   "id" | "visualPhases" | "missingFields"
 > & {
-  facelifts?: Array<{ year: number; label?: string; sourceIds?: string[] }>;
+  facelifts?: Array<{
+    year: number;
+    label?: string;
+    sourceIds?: string[];
+    generationId?: string;
+  }>;
 };
 
 const item = (seed: Seed): BMWXZInventoryItem => {
@@ -67,7 +72,9 @@ const item = (seed: Seed): BMWXZInventoryItem => {
     label: facelift.label ?? `Рестайлинг ${facelift.year}`,
     from: facelift.year,
     to: all[index + 1]?.year ? all[index + 1].year - 1 : seed.production.to,
-    status: "needed" as const,
+    status: facelift.generationId
+      ? ("available" as const)
+      : ("needed" as const),
     sourceIds: facelift.sourceIds ?? seed.sourceIds,
   }));
   return {
@@ -225,7 +232,13 @@ export const bmwXZInventory: BMWXZInventoryItem[] = [
     {
       status: "overview",
       generationId: "bmw-x5-g05",
-      facelifts: [{ year: 2023, sourceIds: ["bmw-x5-g05-update"] }],
+      facelifts: [
+        {
+          year: 2023,
+          sourceIds: ["bmw-x5-g05-update"],
+          generationId: "bmw-x5-g05-lci",
+        },
+      ],
       mDerivativeIds: ["X5 M F95"],
       relatedVariants: ["G18 · длинная база · Китай"],
     },

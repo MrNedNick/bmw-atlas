@@ -111,13 +111,14 @@ it("covers all four BMW 1 Series generations and the drive-layout transition", (
   );
 });
 
-it("covers five BMW X5 generations and their sourced facelifts", () => {
+it("covers five BMW X5 design generations and a separate G05 LCI branch", () => {
   const x5 = families.find((f) => f.id === "bmw-x5")!;
   expect(x5.generations.map((g) => g.code)).toEqual([
     "E53",
     "E70",
     "F15",
     "G05",
+    "G05 LCI",
     "G65",
   ]);
   expect(

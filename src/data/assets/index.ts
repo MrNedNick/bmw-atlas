@@ -380,6 +380,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
     subject: "BMW X5 xDrive35d · G05, 2019",
   },
+  "bmw-x5-g05-lci": editorialPhoto(
+    "editorial-bmw-x5-g05-lci.webp",
+    "https://www.press.bmwgroup.com/global/photo/detail/P90518103/the-new-bmw-x5-08/2023",
+    "BMW X5 xDrive30d · G05 LCI, 2023",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90518103/the-new-bmw-x5-08/2023",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90518103",
+      localFile: "references/images/P90518103-bmw-x5-g05-lci.jpg",
+      imageId: "P90518103",
+      phase: "facelift",
+      verifiedDetails: [
+        "серийный BMW X5 xDrive30d G05 LCI 2023 года в синем цвете",
+        "высокий двухобъёмный кузов SAV с рейлингами и хромированным обрамлением бокового остекления",
+        "более тонкие двухмодульные LED-фары рестайлинга G05",
+        "крупная двойная решётка с хромированным контуром и вертикальными планками",
+        "переработанный передний бампер с чёрной центральной решёткой и вертикальными боковыми вставками",
+        "передний трёхчетвертной ракурс официального снимка у современного здания",
+      ],
+    },
+  ),
   "bmw-x5-g65": {
     url: "images/editorial-bmw-x5-g65.webp",
     page: "https://www.press.bmwgroup.com/global/photo/detail/P90646134/BMW-X5-40-xDrive-06-2026",
