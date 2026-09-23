@@ -916,6 +916,15 @@ export const sources: Source[] = [
     url: "https://www.press.bmwgroup.com/global/article/detail/T0393974EN/the-all-new-bmw-x1-and-the-first-ever-bmw-ix1",
   },
   {
+    id: "bmw-x1-u11-m35i",
+    title: "BMW X1 M35i xDrive (U11)",
+    publisher: "BMW Group PressClub",
+    date: "2023-06-28",
+    scope:
+      "M Performance версия U11: мощность по рынкам, шасси, выпуск в Регенсбурге и BMW Operating System 9",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0421518EN/the-all-new-bmw-x1-m35i-xdrive",
+  },
+  {
     id: "bmw-x2-f39-launch",
     title: "Первый BMW X2 (F39)",
     publisher: "BMW Group PressClub",

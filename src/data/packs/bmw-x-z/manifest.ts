@@ -145,7 +145,10 @@ export const bmwXZInventory: BMWXZInventoryItem[] = [
     },
   ),
   x("X1", "u11", ["U11", "U12"], 2022, null, ["bmw-x1-u11-launch"], {
+    status: "detailed",
+    generationId: "bmw-x1-u11",
     electricDerivativeIds: ["iX1 U11"],
+    mDerivativeIds: ["X1 M35i · M Performance"],
     relatedVariants: ["U12 · длинная база · Китай"],
   }),
   x("X2", "f39", ["F39"], 2017, 2023, ["bmw-x2-f39-launch"], {

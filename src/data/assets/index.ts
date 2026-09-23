@@ -219,6 +219,28 @@ const m3F80Reference: PhotoReference = {
   ],
 };
 const photoByGeneration: Record<string, PhotoMetadata> = {
+  "bmw-x1-u11": editorialPhoto(
+    "editorial-bmw-x1-u11.webp",
+    "https://www.press.bmwgroup.com/global/photo/detail/P90509778/BMW-X1-M35i-M-Frozen-Pure-Grey-Metallic-Rim-20-Styling-872M-06-2023",
+    "BMW X1 M35i xDrive · U11, 2023",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90509778/BMW-X1-M35i-M-Frozen-Pure-Grey-Metallic-Rim-20-Styling-872M-06-2023",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90509778",
+      localFile: "references/images/P90509778-bmw-x1-u11.jpg",
+      imageId: "P90509778",
+      phase: "model-year",
+      verifiedDetails: [
+        "серийный BMW X1 M35i xDrive U11 в M Frozen Pure Grey Metallic",
+        "компактный пятидверный SAV-кузов с высокой линией крыши, рейлингами и чёрными накладками арок",
+        "M-решётка с чёрной отделкой и двойными вертикальными планками, на правой части которой виден знак M",
+        "узкие передние LED-фары с угловатой световой графикой и чёрными внутренними секциями",
+        "M-передний бампер с крупной центральной решёткой, боковыми воздухозаборниками и чёрными нижними вставками",
+        "20-дюймовые M-колёса с геометрическим рисунком и красные тормозные суппорты на официальном кадре",
+      ],
+    },
+  ),
   ...Object.fromEntries(
     ["e8x", "f20", "f40", "f70"].map((code) => [
       `bmw-1-${code}`,

@@ -79,6 +79,16 @@ describe("BMW X and Z master inventory", () => {
     });
   });
 
+  it("marks the completed X1 U11 generation as detailed and photo-backed", () => {
+    const x1 = bmwXZInventory.find(
+      (entry) => entry.family === "X1" && entry.generationKey === "u11",
+    );
+    expect(x1).toMatchObject({
+      status: "detailed",
+      generationId: "bmw-x1-u11",
+    });
+  });
+
   it("links M and electric derivatives without merging them into regular X generations", () => {
     const g01 = bmwXZInventory.find((entry) => entry.generationKey === "g01");
     expect(g01?.mDerivativeIds).toContain("X3 M F97");
