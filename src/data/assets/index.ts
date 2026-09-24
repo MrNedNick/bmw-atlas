@@ -1326,15 +1326,58 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     subject: "BMW 520i G60 · 2025",
     note: "Редакционная визуализация; исходный снимок сохранён в проекте.",
   },
-  "bmw-isetta-family": {
-    url: "images/editorial-bmw-isetta.webp",
+  "bmw-isetta-standard": {
+    url: "images/editorial-bmw-isetta-standard.webp",
     page: "https://commons.wikimedia.org/wiki/File:BMW_250-Isetta.JPG",
     author: "Luc106",
     license: "Public domain",
     licenseUrl:
       "https://commons.wikimedia.org/wiki/File:BMW_250-Isetta.JPG#Licensing",
-    subject: "BMW Isetta 250 · версия на фотографии; общий обзор семейства",
+    subject: "BMW Isetta 250 Standard",
     note: "Редакционная визуализация; исходная фотография сохранена в проекте.",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:BMW_250-Isetta.JPG",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/1/13/BMW_250-Isetta.JPG",
+      localFile: "references/images/commons-bmw-isetta-standard-forli.jpg",
+      imageId: "BMW_250-Isetta.JPG",
+      phase: "historical",
+      verifiedDetails: [
+        "передняя дверь с эмблемой BMW и надписью Isetta",
+        "треугольная форточка и отдельное боковое окно без сдвижного стекла",
+        "короткая линия крыши с переходом в мягкий складной верх",
+        "круглые фары на передних крыльях и оранжевый боковой указатель",
+        "жалюзи вентиляции на задней боковине",
+        "светлые стальные диски с колпаками",
+      ],
+    },
+  },
+  "bmw-isetta-export": {
+    url: "images/editorial-bmw-isetta-export.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1957_BMW_Isetta_300_in_Coral_and_Ivory,_front_left.jpg",
+    author: "Mr.choppers",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW Isetta 300 Export · 1957, европейская спецификация",
+    note: "Редакционная визуализация: кадрирование исходной фотографии без изменения автомобиля; распространяется на условиях CC BY-SA 4.0.",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:1957_BMW_Isetta_300_in_Coral_and_Ivory,_front_left.jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/7/74/1957_BMW_Isetta_300_in_Coral_and_Ivory%2C_front_left.jpg",
+      localFile: "references/images/commons-bmw-isetta-300-export-1957.jpg",
+      imageId: "1957_BMW_Isetta_300_in_Coral_and_Ivory,_front_left.jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "цельная линия крыши без ступеньки над боковым окном",
+        "длинное боковое окно со сдвижным стеклом",
+        "передняя дверь с эмблемой BMW и надписью Isetta 300",
+        "круглые фары на передних крыльях и оранжевые указатели",
+        "хромированный бампер с защитными дугами",
+        "стальные диски с белыми ободами и колпаками",
+      ],
+    },
   },
 };
 
@@ -1353,7 +1396,7 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId.startsWith("bmw-gs-") ||
     generationId.startsWith("bmw-s1000rr-") ||
     generationId === "bmw-r18" ||
-    generationId === "bmw-isetta-family"
+    generationId.startsWith("bmw-isetta-")
   )
     continue;
 

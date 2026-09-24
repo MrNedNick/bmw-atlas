@@ -24,6 +24,10 @@ import {
   bmwXZInventory,
   validateBMWXZInventory,
 } from "../src/data/packs/bmw-x-z/manifest";
+import {
+  bmwHistoryInventory,
+  validateBMWHistoryInventory,
+} from "../src/data/packs/bmw-history/manifest";
 
 export interface CatalogRelease {
   releaseVersion: number;
@@ -94,6 +98,12 @@ export function validateRelease(release: CatalogRelease): string[] {
     ),
     ...validateBMWXZInventory(
       bmwXZInventory,
+      release.sources,
+      release.families,
+      assetByGeneration,
+    ),
+    ...validateBMWHistoryInventory(
+      bmwHistoryInventory,
       release.sources,
       release.families,
       assetByGeneration,

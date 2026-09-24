@@ -553,6 +553,60 @@ export const sources: Source[] = [
     url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-1181-1.bmw-isetta-model-series.html",
   },
   {
+    id: "bmw-isetta-standard-classic",
+    title: "BMW Isetta Standard",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-24",
+    scope:
+      "Первая версия Isetta: производство 03/1955 — 02/1957 и почти 42 000 выпущенных Standard",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-1182-1.bmw-isetta-standard.html",
+  },
+  {
+    id: "bmw-isetta-250-standard-classic",
+    title: "BMW Isetta 250 Standard",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-24",
+    scope:
+      "Isetta 250 Standard: 03/1955 — 01/1957, 247 см³, 12 л. с. при 5800 об/мин, 85 км/ч, более 26 000 проданных",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-222-1.bmw-isetta-250-standard.html",
+  },
+  {
+    id: "bmw-isetta-300-standard-classic",
+    title: "BMW Isetta 300 Standard",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-24",
+    scope:
+      "Isetta 300 Standard: 10/1955 — 02/1957, 295 см³, 13 л. с. при 5200 об/мин, около 15 000 выпущенных",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-224-1.bmw-isetta-300-standard.html",
+  },
+  {
+    id: "bmw-isetta-export-classic",
+    title: "BMW Isetta Export",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-24",
+    scope:
+      "Isetta Export: 11/1956 — 05/1962, почти 100 000 четырёхколёсных и около 20 000 трёхколёсных; двигатели 250 и 300",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-1183-1.bmw-isetta-export.html",
+  },
+  {
+    id: "bmw-isetta-250-export-classic",
+    title: "BMW Isetta 250 Export",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-24",
+    scope:
+      "Isetta 250 Export: 11/1956 — 05/1962, сплошная линия крыши и сдвижные окна, 245 см³, 12 л. с., 47 636 проданных",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-221-1.bmw-isetta-250-export.html",
+  },
+  {
+    id: "bmw-isetta-300-export-classic",
+    title: "BMW Isetta 300 Export",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-24",
+    scope:
+      "Isetta 300 Export: 11/1956 — 04/1962, 298 см³, 13 л. с. при 5200 об/мин, более 51 000 выпущенных",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-223-1.bmw-isetta-300-export.html",
+  },
+  {
     id: "bmw-r32-classic",
     title: "BMW R 32",
     publisher: "BMW Group Classic",
