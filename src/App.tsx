@@ -1,18 +1,17 @@
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState, useRef } from "react";
+import type { MouseEvent } from "react";
 import {
   ArrowUpRight,
   ArrowRight,
   Search,
   SlidersHorizontal,
   Bookmark,
-  Compass,
   Sun,
   Moon,
   ChevronDown,
   X,
   ShieldCheck,
   Database,
-  Globe2,
   ArrowLeft,
 } from "lucide-react";
 import { families, allGenerations } from "./data/models";
@@ -51,6 +50,7 @@ const orderedFamilies = [...families].sort(
 const familyById = Object.fromEntries(
   families.map((family) => [family.id, family]),
 ) as Record<string, ModelFamily>;
+const galleryEntries = allGenerations.filter((entry) => entry.generation.photo);
 interface PageState {
   view: "catalog" | "models" | "sources" | "photos";
   family: string;
@@ -87,12 +87,14 @@ function urlFor(state: PageState) {
 }
 function FamilyCard({
   family,
+  href,
   onOpen,
   saved,
   onSave,
   language,
 }: {
   family: ModelFamily;
+  href: string;
   onOpen: () => void;
   saved: boolean;
   onSave: () => void;
@@ -122,9 +124,18 @@ function FamilyCard({
           <Bookmark size={18} fill={saved ? "currentColor" : "none"} />
         </button>
       </div>
-      <button className="card-open" onClick={onOpen}>
+      <a
+        className="card-open"
+        href={href}
+        onClick={(event) => {
+          if (!plainLeftClick(event)) return;
+          event.preventDefault();
+          onOpen();
+        }}
+      >
         <div className="card-visual">
           <VehiclePhoto
+            language={language}
             photo={
               family.generations.find((g) => g.id === defaults(family))?.photo
             }
@@ -148,20 +159,29 @@ function FamilyCard({
         <div className="card-metrics">
           <span>
             <strong>{family.generations.length}</strong>{" "}
-            {isEnglish ? "generations / branches" : "поколений / ветвей"}
-          </span>
-          <span>
-            <strong>
-              {family.generations.reduce((n, g) => n + g.powertrains.length, 0)}
-            </strong>{" "}
-            {isEnglish
-              ? "powertrain variants in the database"
-              : "силовых вариантов в базе"}
+            {isEnglish ? "generations & versions" : "поколений и версий"}
           </span>
         </div>
-      </button>
+      </a>
     </article>
   );
+}
+function plainLeftClick(event: MouseEvent<HTMLAnchorElement>) {
+  return (
+    event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey
+  );
+}
+interface AtlasHistoryState {
+  atlasScrollY?: number;
+  atlasModelReturn?: boolean;
+}
+function historyState(): AtlasHistoryState {
+  const value: unknown = history.state;
+  return value && typeof value === "object" ? (value as AtlasHistoryState) : {};
 }
 function BMWMark() {
   return (
@@ -204,6 +224,24 @@ export default function App() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const indexOpener = useRef<HTMLButtonElement | null>(null);
   const searchRef = useRef<HTMLInputElement>(null);
+  const pendingScroll = useRef<number | null>(null);
+  const [photoIndex, setPhotoIndex] = useState<number | null>(null);
+  const photoDialog = useRef<HTMLDialogElement>(null);
+  const photoOpener = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    const dialog = photoDialog.current;
+    if (photoIndex !== null) {
+      if (!dialog?.open) dialog?.showModal();
+    } else if (dialog?.open) {
+      dialog.close();
+      photoOpener.current?.focus({ preventScroll: true });
+    }
+  }, [photoIndex]);
+  useLayoutEffect(() => {
+    if (pendingScroll.current === null) return;
+    window.scrollTo({ top: pendingScroll.current, behavior: "instant" });
+    pendingScroll.current = null;
+  }, [state]);
   useEffect(() => {
     const dialog = dialogRef.current;
     if (indexDetail) dialog?.showModal();
@@ -299,12 +337,19 @@ export default function App() {
     return () => c.abort();
   }, [indexVersion]);
   useEffect(() => {
+    const previousRestoration = history.scrollRestoration;
+    history.scrollRestoration = "manual";
     const pop = () => {
+      pendingScroll.current = historyState().atlasScrollY ?? 0;
       setState(readUrl());
       setIndexDetail(null);
+      setPhotoIndex(null);
     };
     window.addEventListener("popstate", pop);
-    return () => window.removeEventListener("popstate", pop);
+    return () => {
+      window.removeEventListener("popstate", pop);
+      history.scrollRestoration = previousRestoration;
+    };
   }, []);
   useEffect(() => {
     if (!notice) return;
@@ -313,7 +358,24 @@ export default function App() {
   }, [notice]);
   function navigate(patch: Partial<PageState>, replace = false) {
     const next = { ...state, ...patch };
-    history[replace ? "replaceState" : "pushState"]({}, "", urlFor(next));
+    const currentHistory = historyState();
+    if (replace) {
+      history.replaceState(currentHistory, "", urlFor(next));
+    } else {
+      history.replaceState(
+        { ...currentHistory, atlasScrollY: window.scrollY },
+        "",
+        location.href,
+      );
+      history.pushState(
+        {
+          atlasScrollY: 0,
+          atlasModelReturn: !state.family && Boolean(next.family),
+        } satisfies AtlasHistoryState,
+        "",
+        urlFor(next),
+      );
+    }
     setState(next);
     if (next.view !== state.view || next.family !== state.family) {
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -326,7 +388,13 @@ export default function App() {
   }
   function openFamily(f: ModelFamily) {
     navigate({ family: f.id, generation: defaults(f) });
-    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+  function backToModels() {
+    if (historyState().atlasModelReturn) {
+      history.back();
+    } else {
+      navigate({ view: "models", family: "", generation: "" }, true);
+    }
   }
   function go(view: PageState["view"], garage = false) {
     navigate({
@@ -389,7 +457,7 @@ export default function App() {
       ? family.generations.find((g) => g.id === defaults(family))
       : undefined);
   const activeFilters = Object.entries(state.filters).filter(
-    ([k, v]) => k !== "query" && !!v,
+    ([k, v]) => k !== "query" && k !== "savedOnly" && !!v,
   ).length;
   const hasCatalogFilters = Boolean(state.filters.query) || activeFilters > 0;
   return (
@@ -415,7 +483,7 @@ export default function App() {
           <nav aria-label="Основная навигация">
             <button
               className={state.view === "models" ? "active" : ""}
-              onClick={() => go("models")}
+              onClick={() => (family ? backToModels() : go("models"))}
             >
               {text.models}
             </button>
@@ -428,11 +496,11 @@ export default function App() {
                 <span className="nav-count">{saved.length}</span>
               )}
             </button>
-          </nav>
-          <div className="header-right">
             <button className="photo-nav" onClick={() => go("photos")}>
               {text.photos}
             </button>
+          </nav>
+          <div className="header-right">
             <button className="about-link" onClick={() => go("sources")}>
               {text.about} <ArrowUpRight size={14} />
             </button>
@@ -458,8 +526,9 @@ export default function App() {
           <FamilyDetail
             family={family}
             generation={generation}
-            onGeneration={(id) => navigate({ generation: id })}
-            onBack={() => navigate({ family: "", generation: "" })}
+            onGeneration={(id) => navigate({ generation: id }, true)}
+            hrefForGeneration={(id) => urlFor({ ...state, generation: id })}
+            onBack={backToModels}
             saved={saved.includes(family.id)}
             onSave={() => toggle(family.id)}
             language={language}
@@ -474,36 +543,16 @@ export default function App() {
               </h1>
               <p>
                 {l(
-                  "Начните с подробных историй: здесь есть поколения, рестайлинги, двигатели и производство. Ниже — полный индекс названий BMW, чтобы ни одна интересная модель не терялась в поиске.",
-                  "Start with detailed histories: generations, facelifts, powertrains and production. The complete BMW name index below keeps every interesting model discoverable.",
+                  "Выберите серию, поколение или мотоцикл.",
+                  "Choose a series, generation or motorcycle.",
                 )}
               </p>
             </div>
-            <div className="models-summary panel">
-              <div>
-                <strong>{families.length}</strong>
-                <span>{l("подробных семейств", "detailed families")}</span>
-              </div>
-              <div>
-                <strong>{allGenerations.length}</strong>
-                <span>
-                  {l("поколений и ветвей", "generations and branches")}
-                </span>
-              </div>
-              <div>
-                <strong>{index ? number(index.modelCount) : "…"}</strong>
-                <span>
-                  {l("названий в полном индексе", "names in the full index")}
-                </span>
-              </div>
-              <Button
-                variant="outline"
-                className="outline-action"
-                onClick={() => go("catalog")}
-              >
-                {l("На главную", "Home")} <ArrowRight size={16} />
-              </Button>
-            </div>
+            <p className="models-count">
+              {families.length} {l("семейств", "families")} ·{" "}
+              {allGenerations.length}{" "}
+              {l("поколения и ветви", "generations and branches")}
+            </p>
             <section className="models-section" aria-labelledby="stories-title">
               <div className="section-heading">
                 <div>
@@ -549,6 +598,11 @@ export default function App() {
                           <FamilyCard
                             key={f.id}
                             family={f}
+                            href={urlFor({
+                              ...state,
+                              family: f.id,
+                              generation: defaults(f),
+                            })}
                             onOpen={() => openFamily(f)}
                             saved={saved.includes(f.id)}
                             onSave={() => toggle(f.id)}
@@ -568,10 +622,10 @@ export default function App() {
               <div className="section-heading">
                 <div>
                   <span className="eyebrow">
-                    {l("ПОЛНЫЙ УКАЗАТЕЛЬ", "FULL INDEX")}
+                    {l("УКАЗАТЕЛЬ НАЗВАНИЙ", "NAME INDEX")}
                   </span>
                   <h2 id="index-title-all">
-                    {l("Все названия BMW", "All BMW names")}
+                    {l("Указатель BMW", "BMW name index")}
                   </h2>
                 </div>
                 <span className="edition">
@@ -671,25 +725,39 @@ export default function App() {
               </p>
             </div>
             <div className="photo-gallery">
-              {allGenerations
-                .filter((x) => x.generation.photo)
-                .map(({ family: f, generation: g }) => (
-                  <article className="panel" key={g.id}>
-                    <VehiclePhoto photo={g.photo} />
-                    <button
-                      className="text-action"
-                      onClick={() =>
-                        navigate({
-                          family: f.id,
-                          generation: g.id,
-                          view: "catalog",
-                        })
-                      }
-                    >
-                      {f.name} · {g.code} <ArrowUpRight size={16} />
-                    </button>
-                  </article>
-                ))}
+              {galleryEntries.map(({ family: f, generation: g }, index) => (
+                <article className="panel" key={g.id}>
+                  <VehiclePhoto
+                    photo={g.photo}
+                    language={language}
+                    onOpen={() => {
+                      photoOpener.current =
+                        document.activeElement as HTMLElement;
+                      setPhotoIndex(index);
+                    }}
+                  />
+                  <a
+                    className="text-action"
+                    href={urlFor({
+                      ...state,
+                      family: f.id,
+                      generation: g.id,
+                      view: "catalog",
+                    })}
+                    onClick={(event) => {
+                      if (!plainLeftClick(event)) return;
+                      event.preventDefault();
+                      navigate({
+                        family: f.id,
+                        generation: g.id,
+                        view: "catalog",
+                      });
+                    }}
+                  >
+                    {f.name} · {g.code} <ArrowUpRight size={16} />
+                  </a>
+                </article>
+              ))}
             </div>
             <p className="note">
               {l("С фотографией:", "With a photograph:")}{" "}
@@ -799,23 +867,14 @@ export default function App() {
                   </h1>
                   <p>
                     {l(
-                      "Поколения, рестайлинги, двигатели и страны производства. От классики до современных BMW. Исследуйте подтверждённую часть истории марки.",
-                      "Generations, facelifts, powertrains and production countries. From classics to modern BMW. Explore the verified part of the marque's history.",
+                      "От классики до современных BMW: поколения, рестайлинги и детали, которыми они отличаются.",
+                      "From classics to modern BMW: generations, facelifts and the details that set them apart.",
                     )}
                   </p>
                   <button className="hero-cta" onClick={() => go("models")}>
                     {l("Открыть все модели", "Open all models")}{" "}
                     <ArrowRight size={18} />
                   </button>
-                  <div className="hero-proof">
-                    <ShieldCheck size={16} />
-                    <span>
-                      {l(
-                        "Реальные источники. Честные пробелы.",
-                        "Real sources. Honest gaps.",
-                      )}
-                    </span>
-                  </div>
                 </div>
                 <div className="hero-image">
                   <img
@@ -892,14 +951,6 @@ export default function App() {
                 <strong>{allGenerations.length}</strong>
                 <span>поколений / обзорных ветвей</span>
               </div>
-              <div className="stats-description">
-                <Globe2 size={19} />
-                <span>
-                  История одной марки.
-                  <br />
-                  Проверенные детали.
-                </span>
-              </div>
             </div>
             <section id="catalog" className="catalog-section">
               <div className="section-heading">
@@ -967,7 +1018,12 @@ export default function App() {
                 {hasCatalogFilters && (
                   <button
                     className="reset-link"
-                    onClick={() => navigate({ filters: EMPTY_FILTERS }, true)}
+                    onClick={() =>
+                      filters({
+                        ...EMPTY_FILTERS,
+                        savedOnly: state.filters.savedOnly,
+                      })
+                    }
                   >
                     Сбросить всё <X size={13} />
                   </button>
@@ -987,7 +1043,7 @@ export default function App() {
                     />
                   </label>
                   <label>
-                    Топливо в базе
+                    Топливо
                     <select
                       value={state.filters.fuel}
                       onChange={(e) => filters({ fuel: e.target.value })}
@@ -1005,27 +1061,21 @@ export default function App() {
                     </select>
                   </label>
                   <label>
-                    Кузов семейства
+                    Кузов
                     <select
                       value={state.filters.body}
                       onChange={(e) => filters({ body: e.target.value })}
                     >
                       <option value="">Любой</option>
-                      {[
-                        "Седан",
-                        "Хэтчбек",
-                        "Лифтбек",
-                        "Универсал",
-                        "Купе",
-                        "Кабриолет",
-                        "Микролитражка",
-                      ].map((x) => (
-                        <option key={x}>{x}</option>
-                      ))}
+                      {[...new Set(families.flatMap((f) => f.body))]
+                        .sort()
+                        .map((x) => (
+                          <option key={x}>{x}</option>
+                        ))}
                     </select>
                   </label>
                   <label>
-                    Сборка в источниках
+                    Страна сборки
                     <select
                       value={state.filters.country}
                       onChange={(e) => filters({ country: e.target.value })}
@@ -1038,11 +1088,7 @@ export default function App() {
                         ))}
                     </select>
                   </label>
-                  <p>
-                    Технические фильтры работают по подробным историям.
-                    География относится к области источника; отсутствие записи
-                    не означает отсутствие такой версии.
-                  </p>
+                  <p>Фильтры учитывают только добавленные характеристики.</p>
                 </div>
               )}
               <div className="results-heading">
@@ -1061,6 +1107,11 @@ export default function App() {
                       <FamilyCard
                         key={f.id}
                         family={f}
+                        href={urlFor({
+                          ...state,
+                          family: f.id,
+                          generation: defaults(f),
+                        })}
                         onOpen={() => openFamily(f)}
                         saved={saved.includes(f.id)}
                         onSave={() => toggle(f.id)}
@@ -1148,8 +1199,8 @@ export default function App() {
                     </p>
                   )}
                   <p className="index-note">
-                    Индекс расширяет поиск, но не обещает характеристик каждой
-                    модели. Снимок {index?.retrievedAt.slice(0, 10) ?? "…"} ·{" "}
+                    Указатель названий NHTSA · обновлён{" "}
+                    {index?.retrievedAt.slice(0, 10) ?? "…"} ·{" "}
                     <button onClick={() => go("sources")}>
                       Как устроены данные <ArrowUpRight size={12} />
                     </button>
@@ -1157,57 +1208,82 @@ export default function App() {
                 </section>
               )}
             </section>
-            <section className="coverage-paths">
-              <span className="eyebrow">ОТ ПЕРВЫХ BMW ДО СЕГОДНЯ</span>
-              <h3>Энциклопедия растёт по семействам</h3>
-              <p>
-                Подробные статьи доступны выше. Следующие разделы — план
-                наполнения, а не уже готовые характеристики всех BMW.
-              </p>
-              <ul>
-                <li>Исторические автомобили, микролитражки и Neue Klasse</li>
-                <li>Серии 1–8, кузова Touring, Gran Coupé и Gran Turismo</li>
-                <li>BMW X и родстеры Z</li>
-                <li>BMW M, электромобили i и гибридные ветви</li>
-                <li>Гоночные автомобили, концепты и редкие версии</li>
-                <li>BMW Motorrad — отдельный раздел техники</li>
-              </ul>
-              <a
-                href="https://www.bmwgroup-classic.com/en/models/bmw-classics.html"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Исторический архив BMW ↗
-              </a>
-              <a
-                href="https://www.bmwusa.com/all-bmws.html"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Модельный ряд BMW · США ↗
-              </a>
-            </section>
-            <section className="closing-panel">
-              <Compass size={32} />
-              <div>
-                <span className="eyebrow">ИНТЕРЕСНОЕ НАЧИНАЕТСЯ С ДЕТАЛЕЙ</span>
-                <h3>Одно название. Много разных автомобилей.</h3>
-                <p>
-                  Откройте поколения, загляните в источники и сохраните то, что
-                  интересно именно вам.
-                </p>
-              </div>
-              <button
-                className="round-arrow"
-                onClick={() => openFamily(families[0])}
-                aria-label="Исследовать BMW 3 Series"
-              >
-                <ArrowUpRight size={24} />
-              </button>
-            </section>
           </div>
         )}
       </main>
+      <dialog
+        ref={photoDialog}
+        className="photo-dialog"
+        aria-label={l("Просмотр фотографии", "Photo viewer")}
+        onCancel={(event) => {
+          event.preventDefault();
+          setPhotoIndex(null);
+        }}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setPhotoIndex(null);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+            event.preventDefault();
+            setPhotoIndex((index) =>
+              index === null
+                ? null
+                : (index +
+                    (event.key === "ArrowRight" ? 1 : -1) +
+                    galleryEntries.length) %
+                  galleryEntries.length,
+            );
+          }
+        }}
+      >
+        {photoIndex !== null && (
+          <div className="photo-viewer">
+            <div className="photo-viewer-heading">
+              <strong>
+                {galleryEntries[photoIndex].generation.photo!.subject}
+              </strong>
+              <button
+                onClick={() => setPhotoIndex(null)}
+                aria-label={l("Закрыть фотографию", "Close photo")}
+                autoFocus
+              >
+                <X />
+              </button>
+            </div>
+            <img
+              src={
+                import.meta.env.BASE_URL +
+                galleryEntries[photoIndex].generation.photo!.url
+              }
+              alt={galleryEntries[photoIndex].generation.photo!.subject}
+            />
+            <div className="photo-viewer-controls">
+              <button
+                onClick={() =>
+                  setPhotoIndex(
+                    (photoIndex - 1 + galleryEntries.length) %
+                      galleryEntries.length,
+                  )
+                }
+                aria-label={l("Предыдущее фото", "Previous photo")}
+              >
+                <ArrowLeft />
+              </button>
+              <span aria-live="polite">
+                {photoIndex + 1} / {galleryEntries.length}
+              </span>
+              <button
+                onClick={() =>
+                  setPhotoIndex((photoIndex + 1) % galleryEntries.length)
+                }
+                aria-label={l("Следующее фото", "Next photo")}
+              >
+                <ArrowRight />
+              </button>
+            </div>
+          </div>
+        )}
+      </dialog>
       {indexDetail && (
         <dialog
           ref={dialogRef}
@@ -1260,12 +1336,9 @@ export default function App() {
           <span className="footer-brand">
             BMW atlas<span>●</span>
           </span>
-          <p>BMW. Поколения. Детали. Независимая энциклопедия BMW.</p>
+          <p>Независимая энциклопедия BMW.</p>
         </div>
-        <span>
-          Сделано для любопытства.
-          <br />© 2026 BMW Atlas
-        </span>
+        <span>© 2026 BMW Atlas</span>
         <button onClick={() => go("sources")}>
           Данные и источники <ArrowUpRight size={14} />
         </button>

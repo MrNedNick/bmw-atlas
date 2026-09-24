@@ -6,8 +6,8 @@ import { VehiclePhoto } from "./VehiclePhoto";
 describe("VehiclePhoto", () => {
   it("renders a generation-specific fallback when the asset is unavailable", () => {
     const html = renderToStaticMarkup(<VehiclePhoto />);
-    expect(html).toContain("Фото этого поколения ещё не добавлено");
-    expect(html).toContain("Снимок другой версии здесь не используется");
+    expect(html).toContain("Фото скоро появится");
+    expect(html).not.toContain("<img");
   });
 
   it("keeps attribution links available in the full view", () => {

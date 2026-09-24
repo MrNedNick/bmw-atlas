@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -7,7 +8,6 @@ import {
   Info,
   ExternalLink,
   ChevronRight,
-  ShieldCheck,
 } from "lucide-react";
 import type { ModelFamily, Generation } from "../domain/catalog";
 import { formatVolume, formatYears } from "../domain/catalog";
@@ -34,6 +34,7 @@ export function FamilyDetail({
   family,
   generation,
   onGeneration,
+  hrefForGeneration,
   onBack,
   saved,
   onSave,
@@ -42,6 +43,7 @@ export function FamilyDetail({
   family: ModelFamily;
   generation: Generation;
   onGeneration: (id: string) => void;
+  hrefForGeneration: (id: string) => string;
   onBack: () => void;
   saved: boolean;
   onSave: () => void;
@@ -248,15 +250,11 @@ export function FamilyDetail({
             >
               {saved ? copy.inGarage : copy.addGarage}
             </Button>
-            <span className="verified">
-              <ShieldCheck size={15} />
-              {cited.length} {copy.sourcesOnScreen}
-            </span>
           </div>
         </div>
         <div className="detail-media-column">
           <div className="detail-visual blue">
-            <VehiclePhoto photo={generation.photo} />
+            <VehiclePhoto photo={generation.photo} language={language} />
           </div>
           <section
             className="generation-picker"
@@ -286,10 +284,22 @@ export function FamilyDetail({
             </select>
             <div className="timeline" aria-label={copy.generations}>
               {family.generations.map((item) => (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => onGeneration(item.id)}
-                  aria-pressed={item.id === generation.id}
+                  href={hrefForGeneration(item.id)}
+                  onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+                    if (
+                      event.button !== 0 ||
+                      event.metaKey ||
+                      event.ctrlKey ||
+                      event.shiftKey ||
+                      event.altKey
+                    )
+                      return;
+                    event.preventDefault();
+                    onGeneration(item.id);
+                  }}
+                  aria-current={item.id === generation.id ? "page" : undefined}
                   className={
                     "generation " +
                     (item.id === generation.id ? "selected" : "")
@@ -302,7 +312,7 @@ export function FamilyDetail({
                   {faceliftCount(item.revisions) > 0 && (
                     <i>{copy.knownUpdate}</i>
                   )}
-                </button>
+                </a>
               ))}
             </div>
           </section>
@@ -343,9 +353,10 @@ export function FamilyDetail({
         <>
           <div className="overview-grid">
             <article className="panel story-panel">
-              <span className="eyebrow">{copy.changed}</span>
               <h3>
-                {generation.code}: {copy.generationCharacter}
+                {isEnglish
+                  ? "What makes it distinctive"
+                  : "Особенности поколения"}
               </h3>
               <p>{generation.description}</p>
               {(generation.highlights?.length ?? 0) > 0 && (
@@ -358,40 +369,45 @@ export function FamilyDetail({
                   </ul>
                 </div>
               )}
-              <SourceLink id={generation.source} />
-              <RevisionTimeline
-                revisions={generation.revisions}
-                language={language}
-              />
+              {generation.revisions.length > 0 && (
+                <RevisionTimeline
+                  revisions={generation.revisions}
+                  language={language}
+                />
+              )}
             </article>
             <aside className="panel facts-panel">
-              <span className="eyebrow">{copy.facts}</span>
+              <span className="eyebrow">
+                {isEnglish ? "AT A GLANCE" : "КОРОТКО О МОДЕЛИ"}
+              </span>
               <dl>
                 <div>
-                  <dt>{copy.powertrains}</dt>
-                  <dd>{generation.powertrains.length || copy.notAdded}</dd>
+                  <dt>{isEnglish ? "Years" : "Годы выпуска"}</dt>
+                  <dd>{formatYears(generation)}</dd>
                 </div>
-                <div>
-                  <dt>{copy.knownUpdates}</dt>
-                  <dd>{generation.revisions.length || copy.noData}</dd>
-                </div>
-                <div>
-                  <dt>{copy.generationProduction}</dt>
-                  <dd>{formatVolume(generation.volume)}</dd>
-                </div>
-                <div>
-                  <dt>{copy.assembly}</dt>
-                  <dd>
-                    {runsForGeneration(generation.id, productionRuns).length
-                      ? `${runsForGeneration(generation.id, productionRuns).length} ${copy.factoryRecords}`
-                      : copy.notClarified}
-                  </dd>
-                </div>
+                {generation.volume && (
+                  <div>
+                    <dt>{copy.generationProduction}</dt>
+                    <dd>{formatVolume(generation.volume)}</dd>
+                  </div>
+                )}
+                {generation.assembly.length > 0 && (
+                  <div>
+                    <dt>{copy.assembly}</dt>
+                    <dd>{generation.assembly.join(" · ")}</dd>
+                  </div>
+                )}
+                {generation.revisions.length > 0 && (
+                  <div>
+                    <dt>{isEnglish ? "Update years" : "Годы обновлений"}</dt>
+                    <dd>
+                      {[
+                        ...new Set(generation.revisions.map((r) => r.year)),
+                      ].join(" · ")}
+                    </dd>
+                  </div>
+                )}
               </dl>
-              <p className="note">
-                <Info size={16} />
-                {copy.coverageNote}
-              </p>
               <button className="text-action" onClick={() => setTab("sources")}>
                 {copy.viewSources} <ArrowUpRight size={16} />
               </button>

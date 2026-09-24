@@ -15,6 +15,7 @@ describe("FamilyDetail", () => {
         family={family}
         generation={generation}
         onGeneration={() => undefined}
+        hrefForGeneration={(id) => `?generation=${id}`}
         onBack={() => undefined}
         saved={false}
         onSave={() => undefined}
@@ -26,8 +27,9 @@ describe("FamilyDetail", () => {
     );
     expect(html).toContain('aria-label="Выберите поколение"');
     expect(html).toContain('aria-label="Факты о семействе"');
+    expect(html).toContain(`href="?generation=${generation.id}"`);
     expect(html).not.toContain("Тираж · нет данных");
-    expect(html).not.toContain("Нет подтверждённых данных</strong>");
+    expect(html).not.toContain("Нет подтверждённых данных");
   });
 
   it("keeps a confirmed family volume as an optional fact", () => {
@@ -40,6 +42,7 @@ describe("FamilyDetail", () => {
         family={family}
         generation={family.generations[0]}
         onGeneration={() => undefined}
+        hrefForGeneration={(id) => `?generation=${id}`}
         onBack={() => undefined}
         saved={false}
         onSave={() => undefined}
