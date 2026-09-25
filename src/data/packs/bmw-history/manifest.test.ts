@@ -79,4 +79,61 @@ describe("BMW history progress manifest", () => {
       familyMatches(isetta, { ...EMPTY_FILTERS, query: "Isetta 600" }),
     ).toBe(false);
   });
+
+  it("inventories the archived bodies from pre-war cars to E3/E9", () => {
+    const families = new Set(bmwHistoryInventory.map((item) => item.family));
+    for (const family of [
+      "3/15 PS",
+      "3/20 PS",
+      "328",
+      "335",
+      "501/502",
+      "503",
+      "507",
+      "600",
+      "700",
+      "Neue Klasse",
+      "02",
+      "E3",
+      "E9",
+    ])
+      expect(families).toContain(family);
+    const sourceById = new Map(sources.map((source) => [source.id, source]));
+    for (const item of bmwHistoryInventory.filter(
+      (entry) => entry.status === "index",
+    )) {
+      expect(item.generationId).toBeNull();
+      for (const id of item.sourceIds)
+        expect(sourceById.get(id)?.publisher).toBe("BMW Group Classic");
+    }
+  });
+
+  it("reads 2002 as a model name and keeps 328 apart from the modern 328i", () => {
+    const byId = (id: string) =>
+      bmwHistoryInventory.find((item) => item.id === id)!;
+    const twoDoor = byId("bmw-history-02-sedan");
+    expect(twoDoor.aliases).toContain("2002");
+    expect(twoDoor.production).toEqual({ from: "1966-03", to: "1977-07" });
+    const roadster = byId("bmw-history-328");
+    expect(roadster.production).toEqual({ from: "1936", to: "1940" });
+    expect(roadster.aliases.some((alias) => /328i/i.test(alias))).toBe(false);
+    expect(roadster.missingFields).toContain("месяцы начала и конца выпуска");
+  });
+
+  it("rejects malformed and inverted production periods", () => {
+    const [row] = bmwHistoryInventory.filter((item) => item.status === "index");
+    for (const production of [
+      { from: "1936-13", to: "1940" },
+      { from: "1940", to: "1936" },
+      { from: "36", to: "1940" },
+    ])
+      expect(
+        validateBMWHistoryInventory(
+          [{ ...row, production }],
+          sources,
+          families,
+          assetByGeneration,
+        ),
+      ).toEqual([`invalid history period: ${row.id}`]);
+  });
 });

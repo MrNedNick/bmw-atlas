@@ -607,6 +607,537 @@ export const sources: Source[] = [
     url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-223-1.bmw-isetta-300-export.html",
   },
   {
+    id: "bmw-classic-3-15-ps-da-2-sedan",
+    title: "BMW 3/15 PS DA 2 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3/15 PS DA 2 Sedan: производство 03/1929 — 11/1930; 748,75 см³, 15 л. с. при 3000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-254-2.bmw-3-15-ps-da-2-sedan.html",
+  },
+  {
+    id: "bmw-classic-3-15-ps-da-3-type-wartburg",
+    title: "BMW 3/15 PS DA 3 Wartburg",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3/15 PS DA 3 Wartburg: производство 04/1930 — 01/1931; 748,75 см³, 18 л. с. при 3500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-2764-1.bmw-3-15-ps-da-3-type-wartburg.html",
+  },
+  {
+    id: "bmw-classic-3-15-ps-da-4-sedan",
+    title: "BMW 3/15 PS DA 4 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3/15 PS DA 4 Sedan: производство 01/1931 — 02/1932; 748,75 см³, 15 л. с. при 3000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-260-2.bmw-3-15-ps-da-4-sedan.html",
+  },
+  {
+    id: "bmw-classic-3-20-ps-am-1-4-sedan",
+    title: "BMW 3/20 PS AM 1-4 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3/20 PS AM 1-4 Sedan: производство 03/1932 — 04/1934; 782 см³, 20 л. с. при 4000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-271-3.bmw-3-20-ps-am-1-4-sedan.html",
+  },
+  {
+    id: "bmw-classic-3-20-ps-am-1-4-tourer",
+    title: "BMW 3/20 PS AM 1-4 Tourer",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3/20 PS AM 1-4 Tourer: производство 08/1932 — 12/1933; 782 см³, 20 л. с. при 4000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-273-3.bmw-3-20-ps-am-1-4-tourer.html",
+  },
+  {
+    id: "bmw-classic-303-sedan",
+    title: "BMW 303 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 303 Sedan: производство 05/1933 — 05/1934; 1182 см³, рядная шестёрка, 30 л. с. при 4000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-274-2.bmw-303-sedan.html",
+  },
+  {
+    id: "bmw-classic-309-sedan",
+    title: "BMW 309 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 309 Sedan: производство 02/1934 — 06/1936; 845 см³, рядная четвёрка, 22 л. с. при 4000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-277-2.bmw-309-sedan.html",
+  },
+  {
+    id: "bmw-classic-315-sedan",
+    title: "BMW 315 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 315 Sedan: производство 04/1934 — 10/1936; 1490 см³, 34 л. с. при 3800 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-280-2.bmw-315-sedan.html",
+  },
+  {
+    id: "bmw-classic-315-1-sports-car",
+    title: "BMW 315/1",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 315/1: производство 04/1934 — 07/1935; спортивная версия 315: 1490 см³, 40 л. с.",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-71-2.bmw-315-1-sports-car.html",
+  },
+  {
+    id: "bmw-classic-319-sedan",
+    title: "BMW 319 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 319 Sedan: производство 09/1934 — 05/1937; 1911 см³, 45 л. с. при 3750 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-285-2.bmw-319-sedan.html",
+  },
+  {
+    id: "bmw-classic-319-1-sports-car",
+    title: "BMW 319/1",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 319/1: производство 02/1935 — 07/1936; спортивная версия 319: 1911 см³, 55 л. с.",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-956-2.bmw-319-1-sports-car.html",
+  },
+  {
+    id: "bmw-classic-326-sedan",
+    title: "BMW 326 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 326 Sedan: производство 02/1936 — 04/1941; 1971 см³, 50 л. с. при 3750 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-289-2.bmw-326-sedan.html",
+  },
+  {
+    id: "bmw-classic-327-sports-convertible",
+    title: "BMW 327 Sports Convertible",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 327 Sports Convertible: производство 07/1937 — 04/1941; 1971 см³, 55 л. с. при 4500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-295-2.bmw-327-sports-convertible.html",
+  },
+  {
+    id: "bmw-classic-327-sports-coupe",
+    title: "BMW 327 Sports Coupé",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 327 Sports Coupé: производство 09/1938 — 04/1941; 1971 см³, 55 л. с. при 4500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-294-2.bmw-327-sports-coupe.html",
+  },
+  {
+    id: "bmw-classic-327-28-sports-coupe",
+    title: "BMW 327/28 Sports Coupé",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 327/28 Sports Coupé: производство 10/1938 — 10/1939; двигатель 328: 1971 см³, 80 л. с. при 5000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-297-2.bmw-327-28-sports-coupe.html",
+  },
+  {
+    id: "bmw-classic-328",
+    title: "BMW 328",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 328: производство 1936 — 1940 (на странице 31/12/1936 — 31/12/1940, точность до года); 1971 см³, 80 л. с. при 4500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-2768-2.bmw-328.html",
+  },
+  {
+    id: "bmw-classic-320-sedan",
+    title: "BMW 320 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 320 Sedan: производство 02/1937 — 12/1938; 1911 см³, с 11/1937 — 1971 см³, 45 л. с.",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-291-2.bmw-320-sedan.html",
+  },
+  {
+    id: "bmw-classic-321-sedan",
+    title: "BMW 321 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 321 Sedan: производство 12/1938 — 04/1941; 1971 см³, 45 л. с. при 3750 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-299-2.bmw-321-sedan.html",
+  },
+  {
+    id: "bmw-classic-335-sedan",
+    title: "BMW 335 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 335 Sedan: производство 01/1939 — 12/1940; 3485 см³, 90 л. с. при 3500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-301-2.bmw-335-sedan.html",
+  },
+  {
+    id: "bmw-classic-501",
+    title: "BMW 501",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 501: производство 11/1952 — 05/1954; 1971 см³, рядная шестёрка, 65 л. с.",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-1188-1.bmw-501.html",
+  },
+  {
+    id: "bmw-classic-501-six-cylinder",
+    title: "BMW 501, шесть цилиндров",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 501, шесть цилиндров: производство 04/1955 — 12/1958; 2077 см³, 72 л. с. при 4500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-128-1.bmw-501-six-cylinder.html",
+  },
+  {
+    id: "bmw-classic-502",
+    title: "BMW 502",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 502: производство 09/1954 — 09/1958; V8 2580 см³, 100 л. с. при 4800 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-130-1.bmw-502.html",
+  },
+  {
+    id: "bmw-classic-502-3-2-litre",
+    title: "BMW 502, 3.2 litre",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 502, 3.2 litre: производство 10/1955 — 09/1958; V8 3168 см³, 120 л. с. при 4900 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-809-1.bmw-502-3-2-litre.html",
+  },
+  {
+    id: "bmw-classic-2600",
+    title: "BMW 2600",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2600: производство 08/1961 — 12/1963; V8 2580 см³, 100 л. с. — продолжение линии 501/502",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-48-1.bmw-2600.html",
+  },
+  {
+    id: "bmw-classic-3200-s",
+    title: "BMW 3200 S",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3200 S: производство 08/1961 — 12/1963; V8 3168 см³, 160 л. с. при 5600 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-98-1.bmw-3200-s.html",
+  },
+  {
+    id: "bmw-classic-503-coupe",
+    title: "BMW 503 Coupé",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 503 Coupé: производство 1956 — 1960 (точность до года); V8 3168 см³, 140 л. с. при 4800 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-320-1.bmw-503-coupe.html",
+  },
+  {
+    id: "bmw-classic-503-convertible",
+    title: "BMW 503 Convertible",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 503 Convertible: производство 05/1956 — 05/1960; V8 3168 см³, 140 л. с. при 4800 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-321-1.bmw-503-convertible.html",
+  },
+  {
+    id: "bmw-classic-507",
+    title: "BMW 507",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 507: производство 12/1956 — 12/1959; V8 3168 см³, 150 л. с. при 5000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-134-1.bmw-507.html",
+  },
+  {
+    id: "bmw-classic-3200-cs",
+    title: "BMW 3200 CS",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3200 CS: производство 1962 — 1965 (точность до года); V8 3168 см³, 160 л. с. при 5600 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-96-1.bmw-3200-cs.html",
+  },
+  {
+    id: "bmw-classic-600",
+    title: "BMW 600",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 600: производство 09/1957 — 11/1959; оппозитная двойка 585 см³, 19,5 л. с.; около 34 813 выпущенных",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-329-1.bmw-600.html",
+  },
+  {
+    id: "bmw-classic-700-coupe",
+    title: "BMW 700 Coupé",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 700 Coupé: производство 07/1959 — 04/1964; оппозитная двойка 697 см³, 30 л. с., с 02/1963 — 32 л. с.",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-333-1.bmw-700-coupe.html",
+  },
+  {
+    id: "bmw-classic-700-sport",
+    title: "BMW 700 Sport",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 700 Sport: производство 08/1960 — 01/1963; 697 см³, 40 л. с. при 5700 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-178-1.bmw-700-sport.html",
+  },
+  {
+    id: "bmw-classic-700-cs",
+    title: "BMW 700 CS",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 700 CS: производство 01/1963 — 06/1964; 697 см³, 40 л. с. при 5700 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-176-1.bmw-700-cs.html",
+  },
+  {
+    id: "bmw-classic-700-sedan",
+    title: "BMW 700 Sedan",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 700 Sedan: производство 09/1959 — 01/1962; 697 см³, 30 л. с. при 5000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-179-1.bmw-700-sedan.html",
+  },
+  {
+    id: "bmw-classic-700-luxus",
+    title: "BMW 700 Luxus",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 700 Luxus: производство 02/1961 — 04/1962; 697 см³, 30 л. с. при 5000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-177-1.bmw-700-luxus.html",
+  },
+  {
+    id: "bmw-classic-1500",
+    title: "BMW 1500",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 1500: производство 02/1962 — 12/1964; 1499 см³, 80 л. с. при 5700 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-24-1.bmw-1500.html",
+  },
+  {
+    id: "bmw-classic-1600",
+    title: "BMW 1600",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 1600: производство 04/1964 — 04/1966; 1573 см³, 83 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-29-1.bmw-1600.html",
+  },
+  {
+    id: "bmw-classic-1800",
+    title: "BMW 1800",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 1800: производство 09/1963 — 12/1971; 1773 см³, 90 л. с. при 5250 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-33-1.bmw-1800.html",
+  },
+  {
+    id: "bmw-classic-2000",
+    title: "BMW 2000",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2000: производство 01/1966 — 01/1972; 1990 см³, 100 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-42-1.bmw-2000.html",
+  },
+  {
+    id: "bmw-classic-2000-tilux",
+    title: "BMW 2000 tilux",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2000 tilux: производство 09/1966 — 02/1971; 1990 см³, 120 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-864-1.bmw-2000-tilux.html",
+  },
+  {
+    id: "bmw-classic-2000-cs",
+    title: "BMW 2000 CS",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2000 CS: производство 09/1965 — 02/1970; 1990 см³, 120 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-38-1.bmw-2000-cs.html",
+  },
+  {
+    id: "bmw-classic-2000-c-bmw-2000-ca",
+    title: "BMW 2000 C / 2000 CA",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2000 C / 2000 CA: производство 03/1966 — 02/1970; 1990 см³, 100 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-37-1.bmw-2000-c-bmw-2000-ca.html",
+  },
+  {
+    id: "bmw-classic-1602",
+    title: "BMW 1602",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 1602: производство 03/1966 — 10/1975; 1573 см³, 85 л. с. при 5700 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-26-1.bmw-1602.html",
+  },
+  {
+    id: "bmw-classic-2002",
+    title: "BMW 2002",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2002: производство 01/1968 — 10/1975; 1990 см³, 100 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-46-1.bmw-2002.html",
+  },
+  {
+    id: "bmw-classic-2002-turbo",
+    title: "BMW 2002 turbo",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2002 turbo: производство 10/1973 — 06/1975; 1990 см³, турбонаддув, 170 л. с. при 5800 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-45-1.bmw-2002-turbo.html",
+  },
+  {
+    id: "bmw-classic-1502",
+    title: "BMW 1502",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 1502: производство 12/1974 — 07/1977; 1573 см³, 75 л. с. при 5800 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-576-1.bmw-1502.html",
+  },
+  {
+    id: "bmw-classic-1600-touring-1602-touring",
+    title: "BMW 1600 Touring / 1602 Touring",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 1600 Touring / 1602 Touring: производство 04/1971 — 04/1973; 1573 см³, 85 л. с. при 5700 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-811-1.bmw-1600-touring-1602-touring.html",
+  },
+  {
+    id: "bmw-classic-1800-touring-1802-touring",
+    title: "BMW 1800 Touring / 1802 Touring",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 1800 Touring / 1802 Touring: производство 10/1971 — 04/1974; 1766 см³, 90 л. с. при 5250 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-815-1.bmw-1800-touring-1802-touring.html",
+  },
+  {
+    id: "bmw-classic-touring-2000-2002-touring",
+    title: "BMW Touring 2000 / 2002 Touring",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW Touring 2000 / 2002 Touring: производство 04/1971 — 04/1974; 1990 см³, 100 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-816-1.bmw-touring-2000-2002-touring.html",
+  },
+  {
+    id: "bmw-classic-1600-convertible",
+    title: "BMW 1600 Convertible",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 1600 Convertible: производство 01/1968 — 06/1971; 1573 см³, 85 л. с. при 5700 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-810-1.bmw-1600-convertible.html",
+  },
+  {
+    id: "bmw-classic-2002-baur-convertible-with-roll-over-bar",
+    title: "BMW 2002 Baur Convertible с дугой безопасности",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2002 Baur Convertible с дугой безопасности: производство 07/1971 — 01/1976; 1990 см³, 100 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-365-1.bmw-2002-baur-convertible-with-roll-over-bar.html",
+  },
+  {
+    id: "bmw-classic-2500-e3",
+    title: "BMW 2500 (E3)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2500 (E3): производство 08/1968 — 02/1977; 2494 см³, 150 л. с. при 6000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-47-1.bmw-2500-e3.html",
+  },
+  {
+    id: "bmw-classic-2800-e3",
+    title: "BMW 2800 (E3)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2800 (E3): производство 04/1969 — 1974; 2788 см³, 170 л. с. при 6000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-51-1.bmw-2800-e3.html",
+  },
+  {
+    id: "bmw-classic-3-0-si-e3",
+    title: "BMW 3.0 Si (E3)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3.0 Si (E3): производство 07/1971 — 02/1977; 2985 см³, 200 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-58-1.bmw-3-0-si-e3.html",
+  },
+  {
+    id: "bmw-classic-3-3-li-e3",
+    title: "BMW 3.3 Li (E3)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3.3 Li (E3): производство 09/1975 — 02/1977; 3210 см³, 200 л. с. при 5500 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-60-1.bmw-3-3-li-e3.html",
+  },
+  {
+    id: "bmw-classic-2800-cs-e9",
+    title: "BMW 2800 CS (E9)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2800 CS (E9): производство 12/1968 — 03/1971; 2788 см³, 170 л. с. при 6000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-49-1.bmw-2800-cs-e9.html",
+  },
+  {
+    id: "bmw-classic-3-0-cs-e9",
+    title: "BMW 3.0 CS (E9)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3.0 CS (E9): производство 04/1971 — 11/1975; 2985 см³, 180 л. с. при 6000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-53-1.bmw-3-0-cs-e9.html",
+  },
+  {
+    id: "bmw-classic-2-5-cs-e9",
+    title: "BMW 2.5 CS (E9)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 2.5 CS (E9): производство 06/1974 — 11/1975; 2494 см³, 150 л. с. при 6000 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-36-1.bmw-2-5-cs-e9.html",
+  },
+  {
+    id: "bmw-classic-3-0-csl-e9-206-hp",
+    title: "BMW 3.0 CSL (E9), 206 л. с.",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-25",
+    scope:
+      "BMW 3.0 CSL (E9), 206 л. с.: производство 07/1973 — 10/1975; 3153 см³, 206 л. с. при 5600 об/мин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-841-1.bmw-3-0-csl-e9-206-hp.html",
+  },
+  {
     id: "bmw-r32-classic",
     title: "BMW R 32",
     publisher: "BMW Group Classic",
