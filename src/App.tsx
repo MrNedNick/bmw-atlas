@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useState, useRef } from "react";
 import type { MouseEvent } from "react";
 import {
+  Shuffle,
   ArrowUpRight,
   ArrowRight,
   Search,
@@ -34,6 +35,7 @@ import {
   useSaved,
   useTheme,
 } from "./lib/preferences";
+import { gallerySelection } from "./features/media/gallery";
 import { VehiclePhoto } from "./features/media/VehiclePhoto";
 import { collectionTaglines } from "./features/collection-copy";
 import { Exhibition } from "./features/Exhibition";
@@ -52,9 +54,9 @@ const orderedFamilies = [...families].sort(
 const familyById = Object.fromEntries(
   families.map((family) => [family.id, family]),
 ) as Record<string, ModelFamily>;
-const galleryEntries = allGenerations.filter((entry) => entry.generation.photo);
 interface PageState {
   view: "catalog" | "models" | "sources" | "photos";
+  phase: "" | "facelift";
   collection: string;
   family: string;
   generation: string;
@@ -71,6 +73,7 @@ function readUrl(): PageState {
   const v = q.get("view");
   return {
     view: v === "models" || v === "sources" || v === "photos" ? v : "catalog",
+    phase: q.get("phase") === "facelift" ? "facelift" : "",
     collection: catalogGroups.some((group) => group.id === q.get("collection"))
       ? q.get("collection")!
       : "",
@@ -82,6 +85,7 @@ function readUrl(): PageState {
 function urlFor(state: PageState) {
   const q = new URLSearchParams();
   if (state.view !== "catalog") q.set("view", state.view);
+  if (state.phase) q.set("phase", state.phase);
   if (state.collection) q.set("collection", state.collection);
   if (state.family) q.set("model", state.family);
   if (state.generation) q.set("generation", state.generation);
@@ -169,12 +173,8 @@ function FamilyCard({
         </p>
         <div className="card-metrics">
           <span>
-            <strong>{family.generations.length}</strong>{" "}
-            {isEnglish
-              ? family.generations.length === 1
-                ? "generation / version"
-                : "generations & versions"
-              : "поколения / версии"}
+            {isEnglish ? "Generations / versions: " : "Поколения / версии: "}
+            <strong>{family.generations.length}</strong>
           </span>
         </div>
       </a>
@@ -240,6 +240,7 @@ export default function App() {
   const indexOpener = useRef<HTMLButtonElement | null>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const pendingScroll = useRef<number | null>(null);
+  const [faceliftSelection, setFaceliftSelection] = useState(0);
   const [photoIndex, setPhotoIndex] = useState<number | null>(null);
   const photoDialog = useRef<HTMLDialogElement>(null);
   const photoOpener = useRef<HTMLElement | null>(null);
@@ -401,6 +402,16 @@ export default function App() {
     navigate({ filters: { ...state.filters, ...patch } }, true);
     setIndexPage(1);
   }
+  function saveFamily(id: string) {
+    toggle(id);
+    setNotice(
+      (saved.includes(id)
+        ? l("Убрано из гаража: ", "Removed from garage: ")
+        : l("В вашем гараже: ", "In your garage: ")) +
+        "BMW " +
+        familyById[id].name,
+    );
+  }
   function openFamily(f: ModelFamily) {
     navigate({ family: f.id, generation: defaults(f) });
   }
@@ -408,13 +419,14 @@ export default function App() {
     if (historyState().atlasModelReturn) {
       history.back();
     } else {
-      navigate({ view: "models", family: "", generation: "" }, true);
+      navigate({ view: "models", family: "", generation: "", phase: "" }, true);
     }
   }
   function go(view: PageState["view"], garage = false) {
     navigate({
       view,
       collection: "",
+      phase: "",
       family: "",
       generation: "",
       filters: { ...EMPTY_FILTERS, savedOnly: garage },
@@ -453,6 +465,26 @@ export default function App() {
         : [],
     [index, state.filters.query],
   );
+  const galleryEntries = useMemo(
+    () =>
+      gallerySelection(
+        state.collection,
+        state.filters.query,
+        state.phase === "facelift",
+      ),
+    [state.collection, state.filters.query, state.phase],
+  );
+  function surprise() {
+    const pool = galleryEntries.filter(
+      (entry) => entry.generation.id !== state.generation,
+    );
+    if (!pool.length) return;
+    const entry = pool[Math.floor(Math.random() * pool.length)];
+    navigate(
+      { family: entry.family.id, generation: entry.generation.id },
+      Boolean(state.family),
+    );
+  }
   const family = families.find((f) => f.id === state.family);
   const generation =
     family?.generations.find((g) => g.id === state.generation) ??
@@ -534,7 +566,7 @@ export default function App() {
               hrefForGeneration={(id) => urlFor({ ...state, generation: id })}
               onBack={backToModels}
               saved={saved.includes(family.id)}
-              onSave={() => toggle(family.id)}
+              onSave={() => saveFamily(family.id)}
               language={language}
             />
             <section
@@ -586,7 +618,7 @@ export default function App() {
                           )
                         }
                         saved={saved.includes(id)}
-                        onSave={() => toggle(id)}
+                        onSave={() => saveFamily(id)}
                         language={language}
                       />
                     );
@@ -656,6 +688,14 @@ export default function App() {
               </nav>
             </div>
             <section className="models-section" aria-labelledby="stories-title">
+              <button
+                className="museum-random collection-random"
+                onClick={surprise}
+                disabled={!galleryEntries.length}
+              >
+                <Shuffle size={17} />
+                {l("Случайная находка", "Surprise me")}
+              </button>
               <div className="collection-results" aria-live="polite">
                 <h2 id="stories-title">
                   {state.collection
@@ -764,7 +804,7 @@ export default function App() {
                               })}
                               onOpen={() => openFamily(f)}
                               saved={saved.includes(f.id)}
-                              onSave={() => toggle(f.id)}
+                              onSave={() => saveFamily(f.id)}
                               language={language}
                             />
                           ))}
@@ -867,11 +907,101 @@ export default function App() {
               </h1>
               <p>
                 {l(
-                  "Фотографии и редакционные визуализации. Точные подписи кузовов и открытые источники каждого изображения.",
-                  "Photographs and editorial visualisations, with precise body-style labels and open sources for every image.",
+                  "Рассматривайте силуэты, открывайте модели и замечайте изменения. Нажмите на фотографию, чтобы открыть её крупно.",
+                  "Explore silhouettes and spot the changes. Select a photograph to see it in full detail.",
                 )}
               </p>
             </div>
+            <div className="gallery-tools">
+              <div className="search-box collection-search">
+                <Search size={22} />
+                <input
+                  ref={searchRef}
+                  aria-label={l("Найти фотографию", "Find a photograph")}
+                  placeholder={l(
+                    "Модель или кузов: M3, E30, X7…",
+                    "Model or body code: M3, E30, X7…",
+                  )}
+                  value={state.filters.query}
+                  onChange={(e) => filters({ query: e.target.value })}
+                />
+                {state.filters.query && (
+                  <button
+                    aria-label={l("Очистить поиск", "Clear search")}
+                    onClick={() => filters({ query: "" })}
+                  >
+                    <X size={18} />
+                  </button>
+                )}
+              </div>
+              <nav
+                className="collection-tabs"
+                aria-label={l("Залы фотогалереи", "Photo gallery rooms")}
+              >
+                {[
+                  { id: "", label: l("Все фотографии", "All photographs") },
+                  ...catalogGroups.map((group) => ({
+                    id: group.id,
+                    label:
+                      group.id === "series"
+                        ? l("Серии", "Series")
+                        : group.eyebrow.replace("BMW ", ""),
+                  })),
+                ].map((group) => (
+                  <button
+                    key={group.id}
+                    aria-pressed={state.collection === group.id}
+                    onClick={() => navigate({ collection: group.id }, true)}
+                  >
+                    {group.label}
+                  </button>
+                ))}
+              </nav>
+              <div className="gallery-options">
+                <button
+                  className="facelift-filter"
+                  aria-pressed={state.phase === "facelift"}
+                  onClick={() =>
+                    navigate({ phase: state.phase ? "" : "facelift" }, true)
+                  }
+                >
+                  {state.phase && <span aria-hidden="true">✓ </span>}
+                  {l("Только рестайлинги", "Facelifts only")}
+                </button>
+                <span aria-live="polite">
+                  {l("Фотографий:", "Photographs:")} {galleryEntries.length}
+                </span>
+              </div>
+            </div>
+            {!galleryEntries.length && (
+              <div className="collection-empty">
+                <h3>
+                  {l("Таких снимков пока нет", "No photographs match yet")}
+                </h3>
+                <p>
+                  {l(
+                    "Попробуйте другую модель или снимите ограничения.",
+                    "Try another model or clear the filters.",
+                  )}
+                </p>
+                <button
+                  className="museum-cta"
+                  onClick={() =>
+                    navigate(
+                      {
+                        collection: "",
+                        phase: "",
+                        filters: { ...EMPTY_FILTERS },
+                      },
+                      true,
+                    )
+                  }
+                >
+                  {l("Все фотографии", "All photographs")}
+                  <ArrowRight size={18} />
+                </button>
+              </div>
+            )}
             <div className="photo-gallery">
               {galleryEntries.map(({ family: f, generation: g }, index) => (
                 <article className="panel" key={g.id}>
@@ -1007,6 +1137,9 @@ export default function App() {
                   filters: { ...EMPTY_FILTERS },
                 })}
                 onCollection={() => go("models")}
+                onRandom={surprise}
+                faceliftSelection={faceliftSelection}
+                onFaceliftSelection={setFaceliftSelection}
                 modelHref={(family, generation) =>
                   urlFor({ ...state, family, generation })
                 }
@@ -1193,7 +1326,7 @@ export default function App() {
                           })}
                           onOpen={() => openFamily(f)}
                           saved={saved.includes(f.id)}
-                          onSave={() => toggle(f.id)}
+                          onSave={() => saveFamily(f.id)}
                           language={language}
                         />
                       ))}
@@ -1370,6 +1503,27 @@ export default function App() {
               }
               alt={galleryEntries[photoIndex].generation.photo!.subject}
             />
+            <a
+              className="photo-story-link"
+              href={urlFor({
+                ...state,
+                family: galleryEntries[photoIndex].family.id,
+                generation: galleryEntries[photoIndex].generation.id,
+              })}
+              onClick={(event) => {
+                if (!plainLeftClick(event)) return;
+                event.preventDefault();
+                const entry = galleryEntries[photoIndex];
+                setPhotoIndex(null);
+                navigate({
+                  family: entry.family.id,
+                  generation: entry.generation.id,
+                });
+              }}
+            >
+              {l("Открыть историю модели", "Explore this model")}
+              <ArrowUpRight size={18} />
+            </a>
             <div className="photo-viewer-controls">
               <button
                 onClick={() =>
@@ -1378,6 +1532,7 @@ export default function App() {
                       galleryEntries.length,
                   )
                 }
+                disabled={galleryEntries.length < 2}
                 aria-label={l("Предыдущее фото", "Previous photo")}
               >
                 <ArrowLeft />
@@ -1389,6 +1544,7 @@ export default function App() {
                 onClick={() =>
                   setPhotoIndex((photoIndex + 1) % galleryEntries.length)
                 }
+                disabled={galleryEntries.length < 2}
                 aria-label={l("Следующее фото", "Next photo")}
               >
                 <ArrowRight />

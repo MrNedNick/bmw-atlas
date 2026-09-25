@@ -1,6 +1,7 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Shuffle } from "lucide-react";
 import type { MouseEvent } from "react";
 import { families } from "../data/models";
+import { FaceliftExhibit } from "./FaceliftExhibit";
 import type { Language } from "../lib/preferences";
 
 const stories = [
@@ -52,12 +53,18 @@ export function Exhibition({
   onModel,
   collectionHref,
   onCollection,
+  onRandom,
+  faceliftSelection,
+  onFaceliftSelection,
 }: {
   language: Language;
   modelHref: (family: string, generation: string) => string;
   onModel: (family: string, generation: string) => void;
   collectionHref: string;
   onCollection: () => void;
+  onRandom: () => void;
+  faceliftSelection: number;
+  onFaceliftSelection: (index: number) => void;
 }) {
   const en = language === "en";
   const hero = families.find((f) => f.id === "bmw-m1")!.generations[0];
@@ -85,6 +92,10 @@ export function Exhibition({
             {en ? "Explore the collection" : "Войти в коллекцию"}
             <ArrowRight size={20} />
           </a>
+          <button className="museum-random" onClick={onRandom}>
+            <Shuffle size={17} />
+            {en ? "Surprise me" : "Случайная находка"}
+          </button>
           <span className="museum-note">
             {en
               ? "Cars & motorcycles · From 1923 to today"
@@ -174,6 +185,13 @@ export function Exhibition({
           })}
         </div>
       </section>
+      <FaceliftExhibit
+        selected={faceliftSelection}
+        onSelect={onFaceliftSelection}
+        language={language}
+        modelHref={modelHref}
+        onModel={onModel}
+      />
     </div>
   );
 }
