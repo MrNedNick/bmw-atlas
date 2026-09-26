@@ -1429,6 +1429,32 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-600-sedan": {
+    url: "images/editorial-bmw-600-sedan.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1958_BMW_600_in_White_over_Red,_front_left_(Greenwich_2023).jpg",
+    author: "Mr.choppers",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    subject: "BMW 600 · 1958",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:1958_BMW_600_in_White_over_Red,_front_left_(Greenwich_2023).jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/d/d7/1958_BMW_600_in_White_over_Red%2C_front_left_%28Greenwich_2023%29.jpg",
+      localFile: "references/images/commons-bmw-600-1958-greenwich.jpg",
+      imageId:
+        "1958_BMW_600_in_White_over_Red,_front_left_(Greenwich_2023).jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "передняя дверь во всю ширину с эмблемой BMW и хромированной накладкой",
+        "двухцветная окраска: белая крыша и красный кузов",
+        "круглые фары на передних углах кузова",
+        "трубчатые защитные дуги переднего бампера",
+        "длинные боковые окна пассажирского салона",
+        "небольшие колёса с хромированными колпаками",
+      ],
+    },
+  },
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {

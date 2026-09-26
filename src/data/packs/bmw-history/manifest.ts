@@ -66,6 +66,14 @@ const detailedBodies: Record<
       "крутящий момент и коробка передач",
     ],
   },
+  "bmw-history-600": {
+    generationId: "bmw-600-sedan",
+    missingFields: [
+      "тираж по годам",
+      "завод и география сборки",
+      "крутящий момент и коробка передач",
+    ],
+  },
 };
 
 // T28 grows one archived body at a time. The list is progress state, not a

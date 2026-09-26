@@ -56,7 +56,7 @@ export const catalogGroups: readonly CatalogGroup[] = [
     id: "classic",
     eyebrow: "BMW CLASSIC",
     title: "Исторические модели",
-    familyIds: ["bmw-isetta", "bmw-328", "bmw-503"],
+    familyIds: ["bmw-isetta", "bmw-328", "bmw-503", "bmw-600"],
   },
   {
     id: "motorrad",

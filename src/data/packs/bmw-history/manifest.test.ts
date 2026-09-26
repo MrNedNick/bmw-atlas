@@ -157,4 +157,13 @@ describe("BMW history progress manifest", () => {
     expect(body.photo?.subject).toContain("Cabriolet");
     expect(familyMatches(car, { ...EMPTY_FILTERS, year: "1955" })).toBe(false);
   });
+
+  it("keeps the BMW 600 apart from the Isetta it grew out of", () => {
+    const car = families.find((family) => family.id === "bmw-600")!;
+    expect(car.generations[0].volume?.value).toBe(34_813);
+    expect(familyMatches(car, { ...EMPTY_FILTERS, year: "1956" })).toBe(false);
+    expect(familyMatches(isetta, { ...EMPTY_FILTERS, query: "BMW 600" })).toBe(
+      false,
+    );
+  });
 });
