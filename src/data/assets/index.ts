@@ -1506,6 +1506,32 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-02-sedan": {
+    url: "images/editorial-bmw-02-sedan.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_2002_in_Fjordblau_Metallic_in_Nagoya,_front_left.jpg",
+    author: "Mr.choppers",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject:
+      "BMW 2002 · 1973–1976, Fjordblau Metallic; жёлтые дополнительные фары не заводские",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:BMW_2002_in_Fjordblau_Metallic_in_Nagoya,_front_left.jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/0/0e/BMW_2002_in_Fjordblau_Metallic_in_Nagoya%2C_front_left.jpg",
+      localFile: "references/images/commons-bmw-2002-fjordblau.jpg",
+      imageId: "BMW_2002_in_Fjordblau_Metallic_in_Nagoya,_front_left.jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "чёрная решётка с горизонтальными ламелями между круглыми фарами",
+        "хромированные «ноздри» по центру",
+        "хромированный бампер с резиновыми клыками",
+        "оранжевые указатели поворота на углах передних крыльев",
+        "двухдверный кузов седана с тонкими стойками и хромированной линией по кромке капота",
+        "дополнительные жёлтые фары перед решёткой",
+      ],
+    },
+  },
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {

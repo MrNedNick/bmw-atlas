@@ -184,4 +184,11 @@ describe("BMW history progress manifest", () => {
       true,
     );
   });
+
+  it("treats 2002 as a model name, not as a production year", () => {
+    const car = families.find((family) => family.id === "bmw-02")!;
+    expect(familyMatches(car, { ...EMPTY_FILTERS, query: "2002" })).toBe(true);
+    expect(familyMatches(car, { ...EMPTY_FILTERS, year: "2002" })).toBe(false);
+    expect(familyMatches(car, { ...EMPTY_FILTERS, year: "1972" })).toBe(true);
+  });
 });

@@ -93,6 +93,15 @@ const detailedBodies: Record<
       "крутящий момент",
     ],
   },
+  "bmw-history-02-sedan": {
+    generationId: "bmw-02-sedan",
+    missingFields: [
+      "версии 1802, 2002 ti и 2002 tii",
+      "фото ранней серии до 1973 года",
+      "Touring и Cabriolet с отдельными карточками",
+      "крутящий момент",
+    ],
+  },
 };
 
 // T28 grows one archived body at a time. The list is progress state, not a

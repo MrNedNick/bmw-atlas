@@ -63,6 +63,7 @@ export const catalogGroups: readonly CatalogGroup[] = [
       "bmw-600",
       "bmw-700",
       "bmw-neue-klasse",
+      "bmw-02",
     ],
   },
   {
