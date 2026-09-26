@@ -166,4 +166,14 @@ describe("BMW history progress manifest", () => {
       false,
     );
   });
+
+  it("keeps the 700 Sport and 700 CS as one coupé with separate powertrains", () => {
+    const car = families.find((family) => family.id === "bmw-700")!;
+    expect(car.generations.map((generation) => generation.code)).toEqual([
+      "700 Coupé",
+    ]);
+    expect(
+      car.generations[0].powertrains.map((powertrain) => powertrain.power),
+    ).toEqual([30, 40, 40]);
+  });
 });

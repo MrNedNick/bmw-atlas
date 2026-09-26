@@ -1455,6 +1455,31 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-700-coupe": {
+    url: "images/editorial-bmw-700-coupe.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1960_BMW_700_Coupé_in_white,_front_left_(Brooklyn).jpg",
+    author: "Mr.choppers",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    subject: "BMW 700 Coupé · 1960",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:1960_BMW_700_Coupé_in_white,_front_left_(Brooklyn).jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/c/c6/1960_BMW_700_Coup%C3%A9_in_white%2C_front_left_%28Brooklyn%29.jpg",
+      localFile: "references/images/commons-bmw-700-coupe-1960.jpg",
+      imageId: "1960_BMW_700_Coupé_in_white,_front_left_(Brooklyn).jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "двухдверный кузов купе с низкой крышей и широким остеклением",
+        "круглые фары с хромированными ободками в передних крыльях",
+        "эмблема BMW по центру носа без «ноздрей»",
+        "хромированные горизонтальные решётки и прямоугольные указатели под фарами",
+        "тонкий охватывающий хромированный бампер",
+        "колпаки с эмблемой BMW и рифлёными декоративными кольцами",
+      ],
+    },
+  },
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {

@@ -74,6 +74,16 @@ const detailedBodies: Record<
       "крутящий момент и коробка передач",
     ],
   },
+  "bmw-history-700-coupe": {
+    generationId: "bmw-700-coupe",
+    missingFields: [
+      "LS Coupé на удлинённом кузове с осени 1964 года",
+      "700 Cabriolet",
+      "тираж",
+      "завод и география сборки",
+      "крутящий момент и коробка передач",
+    ],
+  },
 };
 
 // T28 grows one archived body at a time. The list is progress state, not a
