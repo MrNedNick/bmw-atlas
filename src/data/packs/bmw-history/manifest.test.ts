@@ -191,4 +191,16 @@ describe("BMW history progress manifest", () => {
     expect(familyMatches(car, { ...EMPTY_FILTERS, year: "2002" })).toBe(false);
     expect(familyMatches(car, { ...EMPTY_FILTERS, year: "1972" })).toBe(true);
   });
+
+  it("keeps every E9 coupé version inside one 1968-1975 body", () => {
+    const car = families.find((family) => family.id === "bmw-e9")!;
+    const [body] = car.generations;
+    expect([body.start, body.end]).toEqual([1968, 1975]);
+    expect(body.powertrains.map((powertrain) => powertrain.id)).toContain(
+      "bmw-3-0-csl-206",
+    );
+    expect(familyMatches(car, { ...EMPTY_FILTERS, query: "Batmobile" })).toBe(
+      true,
+    );
+  });
 });

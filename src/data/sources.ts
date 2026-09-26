@@ -1138,6 +1138,15 @@ export const sources: Source[] = [
     url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-841-1.bmw-3-0-csl-e9-206-hp.html",
   },
   {
+    id: "bmw-classic-3-0-csi-e9",
+    title: "BMW 3.0 CSi (E9)",
+    publisher: "BMW Group Classic",
+    date: "проверено 2026-09-26",
+    scope:
+      "BMW 3.0 CSi (E9): производство 07/1971 — 11/1975; 2985 см³, электронный впрыск, 200 л. с. при 5500 об/мин; выпущено 8 100 машин",
+    url: "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-54-1.bmw-3-0-csi-e9.html",
+  },
+  {
     id: "bmw-r32-classic",
     title: "BMW R 32",
     publisher: "BMW Group Classic",

@@ -102,6 +102,15 @@ const detailedBodies: Record<
       "крутящий момент",
     ],
   },
+  "bmw-history-e9": {
+    generationId: "bmw-e9-coupe",
+    missingFields: [
+      "3.0 CSL 180 и 200 л. с.",
+      "фото европейской спецификации",
+      "тираж 2800 CS, 3.0 CS и 2.5 CS",
+      "крутящий момент",
+    ],
+  },
 };
 
 // T28 grows one archived body at a time. The list is progress state, not a
@@ -418,6 +427,7 @@ const inventoryRows: BMWHistoryItem[] = [
     { from: "1968-12", to: "1975-11" },
     ["E9", "2800 CS", "3.0 CS", "3.0 CSi", "3.0 CSL", "2.5 CS"],
     [
+      "bmw-classic-3-0-csi-e9",
       "bmw-classic-2800-cs-e9",
       "bmw-classic-3-0-cs-e9",
       "bmw-classic-2-5-cs-e9",

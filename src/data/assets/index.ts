@@ -1532,6 +1532,31 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-e9-coupe": {
+    url: "images/editorial-bmw-e9-coupe.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1973_BMW_3.0_CS_(federalized_spec),_front_left.jpg",
+    author: "Mr.choppers",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    subject: "BMW 3.0 CS · 1973, американская спецификация",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:1973_BMW_3.0_CS_(federalized_spec),_front_left.jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/5/51/1973_BMW_3.0_CS_%28federalized_spec%29%2C_front_left.jpg",
+      localFile: "references/images/commons-bmw-3-0-cs-1973-federal.jpg",
+      imageId: "1973_BMW_3.0_CS_(federalized_spec),_front_left.jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "четыре круглые фары в чёрной решётке",
+        "узкие «ноздри», наклонённые вперёд",
+        "жабры за передней колёсной аркой",
+        "оранжевый боковой габарит и указатель на переднем крыле американской спецификации",
+        "хромированный бампер с резиновыми клыками",
+        "большое остекление купе и легкосплавные диски с эмблемой BMW",
+      ],
+    },
+  },
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {
