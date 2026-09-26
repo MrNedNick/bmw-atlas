@@ -136,4 +136,17 @@ describe("BMW history progress manifest", () => {
         ),
       ).toEqual([`invalid history period: ${row.id}`]);
   });
+
+  it("gives the 328 its own dated card without mixing it with the modern 328i", () => {
+    const roadster = families.find((family) => family.id === "bmw-328")!;
+    expect(roadster.generations.map((generation) => generation.id)).toEqual([
+      "bmw-328-roadster",
+    ]);
+    expect(familyMatches(roadster, { ...EMPTY_FILTERS, year: "1938" })).toBe(
+      true,
+    );
+    expect(familyMatches(roadster, { ...EMPTY_FILTERS, query: "328i" })).toBe(
+      false,
+    );
+  });
 });

@@ -42,9 +42,26 @@ const indexed = (
   missingFields: [...missingFields, ...archiveGaps],
 });
 
+// Archived bodies that already have a card: generation, photo and the fields
+// still missing from it. Everything else stays an index row.
+const detailedBodies: Record<
+  string,
+  { generationId: string; missingFields: string[] }
+> = {
+  "bmw-history-328": {
+    generationId: "bmw-328-roadster",
+    missingFields: [
+      "месяцы начала и конца выпуска",
+      "тираж",
+      "завод и география сборки",
+      "крутящий момент и коробка передач",
+    ],
+  },
+};
+
 // T28 grows one archived body at a time. The list is progress state, not a
 // claim that the historical BMW catalogue is complete.
-export const bmwHistoryInventory: BMWHistoryItem[] = [
+const inventoryRows: BMWHistoryItem[] = [
   {
     id: "bmw-history-isetta-standard",
     family: "Isetta",
@@ -364,6 +381,12 @@ export const bmwHistoryInventory: BMWHistoryItem[] = [
     ["серии 3.0 CSL 180/200/206 л. с. по годам", "тираж по версиям"],
   ),
 ];
+
+export const bmwHistoryInventory: BMWHistoryItem[] = inventoryRows.map((row) =>
+  detailedBodies[row.id]
+    ? { ...row, status: "detailed", ...detailedBodies[row.id] }
+    : row,
+);
 
 const acceptedLicense =
   /^(Public domain|CC0( 1\.0)?|CC BY(-SA)? \d\.\d( [a-z]{2})?|Редакционная визуализация)$/;

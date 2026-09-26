@@ -1379,6 +1379,31 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-328-roadster": {
+    url: "images/editorial-bmw-328-roadster.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1937_BMW_328_in_Green,_front_left_(Greenwich_2025).jpg",
+    author: "Mr.choppers",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW 328 · 1937, пятый выпущенный экземпляр",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:1937_BMW_328_in_Green,_front_left_(Greenwich_2025).jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/9/9a/1937_BMW_328_in_Green%2C_front_left_%28Greenwich_2025%29.jpg",
+      localFile: "references/images/commons-bmw-328-1937-greenwich.jpg",
+      imageId: "1937_BMW_328_in_Green,_front_left_(Greenwich_2025).jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "высокие узкие «ноздри» с частыми вертикальными прутьями",
+        "круглые фары между решёткой и передними крыльями",
+        "кожаные ремни поверх капота",
+        "отдельные обтекаемые крылья, заднее колесо частично закрыто",
+        "низкий вырез двери и откидное лобовое стекло родстера",
+        "светлые стальные диски с отверстиями",
+      ],
+    },
+  },
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {
