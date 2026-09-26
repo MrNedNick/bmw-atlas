@@ -149,4 +149,12 @@ describe("BMW history progress manifest", () => {
       false,
     );
   });
+
+  it("dates the 503 by production, not by its 1955 debut", () => {
+    const car = families.find((family) => family.id === "bmw-503")!;
+    const [body] = car.generations;
+    expect([body.start, body.end]).toEqual([1956, 1960]);
+    expect(body.photo?.subject).toContain("Cabriolet");
+    expect(familyMatches(car, { ...EMPTY_FILTERS, year: "1955" })).toBe(false);
+  });
 });

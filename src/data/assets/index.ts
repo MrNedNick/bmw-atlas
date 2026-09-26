@@ -1404,6 +1404,31 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-503-coupe-cabriolet": {
+    url: "images/editorial-bmw-503-coupe-cabriolet.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1957_BMW_503_Cabriolet_in_white,_front_left.jpg",
+    author: "Mr.choppers",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    subject: "BMW 503 Cabriolet · 1957",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:1957_BMW_503_Cabriolet_in_white,_front_left.jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/b/b5/1957_BMW_503_Cabriolet_in_white%2C_front_left.jpg",
+      localFile: "references/images/commons-bmw-503-cabriolet-1957.jpg",
+      imageId: "1957_BMW_503_Cabriolet_in_white,_front_left.jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "узкие высокие «ноздри» с вертикальными прутьями",
+        "горизонтальные хромированные решётки по сторонам от «ноздрей»",
+        "круглые фары в передних крыльях и маленькие круглые фонари под ними",
+        "охватывающий хромированный бампер",
+        "поднятый мягкий верх тёмного цвета",
+        "хромированный молдинг вдоль боковины и колпаки колёс",
+      ],
+    },
+  },
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {

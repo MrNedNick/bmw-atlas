@@ -57,6 +57,15 @@ const detailedBodies: Record<
       "крутящий момент и коробка передач",
     ],
   },
+  "bmw-history-503": {
+    generationId: "bmw-503-coupe-cabriolet",
+    missingFields: [
+      "фотография купе",
+      "месяцы выпуска Coupé",
+      "завод и география сборки",
+      "крутящий момент и коробка передач",
+    ],
+  },
 };
 
 // T28 grows one archived body at a time. The list is progress state, not a
