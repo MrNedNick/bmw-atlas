@@ -84,6 +84,15 @@ const detailedBodies: Record<
       "крутящий момент и коробка передач",
     ],
   },
+  "bmw-history-neue-klasse-coupe": {
+    generationId: "bmw-neue-klasse-coupe",
+    missingFields: [
+      "седаны 1500–2000 с отдельной карточкой",
+      "фото заводского 2000 CS со штатными колёсами",
+      "завод и география сборки",
+      "крутящий момент",
+    ],
+  },
 };
 
 // T28 grows one archived body at a time. The list is progress state, not a

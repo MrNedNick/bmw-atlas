@@ -1480,6 +1480,32 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-neue-klasse-coupe": {
+    url: "images/editorial-bmw-neue-klasse-coupe.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1968_BMW_2000_CS_in_Polaris_Silver,_front_left.jpg",
+    author: "Mr.choppers",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject:
+      "BMW 2000 C с двигателем и шильдиками 2000 CS · 1968, колёса Cosmic тех лет",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:1968_BMW_2000_CS_in_Polaris_Silver,_front_left.jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/f/f4/1968_BMW_2000_CS_in_Polaris_Silver%2C_front_left.jpg",
+      localFile: "references/images/commons-bmw-2000-cs-1968.jpg",
+      imageId: "1968_BMW_2000_CS_in_Polaris_Silver,_front_left.jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "широкие блоки фар под общим стеклом со встроенными указателями поворота",
+        "узкие высокие «ноздри» по центру передка",
+        "горизонтальные жалюзи под фарами",
+        "хромированный бампер с чёрными клыками",
+        "двухдверный кузов купе с тонкими стойками и хромированной линией вдоль боковины",
+        "многоспицевые легкосплавные диски Cosmic вместо заводских колёс",
+      ],
+    },
+  },
 };
 
 for (const [generationId, photo] of Object.entries(photoByGeneration)) {

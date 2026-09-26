@@ -176,4 +176,12 @@ describe("BMW history progress manifest", () => {
       car.generations[0].powertrains.map((powertrain) => powertrain.power),
     ).toEqual([30, 40, 40]);
   });
+
+  it("labels the 2000 CS photo as a converted 2000 C", () => {
+    const car = families.find((family) => family.id === "bmw-neue-klasse")!;
+    expect(car.generations[0].photo?.subject).toContain("2000 C с двигателем");
+    expect(familyMatches(car, { ...EMPTY_FILTERS, query: "2000 CA" })).toBe(
+      true,
+    );
+  });
 });
