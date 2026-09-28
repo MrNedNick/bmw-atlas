@@ -46,6 +46,16 @@ describe("collection chapters", () => {
       ),
     ).toEqual([]);
   });
+  it("limits a chassis search to its versions even when the family has chassis aliases", () => {
+    const find = (query: string) =>
+      collectionSelection(
+        families,
+        { ...selection, filters: { ...EMPTY_FILTERS, query } },
+        [],
+      ).flatMap((e) => e.generations.map((g) => g.id));
+    expect(find("F22")).toEqual(["bmw-2-f22", "bmw-2-f22-lci"]);
+    expect(find("F22 LCI")).toEqual(["bmw-2-f22-lci"]);
+  });
   it("does not classify a model-year update or a whole lineage as a facelift", () => {
     const g = families
       .flatMap((f) => f.generations)

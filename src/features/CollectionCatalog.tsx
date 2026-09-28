@@ -38,10 +38,13 @@ export function collectionSelection(
       !familyMatches(family, selection.filters, saved)
     )
       return [];
-    const familyQuery = matchesText(
-      [family.brand, family.name, ...family.aliases].join(" "),
-      selection.filters.query,
-    );
+    const chassisQuery = /\b[EFGKRU]\d{2}\b/i.test(selection.filters.query);
+    const familyQuery =
+      !chassisQuery &&
+      matchesText(
+        [family.brand, family.name, ...family.aliases].join(" "),
+        selection.filters.query,
+      );
     const generations = family.generations.filter(
       (g) =>
         (!selection.decade ||
