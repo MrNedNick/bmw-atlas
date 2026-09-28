@@ -1,3 +1,4 @@
+import { t, type Locale } from "../i18n";
 import { useEffect, useState } from "react";
 import { parseGarage } from "./garage";
 export function useSaved(allowed: string[]) {
@@ -55,7 +56,7 @@ export function useTheme() {
   };
 }
 
-export type Language = "en" | "ru";
+export type Language = Locale;
 
 export function useLanguage() {
   const [language, setLanguage] = useState<Language>(() => {
@@ -69,6 +70,7 @@ export function useLanguage() {
   });
   useEffect(() => {
     document.documentElement.lang = language;
+    document.title = t(language, "page.title");
     try {
       localStorage.setItem("motor-atlas.language", language);
     } catch {

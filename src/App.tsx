@@ -1,3 +1,5 @@
+import { t, catalogText } from "./i18n";
+import { CollectionCatalog } from "./features/CollectionCatalog";
 import { useEffect, useLayoutEffect, useMemo, useState, useRef } from "react";
 import type { MouseEvent } from "react";
 import {
@@ -22,7 +24,6 @@ import {
   EMPTY_FILTERS,
   familyMatches,
   matchesText,
-  formatYears,
   type Filters,
   type IndexSnapshot,
   type ModelFamily,
@@ -37,12 +38,15 @@ import {
 } from "./lib/preferences";
 import { gallerySelection } from "./features/media/gallery";
 import { VehiclePhoto } from "./features/media/VehiclePhoto";
-import { collectionTaglines } from "./features/collection-copy";
 import { Exhibition } from "./features/Exhibition";
 import { FamilyDetail, SourceLink } from "./features/FamilyDetail";
 const number = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
 const defaults = (f: ModelFamily) =>
-  f.id === "bmw-3-series" ? "bmw-g20" : f.generations.at(-1)!.id;
+  f.id === "bmw-3-series"
+    ? "bmw-g20"
+    : f.id === "bmw-2-coupe"
+      ? "bmw-2-g42"
+      : f.generations.at(-1)!.id;
 const catalogOrder = catalogGroups.flatMap((group) => group.familyIds);
 const catalogRank = (id: string) => {
   const rank = catalogOrder.indexOf(id);
@@ -58,6 +62,7 @@ interface PageState {
   view: "catalog" | "models" | "sources" | "photos";
   phase: "" | "facelift";
   collection: string;
+  decade: string;
   family: string;
   generation: string;
   filters: Filters;
@@ -73,6 +78,7 @@ function readUrl(): PageState {
   const v = q.get("view");
   return {
     view: v === "models" || v === "sources" || v === "photos" ? v : "catalog",
+    decade: /^(19|20)\d0$/.test(q.get("decade") ?? "") ? q.get("decade")! : "",
     phase: q.get("phase") === "facelift" ? "facelift" : "",
     collection: catalogGroups.some((group) => group.id === q.get("collection"))
       ? q.get("collection")!
@@ -85,6 +91,7 @@ function readUrl(): PageState {
 function urlFor(state: PageState) {
   const q = new URLSearchParams();
   if (state.view !== "catalog") q.set("view", state.view);
+  if (state.decade) q.set("decade", state.decade);
   if (state.phase) q.set("phase", state.phase);
   if (state.collection) q.set("collection", state.collection);
   if (state.family) q.set("model", state.family);
@@ -122,12 +129,8 @@ function FamilyCard({
           className={"bookmark " + (saved ? "is-saved" : "")}
           aria-label={
             (saved
-              ? isEnglish
-                ? "Remove from garage "
-                : "Убрать из гаража "
-              : isEnglish
-                ? "Add to garage "
-                : "В гараж ") + family.name
+              ? t(language, "remove.from.garage.24c23b")
+              : t(language, "add.to.garage.83f4a4")) + family.name
           }
           aria-pressed={saved}
           onClick={onSave}
@@ -157,8 +160,7 @@ function FamilyCard({
           <div>
             <span className="eyebrow">
               {family.generations[0].start} —{" "}
-              {family.generations.at(-1)!.end ??
-                (isEnglish ? "TODAY" : "СЕГОДНЯ")}
+              {family.generations.at(-1)!.end ?? t(language, "today.6370c3")}
             </span>
             <h3>{family.name}</h3>
           </div>
@@ -168,12 +170,12 @@ function FamilyCard({
         </div>
         <p>
           {isEnglish
-            ? (collectionTaglines[family.id] ?? family.name)
+            ? catalogText(language, `family.${family.id}.tagline`)
             : family.tagline}
         </p>
         <div className="card-metrics">
           <span>
-            {isEnglish ? "Generations / versions: " : "Поколения / версии: "}
+            {t(language, "generations.versions.cc0819")}
             <strong>{family.generations.length}</strong>
           </span>
         </div>
@@ -233,6 +235,8 @@ export default function App() {
   const [indexError, setIndexError] = useState(false);
   const [indexVersion, setIndexVersion] = useState(0);
   const [showFilters, setShowFilters] = useState(false);
+  const [collectionFiltersExpanded, setCollectionFiltersExpanded] =
+    useState(false);
   const [indexPage, setIndexPage] = useState(1);
   const [indexDetail, setIndexDetail] = useState<IndexModel | null>(null);
   const [notice, setNotice] = useState("");
@@ -286,43 +290,17 @@ export default function App() {
   const { saved, toggle } = useSaved(families.map((f) => f.id)),
     { theme, toggleTheme } = useTheme(),
     { language, toggleLanguage } = useLanguage();
-  const l = (ru: string, en: string) => (language === "en" ? en : ru);
-  const groupText = (group: (typeof catalogGroups)[number]) => {
-    if (language !== "en") return group;
-    const translated: Record<string, { eyebrow: string; title: string }> = {
-      series: { eyebrow: "CORE SERIES", title: "BMW series" },
-      x: { eyebrow: "BMW X", title: "SAV and Sports Activity Coupé" },
-      m: { eyebrow: "BMW M", title: "High-performance models" },
-      i: { eyebrow: "BMW i", title: "Electric and hybrid BMW i" },
-      classic: { eyebrow: "BMW CLASSIC", title: "Historic models" },
-      motorrad: { eyebrow: "BMW MOTORRAD", title: "BMW motorcycles" },
-    };
-    return { ...group, ...translated[group.id] };
+  const text = {
+    skip: t(language, "skip.to.content.e64281"),
+    catalog: t(language, "bmw.atlas.catalog.c8726f"),
+    models: t(language, "all.models.a1334b"),
+    garage: t(language, "my.garage.dc4a1b"),
+    photos: t(language, "photos.d4ae0b"),
+    about: t(language, "about.the.data.5c1bff"),
+    light: t(language, "light.theme.699557"),
+    dark: t(language, "dark.theme.054139"),
+    language: t(language, ".9e327a"),
   };
-  const text =
-    language === "en"
-      ? {
-          skip: "Skip to content",
-          catalog: "BMW Atlas catalog",
-          models: "All models",
-          garage: "My garage",
-          photos: "Photos",
-          about: "About the data",
-          light: "Light theme",
-          dark: "Dark theme",
-          language: "Русский",
-        }
-      : {
-          skip: "Перейти к содержимому",
-          catalog: "BMW Atlas — каталог",
-          models: "Все модели",
-          garage: "Мой гараж",
-          photos: "Фото",
-          about: "О данных",
-          light: "Светлая тема",
-          dark: "Тёмная тема",
-          language: "English",
-        };
   useEffect(() => {
     const c = new AbortController();
     setIndexError(false);
@@ -406,8 +384,8 @@ export default function App() {
     toggle(id);
     setNotice(
       (saved.includes(id)
-        ? l("Убрано из гаража: ", "Removed from garage: ")
-        : l("В вашем гараже: ", "In your garage: ")) +
+        ? t(language, "removed.from.garage.4bc665")
+        : t(language, "in.your.garage.8488bc")) +
         "BMW " +
         familyById[id].name,
     );
@@ -426,6 +404,7 @@ export default function App() {
     navigate({
       view,
       collection: "",
+      decade: "",
       phase: "",
       family: "",
       generation: "",
@@ -515,7 +494,7 @@ export default function App() {
               <sup>●</sup>
             </span>
           </button>
-          <nav aria-label={l("Основная навигация", "Main navigation")}>
+          <nav aria-label={t(language, "main.navigation.e7a083")}>
             <button
               className={state.view === "models" ? "active" : ""}
               onClick={() => (family ? backToModels() : go("models"))}
@@ -576,14 +555,14 @@ export default function App() {
               <div className="section-heading">
                 <div>
                   <span className="eyebrow">
-                    {l("ПРОДОЛЖИТЬ ПРОГУЛКУ", "KEEP EXPLORING")}
+                    {t(language, "keep.exploring.38917d")}
                   </span>
                   <h2 id="next-exhibits-title">
-                    {l("Рядом в коллекции", "Nearby in the collection")}
+                    {t(language, "nearby.in.the.collection.01c569")}
                   </h2>
                 </div>
                 <button className="text-action" onClick={backToModels}>
-                  {l("Вернуться к коллекции", "Back to the collection")}
+                  {t(language, "back.to.the.collection.8c3cc2")}
                   <ArrowRight size={18} />
                 </button>
               </div>
@@ -628,197 +607,35 @@ export default function App() {
           </>
         ) : state.view === "models" ? (
           <section className="page-enter all-models-page">
-            <div className="page-heading">
-              <span className="eyebrow">BMW CATALOGUE</span>
-              <h1>
-                {l("Коллекция BMW.", "The BMW collection.")}{" "}
-                <em>{l("Найдите свой характер.", "Find your character.")}</em>
-              </h1>
-              <p>
-                {l(
-                  "Любимые серии, редкие силуэты и новые открытия.",
-                  "Favourite series, rare silhouettes and new discoveries.",
-                )}
-              </p>
-            </div>
-            <div className="collection-tools">
-              <div className="search-box collection-search">
-                <Search size={22} />
-                <input
-                  ref={searchRef}
-                  aria-label={l("Найти в коллекции", "Search the collection")}
-                  placeholder={l(
-                    "Что вам интересно? M3, E30, X7, GS…",
-                    "What are you curious about? M3, E30, X7, GS…",
-                  )}
-                  value={state.filters.query}
-                  onChange={(e) => filters({ query: e.target.value })}
-                />
-                {state.filters.query && (
-                  <button
-                    aria-label={l("Очистить поиск", "Clear search")}
-                    onClick={() => filters({ query: "" })}
-                  >
-                    <X size={18} />
-                  </button>
-                )}
-              </div>
-              <nav
-                className="collection-tabs"
-                aria-label={l("Разделы коллекции", "Collection rooms")}
-              >
-                {[
-                  { id: "", label: l("Вся коллекция", "All rooms") },
-                  ...catalogGroups.map((group) => ({
-                    id: group.id,
-                    label:
-                      group.id === "series"
-                        ? l("Серии", "Series")
-                        : group.eyebrow.replace("BMW ", ""),
-                  })),
-                ].map((group) => (
-                  <button
-                    key={group.id}
-                    aria-pressed={state.collection === group.id}
-                    onClick={() => navigate({ collection: group.id }, true)}
-                  >
-                    {group.label}
-                  </button>
-                ))}
-              </nav>
-            </div>
-            <section className="models-section" aria-labelledby="stories-title">
-              <button
-                className="museum-random collection-random"
-                onClick={surprise}
-                disabled={!galleryEntries.length}
-              >
-                <Shuffle size={17} />
-                {l("Случайная находка", "Surprise me")}
-              </button>
-              <div className="collection-results" aria-live="polite">
-                <h2 id="stories-title">
-                  {state.collection
-                    ? groupText(
-                        catalogGroups.find(
-                          (group) => group.id === state.collection,
-                        )!,
-                      ).title
-                    : l("Все залы", "All rooms")}
-                </h2>
-                <span>
-                  {
-                    filtered.filter(
-                      (f) =>
-                        !state.collection ||
-                        catalogGroups
-                          .find((g) => g.id === state.collection)!
-                          .familyIds.includes(f.id),
-                    ).length
-                  }{" "}
-                  / {families.length} {l("семейств", "families")}
-                </span>
-              </div>
-              {!filtered.some(
-                (f) =>
-                  !state.collection ||
-                  catalogGroups
-                    .find((g) => g.id === state.collection)!
-                    .familyIds.includes(f.id),
-              ) && (
-                <div className="collection-empty">
-                  <h3>
-                    {l(
-                      "В этом зале ничего не нашлось",
-                      "Nothing found in this room",
-                    )}
-                  </h3>
-                  <p>
-                    {l(
-                      "Попробуйте другой запрос или откройте всю коллекцию.",
-                      "Try another search or explore the whole collection.",
-                    )}
-                  </p>
-                  <button
-                    className="museum-cta"
-                    onClick={() =>
-                      navigate(
-                        { collection: "", filters: { ...EMPTY_FILTERS } },
-                        true,
-                      )
-                    }
-                  >
-                    {l("Показать всю коллекцию", "Show the whole collection")}
-                    <ArrowRight size={18} />
-                  </button>
-                </div>
-              )}
-              <div className="catalog-groups">
-                {catalogGroups
-                  .filter(
-                    (group) =>
-                      !state.collection || group.id === state.collection,
-                  )
-                  .map((group) => {
-                    const translatedGroup = groupText(group);
-                    const groupFamilies = group.familyIds
-                      .map((familyId) => familyById[familyId])
-                      .filter((f) => filtered.includes(f));
-                    if (!groupFamilies.length) return null;
-
-                    return (
-                      <section
-                        key={group.id}
-                        className="catalog-group"
-                        aria-labelledby={`catalog-group-${group.id}`}
-                      >
-                        <div
-                          className={
-                            state.collection
-                              ? "sr-only"
-                              : "catalog-group-heading"
-                          }
-                        >
-                          <div>
-                            <span className="eyebrow">
-                              {translatedGroup.eyebrow}
-                            </span>
-                            <h3 id={`catalog-group-${group.id}`}>
-                              {translatedGroup.title}
-                            </h3>
-                          </div>
-                          <span>
-                            {groupFamilies.length}{" "}
-                            {l("в коллекции", "in this room")}
-                          </span>
-                        </div>
-                        <div className="family-grid">
-                          {groupFamilies.map((f) => (
-                            <FamilyCard
-                              key={f.id}
-                              family={f}
-                              href={urlFor({
-                                ...state,
-                                family: f.id,
-                                generation: defaults(f),
-                              })}
-                              onOpen={() => openFamily(f)}
-                              saved={saved.includes(f.id)}
-                              onSave={() => saveFamily(f.id)}
-                              language={language}
-                            />
-                          ))}
-                        </div>
-                      </section>
-                    );
-                  })}
-              </div>
-            </section>
+            <CollectionCatalog
+              expanded={collectionFiltersExpanded}
+              onExpandedChange={setCollectionFiltersExpanded}
+              inputRef={searchRef}
+              families={orderedFamilies}
+              selection={state}
+              saved={saved}
+              language={language}
+              onChange={(patch) => {
+                navigate(patch, true);
+                setIndexPage(1);
+              }}
+              onSave={saveFamily}
+              onOpen={(family, generation) =>
+                navigate({ family: family.id, generation: generation.id })
+              }
+              hrefFor={(family, generation) =>
+                urlFor({
+                  ...state,
+                  family: family.id,
+                  generation: generation.id,
+                })
+              }
+            />
             <details className="collection-index">
               <summary>
-                {l(
-                  "Ищете конкретную модификацию? Открыть указатель названий",
-                  "Looking for a specific variant? Open the name index",
+                {t(
+                  language,
+                  "looking.for.a.specific.variant.open.the.name.ind.85e2b8",
                 )}
               </summary>
               <section
@@ -828,35 +645,30 @@ export default function App() {
                 <div className="section-heading">
                   <div>
                     <span className="eyebrow">
-                      {l("УКАЗАТЕЛЬ НАЗВАНИЙ", "NAME INDEX")}
+                      {t(language, "name.index.26de5a")}
                     </span>
                     <h2 id="index-title-all">
-                      {l("Указатель BMW", "BMW name index")}
+                      {t(language, "bmw.name.index.b32efc")}
                     </h2>
                   </div>
                   <span className="edition">
-                    {l(
-                      "Названия модификаций · NHTSA vPIC",
-                      "Variant names · NHTSA vPIC",
-                    )}
+                    {t(language, "variant.names.nhtsa.vpic.e9daa8")}
                   </span>
                 </div>
                 {indexError ? (
                   <div className="empty-block panel">
-                    <h3>
-                      {l("Индекс не загрузился", "The index did not load")}
-                    </h3>
+                    <h3>{t(language, "the.index.did.not.load.aedff6")}</h3>
                     <Button
                       variant="outline"
                       className="outline-action"
                       onClick={() => setIndexVersion((v) => v + 1)}
                     >
-                      {l("Повторить загрузку", "Retry loading")}
+                      {t(language, "retry.loading.f3a882")}
                     </Button>
                   </div>
                 ) : !index ? (
                   <p role="status">
-                    {l("Загружаем полный индекс…", "Loading the full index…")}
+                    {t(language, "loading.the.full.index.77f26d")}
                   </p>
                 ) : modelIndexRows.length ? (
                   <>
@@ -880,16 +692,16 @@ export default function App() {
                         className="load-more"
                         onClick={() => setIndexPage((n) => n + 1)}
                       >
-                        {l("Показать ещё 36", "Show 36 more")}{" "}
+                        {t(language, "show.36.more.3f8d2f")}{" "}
                         <ArrowRight size={16} />
                       </button>
                     )}
                   </>
                 ) : (
                   <p className="empty-inline">
-                    {l(
-                      "Такого названия пока нет в полном индексе BMW.",
-                      "This name is not in the full BMW index yet.",
+                    {t(
+                      language,
+                      "this.name.is.not.in.the.full.bmw.index.yet.c5b565",
                     )}
                   </p>
                 )}
@@ -900,15 +712,16 @@ export default function App() {
           <section className="page-enter">
             <div className="page-heading">
               <span className="eyebrow">
-                {l("ФОРМЫ, КОТОРЫЕ ЗАПОМИНАЮТСЯ", "MEMORABLE FORMS")}
+                {t(language, "memorable.forms.c86078")}
               </span>
               <h1>
-                BMW {l("в", "in")} <em>{l("кадре.", "focus.")}</em>
+                BMW {t(language, "in.c0d3b6")}{" "}
+                <em>{t(language, "focus.2deb8a")}</em>
               </h1>
               <p>
-                {l(
-                  "Рассматривайте силуэты, открывайте модели и замечайте изменения. Нажмите на фотографию, чтобы открыть её крупно.",
-                  "Explore silhouettes and spot the changes. Select a photograph to see it in full detail.",
+                {t(
+                  language,
+                  "explore.silhouettes.and.spot.the.changes.select..200315",
                 )}
               </p>
             </div>
@@ -917,17 +730,17 @@ export default function App() {
                 <Search size={22} />
                 <input
                   ref={searchRef}
-                  aria-label={l("Найти фотографию", "Find a photograph")}
-                  placeholder={l(
-                    "Модель или кузов: M3, E30, X7…",
-                    "Model or body code: M3, E30, X7…",
+                  aria-label={t(language, "find.a.photograph.e90bce")}
+                  placeholder={t(
+                    language,
+                    "model.or.body.code.m3.e30.x7.0035ab",
                   )}
                   value={state.filters.query}
                   onChange={(e) => filters({ query: e.target.value })}
                 />
                 {state.filters.query && (
                   <button
-                    aria-label={l("Очистить поиск", "Clear search")}
+                    aria-label={t(language, "clear.search.c7e7dd")}
                     onClick={() => filters({ query: "" })}
                   >
                     <X size={18} />
@@ -936,15 +749,15 @@ export default function App() {
               </div>
               <nav
                 className="collection-tabs"
-                aria-label={l("Залы фотогалереи", "Photo gallery rooms")}
+                aria-label={t(language, "photo.gallery.rooms.b5fad2")}
               >
                 {[
-                  { id: "", label: l("Все фотографии", "All photographs") },
+                  { id: "", label: t(language, "all.photographs.43f9b2") },
                   ...catalogGroups.map((group) => ({
                     id: group.id,
                     label:
                       group.id === "series"
-                        ? l("Серии", "Series")
+                        ? t(language, "series.02480d")
                         : group.eyebrow.replace("BMW ", ""),
                   })),
                 ].map((group) => (
@@ -966,23 +779,18 @@ export default function App() {
                   }
                 >
                   {state.phase && <span aria-hidden="true">✓ </span>}
-                  {l("Только рестайлинги", "Facelifts only")}
+                  {t(language, "facelifts.only.bceae2")}
                 </button>
                 <span aria-live="polite">
-                  {l("Фотографий:", "Photographs:")} {galleryEntries.length}
+                  {t(language, "photographs.6f9461")} {galleryEntries.length}
                 </span>
               </div>
             </div>
             {!galleryEntries.length && (
               <div className="collection-empty">
-                <h3>
-                  {l("Таких снимков пока нет", "No photographs match yet")}
-                </h3>
+                <h3>{t(language, "no.photographs.match.yet.ce1313")}</h3>
                 <p>
-                  {l(
-                    "Попробуйте другую модель или снимите ограничения.",
-                    "Try another model or clear the filters.",
-                  )}
+                  {t(language, "try.another.model.or.clear.the.filters.c4a280")}
                 </p>
                 <button
                   className="museum-cta"
@@ -997,7 +805,7 @@ export default function App() {
                     )
                   }
                 >
-                  {l("Все фотографии", "All photographs")}
+                  {t(language, "all.photographs.43f9b2")}
                   <ArrowRight size={18} />
                 </button>
               </div>
@@ -1038,12 +846,12 @@ export default function App() {
               ))}
             </div>
             <p className="note">
-              {l("С фотографией:", "With a photograph:")}{" "}
+              {t(language, "with.a.photograph.327461")}{" "}
               {allGenerations.filter((x) => x.generation.photo).length}{" "}
-              {l("из", "of")} {allGenerations.length}{" "}
-              {l(
-                "поколений / обзорных ветвей. Отсутствующие снимки добавляются после проверки версии и лицензии.",
-                "generations / overview branches. Missing images are added only after the version and licence have been checked.",
+              {t(language, "of.777fa2")} {allGenerations.length}{" "}
+              {t(
+                language,
+                "generations.overview.branches.missing.images.are.86e6ce",
               )}
             </p>
           </section>
@@ -1051,18 +859,18 @@ export default function App() {
           <section className="page-enter">
             <div className="page-heading">
               <span className="eyebrow">
-                {l("ПРОЗРАЧНОСТЬ ПО УМОЛЧАНИЮ", "TRANSPARENCY BY DEFAULT")}
+                {t(language, "transparency.by.default.29c6e6")}
               </span>
               <h1>
-                {l("Факты, которым", "Facts with")}
+                {t(language, "facts.with.bbfcb2")}
                 <br />
-                {l("можно", "a traceable")}{" "}
-                <em>{l("найти начало.", "starting point.")}</em>
+                {t(language, "a.traceable.d9f8a3")}{" "}
+                <em>{t(language, "starting.point.b11228")}</em>
               </h1>
               <p>
-                {l(
-                  "Большой индекс помогает найти название. Подробная история появляется только вместе с источниками.",
-                  "The broad index helps find a name. A detailed history appears only with sources.",
+                {t(
+                  language,
+                  "the.broad.index.helps.find.a.name.a.detailed.his.eda53b",
                 )}
               </p>
             </div>
@@ -1071,44 +879,41 @@ export default function App() {
                 <Database />
                 <h3>
                   {index ? number(index.modelCount) : "…"}{" "}
-                  {l("названия", "names")}
+                  {t(language, "names.c4802c")}
                 </h3>
                 <p>
-                  {l(
-                    "NHTSA vPIC · только BMW. Регуляторный каталог, прежде всего рынок США. В перечнях встречаются производные разных классов транспорта.",
-                    "NHTSA vPIC · BMW only. A regulatory catalogue focused on the US market; entries can include derivatives from several vehicle classes.",
+                  {t(
+                    language,
+                    "nhtsa.vpic.bmw.only.a.regulatory.catalogue.focus.e44fcf",
                   )}
                 </p>
               </article>
               <article className="panel">
                 <LayersIcon />
                 <h3>
-                  {families.length}{" "}
-                  {l("подробные истории", "detailed histories")}
+                  {families.length} {t(language, "detailed.histories.a84df2")}
                 </h3>
                 <p>
                   {allGenerations.length}{" "}
-                  {l(
-                    "поколений / обзорных ветвей. Документированные данные из официальных материалов BMW.",
-                    "generations / overview branches. Documented details from official BMW material.",
+                  {t(
+                    language,
+                    "generations.overview.branches.documented.details.c9c23d",
                   )}
                 </p>
               </article>
               <article className="panel">
                 <ShieldCheck />
-                <h3>
-                  {l("Без придуманной полноты", "No invented completeness")}
-                </h3>
+                <h3>{t(language, "no.invented.completeness.06be8e")}</h3>
                 <p>
-                  {l(
-                    "Нет факта — нет числа. Рестайлинг не смешивается с ежегодным обновлением, а производство — с продажами.",
-                    "No fact means no number. A facelift is not mixed with a model-year update, and production is not mixed with sales.",
+                  {t(
+                    language,
+                    "no.fact.means.no.number.a.facelift.is.not.mixed..b6b495",
                   )}
                 </p>
               </article>
             </div>
             <section className="panel">
-              <h2>{l("Источники каталога", "Catalogue sources")}</h2>
+              <h2>{t(language, "catalogue.sources.8dafd2")}</h2>
               <div className="source-list">
                 {sources.map((s) => (
                   <a href={s.url} key={s.id} target="_blank" rel="noreferrer">
@@ -1150,15 +955,16 @@ export default function App() {
             ) : (
               <div className="page-heading">
                 <span className="eyebrow">
-                  {l("ВАШИ НАХОДКИ", "YOUR FINDS")}
+                  {t(language, "your.finds.931e1c")}
                 </span>
                 <h1>
-                  {l("Мой", "My")} <em>{l("гараж.", "garage.")}</em>
+                  {t(language, "my.c8bf97")}{" "}
+                  <em>{t(language, "garage.2bdc8c")}</em>
                 </h1>
                 <p>
-                  {l(
-                    "Истории, к которым хочется вернуться. Сохраняются в этом браузере.",
-                    "Stories worth returning to. Saved in this browser.",
+                  {t(
+                    language,
+                    "stories.worth.returning.to.saved.in.this.browser.0bef96",
                   )}
                 </p>
               </div>
@@ -1426,13 +1232,13 @@ export default function App() {
             ) : (
               <section className="collection-invitation">
                 <span className="eyebrow">
-                  {l("ВАША СЛЕДУЮЩАЯ НАХОДКА", "YOUR NEXT DISCOVERY")}
+                  {t(language, "your.next.discovery.be1836")}
                 </span>
-                <h2>{l("Какой BMW — ваш?", "Which BMW is yours?")}</h2>
+                <h2>{t(language, "which.bmw.is.yours.69f5b8")}</h2>
                 <p>
-                  {l(
-                    "Пройдите по залам коллекции. Сравните поколения, рассмотрите рестайлинги и соберите свой гараж.",
-                    "Walk through the collection. Explore generations, spot facelift details and build your own garage.",
+                  {t(
+                    language,
+                    "walk.through.the.collection.explore.generations..da6c86",
                   )}
                 </p>
                 <a
@@ -1449,7 +1255,7 @@ export default function App() {
                     go("models");
                   }}
                 >
-                  {l("Все модели", "All models")}
+                  {t(language, "all.models.a1334b")}
                   <ArrowRight size={18} />
                 </a>
               </section>
@@ -1460,7 +1266,7 @@ export default function App() {
       <dialog
         ref={photoDialog}
         className="photo-dialog"
-        aria-label={l("Просмотр фотографии", "Photo viewer")}
+        aria-label={t(language, "photo.viewer.b585d5")}
         onCancel={(event) => {
           event.preventDefault();
           setPhotoIndex(null);
@@ -1490,7 +1296,7 @@ export default function App() {
               </strong>
               <button
                 onClick={() => setPhotoIndex(null)}
-                aria-label={l("Закрыть фотографию", "Close photo")}
+                aria-label={t(language, "close.photo.0832d4")}
                 autoFocus
               >
                 <X />
@@ -1521,7 +1327,7 @@ export default function App() {
                 });
               }}
             >
-              {l("Открыть историю модели", "Explore this model")}
+              {t(language, "explore.this.model.59653f")}
               <ArrowUpRight size={18} />
             </a>
             <div className="photo-viewer-controls">
@@ -1533,7 +1339,7 @@ export default function App() {
                   )
                 }
                 disabled={galleryEntries.length < 2}
-                aria-label={l("Предыдущее фото", "Previous photo")}
+                aria-label={t(language, "previous.photo.0de76c")}
               >
                 <ArrowLeft />
               </button>
@@ -1545,7 +1351,7 @@ export default function App() {
                   setPhotoIndex((photoIndex + 1) % galleryEntries.length)
                 }
                 disabled={galleryEntries.length < 2}
-                aria-label={l("Следующее фото", "Next photo")}
+                aria-label={t(language, "next.photo.4f561f")}
               >
                 <ArrowRight />
               </button>
@@ -1605,17 +1411,11 @@ export default function App() {
           <span className="footer-brand">
             BMW atlas<span>●</span>
           </span>
-          <p>
-            {l(
-              "Независимая энциклопедия BMW.",
-              "An independent BMW encyclopedia.",
-            )}
-          </p>
+          <p>{t(language, "an.independent.bmw.encyclopedia.e06c1f")}</p>
         </div>
         <span>© 2026 BMW Atlas</span>
         <button onClick={() => go("sources")}>
-          {l("Данные и источники", "Data and sources")}{" "}
-          <ArrowUpRight size={14} />
+          {t(language, "data.and.sources.f8a9a4")} <ArrowUpRight size={14} />
         </button>
       </footer>
     </>

@@ -1,3 +1,4 @@
+import { t, catalogText, label } from "../i18n";
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
 import {
@@ -11,6 +12,7 @@ import {
 } from "lucide-react";
 import type { ModelFamily, Generation } from "../domain/catalog";
 import { formatVolume, formatYears } from "../domain/catalog";
+import { heroPower, spotlights } from "../data/spotlights";
 import { sourceById } from "../data/sources";
 import { Button } from "../components/button/button";
 import { VehiclePhoto } from "./media/VehiclePhoto";
@@ -50,136 +52,91 @@ export function FamilyDetail({
   language?: Language;
 }) {
   const isEnglish = language === "en";
-  const copy = isEnglish
-    ? {
-        back: "All models",
-        history: "MODEL HISTORY",
-        inGarage: "In my garage",
-        addGarage: "Add to garage",
-        sourcesOnScreen: "sources on this screen",
-        generations: "GENERATIONS",
-        generationSelection: "Generation selection",
-        selectGeneration: "Choose generation",
-        selectedGeneration: "SELECTED GENERATION",
-        modelSections: "Model sections",
-        overview: "Overview",
-        engines: "Engines",
-        production: "Production",
-        ratings: "Ratings",
-        sources: "Sources",
-        knownUpdate: "updated",
-        changed: "WHAT CHANGED",
-        generationCharacter: "generation character",
-        rememberedFor: "Why this generation matters",
-        facts: "DATABASE DETAILS",
-        powertrains: "Powertrain variants",
-        notAdded: "Not added yet",
-        knownUpdates: "Sourced updates",
-        noData: "No data",
-        generationProduction: "Generation production",
-        assembly: "Assembly",
-        factoryRecords: "factory records",
-        notClarified: "Not yet clarified",
-        coverageNote:
-          "This is the verified part of the story, not a promise of complete coverage for every market.",
-        viewSources: "View sources",
-        familyFacts: "Family facts",
-        timeline: "Family timeline",
-        present: "present",
-        branches: "generations / branches",
-        bodyStyles: "Family body styles",
-        selected: "Selected generation",
-        powertrainVariants: "powertrain variants",
-        powertrainsInProgress: "powertrain coverage in progress",
-        sourcedUpdates: "sourced updates",
-        noSourcedUpdate: "no sourced update",
-        underHood: "What powered it",
-        engineIntro:
-          "variants in the database. Year and market are stated for each entry.",
-        engineFuel: "Engine fuel",
-        allFuel: "All fuel types",
-        version: "Version",
-        power: "Power",
-        torque: "Torque",
-        transmissionDrive: "Transmission / drive",
-        marketSnapshot: "Market and snapshot",
-        driveNotSpecified: "Drive not specified",
-        researchMore: "There is more to research here",
-        enginesMissing:
-          "Confirmed powertrain variants have not been added for this generation yet.",
-        engineNote:
-          "A marketing name is not an engine code. A dash means there is no confirmation. Records do not automatically apply to other years or markets.",
-        verify: "VERIFY IT YOURSELF",
-        sourceLead: "Every fact has a starting point",
-        photo: "Photo",
-        photoNote:
-          "This photo shows this exact generation; it does not illustrate the others.",
-      }
-    : {
-        back: "Все модели",
-        history: "ИСТОРИЯ МОДЕЛИ",
-        inGarage: "В моём гараже",
-        addGarage: "В мой гараж",
-        sourcesOnScreen: "источников на этом экране",
-        generations: "ПОКОЛЕНИЯ",
-        generationSelection: "Выбор поколения",
-        selectGeneration: "Выберите поколение",
-        selectedGeneration: "ВЫБРАННОЕ ПОКОЛЕНИЕ",
-        modelSections: "Разделы модели",
-        overview: "Обзор",
-        engines: "Двигатели",
-        production: "Производство",
-        ratings: "Оценки",
-        sources: "Источники",
-        knownUpdate: "есть обновление",
-        changed: "ЧТО ИЗМЕНИЛОСЬ",
-        generationCharacter: "характер поколения",
-        rememberedFor: "Чем запомнилось поколение",
-        facts: "ДЕТАЛИ В БАЗЕ",
-        powertrains: "Силовых вариантов",
-        notAdded: "Не добавлены",
-        knownUpdates: "Обновлений с источником",
-        noData: "Нет данных",
-        generationProduction: "Производство поколения",
-        assembly: "Сборка",
-        factoryRecords: "записей по заводам",
-        notClarified: "Пока не уточнена",
-        coverageNote:
-          "Это подтверждённая часть истории, а не обещание полного покрытия всех рынков.",
-        viewSources: "Посмотреть источники",
-        familyFacts: "Факты о семействе",
-        timeline: "Хронология семейства",
-        present: "н. в.",
-        branches: "поколений / ветвей",
-        bodyStyles: "Кузова семейства",
-        selected: "Выбранное поколение",
-        powertrainVariants: "силовые варианты",
-        powertrainsInProgress: "силовые варианты уточняются",
-        sourcedUpdates: "обновления с источником",
-        noSourcedUpdate: "без подтверждённого обновления",
-        underHood: "Что было под капотом",
-        engineIntro: "вариантов в базе. Год и рынок указаны в каждой записи.",
-        engineFuel: "Топливо двигателя",
-        allFuel: "Все типы топлива",
-        version: "Версия",
-        power: "Мощность",
-        torque: "Момент",
-        transmissionDrive: "Коробка / привод",
-        marketSnapshot: "Рынок и срез",
-        driveNotSpecified: "Привод не уточнён",
-        researchMore: "Здесь ещё есть что исследовать",
-        enginesMissing:
-          "Подтверждённые силовые варианты для этого поколения пока не добавлены.",
-        engineNote:
-          "Маркетинговое имя не равно коду двигателя. Прочерк означает отсутствие подтверждения. Записи не распространяются автоматически на другие годы и рынки.",
-        verify: "ПРОВЕРИТЬ САМОМУ",
-        sourceLead: "У каждого факта есть начало",
-        photo: "Фото",
-        photoNote: "Фото именно этого поколения; не иллюстрирует остальные.",
-      };
+  const spotlight = spotlights[generation.id];
+  const power = heroPower(generation);
+  const copy = {
+    back: t(language, "all.models.a1334b"),
+    history: t(language, "model.history.53b783"),
+    inGarage: t(language, "in.my.garage.ed36cb"),
+    addGarage: t(language, "add.to.garage.ccc6e8"),
+    sourcesOnScreen: t(language, "sources.on.this.screen.73bb0f"),
+    generations: t(language, "generations.79283b"),
+    generationSelection: t(language, "generation.selection.76670c"),
+    selectGeneration: t(language, "choose.generation.4f6322"),
+    selectedGeneration: t(language, "selected.generation.bc3152"),
+    modelSections: t(language, "model.sections.9b4a2d"),
+    overview: t(language, "story.updates.43dfbb"),
+    engines: t(language, "engines.34bf31"),
+    production: t(language, "production.9e194f"),
+    ratings: t(language, "ratings.6653fc"),
+    sources: t(language, "sources.bbc701"),
+    knownUpdate: t(language, "updated.48352f"),
+    changed: t(language, "what.changed.2179d4"),
+    generationCharacter: t(language, "generation.character.b6ec07"),
+    rememberedFor: t(language, "why.this.generation.matters.50b101"),
+    facts: t(language, "database.details.3b58d5"),
+    powertrains: t(language, "powertrain.variants.5eb717"),
+    notAdded: t(language, "not.added.yet.7b9368"),
+    knownUpdates: t(language, "sourced.updates.2ec8a7"),
+    noData: t(language, "no.data.5fce4b"),
+    generationProduction: t(language, "generation.production.c50312"),
+    assembly: t(language, "assembly.2e7f9e"),
+    factoryRecords: t(language, "factory.records.b5b884"),
+    notClarified: t(language, "not.yet.clarified.92b7ff"),
+    coverageNote: t(
+      language,
+      "this.is.the.verified.part.of.the.story.not.a.pro.7fbc41",
+    ),
+    viewSources: t(language, "view.sources.dc21e1"),
+    familyFacts: t(language, "family.facts.6a60be"),
+    timeline: t(language, "family.timeline.b2ac87"),
+    present: t(language, "present.8ff9d8"),
+    branches: t(language, "generations.branches.a8cd33"),
+    bodyStyles: t(language, "family.body.styles.118ccf"),
+    selected: t(language, "selected.generation.bb85aa"),
+    powertrainVariants: t(language, "powertrain.variants.a89c51"),
+    powertrainsInProgress: t(
+      language,
+      "powertrain.coverage.in.progress.f797c3",
+    ),
+    sourcedUpdates: t(language, "sourced.updates.1f00ef"),
+    noSourcedUpdate: t(language, "no.sourced.update.1fb702"),
+    underHood: t(language, "what.powered.it.d728e7"),
+    engineIntro: t(
+      language,
+      "variants.in.the.database.year.and.market.are.sta.e801f0",
+    ),
+    engineFuel: t(language, "engine.fuel.392a83"),
+    allFuel: t(language, "all.fuel.types.6860b3"),
+    version: t(language, "version.994a31"),
+    power: t(language, "power.dd6960"),
+    torque: t(language, "torque.bec882"),
+    transmissionDrive: t(language, "transmission.drive.10ad07"),
+    marketSnapshot: t(language, "market.and.snapshot.80da38"),
+    driveNotSpecified: t(language, "drive.not.specified.5fdf48"),
+    researchMore: t(language, "there.is.more.to.research.here.f8554f"),
+    enginesMissing: t(
+      language,
+      "confirmed.powertrain.variants.have.not.been.adde.c4100e",
+    ),
+    engineNote: t(
+      language,
+      "a.marketing.name.is.not.an.engine.code.a.dash.me.27b852",
+    ),
+    verify: t(language, "verify.it.yourself.266b02"),
+    sourceLead: t(language, "every.fact.has.a.starting.point.cc59cc"),
+    photo: t(language, "photo.ce864a"),
+    photoNote: t(
+      language,
+      "this.photo.shows.this.exact.generation.it.does.n.203769",
+    ),
+  };
   const [tab, setTab] = useState("overview");
   const [fuel, setFuel] = useState("");
-  useEffect(() => setFuel(""), [generation.id]);
+  useEffect(() => {
+    setFuel("");
+    setTab("overview");
+  }, [generation.id]);
   const tabs = [
     ["overview", copy.overview],
     ["engines", copy.engines],
@@ -212,6 +169,8 @@ export function FamilyDetail({
         generation.source,
         family.volume?.source,
         generation.volume?.source,
+        spotlight?.source,
+        spotlight?.price?.source,
         ...generation.revisions.map((r) => r.source),
         ...generation.powertrains.map((p) => p.source),
         ...generation.ratings.flatMap((rating) =>
@@ -229,7 +188,7 @@ export function FamilyDetail({
         <ArrowLeft size={16} /> {copy.back}
       </button>
       <section className="detail-hero">
-        <div>
+        <div className="detail-introduction">
           <div className="eyebrow">
             {copy.history} <span className="dot" />{" "}
             {family.vehicleKind === "Мотоцикл"
@@ -237,11 +196,80 @@ export function FamilyDetail({
               : family.brand.toUpperCase()}
           </div>
           <h1>
-            {family.brand}
-            <br />
-            <em>{family.name}</em>
+            {family.brand} <em>{family.name}</em>
           </h1>
-          <p className="detail-lead">{family.tagline}</p>
+          <p className="detail-edition">
+            {generation.code} <span>·</span> {formatYears(generation, language)}
+          </p>
+          <p className="detail-lead">
+            {spotlight
+              ? t(language, spotlight.intro)
+              : catalogText(
+                  language,
+                  `generation.${generation.id}.description`,
+                )}
+          </p>
+          <dl className="hero-specifications">
+            {power && (
+              <div>
+                <dt>{t(language, "power.dd6960")}</dt>
+                <dd>
+                  {isEnglish
+                    ? power.value
+                    : power.value.replace(" PS", " л. с.")}
+                </dd>
+                <small>{power.variant}</small>
+              </div>
+            )}
+            {spotlight && (
+              <div>
+                <dt>0–100 {t(language, "km.h.7853a0")}</dt>
+                <dd>
+                  {spotlight.zeroTo100.toLocaleString(language)}{" "}
+                  {t(language, "s.b3acf9")}
+                </dd>
+                <small>{spotlight.variant}</small>
+              </div>
+            )}
+            {spotlight?.price && (
+              <div className="hero-price">
+                <dt>
+                  {t(language, "launch.price.454eeb")} · {spotlight.price.year}
+                </dt>
+                <dd>
+                  {new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: spotlight.price.currency,
+                    maximumFractionDigits: 0,
+                  }).format(spotlight.price.amount)}
+                </dd>
+                <small>{t(language, spotlight.price.note)}</small>
+              </div>
+            )}
+            {generation.volume && (
+              <div>
+                <dt>{t(language, "recorded.volume.2a2d34")}</dt>
+                <dd>{formatVolume(generation.volume, language)}</dd>
+                <small>{generation.volume.scope}</small>
+              </div>
+            )}
+            {!spotlight && generation.assembly.length > 0 && (
+              <div>
+                <dt>{copy.assembly}</dt>
+                <dd className="hero-spec-text">
+                  {generation.assembly
+                    .map((value) => label(language, value))
+                    .join(" · ")}
+                </dd>
+              </div>
+            )}
+          </dl>
+          {spotlight && (
+            <p className="hero-observation">
+              <span>{t(language, "look.closer.2c52a6")}</span>
+              {t(language, spotlight.detail)}
+            </p>
+          )}
           <div className="hero-actions">
             <Button
               className="primary-action"
@@ -256,77 +284,87 @@ export function FamilyDetail({
           <div className="detail-visual blue">
             <VehiclePhoto photo={generation.photo} language={language} />
           </div>
-          <section
-            className="generation-picker"
-            aria-label={copy.generationSelection}
-          >
-            <div className="generation-picker-heading">
-              <span className="eyebrow">{copy.generations}</span>
-              <span>
-                {family.generations.findIndex(
-                  (item) => item.id === generation.id,
-                ) + 1}{" "}
-                {isEnglish ? "of" : "из"} {family.generations.length} ·{" "}
-                {generation.code}
-              </span>
-            </div>
-            <select
-              className="generation-select-mobile"
-              aria-label={copy.selectGeneration}
-              value={generation.id}
-              onChange={(event) => onGeneration(event.target.value)}
+          {family.generations.length > 1 && (
+            <section
+              className="generation-picker"
+              aria-label={copy.generationSelection}
             >
-              {family.generations.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.code} · {formatYears(item)}
-                </option>
-              ))}
-            </select>
-            <div className="timeline" aria-label={copy.generations}>
-              {family.generations.map((item) => (
-                <a
-                  key={item.id}
-                  href={hrefForGeneration(item.id)}
-                  onClick={(event: MouseEvent<HTMLAnchorElement>) => {
-                    if (
-                      event.button !== 0 ||
-                      event.metaKey ||
-                      event.ctrlKey ||
-                      event.shiftKey ||
-                      event.altKey
-                    )
-                      return;
-                    event.preventDefault();
-                    onGeneration(item.id);
-                  }}
-                  aria-current={item.id === generation.id ? "page" : undefined}
-                  className={
-                    "generation " +
-                    (item.id === generation.id ? "selected" : "")
-                  }
-                >
-                  <span className="generation-node" />
-                  <small>{item.label}</small>
-                  <strong>{item.code}</strong>
-                  <span>{formatYears(item)}</span>
-                  {faceliftCount(item.revisions) > 0 && (
-                    <i>{copy.knownUpdate}</i>
-                  )}
-                </a>
-              ))}
-            </div>
-          </section>
+              <div className="generation-picker-heading">
+                <span className="eyebrow">
+                  {t(language, "choose.a.version.b64d2c")}
+                </span>
+                <span>
+                  {family.generations.findIndex(
+                    (item) => item.id === generation.id,
+                  ) + 1}{" "}
+                  {t(language, "of.777fa2")} {family.generations.length} ·{" "}
+                  {generation.code}
+                </span>
+              </div>
+              <select
+                className="generation-select-mobile"
+                aria-label={copy.selectGeneration}
+                value={generation.id}
+                onChange={(event) => onGeneration(event.target.value)}
+              >
+                {family.generations.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.code} · {formatYears(item, language)}
+                  </option>
+                ))}
+              </select>
+              <div className="timeline" aria-label={copy.generations}>
+                {family.generations.map((item) => (
+                  <a
+                    key={item.id}
+                    href={hrefForGeneration(item.id)}
+                    onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+                      if (
+                        event.button !== 0 ||
+                        event.metaKey ||
+                        event.ctrlKey ||
+                        event.shiftKey ||
+                        event.altKey
+                      )
+                        return;
+                      event.preventDefault();
+                      onGeneration(item.id);
+                    }}
+                    aria-current={
+                      item.id === generation.id ? "page" : undefined
+                    }
+                    className={
+                      "generation " +
+                      (item.id === generation.id ? "selected" : "")
+                    }
+                  >
+                    <span className="generation-node" />
+                    <small>
+                      {item.code.includes("LCI")
+                        ? t(language, "facelift.92f717")
+                        : item.label}
+                    </small>
+                    <strong>{item.code}</strong>
+                    <span>{formatYears(item, language)}</span>
+                    {faceliftCount(item.revisions) > 0 && (
+                      <i>{copy.knownUpdate}</i>
+                    )}
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </section>
       <div className="generation-title">
         <div>
-          <span className="eyebrow">{copy.selectedGeneration}</span>
-          <h2>
-            {family.name} <span>{generation.code}</span>
-          </h2>
+          <span className="eyebrow">
+            {t(language, "explore.the.exhibit.95f347")}
+          </span>
+          <h2>{t(language, "the.story.and.the.details.4e9268")}</h2>
           <p>
-            {formatYears(generation)} <span className="separator">/</span>{" "}
-            {generation.dateScope}
+            {family.name} · {generation.code} ·{" "}
+            {formatYears(generation, language)}
           </p>
         </div>
       </div>
@@ -353,12 +391,15 @@ export function FamilyDetail({
         <>
           <div className="overview-grid">
             <article className="panel story-panel">
-              <h3>
-                {isEnglish
-                  ? "What makes it distinctive"
-                  : "Особенности поколения"}
-              </h3>
-              <p>{generation.description}</p>
+              <h3>{t(language, "what.makes.it.distinctive.bcebdc")}</h3>
+              <p>
+                {catalogText(
+                  language,
+                  spotlight
+                    ? `generation.${generation.id}.description`
+                    : `family.${family.id}.summary`,
+                )}
+              </p>
               {(generation.highlights?.length ?? 0) > 0 && (
                 <div className="generation-highlights">
                   <h4>{copy.rememberedFor}</h4>
@@ -378,28 +419,32 @@ export function FamilyDetail({
             </article>
             <aside className="panel facts-panel">
               <span className="eyebrow">
-                {isEnglish ? "AT A GLANCE" : "КОРОТКО О МОДЕЛИ"}
+                {t(language, "at.a.glance.6cf437")}
               </span>
               <dl>
                 <div>
-                  <dt>{isEnglish ? "Years" : "Годы выпуска"}</dt>
-                  <dd>{formatYears(generation)}</dd>
+                  <dt>{t(language, "years.0b9249")}</dt>
+                  <dd>{formatYears(generation, language)}</dd>
                 </div>
                 {generation.volume && (
                   <div>
                     <dt>{copy.generationProduction}</dt>
-                    <dd>{formatVolume(generation.volume)}</dd>
+                    <dd>{formatVolume(generation.volume, language)}</dd>
                   </div>
                 )}
                 {generation.assembly.length > 0 && (
                   <div>
                     <dt>{copy.assembly}</dt>
-                    <dd>{generation.assembly.join(" · ")}</dd>
+                    <dd>
+                      {generation.assembly
+                        .map((value) => label(language, value))
+                        .join(" · ")}
+                    </dd>
                   </div>
                 )}
                 {generation.revisions.length > 0 && (
                   <div>
-                    <dt>{isEnglish ? "Update years" : "Годы обновлений"}</dt>
+                    <dt>{t(language, "update.years.2e623e")}</dt>
                     <dd>
                       {[
                         ...new Set(generation.revisions.map((r) => r.year)),
@@ -425,22 +470,24 @@ export function FamilyDetail({
             </div>
             <div>
               <span>{copy.bodyStyles}</span>
-              <strong>{family.body.join(" · ")}</strong>
-              <small>{family.vehicleKind}</small>
+              <strong>
+                {family.body.map((value) => label(language, value)).join(" · ")}
+              </strong>
+              <small>{label(language, family.vehicleKind)}</small>
             </div>
             <div>
               <span>{copy.selected}</span>
               <strong>
-                {generation.code} · {formatYears(generation)}
+                {generation.code} · {formatYears(generation, language)}
               </strong>
               <small>{selectedCoverage}</small>
             </div>
             {family.volume && (
               <div>
                 <span>
-                  {family.volume.metric} · {family.volume.asOf}
+                  {label(language, family.volume.metric)} · {family.volume.asOf}
                 </span>
-                <strong>{formatVolume(family.volume)}</strong>
+                <strong>{formatVolume(family.volume, language)}</strong>
                 <small>{family.volume.scope}</small>
               </div>
             )}
@@ -464,7 +511,9 @@ export function FamilyDetail({
               <option value="">{copy.allFuel}</option>
               {[...new Set(generation.powertrains.map((p) => p.fuel))].map(
                 (f) => (
-                  <option key={f}>{f}</option>
+                  <option key={f} value={f}>
+                    {label(language, f)}
+                  </option>
                 ),
               )}
             </select>
@@ -486,15 +535,23 @@ export function FamilyDetail({
                     <tr key={p.id}>
                       <td>
                         <strong>{p.name}</strong>
-                        <small>{p.fuel}</small>
+                        <small>{label(language, p.fuel)}</small>
                       </td>
                       <td>
-                        {p.power} <span>{p.powerUnit}</span>
+                        {p.power} <span>{label(language, p.powerUnit)}</span>
                       </td>
-                      <td>{p.torque === null ? "—" : `${p.torque} Н·м`}</td>
                       <td>
-                        {p.gearbox ?? "—"}
-                        <small>{p.drive ?? copy.driveNotSpecified}</small>
+                        {p.torque === null
+                          ? "—"
+                          : `${p.torque} ${label(language, "Н·м")}`}
+                      </td>
+                      <td>
+                        {p.gearbox ? label(language, p.gearbox) : "—"}
+                        <small>
+                          {p.drive
+                            ? label(language, p.drive)
+                            : copy.driveNotSpecified}
+                        </small>
                       </td>
                       <td>
                         {p.market}

@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 import { Factory as FactoryIcon, Globe2, Info } from "lucide-react";
 import type { ReactNode } from "react";
 import type { Volume } from "../../domain/catalog";
@@ -47,28 +48,28 @@ export function ProductionPanel({
   return (
     <div className="production-layout">
       <section className="panel">
-        <span className="eyebrow">{isEnglish ? "VOLUME" : "ТИРАЖ"}</span>
-        <h3>{isEnglish ? "Scale of the story" : "Масштаб истории"}</h3>
+        <span className="eyebrow">{t(language, "volume.e337b1")}</span>
+        <h3>{t(language, "scale.of.the.story.7f678a")}</h3>
         {[
           {
-            label: isEnglish ? "Entire family" : "Семейство целиком",
+            label: t(language, "entire.family.f989ca"),
             value: familyVolume,
           },
           {
-            label: isEnglish ? "Selected generation" : "Выбранное поколение",
+            label: t(language, "selected.generation.bb85aa"),
             value: generationVolume,
           },
         ].map(({ label, value }) => (
           <div className="volume-card" key={label}>
             <span>{label}</span>
-            <strong>{formatVolume(value)}</strong>
+            <strong>{formatVolume(value, language)}</strong>
             {value && (
               <>
                 <p>
                   {value.metric} · {value.scope}
                 </p>
                 <small>
-                  {isEnglish ? "As of" : "По состоянию на"} {value.asOf} ·{" "}
+                  {t(language, "as.of.7b1b03")} {value.asOf} ·{" "}
                   {sourceLink(value.source)}
                 </small>
               </>
@@ -77,27 +78,28 @@ export function ProductionPanel({
         ))}
         <p className="note">
           <Info size={16} />{" "}
-          {isEnglish
-            ? "Sales, production and cumulative volume are different metrics. They are not combined."
-            : "Продажи, производство и накопленный тираж — разные показатели. Мы их не складываем."}
+          {t(
+            language,
+            "sales.production.and.cumulative.volume.are.diffe.ac30d0",
+          )}
         </p>
       </section>
 
       <section className="panel production-panel">
         <span className="eyebrow">
-          {isEnglish ? "GENERATION GEOGRAPHY" : "ГЕОГРАФИЯ ПОКОЛЕНИЯ"}
+          {t(language, "generation.geography.0a0ebf")}
         </span>
         <h3>
-          <Globe2 size={22} />{" "}
-          {isEnglish ? "Plants and periods" : "Заводы и периоды"}
+          <Globe2 size={22} /> {t(language, "plants.and.periods.c468ee")}
         </h3>
         {runs.length ? (
           <>
             <p>
               {runs.length}{" "}
-              {isEnglish
-                ? "confirmed production records. Period and scope are stated for each one."
-                : "подтверждённых производственных записей. Период и область указаны отдельно для каждой."}
+              {t(
+                language,
+                "confirmed.production.records.period.and.scope.ar.5a4bd9",
+              )}
             </p>
             <div className="production-runs">
               {runs.map((run) => {
@@ -116,28 +118,24 @@ export function ProductionPanel({
                     </div>
                     <dl>
                       <div>
-                        <dt>{isEnglish ? "Region" : "Регион"}</dt>
+                        <dt>{t(language, "region.a70918")}</dt>
                         <dd>{run.region}</dd>
                       </div>
                       <div>
                         <dt>
                           {run.bodies.status === "known" &&
                           run.bodies.appliesTo === "generation"
-                            ? isEnglish
-                              ? "Generation body styles"
-                              : "Кузова поколения"
-                            : isEnglish
-                              ? "Plant body styles"
-                              : "Кузова завода"}
+                            ? t(language, "generation.body.styles.797940")
+                            : t(language, "plant.body.styles.6f55c3")}
                         </dt>
                         <dd>
                           {run.bodies.status === "known"
                             ? run.bodies.values.join(" · ")
-                            : `${isEnglish ? "Not specified" : "Не уточнены"}: ${run.bodies.reason}`}
+                            : `${t(language, "not.specified.e997d1")}: ${run.bodies.reason}`}
                         </dd>
                       </div>
                       <div>
-                        <dt>{isEnglish ? "Assembly" : "Сборка"}</dt>
+                        <dt>{t(language, "assembly.2e7f9e")}</dt>
                         <dd>{assemblyLabels[language][run.assemblyType]}</dd>
                       </div>
                     </dl>
@@ -151,14 +149,16 @@ export function ProductionPanel({
         ) : (
           <div className="empty-block">
             <h3>
-              {isEnglish
-                ? "Production geography is still under research"
-                : "География ещё исследуется"}
+              {t(
+                language,
+                "production.geography.is.still.under.research.5982bc",
+              )}
             </h3>
             <p>
-              {isEnglish
-                ? "There is no record yet that confirms plant, period and production scope together for this generation. BMW's country of origin is not substituted here."
-                : "Для этого поколения пока нет записи, где одновременно подтверждены завод, период и область выпуска. Страна происхождения BMW сюда не подставляется."}
+              {t(
+                language,
+                "there.is.no.record.yet.that.confirms.plant.perio.e6d0dc",
+              )}
             </p>
           </div>
         )}

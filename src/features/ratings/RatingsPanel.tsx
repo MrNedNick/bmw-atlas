@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 import { ShieldCheck } from "lucide-react";
 import { sourceById } from "../../data/sources";
 import { safetyRatingView, type SafetyRating } from "../../domain/ratings";
@@ -14,8 +15,8 @@ export function RatingsPanel({
   const view = safetyRatingView(ratings);
   return (
     <section className="panel">
-      <span className="eyebrow">{isEnglish ? "SAFETY" : "БЕЗОПАСНОСТЬ"}</span>
-      <h3>{isEnglish ? "Rating with context" : "Оценка с контекстом"}</h3>
+      <span className="eyebrow">{t(language, "safety.d0c48e")}</span>
+      <h3>{t(language, "rating.with.context.01555d")}</h3>
       {view.status === "unknown" ? (
         <p className="empty-inline">{view.reason}</p>
       ) : (
@@ -25,7 +26,7 @@ export function RatingsPanel({
               return (
                 <article className="rating-scenario" key={rating.id}>
                   <strong>
-                    {rating.scheme} · {isEnglish ? "no data" : "нет данных"}
+                    {rating.scheme} · {t(language, "no.data.4617e1")}
                   </strong>
                   <p className="muted">{rating.reason}</p>
                 </article>
@@ -34,7 +35,7 @@ export function RatingsPanel({
             return (
               <article className="rating-scenario" key={rating.id}>
                 <strong>
-                  {rating.scheme} · {isEnglish ? "protocol" : "протокол"}{" "}
+                  {rating.scheme} · {t(language, "protocol.93216a")}{" "}
                   {rating.protocolYear}
                 </strong>
                 <p className="muted">
@@ -43,7 +44,7 @@ export function RatingsPanel({
                 {rating.overall && (
                   <p className="rating-overall">
                     {rating.overall.value} / 5{" "}
-                    <small>{isEnglish ? "stars" : "звёзд"}</small>
+                    <small>{t(language, "stars.1bd5d5")}</small>
                   </p>
                 )}
                 <div className="ratings-grid">
@@ -80,9 +81,7 @@ export function RatingsPanel({
       )}
       <p className="note">
         <ShieldCheck size={17} />
-        {isEnglish
-          ? "Results from different protocols and equipment levels are shown separately and are not averaged."
-          : "Результаты разных протоколов и комплектаций показываются отдельно и не усредняются."}
+        {t(language, "results.from.different.protocols.and.equipment.l.c6966d")}
       </p>
     </section>
   );

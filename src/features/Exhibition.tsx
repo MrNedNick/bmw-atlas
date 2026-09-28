@@ -1,3 +1,4 @@
+import { t } from "../i18n";
 import { ArrowRight, ArrowUpRight, Shuffle } from "lucide-react";
 import type { MouseEvent } from "react";
 import { families } from "../data/models";
@@ -8,29 +9,20 @@ const stories = [
   {
     family: "bmw-isetta",
     generation: "bmw-isetta-standard",
-    label: ["Маленькая революция", "A small revolution"],
-    text: [
-      "Одна дверь спереди. Совсем другой взгляд на автомобиль.",
-      "One door at the front. A completely different idea of a car.",
-    ],
+    label: "story.bc86a7d34c",
+    text: "story.d14446e26c",
   },
   {
     family: "bmw-i8",
     generation: "bmw-i8-i12-lci",
-    label: ["Будущее стало формой", "The shape of the future"],
-    text: [
-      "Гибридный спорткар, который сохранил смелость концепта.",
-      "A hybrid sports car that kept the boldness of a concept.",
-    ],
+    label: "story.f430006148",
+    text: "story.368618a0fd",
   },
   {
     family: "bmw-gs-boxer",
     generation: "bmw-gs-r80",
-    label: ["За пределами асфальта", "Beyond the tarmac"],
-    text: [
-      "Начало истории GS: путешествие важнее пункта назначения.",
-      "The beginning of GS: a journey beyond the destination.",
-    ],
+    label: "story.74cd5a31bd",
+    text: "story.8d23fcea05",
   },
 ] as const;
 
@@ -66,40 +58,38 @@ export function Exhibition({
   faceliftSelection: number;
   onFaceliftSelection: (index: number) => void;
 }) {
-  const en = language === "en";
   const hero = families.find((f) => f.id === "bmw-m1")!.generations[0];
   return (
     <div className="exhibition">
       <section className="museum-hero" aria-labelledby="museum-title">
         <div className="museum-intro">
           <span className="eyebrow">
-            BMW ATLAS / {en ? "THE COLLECTION" : "КОЛЛЕКЦИЯ"}
+            BMW ATLAS / {t(language, "the.collection.71e618")}
           </span>
           <h1 id="museum-title">
-            {en ? "More than" : "Больше, чем"} <br />
-            <em>{en ? "a machine." : "автомобиль."}</em>
+            {t(language, "more.than.aa3aed")} <br />
+            <em>{t(language, "a.machine.7a5c92")}</em>
           </h1>
           <p>
-            {en
-              ? "Design, character and the details that make a BMW. Take your time. There is a story behind every silhouette."
-              : "Дизайн, характер и детали, из которых складывается BMW. Здесь можно не спешить. За каждым силуэтом — своя история."}
+            {t(
+              language,
+              "design.character.and.the.details.that.make.a.bmw.b160e2",
+            )}
           </p>
           <a
             className="museum-cta"
             href={collectionHref}
             onClick={(e) => follow(e, onCollection)}
           >
-            {en ? "Explore the collection" : "Войти в коллекцию"}
+            {t(language, "explore.the.collection.de801b")}
             <ArrowRight size={20} />
           </a>
           <button className="museum-random" onClick={onRandom}>
             <Shuffle size={17} />
-            {en ? "Surprise me" : "Случайная находка"}
+            {t(language, "surprise.me.ea464f")}
           </button>
           <span className="museum-note">
-            {en
-              ? "Cars & motorcycles · From 1923 to today"
-              : "Автомобили и мотоциклы · С 1923 года до наших дней"}
+            {t(language, "cars.motorcycles.from.1923.to.today.7ac203")}
           </span>
         </div>
         <a
@@ -108,7 +98,7 @@ export function Exhibition({
           onClick={(e) => follow(e, () => onModel("bmw-m1", hero.id))}
         >
           <div className="exhibit-topline">
-            <span>{en ? "IN THE SPOTLIGHT" : "В ЦЕНТРЕ ВНИМАНИЯ"}</span>
+            <span>{t(language, "in.the.spotlight.7abdbd")}</span>
             <span>01 / BMW M</span>
           </div>
           <img
@@ -121,9 +111,10 @@ export function Exhibition({
               <span>1978 — 1981 · E26</span>
               <h2>BMW M1</h2>
               <p>
-                {en
-                  ? "Giugiaro’s wedge. A straight-six behind the seats. The beginning of a legend."
-                  : "Клин Джуджаро. Рядная шестёрка за спиной. Начало легенды."}
+                {t(
+                  language,
+                  "giugiaro.s.wedge.a.straight.six.behind.the.seats.002fbf",
+                )}
               </p>
             </div>
             <span className="round-arrow">
@@ -136,16 +127,14 @@ export function Exhibition({
         <div className="section-heading">
           <div>
             <span className="eyebrow">
-              {en ? "FOLLOW YOUR CURIOSITY" : "СЛЕДУЙТЕ ЛЮБОПЫТСТВУ"}
+              {t(language, "follow.your.curiosity.44e49e")}
             </span>
             <h2 id="discovery-title">
-              {en ? "Three different ways in" : "Три истории для начала"}
+              {t(language, "three.different.ways.in.ef1657")}
             </h2>
           </div>
           <span className="museum-section-note">
-            {en
-              ? "Different eras. Different ideas."
-              : "Разные эпохи. Разные идеи."}
+            {t(language, "different.eras.different.ideas.dd66f8")}
           </span>
         </div>
         <div className="discovery-grid">
@@ -174,10 +163,10 @@ export function Exhibition({
                 <span className="eyebrow">
                   BMW {family.name} · {generation.start}
                 </span>
-                <h3>{story.label[en ? 1 : 0]}</h3>
-                <p>{story.text[en ? 1 : 0]}</p>
+                <h3>{t(language, story.label)}</h3>
+                <p>{t(language, story.text)}</p>
                 <span className="discovery-link">
-                  {en ? "Discover the story" : "Открыть историю"}
+                  {t(language, "discover.the.story.582e60")}
                   <ArrowUpRight size={18} />
                 </span>
               </a>

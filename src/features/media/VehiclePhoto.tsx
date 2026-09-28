@@ -1,3 +1,4 @@
+import { t, label } from "../../i18n";
 import { useState } from "react";
 import { ImageOff } from "lucide-react";
 import type { Photo } from "../../domain/catalog";
@@ -20,22 +21,21 @@ export function VehiclePhoto({
     return (
       <div className="photo-missing">
         <ImageOff size={30} />
-        <strong>
-          {isEnglish ? "Photo coming soon" : "Фото скоро появится"}
-        </strong>
+        <strong>{t(language, "photo.coming.soon.577ba2")}</strong>
       </div>
     );
+  const subject = label(language, photo.subject);
   return (
     <figure className={"vehicle-photo " + (compact ? "compact" : "")}>
       {onOpen ? (
         <button
           className="photo-open"
           onClick={onOpen}
-          aria-label={(isEnglish ? "Enlarge " : "Увеличить ") + photo.subject}
+          aria-label={t(language, "enlarge.37acfd") + subject}
         >
           <img
             src={import.meta.env.BASE_URL + photo.url}
-            alt={photo.subject}
+            alt={subject}
             loading="lazy"
             onError={() => setFailed(photo.url)}
           />
@@ -43,21 +43,19 @@ export function VehiclePhoto({
       ) : (
         <img
           src={import.meta.env.BASE_URL + photo.url}
-          alt={photo.subject}
+          alt={subject}
           loading="lazy"
           onError={() => setFailed(photo.url)}
         />
       )}
       <figcaption>
         {compact ? (
-          <span>{photo.subject}</span>
+          <span>{subject}</span>
         ) : (
           <>
-            <strong>{photo.subject}</strong>
+            <strong>{subject}</strong>
             <details className="photo-credits">
-              <summary>
-                {isEnglish ? "About this image" : "Об изображении"}
-              </summary>
+              <summary>{t(language, "about.this.image.8ee887")}</summary>
               <span>
                 <a href={photo.page} target="_blank" rel="noreferrer">
                   {photo.author}
