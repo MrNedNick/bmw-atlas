@@ -594,10 +594,12 @@ export const en: Record<keyof typeof ru, string> = {
   "generation.bmw-600-sedan.description":
     "Based on the Isetta, the 600 used a roughly 600 cc boxer engine with motorcycle origins. Its new chassis and semi-trailing-arm rear suspension offered good handling, and the cabin was roomy for its time. The front door and single side door for rear passengers, however, limited its appeal.",
   "family.bmw-700.summary":
-    "A compact family powered by a 697 cc boxer twin. The 2+2 Coupé came first, followed by the 40 hp Sport in 1960, renamed 700 CS in 1963.",
+    "A compact family powered by a 697 cc boxer twin. The 2+2 Coupé came first, followed by the 40 hp Sport in 1960, renamed 700 CS in 1963. The two-door Sedan followed the Coupé by two months, joined from 1961 by a longer-wheelbase Luxus. The stretched LS Coupé is still index-only.",
   "family.bmw-700.tagline": "A compact family powered by a 697 cc boxer twin.",
   "generation.bmw-700-coupe.description":
     "The 2+2 Coupé was sportier and more richly equipped than the saloon. From August 1960, the 40 hp 700 Sport offered firmer suspension and an optional sports gearbox. Renamed 700 CS in 1963 with few other changes, it became the longer LS Coupé in autumn 1964.",
+  "generation.bmw-700-sedan.description":
+    "The two-door Sedan arrived in September 1959, two months after the Coupé, sharing its 697 cc, 30 hp boxer twin. From February 1961 a more richly equipped Luxus on the longer LS wheelbase joined the base Sedan; both were discontinued in 1962.",
   "family.bmw-neue-klasse.summary":
     "The Neue Klasse saloons of 1962–1972 also provided the basis for elegant coupés. The 2000 C and twin-carburettor 2000 CS bridge the story to BMW’s later grand tourers.",
   "family.bmw-neue-klasse.tagline":

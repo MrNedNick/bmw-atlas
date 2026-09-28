@@ -171,6 +171,7 @@ describe("BMW history progress manifest", () => {
     const car = families.find((family) => family.id === "bmw-700")!;
     expect(car.generations.map((generation) => generation.code)).toEqual([
       "700 Coupé",
+      "700 Sedan",
     ]);
     expect(
       car.generations[0].powertrains.map((powertrain) => powertrain.power),

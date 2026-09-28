@@ -92,6 +92,15 @@ const detailedBodies: Record<
       "крутящий момент и коробка передач",
     ],
   },
+  "bmw-history-700-sedan": {
+    generationId: "bmw-700-sedan",
+    missingFields: [
+      "700 LS с удлинённой базой отдельной карточкой",
+      "тираж по версиям",
+      "завод и география сборки",
+      "крутящий момент и коробка передач",
+    ],
+  },
   "bmw-history-neue-klasse-coupe": {
     generationId: "bmw-neue-klasse-coupe",
     missingFields: [
@@ -344,17 +353,17 @@ const inventoryRows: BMWHistoryItem[] = [
     ["bmw-classic-700-coupe", "bmw-classic-700-sport", "bmw-classic-700-cs"],
     ["700 Cabriolet"],
   ),
-  indexed(
-    "700-sedan",
-    "700",
-    "Sedan и Luxus",
-    { from: "1959-09", to: "1962-04" },
-    ["700 Sedan", "700 Luxus"],
-    ["bmw-classic-700-sedan", "bmw-classic-700-luxus"],
-    [
-      "700 LS с удлинённой базой: нет страницы в каталоге BMW Group Classic, конец выпуска ветви указан только по Sedan и Luxus",
-    ],
-  ),
+  {
+    id: "bmw-history-700-sedan",
+    family: "700",
+    version: "Sedan и Luxus",
+    generationId: "bmw-700-sedan",
+    status: "index",
+    production: { from: "1959-09", to: "1962-04" },
+    aliases: ["700 Sedan", "700 Luxus"],
+    sourceIds: ["bmw-classic-700-sedan", "bmw-classic-700-luxus"],
+    missingFields: [...archiveGaps],
+  },
   indexed(
     "neue-klasse-sedan",
     "Neue Klasse",
