@@ -1,6 +1,46 @@
 import type { Source } from "../domain/catalog";
 export const sources: Source[] = [
   {
+    id: "alpina-brand-agreement",
+    title: "BMW Group acquires the ALPINA brand",
+    publisher: "BMW Group PressClub",
+    date: "2022-03-10",
+    scope: "Brand rights, founding, KBA registration and 2021 production",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0373014EN/expanding-the-portfolio:-bmw-group-acquires-the-alpina-brand?language=en",
+  },
+  {
+    id: "alpina-brand-2026",
+    title: "BMW ALPINA: standalone automobiles with a new brand emblem",
+    publisher: "BMW Group PressClub",
+    date: "2026-02-12",
+    scope: "BMW ALPINA brand activation in January 2026",
+    url: "https://www.press.bmwgroup.com/usa/article/detail/T0455598EN_US/bmw-alpina-standalone-automobiles-with-a-new-brand-emblem",
+  },
+  {
+    id: "hartge-manufacturer",
+    title: "HARTGE engine conversion F10",
+    publisher: "HARTGE / Birds archive",
+    date: "checked 2026-09-28",
+    scope: "Historical KBA manufacturer recognition from 1985",
+    url: "https://www.birdsauto.com/sites/default/files/pdfs/F1012350313.pdf",
+  },
+  {
+    id: "birds-hartge-history",
+    title: "Birds: company history",
+    publisher: "Birds",
+    date: "checked 2026-09-28",
+    scope: "Historical affiliation with Hartge",
+    url: "https://www.birdsauto.com/",
+  },
+  {
+    id: "schnitzer-bmw-history",
+    title: "AC Schnitzer BMW refinements",
+    publisher: "AC Schnitzer",
+    date: "checked 2026-09-28",
+    scope: "BMW tuning since 1987; range of refinement categories",
+    url: "https://www.ac-schnitzer.de/bmw/",
+  },
+  {
     id: "bmw-4-g22-update",
     title: "The new BMW 4 Series Coupé and Convertible",
     publisher: "BMW Group PressClub",

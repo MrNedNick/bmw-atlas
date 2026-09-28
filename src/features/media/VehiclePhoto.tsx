@@ -9,8 +9,10 @@ export function VehiclePhoto({
   compact = false,
   language = "ru",
   onOpen,
+  planned,
 }: {
   photo?: Photo;
+  planned?: string;
   compact?: boolean;
   language?: Language;
   onOpen?: () => void;
@@ -22,6 +24,7 @@ export function VehiclePhoto({
       <div className="photo-missing">
         <ImageOff size={30} />
         <strong>{t(language, "photo.coming.soon.577ba2")}</strong>
+        {planned && <span className="photo-planned-subject">{planned}</span>}
       </div>
     );
   const subject = label(language, photo.subject);

@@ -1510,7 +1510,8 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     reference: {
       publisher: "Wikimedia Commons",
       page: "https://commons.wikimedia.org/wiki/File:BMW_700_1965.JPG",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5d/BMW_700_1965.JPG",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/5/5d/BMW_700_1965.JPG",
       localFile: "references/images/commons-bmw-700-1965-gwafton.jpg",
       imageId: "BMW_700_1965.JPG",
       phase: "historical",

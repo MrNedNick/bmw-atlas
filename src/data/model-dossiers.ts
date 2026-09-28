@@ -1,0 +1,91 @@
+import type { MessageKey } from "../i18n";
+export interface ModelDossier {
+  source: string;
+  subject: string;
+  phase: "launch" | "facelift" | "model-year" | "historical";
+  facts: MessageKey[];
+  photoBrief: MessageKey;
+  outputFile: string;
+}
+export const modelDossiers: Record<string, ModelDossier> = {
+  "bmw-2-f22": {
+    source: "bmw-2-f22-launch",
+    subject: "M235i Coupé · F22 · 2014",
+    phase: "launch",
+    facts: ["dossier.bmw-2-f22.1", "dossier.bmw-2-f22.2"],
+    photoBrief: "dossier.bmw-2-f22.photo",
+    outputFile: "public/images/editorial-bmw-2-f22.webp",
+  },
+  "bmw-2-f22-lci": {
+    source: "bmw-2-f22-update",
+    subject: "M240i xDrive Coupé · F22 LCI · 2017",
+    phase: "facelift",
+    facts: ["dossier.bmw-2-f22-lci.1", "dossier.bmw-2-f22-lci.2"],
+    photoBrief: "dossier.bmw-2-f22-lci.photo",
+    outputFile: "public/images/editorial-bmw-2-f22-lci.webp",
+  },
+  "bmw-2-g42-2024": {
+    source: "bmw-2-g42-update",
+    subject: "M240i xDrive Coupé · G42 · 2024",
+    phase: "model-year",
+    facts: ["dossier.bmw-2-g42-2024.1", "dossier.bmw-2-g42-2024.2"],
+    photoBrief: "dossier.bmw-2-g42-2024.photo",
+    outputFile: "public/images/editorial-bmw-2-g42-2024.webp",
+  },
+  "bmw-2-f44": {
+    source: "bmw-2-f44-launch",
+    subject: "M235i xDrive Gran Coupé · F44 · 2020",
+    phase: "launch",
+    facts: ["dossier.bmw-2-f44.1", "dossier.bmw-2-f44.2"],
+    photoBrief: "dossier.bmw-2-f44.photo",
+    outputFile: "public/images/editorial-bmw-2-f44.webp",
+  },
+  "bmw-2-f74": {
+    source: "bmw-2-f74-launch",
+    subject: "M235 xDrive Gran Coupé · F74 · 2025",
+    phase: "launch",
+    facts: ["dossier.bmw-2-f74.1", "dossier.bmw-2-f74.2"],
+    photoBrief: "dossier.bmw-2-f74.photo",
+    outputFile: "public/images/editorial-bmw-2-f74.webp",
+  },
+  "bmw-4-f32-lci": {
+    source: "bmw-4-first-generation",
+    subject: "440i Coupé · F32 LCI · 2017",
+    phase: "facelift",
+    facts: ["dossier.bmw-4-f32-lci.1", "dossier.bmw-4-f32-lci.2"],
+    photoBrief: "dossier.bmw-4-f32-lci.photo",
+    outputFile: "public/images/editorial-bmw-4-f32-lci.webp",
+  },
+  "bmw-4-g22": {
+    source: "bmw-4-second-generation",
+    subject: "M440i xDrive Coupé · G22 · 2020",
+    phase: "launch",
+    facts: ["dossier.bmw-4-g22.1", "dossier.bmw-4-g22.2"],
+    photoBrief: "dossier.bmw-4-g22.photo",
+    outputFile: "public/images/editorial-bmw-4-g22.webp",
+  },
+  "bmw-4-g22-lci": {
+    source: "bmw-4-g22-update",
+    subject: "M440i xDrive Coupé · G22 LCI · 2024",
+    phase: "facelift",
+    facts: ["dossier.bmw-4-g22-lci.1", "dossier.bmw-4-g22-lci.2"],
+    photoBrief: "dossier.bmw-4-g22-lci.photo",
+    outputFile: "public/images/editorial-bmw-4-g22-lci.webp",
+  },
+  "bmw-6-e24": {
+    source: "bmw-6-e24-classic",
+    subject: "6 Series Coupé · E24 · 1976–1989",
+    phase: "historical",
+    facts: ["dossier.bmw-6-e24.1", "dossier.bmw-6-e24.2"],
+    photoBrief: "dossier.bmw-6-e24.photo",
+    outputFile: "public/images/editorial-bmw-6-e24.webp",
+  },
+  "bmw-6-g32": {
+    source: "bmw-6-g32-launch",
+    subject: "630i Gran Turismo · G32 · 2017",
+    phase: "launch",
+    facts: ["dossier.bmw-6-g32.1", "dossier.bmw-6-g32.2"],
+    photoBrief: "dossier.bmw-6-g32.photo",
+    outputFile: "public/images/editorial-bmw-6-g32.webp",
+  },
+};

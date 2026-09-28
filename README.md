@@ -9,11 +9,13 @@ An independent BMW encyclopedia covering generations, model-year updates, powert
 ## Coverage
 
 - 260 **BMW-only** names from NHTSA vPIC. This is a regulatory index that includes motorcycle names; it is not a complete technical history of every BMW.
-- 47 families and 113 generations or overview branches, covering core series, BMW X, M, i, Isetta and Motorrad. The [coverage report](docs/catalog-status.md) lists the exact scope.
-- 103 local images, with explicit placeholders for the 10 versions awaiting photography. Reference-backed images identify their source and the visual details checked against it.
-- English and Russian share typed dictionaries. Collection summaries and all 113 generation introductions are bilingual; legacy deep-detail content is still being migrated. See [localization](docs/localization.md).
+- 48 families and 115 generations or overview branches, covering core series, BMW X, M, i, Isetta and Motorrad. The [coverage report](docs/catalog-status.md) lists the exact scope.
+- 105 local images, with explicit placeholders for the 10 versions awaiting photography. Reference-backed images identify their source and the visual details checked against it.
+- English and Russian share typed dictionaries. Collection summaries and all 115 generation introductions are bilingual; legacy deep-detail content is still being migrated. See [localization](docs/localization.md).
 
 The catalog is expanding across historic and current BMW cars, M, i, X, Z, rare versions, race cars, concepts, and Motorrad. Missing information does not imply that a model, update, or powertrain did not exist. See the [data contract](docs/data-sources.md), [coverage plan](docs/coverage.md), and [catalog roadmap](docs/catalog-roadmap.md).
+
+The compact collection opens with collapsed filters. Every current photo placeholder has a bilingual research dossier and a precise future-image brief. The separate **Ateliers** page introduces ALPINA, Hartge and AC Schnitzer, with their historical roles kept distinct.
 
 ## Development
 

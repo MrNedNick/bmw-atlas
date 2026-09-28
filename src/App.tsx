@@ -1,3 +1,4 @@
+import { AtelierGallery } from "./features/AtelierGallery";
 import { t, catalogText } from "./i18n";
 import { CollectionCatalog } from "./features/CollectionCatalog";
 import { useEffect, useLayoutEffect, useMemo, useState, useRef } from "react";
@@ -59,7 +60,7 @@ const familyById = Object.fromEntries(
   families.map((family) => [family.id, family]),
 ) as Record<string, ModelFamily>;
 interface PageState {
-  view: "catalog" | "models" | "sources" | "photos";
+  view: "catalog" | "models" | "sources" | "photos" | "ateliers";
   phase: "" | "facelift";
   collection: string;
   decade: string;
@@ -77,7 +78,10 @@ function readUrl(): PageState {
   filter.savedOnly = q.get("saved") === "1";
   const v = q.get("view");
   return {
-    view: v === "models" || v === "sources" || v === "photos" ? v : "catalog",
+    view:
+      v === "models" || v === "sources" || v === "photos" || v === "ateliers"
+        ? v
+        : "catalog",
     decade: /^(19|20)\d0$/.test(q.get("decade") ?? "") ? q.get("decade")! : "",
     phase: q.get("phase") === "facelift" ? "facelift" : "",
     collection: catalogGroups.some((group) => group.id === q.get("collection"))
@@ -510,6 +514,24 @@ export default function App() {
                 <span className="nav-count">{saved.length}</span>
               )}
             </button>
+            <a
+              className={state.view === "ateliers" ? "active" : ""}
+              href="?view=ateliers"
+              onClick={(event) => {
+                if (
+                  event.button !== 0 ||
+                  event.metaKey ||
+                  event.ctrlKey ||
+                  event.shiftKey ||
+                  event.altKey
+                )
+                  return;
+                event.preventDefault();
+                go("ateliers");
+              }}
+            >
+              {t(language, "heritage.nav")}
+            </a>
             <button className="photo-nav" onClick={() => go("photos")}>
               {text.photos}
             </button>
@@ -605,6 +627,8 @@ export default function App() {
               </div>
             </section>
           </>
+        ) : state.view === "ateliers" ? (
+          <AtelierGallery language={language} />
         ) : state.view === "models" ? (
           <section className="page-enter all-models-page">
             <CollectionCatalog

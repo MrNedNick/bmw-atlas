@@ -1,5 +1,112 @@
 import type { ru } from "./ru";
 export const en: Record<keyof typeof ru, string> = {
+  "term.Глобальная презентация": "Global launch specification",
+  "term.Новая LED-оптика, передняя панель и оформление воздухозаборников.":
+    "New LED lighting, dashboard and air-intake styling.",
+  "term.QuickSelect, Operating System 8.5 и новые варианты отделки.":
+    "QuickSelect, Operating System 8.5 and new trim options.",
+  "term.Новые LED-фары и фонари, пересмотренная настройка подвески.":
+    "New LED headlights and rear lights, with revised suspension tuning.",
+  "term.Новая оптика, Laserlight с адаптивными LED-фарами, новые рули и QuickSelect.":
+    "New lighting, Laserlight with adaptive LED headlights, new steering wheels and QuickSelect.",
+  "term.Узкие фары, новая решётка и 48-вольтовая гибридная поддержка.":
+    "Slimmer headlights, a new grille and 48-volt hybrid assistance.",
+  "term.BMW 6 Series Gran Turismo во всём мире к маю 2020; не итоговый тираж":
+    "Worldwide BMW 6 Series Gran Turismo sales by May 2020; not lifetime production",
+
+  "term.7-ступенчатая Steptronic DCT": "7-speed Steptronic dual-clutch",
+  "dossier.bmw-2-f22.1":
+    "The coupé grew over its predecessor: a 2,690 mm wheelbase and a 390-litre boot. Its long bonnet and frameless doors reinforce the classic proportions.",
+  "dossier.bmw-2-f22.2":
+    "At launch, the M235i used a 240 kW straight-six; the 220i had a 135 kW four-cylinder. An M235i badge does not make it an M2.",
+  "dossier.bmw-2-f22.photo":
+    "Early M235i: pre-LCI headlights, narrow kidneys, factory M bumper and two long doors. Neither an F23 Convertible nor an F87 M2.",
+  "dossier.bmw-2-f22-lci.1":
+    "The update went beyond lighting: the dashboard was redesigned and Professional navigation gained an 8.8-inch touchscreen.",
+  "dossier.bmw-2-f22-lci.2":
+    "The M240i xDrive produced 250 kW and reached 100 km/h in 4.4 seconds: figures for the all-wheel-drive coupé in the 2017 launch material.",
+  "dossier.bmw-2-f22-lci.photo":
+    "M240i LCI: revised LED signature, 2017 grille and front air intakes. Compare against early F22; do not reuse this photograph for it.",
+  "dossier.bmw-2-g42-2024.1":
+    "The main changes are inside: 12.3- and 14.9-inch displays, QuickSelect and Operating System 8.5. Climate settings use the screen and voice commands.",
+  "dossier.bmw-2-g42-2024.2":
+    "Zandvoort Blue joined the M240i xDrive palette. It retained 275 kW and a 4.3-second 0–100 km/h time; this equipment update should not be called an LCI.",
+  "dossier.bmw-2-g42-2024.photo":
+    "Official M240i photograph from the 2024 release, preferably Zandvoort Blue. Check wheels, grille finish and capture date; do not invent new headlights.",
+  "dossier.bmw-2-f44.1":
+    "Frameless windows meet four doors. Overall length is 4,526 mm, with a 2,670 mm wheelbase and a 430-litre boot.",
+  "dossier.bmw-2-f44.2":
+    "The M235i xDrive uses a 225 kW four-cylinder. Its architecture differs from the two-door coupé with a longitudinal straight-six.",
+  "dossier.bmw-2-f44.photo":
+    "F44 M235i xDrive: four doors, original headlights, grille and bumper geometry. Neither the two-door F22 nor the later F74 Gran Coupé.",
+  "dossier.bmw-2-f74.1":
+    "A number 2 appears at the Hofmeister kink. Length grew to 4,546 mm while the wheelbase stayed at 2,670 mm. Standard interior trim is leather-free.",
+  "dossier.bmw-2-f74.2":
+    "The M235 xDrive is rated at 221 kW and 4.9 seconds to 100 km/h. Every launch variant uses a seven-speed dual-clutch transmission.",
+  "dossier.bmw-2-f74.photo":
+    "F74 M235: new broad grille, vertical light signature, four doors and correct M details. Do not put a new badge on an F44 body.",
+  "dossier.bmw-4-f32-lci.1":
+    "The coupé suspension was retuned for sharper responses, affecting the standard, M Sport and adaptive versions.",
+  "dossier.bmw-4-f32-lci.2":
+    "The 440i made 240 kW and the 435d xDrive 230 kW. Snapper Rocks Blue and Sunset Orange joined the palette; Coupé and Gran Coupé bodies must stay distinct.",
+  "dossier.bmw-4-f32-lci.photo":
+    "Two-door 440i F32 LCI with 2017 LED lights. Verify grille, trim-specific bumper, wheels and roofline; neither an F36 nor an F82 M4.",
+  "dossier.bmw-4-g22.1":
+    "The centre of gravity sits 21 mm lower and the rear track is 23 mm wider than in the contemporary 3 Series sedan. The coupé differs by more than its grille.",
+  "dossier.bmw-4-g22.2":
+    "The M440i xDrive combines a straight-six, a 48 V system and all-wheel drive. The 2020 release gives 275 kW, 500 Nm and 4.5 seconds to 100 km/h.",
+  "dossier.bmw-4-g22.photo":
+    "Early M440i G22: tall grille and pre-2024 headlights. Check two doors, mirrors and bumper; not a G82 M4.",
+  "dossier.bmw-4-g22-lci.1":
+    "The headlights gained a new signature. Rear Laserlight units with illuminated fibres were offered with adaptive LED headlights; they are equipment-dependent, not universal.",
+  "dossier.bmw-4-g22-lci.2":
+    "New steering wheels and QuickSelect refreshed the cabin. This release lists 275 kW and 500 Nm for the M440i xDrive; figures should not be transferred between markets unchecked.",
+  "dossier.bmw-4-g22-lci.photo":
+    "2024 G22 LCI: correct daytime lights, M440i grille and bumper. Do not reuse the pre-update model or add Laserlight absent from the reference.",
+  "dossier.bmw-6-e24.1":
+    "The E24 continued the E9 grand-coupé lineage. It arrived in spring 1976; the last car left Dingolfing on 18 April 1989.",
+  "dossier.bmw-6-e24.2":
+    "At peak periods, Dingolfing built up to 50 examples a day. The series then paused: the next 6 Series, the E63, arrived in 2003.",
+  "dossier.bmw-6-e24.photo":
+    "First establish the exact E24 year, market and variant from its archive caption. Check bumpers, mirrors, grille and wheels; do not mix European and US specifications.",
+  "dossier.bmw-6-g32.1":
+    "The large tailgate opens onto 610 litres, rising to 1,800 litres with the seats folded. Self-levelling rear air suspension was standard.",
+  "dossier.bmw-6-g32.2":
+    "The 630i delivered 190 kW and 400 Nm, reaching 100 km/h in 6.3 seconds. An automatically extending rear spoiler aided aerodynamics.",
+  "dossier.bmw-6-g32.photo":
+    "Early G32 630i: tall five-door GT roofline, original 2017 headlights and grille. Neither G32 LCI, F07 5 GT nor 6 Gran Coupé.",
+  "photo.planned": "Planned photograph",
+  "photo.angle": "Front three-quarter view · entire car in frame",
+  "photo.brief": "About the planned photograph",
+  "heritage.nav": "Ateliers",
+  "heritage.eyebrow": "A signature of their own",
+  "heritage.title": "Beyond the series",
+  "heritage.intro":
+    "ALPINA, Hartge and AC Schnitzer took three different paths with BMW cars. Explore their histories and status here; dedicated vehicle collections will follow.",
+  "heritage.next": "Next collection chapter",
+  "heritage.sources": "History sources",
+  "heritage.alpina.status": "A BMW Group brand since 2026",
+  "heritage.alpina.story":
+    "The Buchloe story: founded in 1965, ALPINA began building BMW-based cars in 1978 and registered as a manufacturer with the KBA in 1983. Engines, transmissions, suspension and interiors were developed together. Around 2,000 cars were produced in 2021.",
+  "heritage.alpina.transition":
+    "Since January 2026, BMW ALPINA is a standalone BMW Group brand. The deal concerned trademark rights; it should not be described as the purchase of the entire Bovensiepen family company.",
+  "heritage.alpina.next":
+    "B3, B5, B7 and XB7: separate generations, body styles and updates. Each needs an original ALPINA reference, not a standard BMW with replacement wheels.",
+  "heritage.hartge.status": "Independent manufacturer · historical collection",
+  "heritage.hartge.story":
+    "Hartge illustrates how an atelier could go beyond accessories. Its own documentation records KBA recognition as a vehicle manufacturer from 1985. Archive material survives with British specialist Birds, a former Hartge collaborator.",
+  "heritage.hartge.transition":
+    "Manufacturer status does not mean BMW Group ownership. Future entries must distinguish complete cars, engine conversions and individual upgrade packages.",
+  "heritage.hartge.next":
+    "Start with archived E30 and F10 cars and conversions. Establish the conversion name, donor model, date and market before adding specifications.",
+  "heritage.schnitzer.status": "Tuning atelier · established 1987",
+  "heritage.schnitzer.story":
+    "AC Schnitzer has developed its own interpretation of BMW since 1987. Its approach combines engine, suspension, aerodynamic, wheel and interior upgrades. A shared BMW model name therefore does not establish an individual car’s specifications.",
+  "heritage.schnitzer.transition":
+    "This section covers the atelier’s history. An AC Schnitzer conversion is not a factory BMW M model; its specifications need the documentation for that particular conversion.",
+  "heritage.schnitzer.next":
+    "Add documented projects one at a time: car, year, exact components and original press photograph. Verify each new entry’s status independently.",
+
   "remove.from.garage.24c23b": "Remove from garage ",
   "add.to.garage.83f4a4": "Add to garage ",
   "today.6370c3": "TODAY",

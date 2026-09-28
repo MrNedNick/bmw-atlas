@@ -1,3 +1,4 @@
+import { modelDossiers } from "../data/model-dossiers";
 import { type RefObject, type MouseEvent } from "react";
 import { ArrowUpRight, Bookmark, Search, X } from "lucide-react";
 import { catalogGroups } from "../data/catalog-groups";
@@ -120,12 +121,13 @@ export function CollectionCatalog({
     ),
   ).sort();
   const bodies = [...new Set(families.flatMap((f) => f.body))];
-  const active = Boolean(
-    selection.collection ||
-      selection.decade ||
-      selection.phase ||
-      Object.values(selection.filters).some(Boolean),
-  );
+  const activeCount = [
+    selection.collection,
+    selection.decade,
+    selection.phase,
+    ...Object.values(selection.filters),
+  ].filter(Boolean).length;
+  const active = activeCount > 0;
   const reset = () =>
     onChange({
       collection: "",
@@ -197,22 +199,28 @@ export function CollectionCatalog({
               </button>
             )}
           </div>
-          <button className="archive-reset" disabled={!active} onClick={reset}>
-            {t(language, "collection.reset")}
-            <X size={15} />
+          <button
+            className="archive-filter-toggle"
+            aria-expanded={expanded}
+            aria-controls="archive-filter-options"
+            onClick={() => onExpandedChange(!expanded)}
+          >
+            {t(language, "collection.filters")}
+            {activeCount > 0 && (
+              <span className="filter-active-count">{activeCount}</span>
+            )}{" "}
+            <span>{expanded ? "−" : "+"}</span>
           </button>
+          {active && (
+            <button className="archive-reset" onClick={reset}>
+              {t(language, "collection.reset")}
+              <X size={15} />
+            </button>
+          )}
         </div>
-        <button
-          className="archive-mobile-toggle"
-          aria-expanded={expanded}
-          aria-controls="archive-filter-options"
-          onClick={() => onExpandedChange(!expanded)}
-        >
-          {t(language, "collection.filters")}{" "}
-          <span>{expanded ? "−" : "+"}</span>
-        </button>
         <div
           id="archive-filter-options"
+          hidden={!expanded}
           className={
             "archive-filter-options" + (expanded ? " is-expanded" : "")
           }
@@ -299,13 +307,13 @@ export function CollectionCatalog({
               </span>
               {t(language, "collection.facelift")}
             </button>
-            <span className="archive-count" role="status">
-              {t(language, "collection.families")}: {entries.length} ·{" "}
-              {t(language, "collection.versions")}: {count}
-            </span>
           </div>
         </div>
       </section>
+      <span className="archive-count" role="status">
+        {t(language, "collection.families")}: {entries.length} ·{" "}
+        {t(language, "collection.versions")}: {count}
+      </span>
       <div className="archive-families">
         {entries.map(({ family, generations }) => (
           <section
@@ -344,7 +352,12 @@ export function CollectionCatalog({
                   aria-label={`BMW ${family.name} ${g.code} · ${g.start}–${g.end ?? t(language, "collection.present")}`}
                 >
                   <div className="archive-card-photo">
-                    <VehiclePhoto photo={g.photo} compact language={language} />
+                    <VehiclePhoto
+                      photo={g.photo}
+                      compact
+                      language={language}
+                      planned={modelDossiers[g.id]?.subject}
+                    />
                     {isFacelift(g) && (
                       <span className="archive-phase">
                         {t(language, "collection.facelift")}
@@ -360,6 +373,11 @@ export function CollectionCatalog({
                     </div>
                     <ArrowUpRight size={23} />
                   </div>
+                  {!g.photo && (
+                    <p className="archive-card-note">
+                      {catalogText(language, `generation.${g.id}.description`)}
+                    </p>
+                  )}
                 </a>
               ))}
             </div>

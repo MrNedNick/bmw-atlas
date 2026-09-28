@@ -29,7 +29,21 @@ export const seriesCollection: ModelFamily[] = [
         source: "bmw-2-f22-launch",
         revisions: [],
         revisionCoverage: "partial",
-        powertrains: [],
+        powertrains: [
+          {
+            id: "bmw-2-f22-m235i",
+            name: "M235i",
+            fuel: "Бензин",
+            power: 240,
+            powerUnit: "кВт",
+            torque: null,
+            gearbox: null,
+            drive: "Задний",
+            market: "Глобальная презентация",
+            asOf: "2013-10-25",
+            source: "bmw-2-f22-launch",
+          },
+        ],
         volume: null,
         assembly: [],
         ratings: [],
@@ -58,7 +72,21 @@ export const seriesCollection: ModelFamily[] = [
           },
         ],
         revisionCoverage: "partial",
-        powertrains: [],
+        powertrains: [
+          {
+            id: "bmw-2-f22-lci-m240i-xdrive",
+            name: "M240i xDrive",
+            fuel: "Бензин",
+            power: 250,
+            powerUnit: "кВт",
+            torque: null,
+            gearbox: "8-ступенчатая Steptronic Sport",
+            drive: "Полный",
+            market: "Глобальная презентация",
+            asOf: "2017-05-11",
+            source: "bmw-2-f22-update",
+          },
+        ],
         volume: null,
         assembly: [],
         ratings: [],
@@ -133,7 +161,21 @@ export const seriesCollection: ModelFamily[] = [
           },
         ],
         revisionCoverage: "partial",
-        powertrains: [],
+        powertrains: [
+          {
+            id: "bmw-2-g42-2024-m240i-xdrive",
+            name: "M240i xDrive",
+            fuel: "Бензин",
+            power: 275,
+            powerUnit: "кВт",
+            torque: null,
+            gearbox: "8-ступенчатая Steptronic Sport",
+            drive: "Полный",
+            market: "Глобальная презентация",
+            asOf: "2024-06-13",
+            source: "bmw-2-g42-update",
+          },
+        ],
         volume: null,
         assembly: ["Мексика · Сан-Луис-Потоси"],
         ratings: [],
@@ -201,7 +243,21 @@ export const seriesCollection: ModelFamily[] = [
         source: "bmw-2-f74-launch",
         revisions: [],
         revisionCoverage: "partial",
-        powertrains: [],
+        powertrains: [
+          {
+            id: "bmw-2-f74-m235-xdrive",
+            name: "M235 xDrive",
+            fuel: "Бензин",
+            power: 221,
+            powerUnit: "кВт",
+            torque: null,
+            gearbox: "7-ступенчатая Steptronic DCT",
+            drive: "Полный",
+            market: "Глобальная презентация",
+            asOf: "2024-10-16",
+            source: "bmw-2-f74-launch",
+          },
+        ],
         volume: null,
         assembly: [],
         ratings: [],
@@ -246,7 +302,21 @@ export const seriesCollection: ModelFamily[] = [
           },
         ],
         revisionCoverage: "partial",
-        powertrains: [],
+        powertrains: [
+          {
+            id: "bmw-4-f32-lci-440i",
+            name: "440i",
+            fuel: "Бензин",
+            power: 240,
+            powerUnit: "кВт",
+            torque: null,
+            gearbox: null,
+            drive: null,
+            market: "Глобальная презентация",
+            asOf: "2017-01-17",
+            source: "bmw-4-first-generation",
+          },
+        ],
         volume: null,
         assembly: [],
         ratings: [],
@@ -265,7 +335,21 @@ export const seriesCollection: ModelFamily[] = [
         source: "bmw-4-second-generation",
         revisions: [],
         revisionCoverage: "partial",
-        powertrains: [],
+        powertrains: [
+          {
+            id: "bmw-4-g22-m440i-xdrive",
+            name: "M440i xDrive",
+            fuel: "Mild hybrid",
+            power: 275,
+            powerUnit: "кВт",
+            torque: 500,
+            gearbox: "8-ступенчатая Steptronic",
+            drive: "Полный",
+            market: "Глобальная презентация",
+            asOf: "2020-06-02",
+            source: "bmw-4-second-generation",
+          },
+        ],
         volume: null,
         assembly: [],
         ratings: [],
@@ -394,9 +478,6 @@ export const seriesCollection: ModelFamily[] = [
     ],
   },
 ];
-for (const family of seriesCollection)
-  for (const generation of family.generations)
-    generation.photo = assetByGeneration[generation.id];
 const four = seriesCollection.find((f) => f.id === "bmw-4-coupe")!;
 four.generations.push({
   id: "bmw-4-g22-lci",
@@ -440,3 +521,7 @@ four.generations.push({
   assembly: ["Германия · Дингольфинг"],
   ratings: [],
 });
+
+for (const family of seriesCollection)
+  for (const generation of family.generations)
+    generation.photo = assetByGeneration[generation.id];

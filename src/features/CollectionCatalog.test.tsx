@@ -87,5 +87,8 @@ describe("collection chapters", () => {
     );
     expect(html).toContain('aria-label="Save to garage BMW X7"');
     expect(html).not.toMatch(/[А-Яа-яЁё]/);
+    expect(html).toMatch(/id="archive-filter-options" hidden=""/);
+    expect(html).toContain('aria-expanded="false"');
+    expect(html).toContain('role="status"');
   });
 });

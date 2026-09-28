@@ -1,3 +1,4 @@
+import { modelDossiers } from "../data/model-dossiers";
 import { t, catalogText, label } from "../i18n";
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
@@ -53,6 +54,7 @@ export function FamilyDetail({
 }) {
   const isEnglish = language === "en";
   const spotlight = spotlights[generation.id];
+  const dossier = modelDossiers[generation.id];
   const power = heroPower(generation);
   const copy = {
     back: t(language, "all.models.a1334b"),
@@ -170,6 +172,7 @@ export function FamilyDetail({
         family.volume?.source,
         generation.volume?.source,
         spotlight?.source,
+        dossier?.source,
         spotlight?.price?.source,
         ...generation.revisions.map((r) => r.source),
         ...generation.powertrains.map((p) => p.source),
@@ -282,7 +285,18 @@ export function FamilyDetail({
         </div>
         <div className="detail-media-column">
           <div className="detail-visual blue">
-            <VehiclePhoto photo={generation.photo} language={language} />
+            <VehiclePhoto
+              photo={generation.photo}
+              language={language}
+              planned={dossier?.subject}
+            />
+            {!generation.photo && dossier && (
+              <details className="planned-photo-brief">
+                <summary>{t(language, "photo.brief")}</summary>
+                <p>{t(language, dossier.photoBrief)}</p>
+                <p>{t(language, "photo.angle")}</p>
+              </details>
+            )}
           </div>
           {family.generations.length > 1 && (
             <section
@@ -400,6 +414,13 @@ export function FamilyDetail({
                     : `family.${family.id}.summary`,
                 )}
               </p>
+              {dossier && (
+                <ul className="dossier-facts">
+                  {dossier.facts.map((key) => (
+                    <li key={key}>{t(language, key)}</li>
+                  ))}
+                </ul>
+              )}
               {(generation.highlights?.length ?? 0) > 0 && (
                 <div className="generation-highlights">
                   <h4>{copy.rememberedFor}</h4>
@@ -488,7 +509,7 @@ export function FamilyDetail({
                   {label(language, family.volume.metric)} · {family.volume.asOf}
                 </span>
                 <strong>{formatVolume(family.volume, language)}</strong>
-                <small>{family.volume.scope}</small>
+                <small>{label(language, family.volume.scope)}</small>
               </div>
             )}
           </section>
@@ -554,7 +575,7 @@ export function FamilyDetail({
                         </small>
                       </td>
                       <td>
-                        {p.market}
+                        {label(language, p.market)}
                         <small>
                           {p.asOf} · <SourceLink id={p.source} />
                         </small>

@@ -1,4 +1,4 @@
-import { t } from "../../i18n";
+import { t, label } from "../../i18n";
 import { ArrowUpRight, Layers3 } from "lucide-react";
 import { sourceById } from "../../data/sources";
 import type { Revision } from "../../domain/revisions";
@@ -37,9 +37,12 @@ export function RevisionTimeline({
                       : "Model-year update"
                     : revisionKindLabel[revision.kind]}
                 </span>
-                <p>{revision.title}</p>
+                <p>{label(language, revision.title)}</p>
                 <small>
-                  {revision.market} · {revision.bodies.join(" · ")}
+                  {label(language, revision.market)} ·{" "}
+                  {revision.bodies
+                    .map((body) => label(language, body))
+                    .join(" · ")}
                 </small>
                 {source && (
                   <a
