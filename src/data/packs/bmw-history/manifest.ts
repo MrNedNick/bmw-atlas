@@ -66,6 +66,14 @@ const detailedBodies: Record<
       "крутящий момент и коробка передач",
     ],
   },
+  "bmw-history-507": {
+    generationId: "bmw-507-roadster",
+    missingFields: [
+      "различие Series I и Series II",
+      "завод и география сборки",
+      "крутящий момент и коробка передач",
+    ],
+  },
   "bmw-history-600": {
     generationId: "bmw-600-sedan",
     missingFields: [
@@ -299,15 +307,17 @@ const inventoryRows: BMWHistoryItem[] = [
     ["bmw-classic-503-convertible", "bmw-classic-503-coupe"],
     ["месяцы выпуска Coupé", "тираж"],
   ),
-  indexed(
-    "507",
-    "507",
-    "Roadster",
-    { from: "1956-12", to: "1959-12" },
-    ["BMW 507"],
-    ["bmw-classic-507"],
-    ["тираж и серии 1/2"],
-  ),
+  {
+    id: "bmw-history-507",
+    family: "507",
+    version: "Roadster",
+    generationId: "bmw-507-roadster",
+    status: "index",
+    production: { from: "1956-12", to: "1959-12" },
+    aliases: ["BMW 507"],
+    sourceIds: ["bmw-classic-507"],
+    missingFields: [...archiveGaps],
+  },
   indexed(
     "3200-cs",
     "3200 CS",

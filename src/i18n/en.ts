@@ -582,6 +582,11 @@ export const en: Record<keyof typeof ru, string> = {
     "A hand-built 2+2 coupé and convertible unveiled beside the 507 in 1955.",
   "generation.bmw-503-coupe-cabriolet.description":
     "The 503 debuted beside the 507 at Frankfurt’s IAA in September 1955. Both were designed by Albrecht Graf Goertz. From May 1956 to spring 1960, the coupé and convertible were built by hand with a 3,168 cc light-alloy V8 producing 140 hp and a price approaching DM 30,000.",
+  "family.bmw-507.summary":
+    "A two-seat aluminium-bodied roadster unveiled beside the 503 at the 1955 IAA. Only 251 were hand-built over three years, and its high price — close to DM 26,500 — was one reason the originally planned large-scale run never happened.",
+  "family.bmw-507.tagline": "Graf Goertz’s aluminium V8 roadster.",
+  "generation.bmw-507-roadster.description":
+    "The 507 debuted beside the 503 coupé and convertible at Frankfurt’s IAA in September 1955; both were designed by Albrecht Graf Goertz. From December 1956 to December 1959 the roadster was hand-built on an aluminium body, with a 3,168 cc V8 producing 150 hp and a price approaching DM 26,500. Only 251 were built in total.",
   "family.bmw-600.summary":
     "An Isetta-derived four-seater with a front door, a side door for rear passengers and a motorcycle-derived boxer twin. Production lasted just two years.",
   "family.bmw-600.tagline":

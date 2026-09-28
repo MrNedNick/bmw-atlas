@@ -70,6 +70,7 @@ export const catalogGroups: readonly CatalogGroup[] = [
       "bmw-isetta",
       "bmw-328",
       "bmw-503",
+      "bmw-507",
       "bmw-600",
       "bmw-700",
       "bmw-neue-klasse",

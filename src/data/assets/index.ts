@@ -1475,6 +1475,31 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-507-roadster": {
+    url: "images/editorial-bmw-507-roadster.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1957_BMW_507_Roadster_White_(2).jpg",
+    author: "Damian B Oh",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW 507 Roadster · 1957",
+    reference: {
+      publisher: "Wikimedia Commons",
+      page: "https://commons.wikimedia.org/wiki/File:1957_BMW_507_Roadster_White_(2).jpg",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/d/d6/1957_BMW_507_Roadster_White_%282%29.jpg",
+      localFile: "references/images/commons-bmw-507-roadster-1957.jpg",
+      imageId: "1957_BMW_507_Roadster_White_(2).jpg",
+      phase: "historical",
+      verifiedDetails: [
+        "низкие вытянутые «ноздри» без вертикальных прутьев, окружённые общей хромированной рамкой",
+        "круглые фары в отдельных хромированных ободах у самых «ноздрей»",
+        "массивный охватывающий хромированный бампер с клыками",
+        "вентиляционная жаберная решётка на переднем крыле за колёсной нишей",
+        "поднятый мягкий верх и складывающийся тканевый тент над задней частью салона",
+        "проволочные диски со спицами под колпаками и белые боковины шин",
+      ],
+    },
+  },
   "bmw-600-sedan": {
     url: "images/editorial-bmw-600-sedan.webp",
     page: "https://commons.wikimedia.org/wiki/File:1958_BMW_600_in_White_over_Red,_front_left_(Greenwich_2023).jpg",
