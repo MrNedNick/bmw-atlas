@@ -219,6 +219,52 @@ const m3F80Reference: PhotoReference = {
   ],
 };
 const photoByGeneration: Record<string, PhotoMetadata> = {
+  "bmw-6-g32-lci": editorialPhoto(
+    "editorial-bmw-6-g32-lci.webp",
+    "https://www.press.bmwgroup.com/global/photo/compilation/T0318948EN/the-new-bmw-6-series-gran-turismo-additional-pictures",
+    "BMW 640i xDrive Gran Turismo · G32 LCI, 2020",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/global/photo/compilation/T0318948EN/the-new-bmw-6-series-gran-turismo-additional-pictures",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90404135",
+      localFile: "references/images/P90404135-bmw-6-g32-lci.jpg",
+      imageId: "P90404135",
+      phase: "facelift",
+      verifiedDetails: [
+        "передний трёхчетвертной ракурс G32 LCI",
+        "цвет Bernina grey amber effect",
+        "пятидверный Gran Turismo с высокой линией крыши",
+        "узкие рестайлинговые фары с синими элементами",
+        "хромированная решётка и M Sport бампер",
+        "многоспицевые колёса, синие суппорты и номер M HF 1312",
+      ],
+    },
+  ),
+
+  "bmw-2-g42": editorialPhoto(
+    "editorial-bmw-2-g42.webp",
+    "https://www.press.bmwgroup.com/latin-america-caribbean/photo/compilation/T0337214EN/the-all-new-bmw-2-series-coup%C3%A9?language=en",
+    "BMW M240i xDrive · G42, 2021",
+    {
+      publisher: "BMW Group PressClub",
+      page: "https://www.press.bmwgroup.com/latin-america-caribbean/photo/compilation/T0337214EN/the-all-new-bmw-2-series-coup%C3%A9?language=en",
+      imageUrl:
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90428477",
+      localFile: "references/images/P90428477-bmw-2-g42.jpg",
+      imageId: "P90428477",
+      phase: "launch",
+      verifiedDetails: [
+        "передний трёхчетвертной ракурс G42",
+        "Thundernight Metallic и двухдверный кузов",
+        "одиночные модули фар с угловатой световой подписью",
+        "горизонтальная двойная решётка с активными планками",
+        "колёса 792M Bicolor и серые зеркала",
+        "номер M AG 1308 и треугольные боковые воздухозаборники",
+      ],
+    },
+  ),
+
   "bmw-x1-u11": editorialPhoto(
     "editorial-bmw-x1-u11.webp",
     "https://www.press.bmwgroup.com/global/photo/detail/P90509778/BMW-X1-M35i-M-Frozen-Pure-Grey-Metallic-Rim-20-Styling-872M-06-2023",
@@ -767,28 +813,28 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
   ),
   "bmw-x4-m-f98-lci": {
     url: "images/editorial-bmw-x4-m-f98-lci.webp",
-    page: "https://www.press.bmwgroup.com/global/photo/detail/P90423940/The-new-BMW-X4-M-Competition-06-2021",
+    page: "https://www.press.bmwgroup.com/global/photo/detail/P90423933/The-new-BMW-X4-M-Competition-06-2021",
     author: "BMW Group PressClub",
     license: "Media material",
     licenseUrl:
-      "https://www.press.bmwgroup.com/global/photo/detail/P90423940/The-new-BMW-X4-M-Competition-06-2021",
+      "https://www.press.bmwgroup.com/global/photo/detail/P90423933/The-new-BMW-X4-M-Competition-06-2021",
     subject: "BMW X4 M Competition · F98 LCI, 2021",
     note: "Редакционная визуализация на основе точного официального исходного снимка; конструктивные признаки проверены отдельно.",
     reference: {
       publisher: "BMW Group PressClub",
-      page: "https://www.press.bmwgroup.com/global/photo/detail/P90423940/The-new-BMW-X4-M-Competition-06-2021",
+      page: "https://www.press.bmwgroup.com/global/photo/detail/P90423933/The-new-BMW-X4-M-Competition-06-2021",
       imageUrl:
-        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90423940",
-      localFile: "references/images/P90423940-bmw-x4-m-f98-lci.jpg",
-      imageId: "P90423940",
+        "https://mediapool.bmwgroup.com/download/edown/pressclub/publicq?actEvent=image&attachment=1&dokNo=P90423933",
+      localFile: "references/images/P90423933-bmw-x4-m-f98-lci.jpg",
+      imageId: "P90423933",
       phase: "facelift",
       verifiedDetails: [
         "серийный BMW X4 M Competition F98 LCI 2021 года в цвете Sao Paulo Yellow",
         "покатая купеобразная крыша Sports Activity Coupé и короткая задняя часть кузова F98",
-        "узкие задние фонари рестайлинга с тёмными горизонтальными элементами",
-        "эмблемы BMW и X4 M Competition на крышке багажника",
-        "чёрный M-диффузор и четыре круглых выпускных патрубка",
-        "строго задний ракурс и архитектурный фон исходного официального снимка",
+        "узкие передние LED-фары рестайлинга с двойной световой подписью",
+        "чёрная двойная решётка с эмблемой X4 M и передний номер M HI 2773",
+        "крупные боковые воздухозаборники M-бампера, чёрные зеркала и многоспицевые колёса",
+        "передний трёхчетвертной ракурс точного официального снимка",
       ],
     },
   },

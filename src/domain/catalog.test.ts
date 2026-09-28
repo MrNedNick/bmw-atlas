@@ -4,6 +4,7 @@ import {
   parseSelection,
   validateCatalog,
   formatVolume,
+  formatYears,
   type ModelFamily,
   type Source,
 } from "./catalog";
@@ -56,6 +57,24 @@ describe("catalogue boundaries", () => {
   });
   it("does not turn missing production into zero", () =>
     expect(formatVolume(null)).toBe("Нет подтверждённых данных"));
+  it("preserves small production totals and formats the selected language", () => {
+    const volume = {
+      value: 405,
+      relation: "около" as const,
+      metric: "произведено" as const,
+      scope: "test",
+      asOf: "1960",
+      source: "source",
+    };
+    expect(formatVolume(volume)).toBe("около 405");
+    expect(formatVolume(volume, "en")).toBe("about 405");
+    expect(formatVolume({ ...volume, value: 1_470_000 }, "en")).toBe(
+      "about 1.47 million",
+    );
+    expect(formatYears({ ...fixture().generations[0], end: null }, "en")).toBe(
+      "2000–present",
+    );
+  });
   it("rejects duplicate generation IDs", () => {
     const f = fixture();
     f.generations.push({ ...f.generations[0] });

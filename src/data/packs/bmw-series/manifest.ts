@@ -321,6 +321,30 @@ export const bmwSeriesInventory: SeriesInventoryItem[] = [
   ),
 ];
 
+const visibleOverviews: Record<string, string> = {
+  "bmw-series-2-f22": "bmw-2-f22",
+  "bmw-series-2-g42": "bmw-2-g42",
+  "bmw-series-2-f44": "bmw-2-f44",
+  "bmw-series-2-f74": "bmw-2-f74",
+  "bmw-series-4-f3x": "bmw-4-f32-lci",
+  "bmw-series-4-g2x": "bmw-4-g22",
+  "bmw-series-6-e24": "bmw-6-e24",
+  "bmw-series-6-g32": "bmw-6-g32",
+};
+for (const item of bmwSeriesInventory) {
+  if (visibleOverviews[item.id]) {
+    item.status = "overview";
+    item.generationId = visibleOverviews[item.id];
+    item.missingFields = [
+      "изображения всех кузовов и фаз",
+      "полная хронология кузовных ветвей",
+      "двигатели по рынкам",
+      "цены и динамика отдельных версий",
+      "итоговые производственные данные",
+    ];
+  }
+}
+
 export function validateSeriesInventory(
   inventory: SeriesInventoryItem[],
   sources: Source[],

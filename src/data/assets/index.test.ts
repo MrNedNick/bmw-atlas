@@ -9,10 +9,14 @@ describe("photo asset registry", () => {
   it("assigns exactly one local asset to its own generation", () => {
     expect(validateAssetRegistry(assetByGeneration, generationIds)).toEqual([]);
     expect(Object.keys(assetByGeneration).sort()).toEqual(
-      [...generationIds].sort(),
+      allGenerations
+        .filter(({ generation }) => generation.photo)
+        .map(({ generation }) => generation.id)
+        .sort(),
     );
     for (const { generation } of allGenerations) {
-      expect(generation.photo?.generationId).toBe(generation.id);
+      if (generation.photo)
+        expect(generation.photo.generationId).toBe(generation.id);
       expect(generation.photo).toBe(assetByGeneration[generation.id]);
     }
   });

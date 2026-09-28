@@ -1,3 +1,4 @@
+import { seriesCollection } from "./packs/bmw-series/collection";
 import { assetByGeneration } from "./assets";
 import type {
   ModelFamily,
@@ -4992,6 +4993,7 @@ export const families: ModelFamily[] = [
     ],
   },
 ];
+families.push(...seriesCollection);
 export const allGenerations = families.flatMap((f) =>
   f.generations.map((g) => ({ family: f, generation: g })),
 );

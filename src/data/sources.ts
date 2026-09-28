@@ -1,6 +1,64 @@
 import type { Source } from "../domain/catalog";
 export const sources: Source[] = [
   {
+    id: "bmw-4-g22-update",
+    title: "The new BMW 4 Series Coupé and Convertible",
+    publisher: "BMW Group PressClub",
+    date: "2024-01-31",
+    scope: "March 2024 facelift, lighting, interior and M440i specifications",
+    url: "https://www.press.bmwgroup.com/portugal/article/detail/T0439306PT/the-new-bmw-4-series-coup%C3%A9-the-new-bmw-4-series-convertible?language=pt",
+  },
+
+  {
+    id: "bmw-2-f22-launch",
+    date: "2013-10-25",
+    title: "First 2 Series Coupé",
+    publisher: "BMW Group PressClub",
+    scope: "First 2 Series Coupé",
+    url: "https://www.press.bmwgroup.com/africa-dom-easteurope/article/detail/T0153064EN/a-new-dimension-in-dynamics-the-bmw-2-series-coupe?language=en",
+  },
+  {
+    id: "bmw-2-f22-update",
+    date: "2017-05-11",
+    title: "2 Series Coupé and Convertible update",
+    publisher: "BMW Group PressClub",
+    scope: "2 Series Coupé and Convertible update",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0270425EN/the-new-bmw-2-series-coupe-the-new-bmw-2-series-convertible",
+  },
+  {
+    id: "bmw-6-g32-update",
+    date: "2020-05-27",
+    title: "6 Series Gran Turismo update",
+    publisher: "BMW Group PressClub",
+    scope: "6 Series Gran Turismo update",
+    url: "https://www.press.bmwgroup.com/asia/article/detail/T0308948EN/the-new-bmw-6-series-gran-turismo?language=en",
+  },
+  {
+    id: "bmw-6-g32-end",
+    date: "проверено 2026-09-26",
+    title: "BMW confirms end of G32 production in autumn 2023",
+    publisher: "Motor1 Deutschland · BMW spokesperson",
+    scope: "BMW confirms end of G32 production in autumn 2023",
+    url: "https://de.motor1.com/news/679724/bmw-6er-gran-turismo-aus/",
+  },
+  {
+    id: "bmw-xm-us-price",
+    title: "The First-Ever BMW XM: A BMW M Original",
+    publisher: "BMW Group PressClub USA",
+    date: "2022-09-27",
+    scope: "US launch MSRP, excluding destination, taxes and options",
+    url: "https://www.press.bmwgroup.com/usa/article/detail/T0404063EN_US/the-first-ever-bmw-xm:-a-bmw-m-original",
+  },
+  {
+    id: "bmw-2-g42-launch",
+    title: "The all-new BMW 2 Series Coupé",
+    publisher: "BMW Group PressClub Asia",
+    date: "2021-07-07",
+    scope: "G42 launch specifications and design; regional launch timing",
+    url: "https://www.press.bmwgroup.com/asia/article/detail/T0337331EN/the-all-new-bmw-2-series-coup%C3%A9?language=en",
+  },
+
+  {
     id: "bmw-1-production",
     title: "BMW 1 Series в истории завода Регенсбург",
     publisher: "BMW Group PressClub",

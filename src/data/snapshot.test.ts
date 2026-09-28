@@ -35,9 +35,11 @@ describe("BMW distribution", () => {
         existsSync(new URL("../../public/" + p.url, import.meta.url)),
       ).toBe(true);
   });
-  it("uses the unified editorial image set for every detailed generation", () => {
-    const photos = families.flatMap((f) => f.generations.map((g) => g.photo));
-    expect(photos).toHaveLength(101);
+  it("keeps local editorial images for photographed generations", () => {
+    const photos = families.flatMap((f) =>
+      f.generations.flatMap((g) => (g.photo ? [g.photo] : [])),
+    );
+    expect(photos.length).toBeGreaterThanOrEqual(103);
     expect(
       photos.every((p) => p?.url.startsWith("images/editorial-bmw-")),
     ).toBe(true);

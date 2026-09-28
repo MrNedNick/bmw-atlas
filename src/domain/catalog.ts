@@ -168,13 +168,25 @@ export function familyMatches(
       (!filters.fuel || g.powertrains.some((p) => p.fuel === filters.fuel)),
   );
 }
-export function formatYears(g: Generation) {
-  return `${g.start}–${g.end ?? "н. в."}`;
+export function formatYears(g: Generation, language: "ru" | "en" = "ru") {
+  return `${g.start}–${g.end ?? (language === "en" ? "present" : "н. в.")}`;
 }
-export function formatVolume(v: Volume | null) {
-  return v
-    ? `${v.relation} ${new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(v.value / 1_000_000)} млн`
-    : "Нет подтверждённых данных";
+export function formatVolume(v: Volume | null, language: "ru" | "en" = "ru") {
+  if (!v)
+    return language === "en"
+      ? "No confirmed data"
+      : "Нет подтверждённых данных";
+  const relation =
+    language === "ru"
+      ? v.relation
+      : ({ около: "about", более: "over", менее: "under" } as const)[
+          v.relation
+        ];
+  const millions = v.value >= 1_000_000;
+  const value = new Intl.NumberFormat(language, {
+    maximumFractionDigits: millions ? 2 : 0,
+  }).format(millions ? v.value / 1_000_000 : v.value);
+  return `${relation} ${value}${millions ? (language === "en" ? " million" : " млн") : ""}`;
 }
 export function parseSelection(raw: string | null, allowed: string[]) {
   return [

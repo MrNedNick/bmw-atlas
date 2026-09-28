@@ -10,7 +10,17 @@ export const catalogGroups: readonly CatalogGroup[] = [
     id: "series",
     eyebrow: "ОСНОВНЫЕ СЕРИИ",
     title: "Классическая линейка BMW",
-    familyIds: ["bmw-1-series", "bmw-3-series", "bmw-5-series", "bmw-7-series"],
+    familyIds: [
+      "bmw-1-series",
+      "bmw-2-coupe",
+      "bmw-2-gran-coupe",
+      "bmw-3-series",
+      "bmw-4-coupe",
+      "bmw-5-series",
+      "bmw-6-series",
+      "bmw-6-gran-turismo",
+      "bmw-7-series",
+    ],
   },
   {
     id: "x",
