@@ -875,6 +875,15 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     subject: "BMW M850i Gran Coupé · G16 LCI · 2023",
     note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
   },
+  "bmw-8-g16": {
+    url: "images/editorial-bmw-8-g16.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_G16_IMG_2014.jpg",
+    author: "Alexander Migl (Alexander-93)",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW M850i xDrive Gran Coupé · G16 · 2019",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
   "bmw-8-g14": {
     url: "images/editorial-bmw-8-g14.webp",
     page: "https://commons.wikimedia.org/wiki/File:BMW_G14_IMG_3631.jpg",
