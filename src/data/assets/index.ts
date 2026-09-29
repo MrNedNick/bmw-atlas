@@ -920,6 +920,15 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     subject: "BMW M235i xDrive Gran Coupé · F44",
     note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
   },
+  "bmw-2-f74": {
+    url: "images/editorial-bmw-2-f74.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_F74_M235_DSC_2918.jpg",
+    author: "Alexander Migl (Alexander-93)",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW M235 xDrive Gran Coupé · F74 · 2025",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
   "bmw-4-f32-lci": {
     url: "images/editorial-bmw-4-f32-lci.webp",
     page: "https://commons.wikimedia.org/wiki/File:BMW_440i_Coupe_M_Sport_GIIAS_2017.JPG",
@@ -1796,6 +1805,7 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
       "bmw-2-f22",
       "bmw-2-f22-lci",
       "bmw-2-f44",
+      "bmw-2-f74",
       "bmw-4-f32-lci",
       "bmw-4-g22",
       "bmw-4-g22-lci",
