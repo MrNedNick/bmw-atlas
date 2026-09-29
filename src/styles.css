@@ -3982,3 +3982,154 @@ td > span {
     max-width: none;
   }
 }
+
+/* Archival specifications stay distinct from series production entries. */
+.atelier-cars {
+  margin: 18px 0 40px;
+}
+.atelier-cars > header h2 {
+  margin: 10px 0;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 400;
+}
+.atelier-cars > header p {
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.6;
+}
+.atelier-car-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0;
+}
+.atelier-car-filters [aria-pressed="true"] {
+  background: var(--lime);
+  color: var(--bg);
+  border-color: var(--lime);
+}
+.atelier-car-filters > span {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 16px;
+}
+.atelier-car-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.atelier-car {
+  min-width: 0;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.atelier-car-phase {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.atelier-car h3 {
+  font-size: 30px;
+  margin: 15px 0 24px;
+  font-weight: 400;
+}
+.atelier-car-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.atelier-car-stats > div {
+  display: block;
+  padding: 0 0 12px;
+}
+.atelier-car-stats dt {
+  min-height: 3em;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.atelier-car-stats dd {
+  font-size: 27px;
+  margin: 8px 0;
+  text-align: left;
+  white-space: nowrap;
+}
+.atelier-car-stats small {
+  font-size: 14px;
+}
+.atelier-photo-reserved {
+  color: var(--muted);
+  font-size: 15px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+}
+.atelier-car summary {
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--lime);
+  padding: 10px 0;
+}
+.atelier-car details p {
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 14px 0;
+}
+.atelier-car details h4 {
+  margin-top: 20px;
+  font-size: 17px;
+}
+.atelier-car-technical {
+  margin: 18px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.atelier-car-technical div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+.atelier-car-technical dt {
+  color: var(--muted);
+}
+.atelier-spec-scope {
+  color: var(--muted);
+}
+.atelier-edition-note {
+  border-left: 2px solid var(--lime);
+  padding-left: 14px;
+}
+@media (max-width: 700px) {
+  .atelier-car-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .atelier-car {
+    padding: 18px;
+  }
+  .atelier-car-stats dd {
+    font-size: 23px;
+  }
+  .atelier-car-phase {
+    flex-wrap: wrap;
+  }
+  .atelier-car-filters > span {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.atelier-car-technical dd {
+  margin: 0;
+  max-width: 100%;
+}

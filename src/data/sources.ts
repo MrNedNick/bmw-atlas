@@ -1,6 +1,42 @@
 import type { Source } from "../domain/catalog";
 export const sources: Source[] = [
   {
+    id: "alpina-b3-sedan-2020",
+    date: "2020-09-30",
+    title: "B3 Limousine Technicaldata",
+    publisher: "ALPINA / Nicole Automobiles",
+    scope:
+      "Archived manufacturer specification; body-specific performance, Japanese release",
+    url: "https://files.alpina.co.jp/press/img_pdf/images/B3_Limousine_Technicaldata.pdf",
+  },
+  {
+    id: "alpina-b3-touring-2020",
+    date: "2020-09-30",
+    title: "B3 Touring Technicaldata",
+    publisher: "ALPINA / Nicole Automobiles",
+    scope:
+      "Archived manufacturer specification; body-specific performance, Japanese release",
+    url: "https://files.alpina.co.jp/press/img_pdf/images/B3_Touring_Technicaldata.pdf",
+  },
+  {
+    id: "alpina-b3-update-2022",
+    date: "2022-05-25",
+    title: "BMW ALPINA B3 PRESS 2022",
+    publisher: "ALPINA / Nicole Automobiles",
+    scope:
+      "Archived manufacturer specification; body-specific performance, Japanese release",
+    url: "https://files.alpina.co.jp/press/img_pdf/images/BMW_ALPINA_B3_PRESS_2022.pdf",
+  },
+  {
+    id: "alpina-b5-gt-2023",
+    date: "2023-01-23",
+    title: "BMW ALPINA B5GT PRESS 2023",
+    publisher: "ALPINA / Nicole Automobiles",
+    scope:
+      "Archived manufacturer specification; body-specific performance, Japanese release",
+    url: "https://files.alpina.co.jp/press/img_pdf/images/BMW_ALPINA_B5GT_PRESS_2023.pdf",
+  },
+  {
     id: "alpina-brand-agreement",
     title: "BMW Group acquires the ALPINA brand",
     publisher: "BMW Group PressClub",

@@ -1,3 +1,4 @@
+import { AtelierCars } from "./AtelierCars";
 import { ateliers } from "../data/ateliers";
 import { sourceById } from "../data/sources";
 import { t, type Locale } from "../i18n";
@@ -18,6 +19,7 @@ export function AtelierGallery({ language }: { language: Locale }) {
           </a>
         ))}
       </nav>
+      <AtelierCars language={language} />
       {ateliers.map((a, i) => (
         <article className="atelier-chapter" id={`atelier-${a.id}`} key={a.id}>
           <header>

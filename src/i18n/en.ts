@@ -1,5 +1,52 @@
 import type { ru } from "./ru";
 export const en: Record<keyof typeof ru, string> = {
+  "atelier.cars.title": "ALPINA automobiles",
+  "atelier.cars.intro":
+    "Six archived specifications. Sedan and Touring, original versions and facelifts are shown separately.",
+  "atelier.cars.all": "All versions",
+  "atelier.cars.sedan": "Sedans",
+  "atelier.cars.touring": "Touring",
+  "atelier.cars.facelift": "Facelifts",
+  "atelier.cars.launch": "Original version",
+  "atelier.cars.limited": "Limited edition",
+  "atelier.cars.details": "Story, specifications and planned photograph",
+  "atelier.cars.snapshot": "Specification dated",
+  "atelier.cars.scope":
+    "ALPINA Japan archive; manufacturer performance figures. The document date is not a complete production period.",
+  "atelier.cars.power": "Power",
+  "atelier.cars.torque": "Torque",
+  "atelier.cars.speed": "Top speed",
+  "atelier.cars.gearbox": "8-speed SWITCH-TRONIC",
+  "atelier.cars.displacement": "Engine",
+  "atelier.cars.photo": "Photograph brief",
+  "atelier.cars.limit":
+    "250 cars: the combined B5 GT edition limit for both body styles, not 250 of each.",
+  "atelier.cars.base": "Base BMW series",
+  "atelier.cars.ps": "PS",
+  "atelier.cars.sedan.name": "Sedan",
+  "atelier.cars.kw": "kW",
+  "atelier.cars.nm": "Nm",
+  "atelier.cars.kmh": "km/h",
+  "atelier.cars.seconds": "s",
+  "atelier.cars.b3.early":
+    "The B3 retained the restrained 3 Series silhouette: a twin-turbo straight-six and eight-speed SWITCH-TRONIC. Factory acceleration figures differ between sedan and estate.",
+  "atelier.cars.b3.lci":
+    "The update added 24 kW and 30 Nm, revised headlights and Curved Display. The May 2022 Japanese release scheduled local introduction for early 2023.",
+  "atelier.cars.b5.gt":
+    "The B5 GT uses a twin-turbo 4.4-litre V8. Revised intake and engine calibration raised output to 466 kW; sedan and Touring share one limited edition.",
+  "alpina-b3-sedan-launch.photo":
+    "B3 Sedan, G20, 2020: front three-quarter view, entire car in frame. Verify original headlights, ALPINA spoiler and bodywork. Do not substitute a standard BMW or another body style.",
+  "alpina-b3-touring-launch.photo":
+    "B3 Touring, G21, 2020: front three-quarter view, entire car in frame. Verify original headlights, ALPINA spoiler and bodywork. Do not substitute a standard BMW or another body style.",
+  "alpina-b3-sedan-facelift.photo":
+    "B3 Sedan, G20, 2022: front three-quarter view, entire car in frame. Verify facelift headlights, ALPINA bumper and spoiler. Do not substitute a standard BMW or another body style.",
+  "alpina-b3-touring-facelift.photo":
+    "B3 Touring, G21, 2022: front three-quarter view, entire car in frame. Verify facelift headlights, ALPINA bumper and spoiler. Do not substitute a standard BMW or another body style.",
+  "alpina-b5-gt-sedan-limited.photo":
+    "B5 GT Sedan, G30, 2023: front three-quarter view, entire car in frame. Verify GT details, wheels and exact ALPINA bodywork. Do not substitute a standard BMW or another body style.",
+  "alpina-b5-gt-touring-limited.photo":
+    "B5 GT Touring, G31, 2023: front three-quarter view, entire car in frame. Verify GT details, wheels and exact ALPINA bodywork. Do not substitute a standard BMW or another body style.",
+
   "term.Глобальная презентация": "Global launch specification",
   "term.Новая LED-оптика, передняя панель и оформление воздухозаборников.":
     "New LED lighting, dashboard and air-intake styling.",
@@ -82,7 +129,7 @@ export const en: Record<keyof typeof ru, string> = {
   "heritage.eyebrow": "A signature of their own",
   "heritage.title": "Beyond the series",
   "heritage.intro":
-    "ALPINA, Hartge and AC Schnitzer took three different paths with BMW cars. Explore their histories and status here; dedicated vehicle collections will follow.",
+    "ALPINA, Hartge and AC Schnitzer took three different paths with BMW cars. Explore their histories, status and the first archived ALPINA specifications.",
   "heritage.next": "Next collection chapter",
   "heritage.sources": "History sources",
   "heritage.alpina.status": "A BMW Group brand since 2026",
