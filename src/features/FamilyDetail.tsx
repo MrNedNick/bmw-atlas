@@ -146,6 +146,11 @@ export function FamilyDetail({
     ["ratings", copy.ratings],
     ["sources", copy.sources],
   ] as const;
+  const heroEngine = spotlight
+    ? generation.powertrains.find(
+        (engine) => engine.name === spotlight.variant.split(" · ")[0],
+      )
+    : generation.powertrains[0];
   const engines = generation.powertrains.filter(
     (p) => !fuel || p.fuel === fuel,
   );
@@ -224,6 +229,16 @@ export function FamilyDetail({
                 <small>{power.variant}</small>
               </div>
             )}
+            {heroEngine?.torque != null && (
+              <div>
+                <dt>{copy.torque}</dt>
+                <dd>
+                  {heroEngine.torque.toLocaleString(language)}{" "}
+                  {t(language, "atelier.cars.nm")}
+                </dd>
+                <small>{heroEngine.name}</small>
+              </div>
+            )}
             {spotlight && (
               <div>
                 <dt>0–100 {t(language, "km.h.7853a0")}</dt>
@@ -247,23 +262,6 @@ export function FamilyDetail({
                   }).format(spotlight.price.amount)}
                 </dd>
                 <small>{t(language, spotlight.price.note)}</small>
-              </div>
-            )}
-            {generation.volume && (
-              <div>
-                <dt>{t(language, "recorded.volume.2a2d34")}</dt>
-                <dd>{formatVolume(generation.volume, language)}</dd>
-                <small>{generation.volume.scope}</small>
-              </div>
-            )}
-            {!spotlight && generation.assembly.length > 0 && (
-              <div>
-                <dt>{copy.assembly}</dt>
-                <dd className="hero-spec-text">
-                  {generation.assembly
-                    .map((value) => label(language, value))
-                    .join(" · ")}
-                </dd>
               </div>
             )}
           </dl>

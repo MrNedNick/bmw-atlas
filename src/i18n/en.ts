@@ -1,5 +1,17 @@
 import type { ru } from "./ru";
 export const en: Record<keyof typeof ru, string> = {
+  "dossier.bmw-8-g15.3":
+    "The double-bubble roof contour recalls classic sports coupés. A carbon-fibre roof was optional.",
+  "dossier.bmw-8-g15.4":
+    "The boot holds 420 litres and the rear backrests fold in two equal sections: useful touring capacity beneath the low roof.",
+  "dossier.bmw-8-g14.3":
+    "A reinforced windscreen frame works with concealed rollover bars behind the rear seats, deployed by a pyrotechnic mechanism.",
+  "dossier.bmw-8-g14.4":
+    "The launch 840d xDrive paired 235 kW with 680 Nm. In the convertible body its quoted 0–100 km/h time was 5.2 seconds.",
+  "dossier.bmw-8-g16.3":
+    "An approximately 1.5-square-metre panoramic roof and four-zone climate control were options specific to the four-door model.",
+  "dossier.bmw-8-g16.4":
+    "The launch 840i used rear-wheel drive, with 250 kW, 500 Nm and 5.2 seconds to 100 km/h. Not every Gran Coupé had xDrive.",
   "generation.bmw-8-e31.description":
     "A wedge-shaped grand tourer with pop-up headlights and no B-pillars. Launched with a V12, the range later gained the V8-powered 840Ci.",
   "dossier.bmw-8-e31.1":

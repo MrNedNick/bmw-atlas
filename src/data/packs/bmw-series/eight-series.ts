@@ -380,3 +380,27 @@ export const eightSeries: ModelFamily[] = [
     ],
   },
 ];
+
+for (const family of eightSeries) {
+  for (const generation of family.generations) {
+    if (!["G14", "G15", "G16"].includes(generation.code)) continue;
+    const launch = generation.powertrains[0];
+    generation.powertrains.push({
+      ...launch,
+      id: `${generation.id}-840d-xdrive`,
+      name: "840d xDrive",
+      fuel: "Дизель",
+      power: 235,
+      torque: 680,
+    });
+    if (generation.code === "G16")
+      generation.powertrains.push({
+        ...launch,
+        id: `${generation.id}-840i`,
+        name: "840i",
+        power: 250,
+        torque: 500,
+        drive: "Задний",
+      });
+  }
+}

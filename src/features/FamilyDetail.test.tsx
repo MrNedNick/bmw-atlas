@@ -52,3 +52,28 @@ describe("FamilyDetail", () => {
     expect(html).toContain(family.volume?.scope);
   });
 });
+
+it("keeps driving specifications together and production facts below the hero", () => {
+  const family = families.find((f) => f.id === "bmw-8-coupe")!;
+  const generation = family.generations[0];
+  const html = renderToStaticMarkup(
+    <FamilyDetail
+      family={family}
+      generation={generation}
+      language="en"
+      saved={false}
+      onSave={() => {}}
+      onBack={() => {}}
+      onGeneration={() => {}}
+      hrefForGeneration={(id) => `?generation=${id}`}
+    />,
+  );
+  const hero = html.split('class="hero-specifications"')[1].split("</dl>")[0];
+  expect(hero).toContain("300 PS");
+  expect(hero).toContain("450");
+  expect(hero.indexOf("Power")).toBeLessThan(hero.indexOf("Torque"));
+  expect(hero).not.toContain("30,621");
+  expect(hero).not.toContain("Assembly");
+  expect(html).toContain("30,621");
+  expect(html).toContain("Rosslyn");
+});
