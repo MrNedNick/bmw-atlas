@@ -866,6 +866,42 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     subject: "BMW M850i xDrive Convertible · G14 · 2020",
     note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
   },
+  "bmw-2-f22": {
+    url: "images/editorial-bmw-2-f22.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_M235i_(F22)_front_view.jpg",
+    author: "Alessandro",
+    license: "CC BY 2.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/2.0/",
+    subject: "BMW M235i Coupé · F22",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
+  "bmw-2-f22-lci": {
+    url: "images/editorial-bmw-2-f22-lci.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_M240i_Coup%C3%A9_(F22)_front.jpg",
+    author: "Tokumeigakarinoaoshima",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW M240i Coupé · F22 LCI · 2017",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
+  "bmw-2-f44": {
+    url: "images/editorial-bmw-2-f44.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_M235i_xDrive_(F44)_front.jpg",
+    author: "Tokumeigakarinoaoshima",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW M235i xDrive Gran Coupé · F44",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
+  "bmw-4-f32-lci": {
+    url: "images/editorial-bmw-4-f32-lci.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_440i_Coupe_M_Sport_GIIAS_2017.JPG",
+    author: "VulcanSphere",
+    license: "CC BY 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+    subject: "BMW 440i Coupé · F32 LCI · 2017",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
   "bmw-ix3-g08-lci": editorialPhoto(
     "editorial-bmw-ix3-g08-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",
@@ -1693,6 +1729,9 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId.startsWith("bmw-ix-") ||
     generationId.startsWith("bmw-7-") ||
     generationId.startsWith("bmw-1-") ||
+    ["bmw-2-f22", "bmw-2-f22-lci", "bmw-2-f44", "bmw-4-f32-lci"].includes(
+      generationId,
+    ) ||
     generationId.startsWith("bmw-8-") ||
     generationId.startsWith("bmw-x3-") ||
     generationId === "bmw-r32-1923" ||
