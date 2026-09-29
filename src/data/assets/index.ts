@@ -902,6 +902,33 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     subject: "BMW 440i Coupé · F32 LCI · 2017",
     note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
   },
+  "bmw-4-g22": {
+    url: "images/editorial-bmw-4-g22.webp",
+    page: "https://commons.wikimedia.org/wiki/File:The_frontview_of_BMW_M440i_xDrive_Coup%C3%A9_(G22).jpg",
+    author: "Tokumeigakarinoaoshima",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW M440i xDrive Coupé · G22 · 2020",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
+  "bmw-4-g22-lci": {
+    url: "images/editorial-bmw-4-g22-lci.webp",
+    page: "https://commons.wikimedia.org/wiki/File:2025_BMW_G22_M440i_IMG_2604.jpg",
+    author: "Alexander Migl (Alexander-93)",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW M440i Coupé · G22 LCI · 2025",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
+  "bmw-6-g32": {
+    url: "images/editorial-bmw-6-g32.webp",
+    page: "https://commons.wikimedia.org/wiki/File:2017_BMW_630i_M_Sport_Gran_Turismo_-_1998cc_2.0_(258PS)_Petrol_-_Grey_-_03-2024,_Front.jpg",
+    author: "Harvey Bold",
+    license: "CC BY 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+    subject: "BMW 630i M Sport Gran Turismo · G32",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
   "bmw-ix3-g08-lci": editorialPhoto(
     "editorial-bmw-ix3-g08-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",
@@ -1729,9 +1756,15 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId.startsWith("bmw-ix-") ||
     generationId.startsWith("bmw-7-") ||
     generationId.startsWith("bmw-1-") ||
-    ["bmw-2-f22", "bmw-2-f22-lci", "bmw-2-f44", "bmw-4-f32-lci"].includes(
-      generationId,
-    ) ||
+    [
+      "bmw-2-f22",
+      "bmw-2-f22-lci",
+      "bmw-2-f44",
+      "bmw-4-f32-lci",
+      "bmw-4-g22",
+      "bmw-4-g22-lci",
+      "bmw-6-g32",
+    ].includes(generationId) ||
     generationId.startsWith("bmw-8-") ||
     generationId.startsWith("bmw-x3-") ||
     generationId === "bmw-r32-1923" ||
