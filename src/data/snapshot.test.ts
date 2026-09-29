@@ -35,7 +35,7 @@ describe("BMW distribution", () => {
         existsSync(new URL("../../public/" + p.url, import.meta.url)),
       ).toBe(true);
   });
-  it("keeps local editorial images for photographed generations", () => {
+  it("keeps local editorial renders or licensed photographs for photographed generations", () => {
     const photos = families.flatMap((f) =>
       f.generations.flatMap((g) => (g.photo ? [g.photo] : [])),
     );
@@ -44,7 +44,11 @@ describe("BMW distribution", () => {
       photos.every((p) => p?.url.startsWith("images/editorial-bmw-")),
     ).toBe(true);
     expect(
-      photos.every((p) => p?.note?.includes("Редакционная визуализация")),
+      photos.every(
+        (p) =>
+          p?.note?.includes("Редакционная визуализация") ||
+          p?.note?.includes("Licensed Wikimedia Commons photograph"),
+      ),
     ).toBe(true);
   });
   it("keeps the flagship M visuals tied to exact press photographs", () => {

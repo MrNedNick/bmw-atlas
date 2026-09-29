@@ -5103,6 +5103,9 @@ export const families: ModelFamily[] = [
   },
 ];
 families.push(...seriesCollection, ...eightSeries);
+for (const family of eightSeries)
+  for (const generation of family.generations)
+    generation.photo = assetByGeneration[generation.id];
 export const allGenerations = families.flatMap((f) =>
   f.generations.map((g) => ({ family: f, generation: g })),
 );

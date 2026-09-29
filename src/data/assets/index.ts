@@ -838,6 +838,34 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
       ],
     },
   },
+  "bmw-8-e31": {
+    url: "images/editorial-bmw-8-e31.webp",
+    page: "https://commons.wikimedia.org/wiki/File:1990-1992_BMW_850i_(E31)_coupe_01.jpg",
+    author: "OSX",
+    license: "Public domain",
+    licenseUrl:
+      "https://commons.wikimedia.org/wiki/File:1990-1992_BMW_850i_(E31)_coupe_01.jpg#Licensing",
+    subject: "BMW 850i · E31 · 1990–1992",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
+  "bmw-8-g15": {
+    url: "images/editorial-bmw-8-g15.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_G15_M850i_IMG_7643.jpg",
+    author: "Alexander Migl (Alexander-93)",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW M850i · G15 · 2023",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
+  "bmw-8-g14": {
+    url: "images/editorial-bmw-8-g14.webp",
+    page: "https://commons.wikimedia.org/wiki/File:BMW_G14_IMG_3631.jpg",
+    author: "Alexander Migl (Alexander-93)",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    subject: "BMW M850i xDrive Convertible · G14 · 2020",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
   "bmw-ix3-g08-lci": editorialPhoto(
     "editorial-bmw-ix3-g08-lci.webp",
     "https://www.press.bmwgroup.com/global/article/detail/T0338848EN/the-new-bmw-ix3",
@@ -1665,6 +1693,7 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
     generationId.startsWith("bmw-ix-") ||
     generationId.startsWith("bmw-7-") ||
     generationId.startsWith("bmw-1-") ||
+    generationId.startsWith("bmw-8-") ||
     generationId.startsWith("bmw-x3-") ||
     generationId === "bmw-r32-1923" ||
     generationId.startsWith("bmw-gs-") ||

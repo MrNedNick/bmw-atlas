@@ -62,6 +62,15 @@ export function Exhibition({
   return (
     <div className="exhibition">
       <section className="museum-hero" aria-labelledby="museum-title">
+        <img
+          className="museum-cover-art"
+          src={
+            import.meta.env.BASE_URL + "images/bmw-atlas-exhibition-cover.webp"
+          }
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+        />
         <div className="museum-intro">
           <span className="eyebrow">
             BMW ATLAS / {t(language, "the.collection.71e618")}

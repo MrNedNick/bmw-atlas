@@ -2584,11 +2584,29 @@ td > span {
   --green: #245b70;
 }
 .museum-hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: 0.85fr 1.35fr;
   gap: clamp(28px, 4vw, 72px);
   align-items: center;
   padding: 64px 0 56px;
+  overflow: hidden;
+}
+.museum-cover-art {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  filter: saturate(0.72) contrast(1.08);
+  pointer-events: none;
+}
+.museum-intro,
+.museum-exhibit {
+  position: relative;
 }
 .museum-intro h1 {
   font-size: clamp(42px, 4.5vw, 72px);
