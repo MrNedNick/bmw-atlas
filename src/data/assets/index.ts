@@ -947,6 +947,15 @@ const photoByGeneration: Record<string, PhotoMetadata> = {
     subject: "BMW M440i Coupé · G22 LCI · 2025",
     note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
   },
+  "bmw-6-e24": {
+    url: "images/editorial-bmw-6-e24.webp",
+    page: "https://commons.wikimedia.org/wiki/File:E24_635CSi_wiki.jpg",
+    author: "HLW",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    subject: "BMW 635CSi · E24",
+    note: "Licensed Wikimedia Commons photograph, optimized and encoded as WebP for the site.",
+  },
   "bmw-6-g32": {
     url: "images/editorial-bmw-6-g32.webp",
     page: "https://commons.wikimedia.org/wiki/File:2017_BMW_630i_M_Sport_Gran_Turismo_-_1998cc_2.0_(258PS)_Petrol_-_Grey_-_03-2024,_Front.jpg",
@@ -1790,6 +1799,7 @@ for (const [generationId, photo] of Object.entries(photoByGeneration)) {
       "bmw-4-f32-lci",
       "bmw-4-g22",
       "bmw-4-g22-lci",
+      "bmw-6-e24",
       "bmw-6-g32",
     ].includes(generationId) ||
     generationId.startsWith("bmw-8-") ||
