@@ -19,6 +19,30 @@ export interface ModelSpotlight {
 }
 
 export const spotlights: Record<string, ModelSpotlight> = {
+  "bmw-8-g15": {
+    variant: "M850i xDrive · 2018",
+    source: "bmw-8-g15-launch",
+    powerKw: 390,
+    zeroTo100: 3.7,
+    intro: "generation.bmw-8-g15.description",
+    detail: "dossier.bmw-8-g15.2",
+  },
+  "bmw-8-g14": {
+    variant: "M850i xDrive · 2019",
+    source: "bmw-8-g14-launch",
+    powerKw: 390,
+    zeroTo100: 3.9,
+    intro: "generation.bmw-8-g14.description",
+    detail: "dossier.bmw-8-g14.2",
+  },
+  "bmw-8-g16": {
+    variant: "M850i xDrive · 2019",
+    source: "bmw-8-g16-launch",
+    powerKw: 390,
+    zeroTo100: 3.9,
+    intro: "generation.bmw-8-g16.description",
+    detail: "dossier.bmw-8-g16.2",
+  },
   "bmw-6-g32-lci": {
     variant: "640i xDrive · 2020",
     source: "bmw-6-g32-update",

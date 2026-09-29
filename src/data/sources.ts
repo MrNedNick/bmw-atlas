@@ -1,6 +1,39 @@
 import type { Source } from "../domain/catalog";
 export const sources: Source[] = [
   {
+    id: "bmw-8-g15-launch",
+    date: "2018-06-15",
+    title: "The all-new BMW 8 Series Coupe",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0281744EN/the-all-new-bmw-8-series-coupe",
+    publisher: "BMW Group",
+    scope: "Manufacturer history and dated specifications",
+  },
+  {
+    id: "bmw-8-g14-launch",
+    date: "2018-11-02",
+    title: "The new BMW 8 Series Convertible",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0286150EN/the-new-bmw-8-series-convertible",
+    publisher: "BMW Group",
+    scope: "Manufacturer history and dated specifications",
+  },
+  {
+    id: "bmw-8-g16-launch",
+    date: "2019-06-19",
+    title: "The new BMW 8 Series Gran Coupe",
+    url: "https://www.press.bmwgroup.com/global/article/detail/T0296984EN/the-new-bmw-8-series-gran-coupe",
+    publisher: "BMW Group",
+    scope: "Manufacturer history and dated specifications",
+  },
+  {
+    id: "bmw-8-us-production-end",
+    date: "2025-12-18",
+    title: "BMW statement: US-market 8 Series production through April 2026",
+    url: "https://www.bmwblog.com/2025/12/18/bmw-8-series-production-ends/",
+    publisher: "BMWBLOG",
+    scope:
+      "Updated report quoting BMW; April 2026 concerns the US market, not every market",
+  },
+  {
     id: "alpina-b3-sedan-2020",
     date: "2020-09-30",
     title: "B3 Limousine Technicaldata",

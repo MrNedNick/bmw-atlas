@@ -1,5 +1,79 @@
 import type { ru } from "./ru";
 export const en: Record<keyof typeof ru, string> = {
+  "generation.bmw-8-e31.description":
+    "A wedge-shaped grand tourer with pop-up headlights and no B-pillars. Launched with a V12, the range later gained the V8-powered 840Ci.",
+  "dossier.bmw-8-e31.1":
+    "BMW built 30,621 E31 cars, including 24 hand-assembled in Rosslyn. This total covers the generation, not one engine variant.",
+  "dossier.bmw-8-e31.2":
+    "In 1994 the 850Ci gained a 5.4-litre V12 in place of the 5.0. This was a technical update rather than a separate body facelift.",
+  "dossier.bmw-8-e31.photo":
+    "850i · E31 · 1989: use an original photograph of this exact body and phase. Front three-quarter view, whole car visible. Verify lights, grille, bumpers and wheels; do not substitute an M8 or another body style.",
+  "term.V12 5,4 л и пятиступенчатый автомат у 850Ci.":
+    "5.4-litre V12 and five-speed automatic for the 850Ci.",
+  "generation.bmw-8-g15.description":
+    "BMW’s large coupé returned after a long absence. The launch range paired the M850i V8 with the six-cylinder 840d diesel.",
+  "dossier.bmw-8-g15.1":
+    "M850i xDrive: 390 kW, 750 Nm and 0–100 km/h in 3.7 seconds. These figures describe the coupé at launch.",
+  "dossier.bmw-8-g15.2":
+    "Adaptive M suspension and rear-wheel steering were included. The M850i is an M Performance model, distinct from the M8.",
+  "dossier.bmw-8-g15.photo":
+    "M850i xDrive Coupé · G15 · 2018: use an original photograph of this exact body and phase. Front three-quarter view, whole car visible. Verify lights, grille, bumpers and wheels; do not substitute an M8 or another body style.",
+  "generation.bmw-8-g15-lci.description":
+    "The 2022 update introduced an illuminated grille and larger central display.",
+  "dossier.bmw-8-g15-lci.1":
+    "The M850i retained its 390 kW V8 and gained M mirrors.",
+  "dossier.bmw-8-g15-lci.2":
+    "BMW clarified to BMWBLOG that US-market production continued through April 2026. Other markets may have different timelines.",
+  "dossier.bmw-8-g15-lci.photo":
+    "M850i xDrive Coupé · G15 LCI · 2022: use an original photograph of this exact body and phase. Front three-quarter view, whole car visible. Verify lights, grille, bumpers and wheels; do not substitute an M8 or another body style.",
+  "term.Решётка Iconic Glow и экран 12,3 дюйма.":
+    "Iconic Glow grille and 12.3-inch display.",
+  "family.bmw-8-coupe.summary":
+    "Grand touring coupés, from the E31 V12 to the modern M850i.",
+  "family.bmw-8-coupe.tagline":
+    "Grand touring coupés, from the E31 V12 to the modern M850i.",
+  "generation.bmw-8-g14.description":
+    "The four-seat open-top 8 Series reached the market in March 2019. Its fabric roof preserves the low silhouette and folds into a dedicated compartment.",
+  "dossier.bmw-8-g14.1":
+    "The fabric roof opens or closes in 15 seconds, including while travelling at up to 50 km/h. It is not a folding metal hardtop.",
+  "dossier.bmw-8-g14.2":
+    "The M850i xDrive Convertible reaches 100 km/h in 3.9 seconds. Underbody bracing and deployable rollover bars address the open body structure.",
+  "dossier.bmw-8-g14.photo":
+    "M850i xDrive Convertible · G14 · 2019: use an original photograph of this exact body and phase. Front three-quarter view, whole car visible. Verify lights, grille, bumpers and wheels; do not substitute an M8 or another body style.",
+  "generation.bmw-8-g14-lci.description":
+    "The 2022 update introduced an illuminated grille and larger central display.",
+  "dossier.bmw-8-g14-lci.1":
+    "The M850i retained its 390 kW V8 and gained M mirrors.",
+  "dossier.bmw-8-g14-lci.2":
+    "BMW clarified to BMWBLOG that US-market production continued through April 2026. Other markets may have different timelines.",
+  "dossier.bmw-8-g14-lci.photo":
+    "M850i xDrive Convertible · G14 LCI · 2022: use an original photograph of this exact body and phase. Front three-quarter view, whole car visible. Verify lights, grille, bumpers and wheels; do not substitute an M8 or another body style.",
+  "family.bmw-8-convertible.summary":
+    "An open-top 8 Series with four seats and a fabric roof.",
+  "family.bmw-8-convertible.tagline":
+    "An open-top 8 Series with four seats and a fabric roof.",
+  "generation.bmw-8-g16.description":
+    "The four-door 8 Series has its own proportions and a roomier rear compartment. It retains a separate boot lid.",
+  "dossier.bmw-8-g16.1":
+    "Its wheelbase is 201 mm longer than the coupé’s. The 4+1 layout reserves the middle rear seat for shorter journeys.",
+  "dossier.bmw-8-g16.2":
+    "The boot holds 440 litres, with a 40:20:40 split rear backrest. The M850i xDrive is rated at 3.9 seconds to 100 km/h.",
+  "dossier.bmw-8-g16.photo":
+    "M850i xDrive Gran Coupé · G16 · 2019: use an original photograph of this exact body and phase. Front three-quarter view, whole car visible. Verify lights, grille, bumpers and wheels; do not substitute an M8 or another body style.",
+  "generation.bmw-8-g16-lci.description":
+    "The 2022 update introduced an illuminated grille and larger central display.",
+  "dossier.bmw-8-g16-lci.1":
+    "The M850i retained its 390 kW V8 and gained M mirrors.",
+  "dossier.bmw-8-g16-lci.2":
+    "BMW clarified to BMWBLOG that US-market production continued through April 2026. Other markets may have different timelines.",
+  "dossier.bmw-8-g16-lci.photo":
+    "M850i xDrive Gran Coupé · G16 LCI · 2022: use an original photograph of this exact body and phase. Front three-quarter view, whole car visible. Verify lights, grille, bumpers and wheels; do not substitute an M8 or another body style.",
+  "family.bmw-8-gran-coupe.summary":
+    "Four doors and long-distance comfort in a low-slung body.",
+  "family.bmw-8-gran-coupe.tagline":
+    "Four doors and long-distance comfort in a low-slung body.",
+  "term.Росслин": "Rosslyn",
+  "term.ЮАР": "South Africa",
   "atelier.cars.title": "ALPINA automobiles",
   "atelier.cars.intro":
     "Six archived specifications. Sedan and Touring, original versions and facelifts are shown separately.",
@@ -870,7 +944,6 @@ export const en: Record<keyof typeof ru, string> = {
   "term.Германия": "Germany",
   "term.Регенсбург": "Regensburg",
   "term.Лейпциг": "Leipzig",
-  "term.ЮАР": "South Africa",
   "term.США": "USA",
   "term.Китай": "China",
   "term.Мексика": "Mexico",
@@ -878,7 +951,6 @@ export const en: Record<keyof typeof ru, string> = {
   "term.Шэньян, G18": "Shenyang, G18",
   "term.Австрия": "Austria",
   "term.Грац": "Graz",
-  "term.Росслин": "Rosslyn",
   "term.Мюнхен": "Munich",
   "term.Дингольфинг": "Dingolfing",
   "term.Шэньян": "Shenyang",

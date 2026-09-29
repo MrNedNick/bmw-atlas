@@ -322,6 +322,8 @@ export const bmwSeriesInventory: SeriesInventoryItem[] = [
 ];
 
 const visibleOverviews: Record<string, string> = {
+  "bmw-series-8-e31": "bmw-8-e31",
+  "bmw-series-8-g1x": "bmw-8-g15",
   "bmw-series-2-f22": "bmw-2-f22",
   "bmw-series-2-g42": "bmw-2-g42",
   "bmw-series-2-f44": "bmw-2-f44",

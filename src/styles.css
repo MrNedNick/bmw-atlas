@@ -3873,6 +3873,10 @@ td > span {
   color: var(--ink);
   line-height: 1.5;
 }
+.detail-visual:has(.planned-photo-brief) {
+  flex-direction: column;
+  align-items: stretch;
+}
 .planned-photo-brief {
   padding: 16px 20px;
   background: var(--surface);

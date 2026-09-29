@@ -8,6 +8,62 @@ export interface ModelDossier {
   outputFile: string;
 }
 export const modelDossiers: Record<string, ModelDossier> = {
+  "bmw-8-e31": {
+    source: "bmw-8-e31-history",
+    subject: "850i · E31 · 1989",
+    phase: "historical",
+    facts: ["dossier.bmw-8-e31.1", "dossier.bmw-8-e31.2"],
+    photoBrief: "dossier.bmw-8-e31.photo",
+    outputFile: "public/images/editorial-bmw-8-e31.webp",
+  },
+  "bmw-8-g15": {
+    source: "bmw-8-g15-launch",
+    subject: "M850i xDrive Coupé · G15 · 2018",
+    phase: "launch",
+    facts: ["dossier.bmw-8-g15.1", "dossier.bmw-8-g15.2"],
+    photoBrief: "dossier.bmw-8-g15.photo",
+    outputFile: "public/images/editorial-bmw-8-g15.webp",
+  },
+  "bmw-8-g15-lci": {
+    source: "bmw-8-g-series-update",
+    subject: "M850i xDrive Coupé · G15 LCI · 2022",
+    phase: "facelift",
+    facts: ["dossier.bmw-8-g15-lci.1", "dossier.bmw-8-g15-lci.2"],
+    photoBrief: "dossier.bmw-8-g15-lci.photo",
+    outputFile: "public/images/editorial-bmw-8-g15-lci.webp",
+  },
+  "bmw-8-g14": {
+    source: "bmw-8-g14-launch",
+    subject: "M850i xDrive Convertible · G14 · 2019",
+    phase: "launch",
+    facts: ["dossier.bmw-8-g14.1", "dossier.bmw-8-g14.2"],
+    photoBrief: "dossier.bmw-8-g14.photo",
+    outputFile: "public/images/editorial-bmw-8-g14.webp",
+  },
+  "bmw-8-g14-lci": {
+    source: "bmw-8-g-series-update",
+    subject: "M850i xDrive Convertible · G14 LCI · 2022",
+    phase: "facelift",
+    facts: ["dossier.bmw-8-g14-lci.1", "dossier.bmw-8-g14-lci.2"],
+    photoBrief: "dossier.bmw-8-g14-lci.photo",
+    outputFile: "public/images/editorial-bmw-8-g14-lci.webp",
+  },
+  "bmw-8-g16": {
+    source: "bmw-8-g16-launch",
+    subject: "M850i xDrive Gran Coupé · G16 · 2019",
+    phase: "launch",
+    facts: ["dossier.bmw-8-g16.1", "dossier.bmw-8-g16.2"],
+    photoBrief: "dossier.bmw-8-g16.photo",
+    outputFile: "public/images/editorial-bmw-8-g16.webp",
+  },
+  "bmw-8-g16-lci": {
+    source: "bmw-8-g-series-update",
+    subject: "M850i xDrive Gran Coupé · G16 LCI · 2022",
+    phase: "facelift",
+    facts: ["dossier.bmw-8-g16-lci.1", "dossier.bmw-8-g16-lci.2"],
+    photoBrief: "dossier.bmw-8-g16-lci.photo",
+    outputFile: "public/images/editorial-bmw-8-g16-lci.webp",
+  },
   "bmw-2-f22": {
     source: "bmw-2-f22-launch",
     subject: "M235i Coupé · F22 · 2014",

@@ -20,6 +20,9 @@ export const catalogGroups: readonly CatalogGroup[] = [
       "bmw-6-series",
       "bmw-6-gran-turismo",
       "bmw-7-series",
+      "bmw-8-coupe",
+      "bmw-8-convertible",
+      "bmw-8-gran-coupe",
     ],
   },
   {

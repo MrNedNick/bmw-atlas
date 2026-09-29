@@ -1,3 +1,4 @@
+import { eightSeries } from "./packs/bmw-series/eight-series";
 import { seriesCollection } from "./packs/bmw-series/collection";
 import { assetByGeneration } from "./assets";
 import type {
@@ -5101,7 +5102,7 @@ export const families: ModelFamily[] = [
     ],
   },
 ];
-families.push(...seriesCollection);
+families.push(...seriesCollection, ...eightSeries);
 export const allGenerations = families.flatMap((f) =>
   f.generations.map((g) => ({ family: f, generation: g })),
 );
