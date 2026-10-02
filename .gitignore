@@ -5,10 +5,6 @@ dist/
 .env*
 !.env.example
 .DS_Store
-.claude/
-.codex/
-CLAUDE.md
-AGENTS.md
 
 # Full-size source photographs (kept locally, not published)
 references/
