@@ -4,6 +4,7 @@ import { assetByGeneration } from "../../assets";
 import { families } from "../../models";
 import { sourceById } from "../../sources";
 import { bmwMIInventory } from "./manifest";
+import { referenceFileExists } from "../../referenceArchive";
 
 describe("BMW M and i progress manifest", () => {
   it("keeps every completed object connected to a card, source and local image", () => {
@@ -20,11 +21,7 @@ describe("BMW M and i progress manifest", () => {
       expect(asset.reference?.imageId).not.toBe("");
       expect(asset.reference?.page).toMatch(/^https:\/\//);
       expect(asset.reference?.imageUrl).toMatch(/^https:\/\//);
-      expect(
-        existsSync(
-          new URL(`../../../../${asset.reference?.localFile}`, import.meta.url),
-        ),
-      ).toBe(true);
+      expect(referenceFileExists(asset.reference?.localFile)).toBe(true);
       expect(asset.reference?.phase).toBe(entry.imagePhase);
       expect(asset.reference?.verifiedDetails.length).toBeGreaterThanOrEqual(5);
       expect(

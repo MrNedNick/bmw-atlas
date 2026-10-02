@@ -5,6 +5,7 @@ import { assetByGeneration } from "../../assets";
 import { families } from "../../models";
 import { sources } from "../../sources";
 import { bmwHistoryInventory, validateBMWHistoryInventory } from "./manifest";
+import { referenceFileExists } from "../../referenceArchive";
 
 const isetta = families.find((family) => family.id === "bmw-isetta")!;
 
@@ -25,11 +26,7 @@ describe("BMW history progress manifest", () => {
       expect(
         existsSync(new URL(`../../../../public/${asset.url}`, import.meta.url)),
       ).toBe(true);
-      expect(
-        existsSync(
-          new URL(`../../../../${asset.reference?.localFile}`, import.meta.url),
-        ),
-      ).toBe(true);
+      expect(referenceFileExists(asset.reference?.localFile)).toBe(true);
     }
   });
 

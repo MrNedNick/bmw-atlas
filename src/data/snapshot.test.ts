@@ -4,6 +4,7 @@ import { families } from "./models";
 import { assetByGeneration } from "./assets";
 import { validateCatalog } from "../domain/catalog";
 import { sources } from "./sources";
+import { referenceFileExists } from "./referenceArchive";
 
 const snapshot = JSON.parse(
   readFileSync(
@@ -100,9 +101,7 @@ describe("BMW distribution", () => {
       expect(reference?.page).toContain(reference?.imageId);
       expect(reference?.imageUrl).toContain(reference?.imageId);
       expect(reference?.verifiedDetails.length).toBeGreaterThanOrEqual(5);
-      expect(
-        existsSync(new URL("../../" + reference?.localFile, import.meta.url)),
-      ).toBe(true);
+      expect(referenceFileExists(reference?.localFile)).toBe(true);
     }
   });
   it("rejects a photo without licence provenance", () => {
