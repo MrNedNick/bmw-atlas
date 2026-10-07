@@ -1,7 +1,8 @@
+import { VehicleImage } from "./media/VehicleImage";
 import { t } from "../i18n";
 import { ArrowRight, ArrowUpRight, Shuffle } from "lucide-react";
 import type { MouseEvent } from "react";
-import { families } from "../data/models";
+import { families } from "../data/browser-catalog";
 import { FaceliftExhibit } from "./FaceliftExhibit";
 import type { Language } from "../lib/preferences";
 
@@ -110,8 +111,8 @@ export function Exhibition({
             <span>{t(language, "in.the.spotlight.7abdbd")}</span>
             <span>01 / BMW M</span>
           </div>
-          <img
-            src={import.meta.env.BASE_URL + hero.photo!.url}
+          <VehicleImage
+            photo={hero.photo!}
             alt={hero.photo!.subject}
             fetchPriority="high"
           />
@@ -162,8 +163,9 @@ export function Exhibition({
                 }
               >
                 <div className="discovery-image">
-                  <img
-                    src={import.meta.env.BASE_URL + generation.photo!.url}
+                  <VehicleImage
+                    photo={generation.photo!}
+                    compact
                     alt={generation.photo!.subject}
                     loading="lazy"
                   />

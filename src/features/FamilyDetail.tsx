@@ -285,6 +285,7 @@ export function FamilyDetail({
           <div className="detail-visual blue">
             <VehiclePhoto
               photo={generation.photo}
+              priority
               language={language}
               planned={dossier?.subject}
             />

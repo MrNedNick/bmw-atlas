@@ -1,7 +1,8 @@
+import { VehicleImage } from "./media/VehicleImage";
 import { t } from "../i18n";
 import { ArrowUpRight } from "lucide-react";
 import type { MouseEvent } from "react";
-import { families } from "../data/models";
+import { families } from "../data/browser-catalog";
 import type { Language } from "../lib/preferences";
 
 export const faceliftExhibits = [
@@ -121,8 +122,9 @@ export function FaceliftExhibit({
                 </span>
                 <span>{index ? pair.year : generation.start}</span>
               </div>
-              <img
-                src={import.meta.env.BASE_URL + generation.photo!.url}
+              <VehicleImage
+                photo={generation.photo!}
+                compact
                 alt={generation.photo!.subject}
                 loading="lazy"
               />

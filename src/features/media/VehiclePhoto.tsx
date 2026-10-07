@@ -1,3 +1,4 @@
+import { VehicleImage } from "./VehicleImage";
 import { t, label } from "../../i18n";
 import { useState } from "react";
 import { ImageOff } from "lucide-react";
@@ -10,9 +11,11 @@ export function VehiclePhoto({
   language = "ru",
   onOpen,
   planned,
+  priority = false,
 }: {
   photo?: Photo;
   planned?: string;
+  priority?: boolean;
   compact?: boolean;
   language?: Language;
   onOpen?: () => void;
@@ -36,18 +39,22 @@ export function VehiclePhoto({
           onClick={onOpen}
           aria-label={t(language, "enlarge.37acfd") + subject}
         >
-          <img
-            src={import.meta.env.BASE_URL + photo.url}
+          <VehicleImage
+            photo={photo}
+            compact={compact}
+            fetchPriority={priority ? "high" : "auto"}
             alt={subject}
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
             onError={() => setFailed(photo.url)}
           />
         </button>
       ) : (
-        <img
-          src={import.meta.env.BASE_URL + photo.url}
+        <VehicleImage
+          photo={photo}
+          compact={compact}
+          fetchPriority={priority ? "high" : "auto"}
           alt={subject}
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
           onError={() => setFailed(photo.url)}
         />
       )}
@@ -61,14 +68,26 @@ export function VehiclePhoto({
               <summary>{t(language, "about.this.image.8ee887")}</summary>
               <span>
                 <a href={photo.page} target="_blank" rel="noreferrer">
-                  {photo.author}
+                  {isEnglish && photo.author === "Редакция BMW Atlas"
+                    ? "BMW Atlas editorial team"
+                    : photo.author}
                 </a>{" "}
                 ·{" "}
                 <a href={photo.licenseUrl} target="_blank" rel="noreferrer">
-                  {photo.license}
+                  {isEnglish && photo.license === "Редакционная визуализация"
+                    ? "Editorial visualization"
+                    : photo.license}
                 </a>
               </span>
-              {photo.note && <small className="photo-note">{photo.note}</small>}
+              {photo.note && (
+                <small className="photo-note">
+                  {isEnglish && photo.note.includes("Редакционная")
+                    ? photo.reference
+                      ? "Editorial visualization based on the exact source photograph; background and lighting modified."
+                      : "Editorial visualization; the source photograph requires verification."
+                    : photo.note}
+                </small>
+              )}
             </details>
           </>
         )}

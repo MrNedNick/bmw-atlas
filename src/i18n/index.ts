@@ -1,8 +1,20 @@
-import { ru } from "./ru";
-import { en } from "./en";
+import { readStaticJson } from "../lib/static-json";
+import type { ru as RussianMessages } from "./ru";
+type Dictionary = Record<keyof typeof RussianMessages, string>;
+async function loadMessages(): Promise<{ ru: Dictionary; en: Dictionary }> {
+  if (import.meta.env.MODE === "test") {
+    const [{ ru }, { en }] = await Promise.all([
+      import("./ru"),
+      import("./en"),
+    ]);
+    return { ru, en };
+  }
+  return readStaticJson("data/translations.json");
+}
+export const messages = await loadMessages();
+const { ru } = messages;
 export type Locale = "ru" | "en";
 export type MessageKey = keyof typeof ru;
-export const messages = { ru, en };
 export function t(locale: Locale, key: MessageKey): string {
   return messages[locale][key];
 }

@@ -1,4 +1,4 @@
-import { allGenerations } from "../../data/models";
+import { allGenerations } from "../../data/browser-catalog";
 import { catalogGroups } from "../../data/catalog-groups";
 import { matchesText } from "../../domain/catalog";
 
