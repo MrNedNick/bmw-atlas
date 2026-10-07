@@ -2563,11 +2563,18 @@ td > span {
 }
 @media (max-width: 760px) {
   .header-inner nav {
-    gap: 22px;
-    justify-content: space-between;
+    gap: 16px;
+    justify-content: flex-start;
+    min-width: 0;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    margin-bottom: -12px;
+    scrollbar-width: none;
   }
   .header-inner nav :is(button, a) {
     font-size: 16px;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 }
 
