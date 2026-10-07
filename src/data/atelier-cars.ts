@@ -1,3 +1,5 @@
+import type { Photo } from "../domain/catalog";
+import { atelierPhotos } from "./atelier-photos";
 import type { MessageKey } from "../i18n";
 export interface AtelierCar {
   id: string;
@@ -18,12 +20,14 @@ export interface AtelierCar {
   source: string;
   photoBrief: MessageKey;
   outputFile: string;
+  photo: Photo;
   editionLimit?: number;
   editionScope?: string;
 }
 export const atelierCars: AtelierCar[] = [
   {
     id: "alpina-b3-sedan-launch",
+    photo: atelierPhotos["alpina-b3-sedan-launch"],
     manufacturer: "ALPINA",
     name: "B3 Sedan",
     baseFamilyId: "bmw-3-series",
@@ -44,6 +48,7 @@ export const atelierCars: AtelierCar[] = [
   },
   {
     id: "alpina-b3-touring-launch",
+    photo: atelierPhotos["alpina-b3-touring-launch"],
     manufacturer: "ALPINA",
     name: "B3 Touring",
     baseFamilyId: "bmw-3-series",
@@ -64,6 +69,7 @@ export const atelierCars: AtelierCar[] = [
   },
   {
     id: "alpina-b3-sedan-facelift",
+    photo: atelierPhotos["alpina-b3-sedan-facelift"],
     manufacturer: "ALPINA",
     name: "B3 Sedan",
     baseFamilyId: "bmw-3-series",
@@ -84,6 +90,7 @@ export const atelierCars: AtelierCar[] = [
   },
   {
     id: "alpina-b3-touring-facelift",
+    photo: atelierPhotos["alpina-b3-touring-facelift"],
     manufacturer: "ALPINA",
     name: "B3 Touring",
     baseFamilyId: "bmw-3-series",
@@ -104,6 +111,7 @@ export const atelierCars: AtelierCar[] = [
   },
   {
     id: "alpina-b5-gt-sedan-limited",
+    photo: atelierPhotos["alpina-b5-gt-sedan-limited"],
     manufacturer: "ALPINA",
     name: "B5 GT Sedan",
     baseFamilyId: "bmw-5-series",
@@ -126,6 +134,7 @@ export const atelierCars: AtelierCar[] = [
   },
   {
     id: "alpina-b5-gt-touring-limited",
+    photo: atelierPhotos["alpina-b5-gt-touring-limited"],
     manufacturer: "ALPINA",
     name: "B5 GT Touring",
     baseFamilyId: "bmw-5-series",

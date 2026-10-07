@@ -1,3 +1,4 @@
+import { VehiclePhoto } from "./media/VehiclePhoto";
 import { useState } from "react";
 import { atelierCars, type AtelierCar } from "../data/atelier-cars";
 import { sourceById } from "../data/sources";
@@ -81,10 +82,7 @@ export function AtelierCars({ language }: { language: Locale }) {
                 </dd>
               </div>
             </dl>
-            <p className="atelier-photo-reserved">
-              {t(language, "photo.coming.soon.577ba2")} · {car.code}{" "}
-              {car.phase === "facelift" ? "LCI" : ""}
-            </p>
+            <VehiclePhoto photo={car.photo} language={language} />
             <details>
               <summary>{t(language, "atelier.cars.details")}</summary>
               <p>{t(language, car.story)}</p>
@@ -127,8 +125,6 @@ export function AtelierCars({ language }: { language: Locale }) {
               >
                 ALPINA · PDF ↗
               </a>
-              <h4>{t(language, "atelier.cars.photo")}</h4>
-              <p>{t(language, car.photoBrief)}</p>
             </details>
           </article>
         ))}

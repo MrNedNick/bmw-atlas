@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import { atelierPhotos } from "../data/atelier-photos";
+import { validateAssetRegistry } from "../data/assets";
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { AtelierCars, selectAtelierCars } from "./AtelierCars";
@@ -27,7 +30,7 @@ describe("ALPINA archive", () => {
     expect(new Set(editions.map((c) => c.editionScope)).size).toBe(1);
     expect(editions.every((c) => c.editionLimit === 250)).toBe(true);
   });
-  it("provides sources, bilingual copy, donor links and unique future photographs", () => {
+  it("provides sources, bilingual copy, donor links and unique photographs", () => {
     expect(new Set(atelierCars.map((c) => c.id)).size).toBe(atelierCars.length);
     expect(new Set(atelierCars.map((c) => c.outputFile)).size).toBe(
       atelierCars.length,
@@ -43,10 +46,45 @@ describe("ALPINA archive", () => {
       }
     }
   });
+  it("provides six distinct local covers with exact phase references and responsive formats", () => {
+    expect(
+      validateAssetRegistry(
+        atelierPhotos,
+        atelierCars.map((car) => car.id),
+      ),
+    ).toEqual([]);
+    expect(new Set(atelierCars.map((car) => car.photo.url)).size).toBe(6);
+    for (const car of atelierCars) {
+      expect(car.photo.generationId).toBe(car.id);
+      expect(car.photo.reference?.phase).toBe(
+        car.phase === "limited" ? "model-year" : car.phase,
+      );
+      expect(
+        existsSync(new URL(`../../public/${car.photo.url}`, import.meta.url)),
+      ).toBe(true);
+      const stem = car.photo.url
+        .split("/")
+        .at(-1)!
+        .replace(/\.[^.]+$/, "");
+      for (const width of [480, 960])
+        for (const format of ["avif", "webp"]) {
+          expect(
+            existsSync(
+              new URL(
+                `../../public/images/responsive/${stem}-${width}.${format}`,
+                import.meta.url,
+              ),
+            ),
+          ).toBe(true);
+        }
+    }
+  });
   it("renders an English archive without Russian fragments and native disclosure controls", () => {
     const html = renderToStaticMarkup(<AtelierCars language="en" />);
     expect(html).not.toMatch(/[А-Яа-яЁё]/);
     expect(html.match(/<details>/g)).toHaveLength(6);
+    expect(html.match(/<picture>/g)).toHaveLength(6);
+    expect(html).not.toContain("Photo coming soon");
     expect(html).toContain('href="?view=models&amp;model=bmw-3-series"');
     expect(html).toContain('aria-pressed="true"');
     expect(html).toContain("combined B5 GT edition limit");

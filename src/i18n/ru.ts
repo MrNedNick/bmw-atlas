@@ -94,7 +94,7 @@ export const ru = {
   "atelier.cars.facelift": "Рестайлинги",
   "atelier.cars.launch": "Исходная версия",
   "atelier.cars.limited": "Лимитированная серия",
-  "atelier.cars.details": "История, характеристики и будущий снимок",
+  "atelier.cars.details": "История и характеристики",
   "atelier.cars.snapshot": "Данные на дату",
   "atelier.cars.scope":
     "Архив ALPINA Japan; заявленные характеристики производителя. Дата документа не означает полный период выпуска.",

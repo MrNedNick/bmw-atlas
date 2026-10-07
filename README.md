@@ -10,12 +10,12 @@ An independent BMW encyclopedia covering generations, model-year updates, powert
 
 - 260 **BMW-only** names from NHTSA vPIC. This is a regulatory index that includes motorcycle names; it is not a complete technical history of every BMW.
 - 51 families and 122 generations or overview branches, covering core series, BMW X, M, i, Isetta and Motorrad. The [coverage report](docs/catalog-status.md) lists the exact scope.
-- 122 local images: every current generation or overview branch has its own cover. Reference-backed images identify their source and the visual details checked against it.
+- 128 local images: every current generation or overview branch has its own cover, plus six ALPINA photographs. Reference-backed images identify their source and the visual details checked against it.
 - English and Russian share typed dictionaries. Collection summaries and all 122 generation introductions are bilingual; legacy deep-detail content is still being migrated. See [localization](docs/localization.md).
 
 The catalog is expanding across historic and current BMW cars, M, i, X, Z, rare versions, race cars, concepts, and Motorrad. Missing information does not imply that a model, update, or powertrain did not exist. See the [data contract](docs/data-sources.md), [coverage plan](docs/coverage.md), and [catalog roadmap](docs/catalog-roadmap.md).
 
-The compact collection opens with collapsed filters. Historic BMW cars share one compact grid in the collection. Each cover links to its own model history, and saved models remain available in My garage. The separate **Ateliers** page introduces ALPINA, Hartge and AC Schnitzer, with their historical roles kept distinct.
+The compact collection opens with collapsed filters. Historic BMW cars share one compact grid in the collection. Each cover links to its own model history, and saved models remain available in My garage. The separate **Ateliers** page introduces ALPINA, Hartge and AC Schnitzer, with their historical roles kept distinct. Its six B3 and B5 GT cards have separate photographs for each body style and phase, dated specifications and expandable image credits.
 
 ## Development
 

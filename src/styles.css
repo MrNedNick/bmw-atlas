@@ -4086,12 +4086,8 @@ td > span {
 .atelier-car-stats small {
   font-size: 14px;
 }
-.atelier-photo-reserved {
-  color: var(--muted);
-  font-size: 15px;
-  padding: 14px 0;
-  border-top: 1px solid var(--line);
-  margin-top: 18px;
+.atelier-car .vehicle-photo {
+  margin: 18px 0;
 }
 .atelier-car summary {
   cursor: pointer;

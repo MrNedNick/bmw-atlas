@@ -95,7 +95,7 @@ export const en: Record<keyof typeof ru, string> = {
   "atelier.cars.facelift": "Facelifts",
   "atelier.cars.launch": "Original version",
   "atelier.cars.limited": "Limited edition",
-  "atelier.cars.details": "Story, specifications and planned photograph",
+  "atelier.cars.details": "Story and specifications",
   "atelier.cars.snapshot": "Specification dated",
   "atelier.cars.scope":
     "ALPINA Japan archive; manufacturer performance figures. The document date is not a complete production period.",

@@ -1,15 +1,17 @@
 import sharp from "sharp";
 import { mkdirSync } from "node:fs";
+import { atelierCars } from "../src/data/atelier-cars";
 import { families } from "../src/data/models";
 const root = new URL("../public/", import.meta.url);
 mkdirSync(new URL("images/responsive/", root), { recursive: true });
-const paths = new Set(
-  families.flatMap((family) =>
+const paths = new Set([
+  ...atelierCars.map((car) => car.photo.url),
+  ...families.flatMap((family) =>
     family.generations.flatMap((generation) =>
       generation.photo ? [generation.photo.url] : [],
     ),
   ),
-);
+]);
 for (const path of paths) {
   const stem = path
     .split("/")
