@@ -158,6 +158,34 @@ export function CollectionCatalog({
     event.preventDefault();
     onOpen(family, generation);
   };
+  const classicIds = catalogGroups.find(
+    (group) => group.id === "classic",
+  )!.familyIds;
+  const chapters = [
+    {
+      id: "modern",
+      entries: entries.filter(
+        ({ family }) =>
+          !classicIds.includes(family.id) && family.vehicleKind !== "Мотоцикл",
+      ),
+    },
+    {
+      id: "classic",
+      entries: entries
+        .filter(({ family }) => classicIds.includes(family.id))
+        .sort(
+          (a, b) =>
+            Math.min(...a.generations.map((g) => g.start)) -
+            Math.min(...b.generations.map((g) => g.start)),
+        ),
+    },
+    {
+      id: "motorrad",
+      entries: entries.filter(
+        ({ family }) => family.vehicleKind === "Мотоцикл",
+      ),
+    },
+  ].filter((chapter) => chapter.entries.length);
   return (
     <>
       <header className="archive-heading">
@@ -315,72 +343,160 @@ export function CollectionCatalog({
         {t(language, "collection.versions")}: {count}
       </span>
       <div className="archive-families">
-        {entries.map(({ family, generations }) => (
+        {chapters.map((chapter) => (
           <section
-            className="archive-family"
-            key={family.id}
-            aria-labelledby={`family-${family.id}`}
+            key={chapter.id}
+            className={
+              chapter.id === "classic" ? "archive-classics" : "archive-modern"
+            }
+            aria-labelledby={
+              chapter.id === "classic" ? "archive-classics-title" : undefined
+            }
           >
-            <header className="archive-family-heading">
-              <div>
-                <span className="eyebrow">
-                  {family.vehicleKind === "Мотоцикл" ? "BMW MOTORRAD" : "BMW"} ·{" "}
-                  {Math.min(...family.generations.map((g) => g.start))}
-                </span>
-                <h2 id={`family-${family.id}`}>{family.name}</h2>
+            {chapter.id === "classic" && (
+              <header className="section-heading">
+                <div>
+                  <span className="eyebrow">BMW CLASSIC</span>
+                  <h2 id="archive-classics-title">
+                    {language === "en"
+                      ? "Historic BMW cars"
+                      : "Исторические автомобили BMW"}
+                  </h2>
+                  <p>
+                    {language === "en"
+                      ? "The early cars and ideas that shaped BMW, together in one collection."
+                      : "Ранние автомобили и идеи, сформировавшие BMW, — в одной коллекции."}
+                  </p>
+                </div>
+              </header>
+            )}
+            {chapter.id === "classic" ? (
+              <div className="archive-grid">
+                {chapter.entries.flatMap(({ family, generations }) =>
+                  generations.map((g) => (
+                    <article key={g.id} className="classic-card">
+                      <a
+                        className="archive-card"
+                        href={hrefFor(family, g)}
+                        onClick={(event) => follow(event, family, g)}
+                        aria-label={`BMW ${family.name} ${g.code}`}
+                      >
+                        <div className="archive-card-photo">
+                          <VehiclePhoto
+                            photo={g.photo}
+                            compact
+                            language={language}
+                          />
+                        </div>
+                        <div className="archive-card-caption">
+                          <div>
+                            <span>
+                              {g.start}–
+                              {g.end ?? t(language, "collection.present")} ·{" "}
+                              {g.code}
+                            </span>
+                            <h3>BMW {family.name}</h3>
+                          </div>
+                          <ArrowUpRight size={23} />
+                        </div>
+                      </a>
+                      <button
+                        className="archive-save classic-save"
+                        aria-pressed={saved.includes(family.id)}
+                        aria-label={`${t(language, saved.includes(family.id) ? "collection.saved" : "collection.save")} BMW ${family.name}`}
+                        onClick={() => onSave(family.id)}
+                      >
+                        <Bookmark
+                          size={19}
+                          fill={
+                            saved.includes(family.id) ? "currentColor" : "none"
+                          }
+                        />
+                      </button>
+                    </article>
+                  )),
+                )}
               </div>
-              <p>{catalogText(language, `family.${family.id}.summary`)}</p>
-              <button
-                className="archive-save"
-                aria-pressed={saved.includes(family.id)}
-                aria-label={`${t(language, saved.includes(family.id) ? "collection.saved" : "collection.save")} BMW ${family.name}`}
-                onClick={() => onSave(family.id)}
-              >
-                <Bookmark
-                  size={21}
-                  fill={saved.includes(family.id) ? "currentColor" : "none"}
-                />
-              </button>
-            </header>
-            <div className="archive-grid">
-              {generations.map((g) => (
-                <a
-                  className="archive-card"
-                  key={g.id}
-                  href={hrefFor(family, g)}
-                  onClick={(e) => follow(e, family, g)}
-                  aria-label={`BMW ${family.name} ${g.code} · ${g.start}–${g.end ?? t(language, "collection.present")}`}
+            ) : (
+              chapter.entries.map(({ family, generations }) => (
+                <section
+                  className="archive-family"
+                  key={family.id}
+                  aria-labelledby={`family-${family.id}`}
                 >
-                  <div className="archive-card-photo">
-                    <VehiclePhoto
-                      photo={g.photo}
-                      compact
-                      language={language}
-                      planned={modelDossiers[g.id]?.subject}
-                    />
-                    {isFacelift(g) && (
-                      <span className="archive-phase">
-                        {t(language, "collection.facelift")}
-                      </span>
-                    )}
-                  </div>
-                  <div className="archive-card-caption">
+                  <header className="archive-family-heading">
                     <div>
-                      <span>
-                        {g.start}–{g.end ?? t(language, "collection.present")}
+                      <span className="eyebrow">
+                        {family.vehicleKind === "Мотоцикл"
+                          ? "BMW MOTORRAD"
+                          : "BMW"}{" "}
+                        · {Math.min(...family.generations.map((g) => g.start))}
                       </span>
-                      <h3>{g.code}</h3>
+                      <h2 id={`family-${family.id}`}>{family.name}</h2>
                     </div>
-                    <ArrowUpRight size={23} />
-                  </div>
-                  {!g.photo && (
-                    <p className="archive-card-note">
-                      {catalogText(language, `generation.${g.id}.description`)}
+                    <p>
+                      {catalogText(language, `family.${family.id}.summary`)}
                     </p>
-                  )}
-                </a>
-              ))}
-            </div>
+                    <button
+                      className="archive-save"
+                      aria-pressed={saved.includes(family.id)}
+                      aria-label={`${t(language, saved.includes(family.id) ? "collection.saved" : "collection.save")} BMW ${family.name}`}
+                      onClick={() => onSave(family.id)}
+                    >
+                      <Bookmark
+                        size={21}
+                        fill={
+                          saved.includes(family.id) ? "currentColor" : "none"
+                        }
+                      />
+                    </button>
+                  </header>
+                  <div className="archive-grid">
+                    {generations.map((g) => (
+                      <a
+                        className="archive-card"
+                        key={g.id}
+                        href={hrefFor(family, g)}
+                        onClick={(e) => follow(e, family, g)}
+                        aria-label={`BMW ${family.name} ${g.code} · ${g.start}–${g.end ?? t(language, "collection.present")}`}
+                      >
+                        <div className="archive-card-photo">
+                          <VehiclePhoto
+                            photo={g.photo}
+                            compact
+                            language={language}
+                            planned={modelDossiers[g.id]?.subject}
+                          />
+                          {isFacelift(g) && (
+                            <span className="archive-phase">
+                              {t(language, "collection.facelift")}
+                            </span>
+                          )}
+                        </div>
+                        <div className="archive-card-caption">
+                          <div>
+                            <span>
+                              {g.start}–
+                              {g.end ?? t(language, "collection.present")}
+                            </span>
+                            <h3>{g.code}</h3>
+                          </div>
+                          <ArrowUpRight size={23} />
+                        </div>
+                        {!g.photo && (
+                          <p className="archive-card-note">
+                            {catalogText(
+                              language,
+                              `generation.${g.id}.description`,
+                            )}
+                          </p>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                </section>
+              ))
+            )}
           </section>
         ))}
         {!entries.length && (

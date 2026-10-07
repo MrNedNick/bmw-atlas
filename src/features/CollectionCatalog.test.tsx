@@ -66,6 +66,31 @@ describe("collection chapters", () => {
       .find((g) => g.id === "bmw-m3-g80")!;
     expect(isFacelift(lineage)).toBe(false);
   });
+  it("collects historic cars in one grid without losing model links", () => {
+    const classics = families.filter((f) =>
+      ["bmw-isetta", "bmw-328", "bmw-e9"].includes(f.id),
+    );
+    const html = renderToStaticMarkup(
+      <CollectionCatalog
+        expanded={false}
+        onExpandedChange={() => {}}
+        families={classics}
+        selection={selection}
+        saved={[]}
+        language="en"
+        onChange={() => {}}
+        onSave={() => {}}
+        onOpen={() => {}}
+        hrefFor={(f, g) => `?model=${f.id}&generation=${g.id}`}
+      />,
+    );
+    expect(html.match(/class="archive-grid"/g)).toHaveLength(1);
+    expect(html).toContain("Historic BMW cars");
+    expect(html).not.toContain('class="archive-family-heading"');
+    for (const family of classics)
+      for (const generation of family.generations)
+        expect(html).toContain(`generation=${generation.id}`);
+  });
   it("provides real model links for new tabs and keeps the garage separate", () => {
     const family = families.find((f) => f.id === "bmw-x7")!;
     const html = renderToStaticMarkup(

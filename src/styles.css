@@ -2661,7 +2661,7 @@ td > span {
   font-size: 12px;
   letter-spacing: 0.12em;
 }
-.museum-exhibit > img {
+.museum-exhibit img {
   width: 100%;
   aspect-ratio: 16/10;
   object-fit: contain;
@@ -4154,4 +4154,30 @@ td > span {
 .atelier-car-technical dd {
   margin: 0;
   max-width: 100%;
+}
+
+.archive-modern,
+.archive-classics {
+  display: grid;
+  gap: 3rem;
+}
+.archive-classics {
+  border-top: 1px solid var(--line);
+  padding-top: 3rem;
+}
+.vehicle-photo picture,
+.museum-exhibit picture,
+.discovery-image picture {
+  display: contents;
+}
+
+.classic-card {
+  position: relative;
+  min-width: 0;
+}
+.classic-save {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
 }
